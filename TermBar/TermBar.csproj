@@ -1,0 +1,165 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <LangVersion>12</LangVersion>
+    <RootNamespace>TermBar</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x64;ARM64</Platforms>
+    <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
+    <PublishProfile>win-$(Platform).pubxml</PublishProfile>
+    <UseWinUI>true</UseWinUI>
+    <EnableMsixTooling>true</EnableMsixTooling>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="Clock.xaml" />
+    <None Remove="Styles\TextBlock.xaml" />
+    <None Remove="Views\Modules\ClockCalendarView.xaml" />
+    <None Remove="Views\Modules\WindowDropdownView.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <Utf8ProcDll>utf8proc.dll</Utf8ProcDll>
+    <Utf8ProcNativeArch Condition="'$(Platform)'=='x64'">x64</Utf8ProcNativeArch>
+    <Utf8ProcNativeArch Condition="'$(Platform)'=='ARM64'">arm64</Utf8ProcNativeArch>
+    <Utf8ProcInputPath>$(ProjectDir)..\utf8proc\out\build\$(Utf8ProcNativeArch)-Release\$(Utf8ProcDll)</Utf8ProcInputPath>
+    <Utf8ProcOutputPath>$(ProjectDir)$(Utf8ProcDll)</Utf8ProcOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(Utf8ProcInputPath)">
+      <Link>$(Utf8ProcOutputPath)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <!--
+    Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+    Tools extension to be activated for this project even if the Windows App SDK Nuget
+    package has not yet been restored.
+  -->
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="CommunityToolkit.WinUI.Extensions" Version="8.2.250402" />
+    <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.3.2" />
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.183">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4188" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250606001" />
+    <PackageReference Include="NAudio.Wasapi" Version="2.2.1" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="9.0.6" />
+    <PackageReference Include="System.Memory" Version="4.6.3" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
+    <PackageReference Include="System.Text.Json" Version="9.0.6" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Page Update="Memory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Cpu.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ItemsStackPanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\GridView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\StackPanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TermBarWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Assets\Fonts\" />
+    <Folder Include="Views\Modules\Clock\" />
+    <Folder Include="Views\Modules\Cpu\" />
+    <Folder Include="Views\Modules\Memory\" />
+    <Folder Include="Views\Modules\WindowDropdown\" />
+    <Folder Include="Views\Modules\WindowBar\" />
+    <Folder Include="Views\Modules\Volume\" />
+    <Folder Include="Views\Modules\StaticText\" />
+    <Folder Include="Views\Windows\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\w6t\Terminal\Terminal.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PRIResource Include="..\..\w6t\Terminal\Strings\**\*.resw"/>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Page Update="Views\DialogWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Modules\ClockCalendarView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Page Update="Views\Modules\WindowDropdownView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Page Update="Styles\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Page Update="Clock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <!--
+    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
+    Explorer "Package and Publish" context menu entry to be enabled for this project even if
+    the Windows App SDK Nuget package has not yet been restored.
+  -->
+  <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+  </PropertyGroup>
+
+  <!-- Publish Properties -->
+  <PropertyGroup>
+    <PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
+    <PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
+    <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
+    <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
+  </PropertyGroup>
+  
+</Project>

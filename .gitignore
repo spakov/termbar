@@ -1,0 +1,8 @@
+**/*.user
+**/.vs/
+**/CMakeSettings.json
+**/bin/
+**/nupkg/
+**/obj/
+**/out/
+TermBar/Properties/launchSettings.json

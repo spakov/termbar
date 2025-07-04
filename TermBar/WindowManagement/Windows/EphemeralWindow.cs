@@ -1,0 +1,269 @@
+﻿using Microsoft.UI.Xaml;
+using System;
+using System.Diagnostics;
+using TermBar.Models;
+using Windows.Win32;
+using Windows.Win32.Foundation;
+using Windows.Win32.UI.Accessibility;
+
+namespace TermBar.WindowManagement.Windows {
+  /// <summary>
+  /// A TermBar ephemeral window.
+  /// </summary>
+  internal class EphemeralWindow : Window {
+    private readonly WINEVENTPROC winForegroundEventProc;
+
+    private readonly Views.Windows.EphemeralWindow ephemeralWindow;
+    private bool ignoreFirstForegroundEvent;
+
+    private readonly uint requestedLeft;
+    private readonly uint requestedTop;
+
+    /// <inheritdoc cref="Window.Config"/>
+    protected new Configuration.Json.TermBar Config { get; init; }
+
+    /// <summary>
+    /// The last time an ephemeral window closed.
+    /// </summary>
+    internal static DateTime LastCloseTime { get; set; }
+
+    /// <summary>
+    /// Debounces display of an ephemeral window.
+    /// </summary>
+    /// <remarks>
+    /// Before displaying an ephemeral window, include something like
+    /// the following:
+    /// <code>if (WindowManagement.EphemeralWindow.Debounce()) return;</code>
+    /// </remarks>
+    /// <returns>Returns <c>true</c> if the debounce is in effect or
+    /// <c>false</c> if the window can be displayed.</returns>
+    internal static bool Debounce() => (DateTime.Now - LastCloseTime).Milliseconds < 100;
+
+    private readonly uint _margin;
+    private readonly uint _padding;
+
+    /// <inheritdoc cref="Window.Margin"/>
+    protected new uint Margin => Config.DpiAware ? ScaleY(_margin) : _margin;
+
+    /// <inheritdoc cref="Window.Padding"/>
+    protected new uint Padding => Config.DpiAware ? ScaleY(_padding) : _padding;
+
+    /// <summary>
+    /// The minimum width of the ephemeral window.
+    /// </summary>
+    private static uint MinimumWidth => 300;
+
+    /// <summary>
+    /// The maximum width of the ephemeral window.
+    /// </summary>
+    private uint MaximumWidth => (Config.DpiAware ? ScaleX(display.Width) : display.Width) - (Padding * 2);
+
+    private uint _width;
+
+    protected override uint Width {
+      get => _width;
+      set {
+        if (_width != value) {
+          _width = Math.Min(MaximumWidth, Config.DpiAware ? ScaleX(value) : value);
+          _width = Math.Max(MinimumWidth, _width);
+
+          Move(
+            WindowLeft(),
+            WindowTop(),
+            _width,
+            Height,
+            skipActivation: false
+          );
+        }
+      }
+    }
+
+    /// <summary>
+    /// The minimum height of the ephemeral window.
+    /// </summary>
+    private static uint MinimumHeight => 300;
+
+    /// <summary>
+    /// The maximum height of the ephemeral window.
+    /// </summary>
+    private uint MaximumHeight => (Config.DpiAware ? ScaleX(display.Height) : display.Height) - (Padding * 2);
+
+    private uint _height;
+
+    protected override uint Height {
+      get => _height;
+      set {
+        if (_height != value) {
+          _height = Math.Min(MaximumHeight, Config.DpiAware ? ScaleX(value) : value);
+          _height = Math.Max(MinimumHeight, _height);
+
+          Move(
+            WindowLeft(),
+            WindowTop(),
+            Width,
+            _height,
+            skipActivation: false
+          );
+        }
+      }
+    }
+
+    /// <summary>
+    /// Initializes an <see cref="EphemeralWindow"/>.
+    /// </summary>
+    /// <param name="config"><inheritdoc cref="Window.Window"
+    /// path="/param[@name='config']"/></param>
+    /// <param name="requestedLeft">The requested left position of the
+    /// window.</param>
+    /// <param name="requestedTop">The requested top position of the
+    /// window.</param>
+    /// <param name="content">The content to present in the window.</param>
+    internal EphemeralWindow(Configuration.Json.TermBar config, uint requestedLeft, uint requestedTop, UIElement content) : base(config.Display!, config) {
+      Config = base.Config!;
+
+      this.requestedLeft = requestedLeft;
+      this.requestedTop = requestedTop;
+
+      ephemeralWindow = new(Config, content);
+      winForegroundEventProc = new(WinForegroundEventProc);
+
+      _margin = (uint) base.Margin!;
+      _padding = (uint) base.Padding!;
+      _width = Config.DpiAware ? ScaleX(MinimumWidth) : MinimumWidth;
+      _height = Config.DpiAware ? ScaleY(MinimumHeight) : MinimumHeight;
+    }
+
+    /// <summary>
+    /// Displays the ephemeral window.
+    /// </summary>
+    internal void Display() {
+      Display(
+        ephemeralWindow,
+        WindowLeft(),
+        WindowTop(),
+        Width,
+        Height,
+        TermBarWindow_RequestResize,
+        skipActivation: false
+      );
+
+      ignoreFirstForegroundEvent = true;
+
+      _ = PInvoke.SetWinEventHook(
+        WindowListHelper.EVENT_SYSTEM_FOREGROUND,
+        WindowListHelper.EVENT_SYSTEM_FOREGROUND,
+        (HMODULE) (nint) 0,
+        winForegroundEventProc,
+        0,
+        0,
+        WindowListHelper.WINEVENT_OUTOFCONTEXT
+      );
+    }
+
+    /// <summary>
+    /// Called when the ephemeral window requests a resize.
+    /// </summary>
+    /// <param name="sender"><inheritdoc
+    /// cref="System.ComponentModel.PropertyChangedEventHandler"
+    /// path="/param[@name='sender']"/></param>
+    /// <param name="e"><inheritdoc
+    /// cref="System.ComponentModel.PropertyChangedEventHandler"
+    /// path="/param[@name='e']"/></param>
+    private void TermBarWindow_RequestResize(object? sender, System.ComponentModel.PropertyChangedEventArgs e) {
+      Width = (uint) ephemeralWindow!.DesiredWidth;
+      Height = (uint) ephemeralWindow!.DesiredHeight;
+    }
+
+    /// <summary>
+    /// Determines the left location of the ephemeral window.
+    /// </summary>
+    /// <returns>The scaled calculated left position of the ephemeral
+    /// window.</returns>
+    private uint WindowLeft() {
+      return requestedLeft + Width + Margin > (Config.DpiAware ? ScaleX(display.Width) : display.Width)
+        ? (Config.DpiAware ? ScaleX(display.Width) : display.Width) - Width - Margin
+        : requestedLeft;
+    }
+
+    /// <summary>
+    /// Determines the top location of the ephemeral window.
+    /// </summary>
+    /// <returns>The scaled calculated top position of the ephemeral
+    /// window.</returns>
+    /// <exception cref="ArgumentException"></exception>
+    private uint WindowTop() {
+      if (Config.Location.Equals(Location.Top)) {
+        return requestedTop < (Config.DpiAware ? ScaleY(display.Top) : display.Top) + Config.Height + (Margin * 2)
+          ? (Config.DpiAware ? ScaleY(display.Top) : display.Top) + Config.Height + (Margin * 2)
+          : requestedTop;
+      } else if (Config.Location.Equals(Location.Bottom)) {
+        return requestedTop + Margin > (Config.DpiAware ? ScaleY(display.Height) : display.Height) - Config.Height - (Margin * 2)
+          ? (Config.DpiAware ? ScaleY(display.Height) : display.Height) - Config.Height - (Margin * 2)
+          : requestedTop;
+      }
+
+      throw new ArgumentException("Invalid Location", "Location");
+    }
+
+    /// <summary>
+    /// Handles event <c>EVENT_SYSTEM_FOREGROUND</c> to close the ephemeral
+    /// window on loss of focus.
+    /// </summary>
+    /// <remarks>
+    /// <para>An application-defined callback (or hook) function that the
+    /// system calls in response to events generated by an accessible object.
+    /// The hook function processes the event notifications as required.
+    /// Clients install the hook function and request specific types of event
+    /// notifications by calling <see cref="PInvoke.SetWinEventHook"/>.</para>
+    /// <para>The <see cref="WINEVENTPROC"/> type defines a pointer to this
+    /// callback function. <c>WinEventProc</c> is a placeholder for the
+    /// application-defined function name.</para>
+    /// </remarks>
+    /// <param name="hWinEventHook">Handle to an event hook function. This
+    /// value is returned by <see cref="PInvoke.SetWinEventHook"/> when the
+    /// hook function is installed and is specific to each instance of the hook
+    /// function.</param>
+    /// <param name="event">Specifies the event that occurred. This value is
+    /// one of the event constants.</param>
+    /// <param name="hWnd">Handle to the window that generates the event, or
+    /// <c>null</c> if no window is associated with the event. For example, the
+    /// mouse pointer is not associated with a window.</param>
+    /// <param name="idObject">Identifies the object associated with the event.
+    /// This is one of the object identifiers or a custom object ID.</param>
+    /// <param name="idChild">Identifies whether the event was triggered by an
+    /// object or a child element of the object. If this value is
+    /// <c>CHILDID_SELF</c>, the event was triggered by the object; otherwise,
+    /// this value is the child ID of the element that triggered the
+    /// event.</param>
+    /// <param name="idEventThread"></param>
+    /// <param name="dwmsEventTime">Specifies the time, in milliseconds, that
+    /// the event was generated.</param>
+    private void WinForegroundEventProc(
+      HWINEVENTHOOK hWinEventHook,
+      uint @event,
+      HWND hWnd,
+      int idObject,
+      int idChild,
+      uint idEventThread,
+      uint dwmsEventTime
+    ) {
+      /*Debug.WriteLine($"EVENT_SYSTEM_FOREGROUND for HWND {hWnd}");
+      Debug.WriteLine($"  TermBar HWND is {Config.HWnd}");
+      Debug.WriteLine($"  My HWND is {base.hWnd}");
+      Debug.WriteLine($"  XAML Island HWND is {ephemeralWindowHWnd}");*/
+
+      if (ignoreFirstForegroundEvent) {
+        Debug.WriteLine("Ephemeral window ignored first EVENT_SYSTEM_FOREGROUND event");
+        ignoreFirstForegroundEvent = false;
+
+        return;
+      }
+
+      if (hWnd != base.hWnd) {
+        PInvoke.UnhookWinEvent(hWinEventHook);
+        Close();
+        LastCloseTime = DateTime.Now;
+      }
+    }
+  }
+}

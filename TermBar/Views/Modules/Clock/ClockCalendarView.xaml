@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<local:ModuleView
+  d:DataContext="{x:Bind ViewModel, Mode=OneWay}"
+  x:Class="TermBar.Views.Modules.Clock.ClockCalendarView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="using:TermBar.Views"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d">
+  <local:ModuleView.Resources>
+    <ItemsPanelTemplate
+      x:Name="GridOfDays">
+      <ItemsWrapGrid
+        MaximumRowsOrColumns="7"
+        Orientation="Horizontal"/>
+    </ItemsPanelTemplate>
+  </local:ModuleView.Resources>
+  <Grid x:Name="Calendar">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <Grid x:Name="Header" Grid.Row="0" Grid.Column="0">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <Button x:Name="LastMonth" Click="LastMonth_Click" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+        <TextBlock Text="{x:Bind ViewModel.LastMonth, Mode=OneWay}"/>
+      </Button>
+      <Grid x:Name="Date" Grid.Row="0" Grid.Column="1">
+        <Grid.RowDefinitions>
+          <RowDefinition/>
+          <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="{x:Bind ViewModel.HeaderDay, Mode=OneWay}" FontSize="24" Grid.Row="0" Grid.Column="0"/>
+        <TextBlock Text="{x:Bind ViewModel.HeaderDate, Mode=OneWay}" FontSize="24" Grid.Row="1" Grid.Column="0"/>
+      </Grid>
+      <Button x:Name="NextMonth" Click="NextMonth_Click" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right">
+        <TextBlock Text="{x:Bind ViewModel.NextMonth, Mode=OneWay}"/>
+      </Button>
+    </Grid>
+    <GridView
+      x:Name="DaysOfWeek"
+      ItemsSource="{x:Bind ViewModel.DaysOfWeek, Mode=OneWay}"
+      ItemsPanel="{StaticResource GridOfDays}"
+      SelectionMode="None"
+      Grid.Row="1"
+      Grid.Column="0"/>
+    <GridView
+      x:Name="Days"
+      ItemsSource="{x:Bind ViewModel.Days, Mode=OneWay}"
+      ItemsPanel="{StaticResource GridOfDays}"
+      SelectionMode="None"
+      Grid.Row="2"
+      Grid.Column="0"/>
+  </Grid>
+</local:ModuleView>
