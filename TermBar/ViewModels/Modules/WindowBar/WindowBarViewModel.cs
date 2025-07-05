@@ -18,6 +18,7 @@ namespace TermBar.ViewModels.Modules {
     private readonly Configuration.Json.TermBar config;
     private readonly Configuration.Json.Modules.WindowBar moduleConfig;
 
+    // TODO: need locks for these
     private readonly ObservableCollection<Window> models = WindowList.Windows;
     private readonly ObservableCollection<WindowBarWindowView> views = [];
 

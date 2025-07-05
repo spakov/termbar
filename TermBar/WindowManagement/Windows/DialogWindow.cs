@@ -1,5 +1,10 @@
 ﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Input;
 using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Runtime.InteropServices;
+using Windows.Win32;
 
 namespace TermBar.WindowManagement.Windows {
   /// <summary>
@@ -13,6 +18,10 @@ namespace TermBar.WindowManagement.Windows {
 
     private readonly uint _margin;
     private readonly uint _padding;
+
+    private bool dragging;
+    private Rectangle draggingWindowRectangle;
+    private Point draggingCursorPosition;
 
     /// <inheritdoc cref="Window.Margin"/>
     protected new uint Margin => Config.DpiAware ? ScaleY(_margin) : _margin;
@@ -95,6 +104,10 @@ namespace TermBar.WindowManagement.Windows {
       _padding = (uint) base.Padding!;
       _width = Config.DpiAware ? ScaleX(MinimumWidth) : MinimumWidth;
       _height = Config.DpiAware ? ScaleY(MinimumHeight) : MinimumHeight;
+
+      content.PointerPressed += Content_PointerPressed;
+      content.PointerMoved += Content_PointerMoved;
+      content.PointerReleased += Content_PointerReleased;
     }
 
     /// <summary>
@@ -108,6 +121,7 @@ namespace TermBar.WindowManagement.Windows {
         Width,
         Height,
         TermBarWindow_RequestResize,
+        isDialog: true,
         skipActivation: false
       );
     }
@@ -116,12 +130,12 @@ namespace TermBar.WindowManagement.Windows {
     /// Called when the dialog window requests a resize.
     /// </summary>
     /// <param name="sender"><inheritdoc
-    /// cref="System.ComponentModel.PropertyChangedEventHandler"
+    /// cref="PropertyChangedEventHandler"
     /// path="/param[@name='sender']"/></param>
     /// <param name="e"><inheritdoc
-    /// cref="System.ComponentModel.PropertyChangedEventHandler"
+    /// cref="PropertyChangedEventHandler"
     /// path="/param[@name='e']"/></param>
-    private void TermBarWindow_RequestResize(object? sender, System.ComponentModel.PropertyChangedEventArgs e) {
+    private void TermBarWindow_RequestResize(object? sender, PropertyChangedEventArgs e) {
       Width = (uint) dialogWindow!.DesiredWidth;
       Height = (uint) dialogWindow!.DesiredHeight;
     }
@@ -146,6 +160,68 @@ namespace TermBar.WindowManagement.Windows {
       return (Config.DpiAware ? ScaleY(display.Top) : display.Top)
         + ((Config.DpiAware ? ScaleY(display.Height) : display.Height) / 2)
         - (Height / 2);
+    }
+
+    /// <summary>
+    /// Invoked when the user presses a mouse button in the window.
+    /// </summary>
+    /// <param name="sender"><inheritdoc cref="RoutedEventHandler"
+    /// path="/param[@name='sender']"/></param>
+    /// <param name="e"><inheritdoc cref="RoutedEventHandler"
+    /// path="/param[@name='e']"/></param>
+    /// <exception cref="Win32Exception"></exception>
+    private void Content_PointerPressed(object sender, PointerRoutedEventArgs e) {
+      if (e.GetCurrentPoint((UIElement) sender).Properties.IsLeftButtonPressed) {
+        ((UIElement) sender).CapturePointer(e.Pointer);
+
+        Rectangle windowPosition = GetPosition();
+        Point cursorPosition = new();
+
+        if (!PInvoke.GetCursorPos(out cursorPosition)) {
+          throw new Win32Exception(Marshal.GetLastWin32Error());
+        }
+
+        draggingWindowRectangle = windowPosition;
+        draggingCursorPosition = cursorPosition;
+        dragging = true;
+      }
+    }
+
+    /// <summary>
+    /// Invoked when the moves the mouse in the window.
+    /// </summary>
+    /// <param name="sender"><inheritdoc cref="RoutedEventHandler"
+    /// path="/param[@name='sender']"/></param>
+    /// <param name="e"><inheritdoc cref="RoutedEventHandler"
+    /// path="/param[@name='e']"/></param>
+    private void Content_PointerMoved(object sender, PointerRoutedEventArgs e) {
+      if (dragging) {
+        Point cursorPosition = new();
+
+        if (!PInvoke.GetCursorPos(out cursorPosition)) {
+          throw new Win32Exception(Marshal.GetLastWin32Error());
+        }
+
+        Move(
+          (uint) (draggingWindowRectangle.X + (cursorPosition.X - draggingCursorPosition.X)),
+          (uint) (draggingWindowRectangle.Y + (cursorPosition.Y - draggingCursorPosition.Y)),
+          (uint) draggingWindowRectangle.Width,
+          (uint) draggingWindowRectangle.Height,
+          skipActivation: true
+        );
+      }
+    }
+
+    /// <summary>
+    /// Invoked when the user releases a mouse button in the window.
+    /// </summary>
+    /// <param name="sender"><inheritdoc cref="RoutedEventHandler"
+    /// path="/param[@name='sender']"/></param>
+    /// <param name="e"><inheritdoc cref="RoutedEventHandler"
+    /// path="/param[@name='e']"/></param>
+    private void Content_PointerReleased(object sender, PointerRoutedEventArgs e) {
+      ((UIElement) sender).ReleasePointerCaptures();
+      dragging = false;
     }
   }
 }

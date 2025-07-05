@@ -8,7 +8,8 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   mc:Ignorable="d">
   <Grid
-    x:Name="Settings">
+    x:Name="Settings"
+    Background="Transparent">
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="*"/>
@@ -22,10 +23,9 @@
       Grid.Column="0">
       <TextBlock
         Style="{StaticResource Prose}"
-        Text="The TermBar configuration file is located here (click it to copy it):"/>
+        Text="The TermBar configuration file is located here:"/>
       <TextBlock
         x:Name="ConfigPathTextBlock"
-        PointerPressed="ConfigPathTextBlock_PointerPressed"
         Style="{StaticResource Prose}"
         Text="{x:Bind ConfigPath}"/>
       <TextBlock
@@ -36,11 +36,16 @@
       x:Name="Buttons"
       Grid.Row="1"
       Grid.Column="0">
-      <HyperlinkButton
+      <Button
+        x:Name="CopyPath"
+        Click="CopyPath_Click">
+        <TextBlock Text="Copy Config File Path"/>
+      </Button>
+      <Button
         x:Name="ShowInExplorer"
         Click="ShowInExplorer_Click">
         <TextBlock Text="Show Config File in Explorer"/>
-      </HyperlinkButton>
+      </Button>
       <Button
         x:Name="OK"
         Click="OK_Click">

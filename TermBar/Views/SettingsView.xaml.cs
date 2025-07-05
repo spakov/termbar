@@ -138,14 +138,14 @@ namespace TermBar.Views {
     /// path="/param[@name='sender']"/></param>
     /// <param name="e"><inheritdoc cref="RoutedEventHandler"
     /// path="/param[@name='e']"/></param>
-    private void ConfigPathTextBlock_PointerPressed(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e) {
+    private void CopyPath_Click(object sender, RoutedEventArgs e) {
       dataPackage.RequestedOperation = DataPackageOperation.Copy;
       dataPackage.SetText(ConfigPath);
       Clipboard.SetContent(dataPackage);
 
       AppNotificationManager.Default.Show(
         new AppNotificationBuilder()
-          .AddText("Path Copied")
+          .AddText("Path copied")
           .AddText("The configuration file path has been copied to the clipboard.")
           .BuildNotification()
       );

@@ -5,6 +5,7 @@ EnumDisplayDevices
 EnumDisplayMonitors
 EnumWindows
 GetAncestor
+GetCursorPos
 GetDpiForMonitor
 GetModuleHandle
 GetWindow

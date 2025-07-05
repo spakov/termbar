@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Hosting;
 using System.ComponentModel;
+using System.Drawing;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
@@ -43,7 +44,7 @@ namespace TermBar.WindowManagement.Windows {
     protected virtual uint Height { get; set; }
 
     /// <summary>
-    /// Displays the TermBar window.
+    /// Displays the window.
     /// </summary>
     /// <param name="island">The XAML island to present in the window.</param>
     /// <param name="left">The window's initial left postion.</param>
@@ -53,10 +54,13 @@ namespace TermBar.WindowManagement.Windows {
     /// <param name="requestResize">The <see
     /// cref="PropertyChangedEventHandler"/> to invoke when the <paramref
     /// name="island"/> is resized.</param>
+    /// <param name="isDialog">Whether to include <see
+    /// cref="WINDOW_EX_STYLE.WS_EX_TOPMOST"/> in the call to <see
+    /// cref="PInvoke.CreateWindowEx"/>.</param>
     /// <param name="skipActivation">Whether to include <see
     /// cref="SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE"/> in the call to <see
     /// cref="PInvoke.SetWindowPos"/>.</param>
-    protected void Display(INotifyPropertyChanged island, uint left, uint top, uint width, uint height, PropertyChangedEventHandler requestResize, bool skipActivation = true) {
+    protected void Display(INotifyPropertyChanged island, uint left, uint top, uint width, uint height, PropertyChangedEventHandler requestResize, bool isDialog = false, bool skipActivation = true) {
       this.island = island;
       islandRequestResize = requestResize;
 
@@ -64,7 +68,8 @@ namespace TermBar.WindowManagement.Windows {
         hWnd = PInvoke.CreateWindowEx(
           WINDOW_EX_STYLE.WS_EX_COMPOSITED
           | WINDOW_EX_STYLE.WS_EX_LAYERED
-          | WINDOW_EX_STYLE.WS_EX_TOOLWINDOW,
+          | WINDOW_EX_STYLE.WS_EX_TOOLWINDOW
+          | (isDialog ? WINDOW_EX_STYLE.WS_EX_TOPMOST : 0),
           WindowManager.WindowClassName,
           null,
           WINDOW_STYLE.WS_POPUP
@@ -103,7 +108,7 @@ namespace TermBar.WindowManagement.Windows {
     }
 
     /// <summary>
-    /// Moves the TermBar window.
+    /// Moves the window.
     /// </summary>
     /// <param name="islandHWnd">The XAML island's <see cref="HWND"/>.</param>
     /// <param name="left">The window's left postion.</param>
@@ -137,6 +142,23 @@ namespace TermBar.WindowManagement.Windows {
         SET_WINDOW_POS_FLAGS.SWP_NOZORDER
         | (skipActivation ? SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE : 0)
       );
+    }
+
+    /// <summary>
+    /// Returns a <see cref="Rectangle"/> describing the window's position on
+    /// the screen.
+    /// </summary>
+    /// <returns>A <see cref="Rectangle"/>.</returns>
+    /// <exception cref="Win32Exception"></exception>
+    protected Rectangle GetPosition() {
+      RECT windowRect = new();
+
+      return PInvoke.GetWindowRect(
+        (HWND) hWnd!,
+        out windowRect
+      )
+        ? new(windowRect.X, windowRect.Y, windowRect.Width, windowRect.Height)
+        : throw new Win32Exception(System.Runtime.InteropServices.Marshal.GetLastWin32Error());
     }
 
     /// <summary>
