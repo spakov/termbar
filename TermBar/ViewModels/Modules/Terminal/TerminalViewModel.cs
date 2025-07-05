@@ -3,10 +3,8 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
-using System.Threading;
 using System.Threading.Tasks;
 using TermBar.Views.Modules.Terminal;
-using Terminal;
 
 namespace TermBar.ViewModels.Modules.Terminal {
   /// <summary>
@@ -22,6 +20,7 @@ namespace TermBar.ViewModels.Modules.Terminal {
 
     private AnsiProcessor.AnsiColors.Palette _ansiColors;
 
+    private string? _windowTitle;
     private FileStream? _consoleOutput;
     private FileStream? _consoleInput;
     private uint _rows;
@@ -42,6 +41,20 @@ namespace TermBar.ViewModels.Modules.Terminal {
     public event OnPseudoconsoleDied? PseudoconsoleDied;
 
     /// <summary>
+    /// The window title.
+    /// </summary>
+    public string? WindowTitle {
+      get => _windowTitle;
+
+      set {
+        if (_windowTitle != value) {
+          _windowTitle = value;
+          OnPropertyChanged();
+        }
+      }
+    }
+
+    /// <summary>
     /// The <see cref="AnsiProcessor.AnsiColors.Palette"/> used for ANSI
     /// colors.
     /// </summary>
@@ -49,8 +62,10 @@ namespace TermBar.ViewModels.Modules.Terminal {
       get => _ansiColors;
 
       set {
-        _ansiColors = value;
-        OnPropertyChanged();
+        if (_ansiColors != value) {
+          _ansiColors = value;
+          OnPropertyChanged();
+        }
       }
     }
 
@@ -89,8 +104,12 @@ namespace TermBar.ViewModels.Modules.Terminal {
       get => (int) _rows;
 
       set {
-        if (_rows != value) {
-          _rows = (uint) value;
+        int oldRows = (int) _rows;
+
+        _rows = (uint) value;
+        OnPropertyChanged();
+
+        if (oldRows != value) {
           pseudoconsole.Rows = _rows;
         }
       }
@@ -103,8 +122,12 @@ namespace TermBar.ViewModels.Modules.Terminal {
       get => (int) _columns;
 
       set {
-        if (_columns != value) {
-          _columns = (uint) value;
+        int oldColumns = (int) _columns;
+
+        _columns = (uint) value;
+        OnPropertyChanged();
+
+        if (oldColumns != value) {
           pseudoconsole.Columns = _columns;
         }
       }
@@ -158,6 +181,8 @@ namespace TermBar.ViewModels.Modules.Terminal {
     internal TerminalViewModel(TerminalView terminalView, Configuration.Json.Modules.Terminal config) {
       this.terminalView = terminalView;
       this.config = config;
+
+      WindowTitle = config.DefaultWindowTitle;
 
       _rows = config.Rows;
       _columns = config.Columns;

@@ -19,10 +19,16 @@
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
     <TextBlock
+      x:Name="Icon"
       Foreground="{StaticResource AccentBrush}"
       Text="{Binding Icon}"
       Grid.Row="0"
-      Grid.Column="0"/>
+      Grid.Column="0">
+      <ToolTipService.ToolTip>
+        <ToolTip
+          Content="{x:Bind ViewModel.WindowTitle, Mode=OneWay}"/>
+      </ToolTipService.ToolTip>
+    </TextBlock>
     <terminal:TerminalControl
       x:Name="TerminalControl"
       AnsiColors="{x:Bind ViewModel.AnsiColors}"
