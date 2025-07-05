@@ -2,6 +2,7 @@
   
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
+    <WindowsPackageType>MSIX</WindowsPackageType>
     <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <LangVersion>12</LangVersion>
@@ -14,6 +15,21 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <Utf8ProcDll>utf8proc.dll</Utf8ProcDll>
+    <Utf8ProcNativeArch Condition="'$(Platform)'=='x64'">x64</Utf8ProcNativeArch>
+    <Utf8ProcNativeArch Condition="'$(Platform)'=='ARM64'">arm64</Utf8ProcNativeArch>
+    <Utf8ProcInputPath>$(ProjectDir)..\utf8proc\out\build\$(Utf8ProcNativeArch)-Release\$(Utf8ProcDll)</Utf8ProcInputPath>
+    <Utf8ProcOutputPath>$(ProjectDir)$(Utf8ProcDll)</Utf8ProcOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(Utf8ProcInputPath)">
+      <Link>$(Utf8ProcOutputPath)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   
   <ItemGroup>
     <None Remove="Clock.xaml" />
@@ -34,22 +50,26 @@
 
   <ItemGroup>
     <Manifest Include="$(ApplicationManifest)" />
+    <AppxManifest Include="$(IntermediateOutputPath)Package.appxmanifest" />
   </ItemGroup>
 
   <PropertyGroup>
-    <Utf8ProcDll>utf8proc.dll</Utf8ProcDll>
-    <Utf8ProcNativeArch Condition="'$(Platform)'=='x64'">x64</Utf8ProcNativeArch>
-    <Utf8ProcNativeArch Condition="'$(Platform)'=='ARM64'">arm64</Utf8ProcNativeArch>
-    <Utf8ProcInputPath>$(ProjectDir)..\utf8proc\out\build\$(Utf8ProcNativeArch)-Release\$(Utf8ProcDll)</Utf8ProcInputPath>
-    <Utf8ProcOutputPath>$(ProjectDir)$(Utf8ProcDll)</Utf8ProcOutputPath>
+    <Namespace>
+      <Namespace Prefix="dn" Uri="http://schemas.microsoft.com/appx/manifest/foundation/windows10" />
+      <Namespace Prefix="mp" Uri="http://schemas.microsoft.com/appx/2014/phone/manifest" />
+      <Namespace Prefix="desktop4" Uri="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4" />
+      <Namespace Prefix="uap" Uri="http://schemas.microsoft.com/appx/manifest/uap/windows10" />
+      <Namespace Prefix="uap4" Uri="http://schemas.microsoft.com/appx/manifest/uap/windows10/4" />
+      <Namespace Prefix="uap5" Uri="http://schemas.microsoft.com/appx/manifest/uap/windows10/5" />
+      <Namespace Prefix="rescap" Uri="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" />
+    </Namespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="$(Utf8ProcInputPath)">
-      <Link>$(Utf8ProcOutputPath)</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+  <Target Name="TransformAppxManifest" BeforeTargets="BeforeBuild" DependsOnTargets="GetBuildVersion">
+    <Message Importance="High" Text="Transforming Package.appxmanifest.in with version $(BuildVersionSimple).0" />
+    <Copy SourceFiles="Package.appxmanifest.in" DestinationFiles="$(IntermediateOutputPath)Package.appxmanifest" />
+    <XmlPoke XmlInputPath="$(IntermediateOutputPath)Package.appxmanifest" Query="/dn:Package/dn:Identity/@Version" Namespaces="$(Namespace)" Value="$(BuildVersionSimple).0" />
+  </Target>
 
   <!--
     Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
@@ -115,7 +135,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PRIResource Include="..\..\w6t\Terminal\Strings\**\*.resw"/>
+    <PRIResource Include="..\..\w6t\Terminal\Strings\**\*.resw" />
   </ItemGroup>
   
   <ItemGroup>
@@ -160,6 +180,15 @@
     <PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
     <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
     <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <PackageCertificateThumbprint>7494A215F4A051D5BE99762306737E45CF6F678C</PackageCertificateThumbprint>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundle>Never</AppxBundle>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   
 </Project>

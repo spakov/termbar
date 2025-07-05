@@ -23,6 +23,8 @@ namespace TermBar.Models {
 
     private readonly WINEVENTPROC winSystemEventProc;
     private readonly WINEVENTPROC winObjectEventProc;
+
+    // TODO: need a lock on this
     private readonly ObservableCollection<Window> windows;
 
     private static Window? foregroundedWindow;
