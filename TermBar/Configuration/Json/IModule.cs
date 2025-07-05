@@ -1,6 +1,9 @@
 ﻿using TermBar.Catppuccin;
 
 namespace TermBar.Configuration.Json {
+  /// <summary>
+  /// The interface that all modules implement.
+  /// </summary>
   internal interface IModule {
     /// <summary>
     /// The order in which the module should be displayed.

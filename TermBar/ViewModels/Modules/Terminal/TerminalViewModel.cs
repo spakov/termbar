@@ -176,9 +176,12 @@ namespace TermBar.ViewModels.Modules.Terminal {
     /// <summary>
     /// Initializes a <see cref="TerminalViewModel"/>.
     /// </summary>
+    /// <param name="terminalView">A <see cref="TerminalView"/>.</param>
     /// <param name="config">The <see
     /// cref="Configuration.Json.Modules.Terminal"/> configuration.</param>
-    internal TerminalViewModel(TerminalView terminalView, Configuration.Json.Modules.Terminal config) {
+    /// <param name="ansiColors">The colors to use as the terminal's
+    /// palette.</param>
+    internal TerminalViewModel(TerminalView terminalView, Configuration.Json.Modules.Terminal config, AnsiProcessor.AnsiColors.Palette ansiColors) {
       this.terminalView = terminalView;
       this.config = config;
 
@@ -187,10 +190,7 @@ namespace TermBar.ViewModels.Modules.Terminal {
       _rows = config.Rows;
       _columns = config.Columns;
       _restartOnExit = config.RestartOnExit;
-
-      // This eventually goes in the config (or better yet, gets built from
-      // Catppuccin)
-      _ansiColors = new();
+      _ansiColors = ansiColors;
 
       pseudoconsole = new(config.Command, config.Rows, config.Columns, config.RestartOnExit);
       pseudoconsole.Ready += Pseudoconsole_Ready;

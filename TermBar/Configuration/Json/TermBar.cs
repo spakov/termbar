@@ -19,7 +19,8 @@ namespace TermBar.Configuration.Json {
     /// The <see cref="HWND"/> this <see cref="TermBar"/> is associated with.
     /// </summary>
     /// <remarks>This does not come from JSON—<see
-    /// cref="TermBar.WindowManagement.Windows.TermBarWindow.Display"/> sets it.</remarks>
+    /// cref="TermBar.WindowManagement.Windows.TermBarWindow.Display"/> sets
+    /// it.</remarks>
     internal HWND? HWnd { get; set; }
 
     /// <summary>

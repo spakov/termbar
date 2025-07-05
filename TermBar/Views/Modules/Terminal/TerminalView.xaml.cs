@@ -3,10 +3,10 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using System;
-using System.Diagnostics;
 using TermBar.Catppuccin;
 using TermBar.Styles;
 using TermBar.ViewModels.Modules.Terminal;
+using Terminal;
 
 namespace TermBar.Views.Modules.Terminal {
   /// <summary>
@@ -47,7 +47,7 @@ namespace TermBar.Views.Modules.Terminal {
       visualBellTimer.Interval = TimeSpan.FromMilliseconds(moduleConfig.VisualBellDisplayTime);
       visualBellTimer.Tick += VisualBellTimer_Tick;
 
-      ViewModel = new TerminalViewModel(this, moduleConfig);
+      ViewModel = new TerminalViewModel(this, moduleConfig, GetPalette());
 
       InitializeComponent();
       ApplyComputedGridStyle();
@@ -55,6 +55,37 @@ namespace TermBar.Views.Modules.Terminal {
 
       TerminalControl.WindowTitleChanged += TerminalControl_WindowTitleChanged;
       TerminalControl.VisualBellRinging += TerminalControl_VisualBellRinging;
+    }
+
+    /// <summary>
+    /// Returns a <see cref="AnsiProcessor.AnsiColors.Palette"/> representing
+    /// <see cref="moduleConfig"/>'s colors.
+    /// </summary>
+    /// <returns>An <see cref="AnsiProcessor.AnsiColors.Palette"/>.</returns>
+    internal AnsiProcessor.AnsiColors.Palette GetPalette() {
+      return new() {
+        DefaultBackgroundColor = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.DefaultColors.DefaultBackgroundColor].SDColor,
+        DefaultForegroundColor = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.DefaultColors.DefaultForegroundColor].SDColor,
+        DefaultUnderlineColor = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.DefaultColors.DefaultUnderlineColor].SDColor,
+
+        Black = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Black].SDColor,
+        Red = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Red].SDColor,
+        Green = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Green].SDColor,
+        Yellow = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Yellow].SDColor,
+        Blue = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Blue].SDColor,
+        Magenta = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Magenta].SDColor,
+        Cyan = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Cyan].SDColor,
+        White = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.White].SDColor,
+
+        BrightBlack = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightBlack].SDColor,
+        BrightRed = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightRed].SDColor,
+        BrightGreen = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightGreen].SDColor,
+        BrightYellow = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightYellow].SDColor,
+        BrightBlue = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightBlue].SDColor,
+        BrightMagenta = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightMagenta].SDColor,
+        BrightCyan = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightCyan].SDColor,
+        BrightWhite = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightWhite].SDColor
+      };
     }
 
     /// <summary>
@@ -127,6 +158,39 @@ namespace TermBar.Views.Modules.Terminal {
       );
 
       Resources[typeof(TextBox)] = textBoxStyle;
+    }
+
+    /// <summary>
+    /// Invoked when the terminal has been added to the XAML tree.
+    /// </summary>
+    /// <param name="sender"><inheritdoc cref="RoutedEventHandler"
+    /// path="/param[@name='sender']"/></param>
+    /// <param name="e"><inheritdoc cref="RoutedEventHandler"
+    /// path="/param[@name='e']"/></param>
+    private void TerminalControl_Loaded(object sender, RoutedEventArgs e) {
+      if (moduleConfig.TabWidth is not null) TerminalControl.TabWidth = (int) moduleConfig.TabWidth;
+      TerminalControl.FontFamily = config.FontFamily;
+      TerminalControl.FontSize = config.FontSize;
+      if (moduleConfig.TextAntialiasing is not null) TerminalControl.TextAntialiasing = (TextAntialiasingStyles) moduleConfig.TextAntialiasing;
+      if (moduleConfig.FullColorEmoji is not null) TerminalControl.FullColorEmoji = (bool) moduleConfig.FullColorEmoji;
+      if (moduleConfig.UseBackgroundColorErase is not null) TerminalControl.UseBackgroundColorErase = (bool) moduleConfig.UseBackgroundColorErase;
+      if (moduleConfig.BackgroundIsInvisible is not null) TerminalControl.BackgroundIsInvisible = (bool) moduleConfig.BackgroundIsInvisible;
+      if (moduleConfig.UseVisualBell is not null) TerminalControl.UseVisualBell = (bool) moduleConfig.UseVisualBell;
+      if (moduleConfig.UseContextMenu is not null) TerminalControl.UseContextMenu = (bool) moduleConfig.UseContextMenu;
+      if (moduleConfig.UseExtendedContextMenu is not null) TerminalControl.UseExtendedContextMenu = (bool) moduleConfig.UseExtendedContextMenu;
+      if (moduleConfig.CursorStyle is not null) TerminalControl.CursorStyle = (CursorStyles) moduleConfig.CursorStyle;
+      if (moduleConfig.CursorThickness is not null) TerminalControl.CursorThickness = (double) moduleConfig.CursorThickness;
+      if (moduleConfig.CursorBlink is not null) TerminalControl.CursorBlink = (bool) moduleConfig.CursorBlink;
+      if (moduleConfig.CursorBlinkRate is not null) TerminalControl.CursorBlinkRate = (int) moduleConfig.CursorBlinkRate;
+      if (moduleConfig.CursorColor is not null) TerminalControl.CursorColor = PaletteHelper.Palette[config.Flavor].Colors[moduleConfig.AccentColor].WUIColor;
+      if (moduleConfig.ScrollbackLines is not null) TerminalControl.Scrollback = (int) moduleConfig.ScrollbackLines;
+      if (moduleConfig.LinesPerScrollback is not null) TerminalControl.LinesPerScrollback = (int) moduleConfig.LinesPerScrollback;
+      if (moduleConfig.LinesPerSmallScrollback is not null) TerminalControl.LinesPerSmallScrollback = (int) moduleConfig.LinesPerSmallScrollback;
+      if (moduleConfig.LinesPerWheelScrollback is not null) TerminalControl.LinesPerWheelScrollback = (int) moduleConfig.LinesPerWheelScrollback;
+      if (moduleConfig.CopyOnMouseUp is not null) TerminalControl.CopyOnMouseUp = (bool) moduleConfig.CopyOnMouseUp;
+      if (moduleConfig.PasteOnMiddleClick is not null) TerminalControl.PasteOnMiddleClick = (bool) moduleConfig.PasteOnMiddleClick;
+      if (moduleConfig.PasteOnRightClick is not null) TerminalControl.PasteOnRightClick = (bool) moduleConfig.PasteOnRightClick;
+      if (moduleConfig.CopyNewline is not null) TerminalControl.CopyNewline = (string) moduleConfig.CopyNewline;
     }
   }
 }

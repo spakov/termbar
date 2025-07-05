@@ -18,18 +18,50 @@ namespace TermBar.Catppuccin.Json {
     [JsonPropertyName("rgb")]
     public required Rgb Rgb { get; set; }
 
-    /// <summary>
-    /// Whether this is an accent color.
-    /// </summary>
-    [JsonPropertyName("accent")]
-    public required bool IsAccent { get; set; }
+    private static readonly Dictionary<Rgb, System.Drawing.Color> sdColorCache = [];
+    private static readonly Dictionary<Rgb, Windows.UI.Color> wuiColorCache = [];
+    private static readonly Dictionary<Rgb, Microsoft.UI.Xaml.Media.SolidColorBrush> solidColorBrushCache = [];
 
-    private static readonly Dictionary<Rgb, Microsoft.UI.Xaml.Media.SolidColorBrush> cache = [];
+    /// <summary>
+    /// A <see cref="System.Drawing.Color"/> for the color.
+    /// </summary>
+    internal System.Drawing.Color SDColor => SDColorCache(Rgb);
+
+    /// <summary>
+    /// A <see cref="Windows.UI.Color"/> for the color.
+    /// </summary>
+    internal Windows.UI.Color WUIColor => WUIColorCache(Rgb);
 
     /// <summary>
     /// A <see cref="Microsoft.UI.Xaml.Media.SolidColorBrush"/> for the color.
     /// </summary>
     internal Microsoft.UI.Xaml.Media.SolidColorBrush SolidColorBrush => SolidColorBrushCache(Rgb);
+
+    /// <summary>
+    /// Caches and returns a <see cref="System.Drawing.Color"/> based on
+    /// <paramref name="rgb"/>.
+    /// </summary>
+    /// <param name="rgb">The color for which to return a <see
+    /// cref="System.Drawing.Color"/>.</param>
+    /// <returns>A <see cref="System.Drawing.Color"/>.</returns>
+    private static System.Drawing.Color SDColorCache(Rgb rgb) {
+      return sdColorCache.TryGetValue(rgb, out System.Drawing.Color value)
+        ? value
+        : (sdColorCache[rgb] = System.Drawing.Color.FromArgb(0xff, rgb.Red, rgb.Green, rgb.Blue));
+    }
+
+    /// <summary>
+    /// Caches and returns a <see cref="Windows.UI.Color"/> based on <paramref
+    /// name="rgb"/>.
+    /// </summary>
+    /// <param name="rgb">The color for which to return a <see
+    /// cref="Windows.UI.Color"/>.</param>
+    /// <returns>A <see cref="Windows.UI.Color"/>.</returns>
+    private static Windows.UI.Color WUIColorCache(Rgb rgb) {
+      return wuiColorCache.TryGetValue(rgb, out Windows.UI.Color value)
+        ? value
+        : (wuiColorCache[rgb] = new Windows.UI.Color() { A = 0xff, R = (byte) rgb.Red, G = (byte) rgb.Green, B = (byte) rgb.Blue });
+    }
 
     /// <summary>
     /// Caches and returns a <see
@@ -41,9 +73,9 @@ namespace TermBar.Catppuccin.Json {
     /// <returns>A <see
     /// cref="Microsoft.UI.Xaml.Media.SolidColorBrush"/>.</returns>
     private static Microsoft.UI.Xaml.Media.SolidColorBrush SolidColorBrushCache(Rgb rgb) {
-      return cache.TryGetValue(rgb, out Microsoft.UI.Xaml.Media.SolidColorBrush? value)
+      return solidColorBrushCache.TryGetValue(rgb, out Microsoft.UI.Xaml.Media.SolidColorBrush? value)
         ? value
-        : (cache[rgb] = new Microsoft.UI.Xaml.Media.SolidColorBrush(new Windows.UI.Color() { A = 0xff, R = (byte) rgb.Red, G = (byte) rgb.Green, B = (byte) rgb.Blue }));
+        : (solidColorBrushCache[rgb] = new Microsoft.UI.Xaml.Media.SolidColorBrush(WUIColorCache(rgb)));
     }
   }
 }

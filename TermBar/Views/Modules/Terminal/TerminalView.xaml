@@ -36,8 +36,7 @@
       ConsoleInput="{x:Bind ViewModel.ConsoleInput}"
       Rows="{x:Bind ViewModel.Rows, Mode=TwoWay}"
       Columns="{x:Bind ViewModel.Columns, Mode=TwoWay}"
-      FontFamily="Monofur Nerd Font Propo"
-      FontSize="16.0"
+      Loaded="TerminalControl_Loaded"
       Grid.Row="0"
       Grid.Column="1"/>
   </Grid>

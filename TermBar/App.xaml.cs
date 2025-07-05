@@ -1,5 +1,7 @@
 ﻿using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
+using System;
+using System.IO;
 using TermBar.Configuration;
 using TermBar.Configuration.Json;
 using TermBar.Models;
@@ -36,15 +38,23 @@ namespace TermBar {
       Config = ConfigHelper.Load(WindowManager);
       DispatcherQueue = DispatcherQueue.GetForCurrentThread();
 
+      if (Config.StartDirectory is not null) {
+        string expandedStartDirectory = Environment.ExpandEnvironmentVariables(Config.StartDirectory);
+
+        if (Directory.Exists(expandedStartDirectory)) {
+          Directory.SetCurrentDirectory(expandedStartDirectory);
+        }
+      }
+
       // TODO: have models refer to DispatcherQueue property instead
       InitializeModels();
     }
 
     /// <summary>
-    /// Initializes singleton intances models when they are required to use
+    /// Initializes singleton intance models when they are required to use
     /// the UI thread.
     /// </summary>
-    private static void InitializeModels() => Volume.Instance = new Volume(DispatcherQueue.GetForCurrentThread());
+    private static void InitializeModels() => Volume.Instance = new Volume(DispatcherQueue!);
 
     /// <summary>
     /// Invoked when the application is launched.
