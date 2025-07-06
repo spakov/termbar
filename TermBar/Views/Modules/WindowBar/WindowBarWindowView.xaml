@@ -9,15 +9,25 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   mc:Ignorable="d">
-  <Grid>
+  <Grid
+    ColumnSpacing="8"
+    ToolTipService.ToolTip="{Binding Name}">
     <Grid.RowDefinitions>
-      <RowDefinition Height="*"/>
+      <RowDefinition/>
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto"/>
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
-    <TextBlock Foreground="{Binding IconForegroundBrush}" Text="{Binding Icon}" Grid.Row="0" Grid.Column="0"/>
-    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left"/>
+    <TextBlock
+      Foreground="{Binding IconForegroundBrush}"
+      Text="{Binding Icon}"
+      Grid.Row="0"
+      Grid.Column="0"/>
+    <TextBlock
+      Text="{Binding Name}"
+      Grid.Row="0"
+      Grid.Column="1"
+      HorizontalAlignment="Left"/>
   </Grid>
 </local:ModuleView>

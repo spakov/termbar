@@ -22,7 +22,7 @@
           ToolTipService.ToolTip="{x:Bind Name}">
           <TextBlock
             Text="{x:Bind Icon}"
-            Foreground="{StaticResource AccentBrush}"
+            Foreground="{x:Bind IconColor}"
             Grid.Row="0"
             Grid.Column="0"/>
         </Button>
@@ -44,7 +44,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock
               Text="{x:Bind Icon}"
-              Foreground="{StaticResource AccentBrush}"
+              Foreground="{x:Bind IconColor}"
               Grid.Row="0"
               Grid.Column="0"/>
             <TextBlock
@@ -71,15 +71,8 @@
       <RowDefinition/>
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto"/>
-      <ColumnDefinition Width="*"/>
+      <ColumnDefinition/>
     </Grid.ColumnDefinitions>
-
-    <TextBlock
-      Foreground="{StaticResource AccentBrush}"
-      Text="{Binding Icon}"
-      Grid.Row="0"
-      Grid.Column="0"/>
 
     <ItemsRepeater
       x:Name="ListView"
@@ -87,7 +80,7 @@
       ItemTemplate="{StaticResource LauncherLauncherEntryTemplateSelector}"
       Layout="{StaticResource HorizontalStackLayout}"
       Grid.Row="0"
-      Grid.Column="1"/>
+      Grid.Column="0"/>
 
   </Grid>
   

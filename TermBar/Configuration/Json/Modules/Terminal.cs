@@ -54,7 +54,7 @@ namespace TermBar.Configuration.Json.Modules {
     /// <summary>
     /// The number of columns in the terminal.
     /// </summary>
-    public uint Columns { get; set; } = 80;
+    public uint Columns { get; set; } = 60;
 
     /// <summary>
     /// The default tab width in the terminal.

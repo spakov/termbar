@@ -7,3 +7,4 @@
   running session
 - Widow List: need to avoid tooltips from Visual Studio, the thumbnail pop-ups
   on the taskbar, etc.
+- Need a way to view a list of displays

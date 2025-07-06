@@ -11,22 +11,7 @@ namespace TermBar.ViewModels.Modules.Launcher {
   internal partial class LauncherViewModel : INotifyPropertyChanged {
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    private string? _icon;
     private readonly List<LauncherLauncherEntryViewModel> _launcherEntries;
-
-    /// <summary>
-    /// The launcher icon.
-    /// </summary>
-    public string? Icon {
-      get => _icon;
-
-      set {
-        if (_icon != value) {
-          _icon = value;
-          OnPropertyChanged();
-        }
-      }
-    }
 
     /// <summary>
     /// Launcher entries.
@@ -37,8 +22,6 @@ namespace TermBar.ViewModels.Modules.Launcher {
     /// Initializes a <see cref="LauncherViewModel"/>.
     /// </summary>
     public LauncherViewModel(Configuration.Json.TermBar config, Configuration.Json.Modules.Launcher moduleConfig) {
-      Icon = moduleConfig.Icon;
-
       _launcherEntries = [];
 
       foreach (LauncherEntry launcherEntry in moduleConfig.LauncherEntries) {

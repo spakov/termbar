@@ -11,21 +11,16 @@ namespace TermBar.Configuration.Json.Modules {
     public bool Expand { get; set; } = false;
 
     /// <summary>
-    /// The Catppuccin color to use for the icon.
+    /// The Catppuccin color to use as the default for launcher entry icons.
     /// </summary>
     public ColorEnum AccentColor { get; set; } = ColorEnum.Rosewater;
-
-    /// <summary>
-    /// The text to use as the icon.
-    /// </summary>
-    public string Icon { get; set; } = "󰀻";
 
     /// <summary>
     /// Launcher entries.
     /// </summary>
     public List<LauncherEntry> LauncherEntries { get; set; } = [
       new("Windows Terminal", "wt", ColorEnum.Overlay0, ""),
-      new("File Explorer", "explorer", ColorEnum.Yellow, "", true)
+      new("File Explorer", "explorer", ColorEnum.Yellow, "")
     ];
   }
 
