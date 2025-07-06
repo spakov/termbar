@@ -19,7 +19,9 @@
         x:Key="LauncherEntriesEntryTemplate"
         x:DataType="vm:LauncherLauncherEntryViewModel">
         <Button
-          ToolTipService.ToolTip="{x:Bind Name}">
+          ToolTipService.ToolTip="{x:Bind Name}"
+          Tag="{x:Bind Command}"
+          Click="Button_Click">
           <TextBlock
             Text="{x:Bind Icon}"
             Foreground="{x:Bind IconColor}"
@@ -32,7 +34,9 @@
         x:Key="LauncherEntriesNamedEntryTemplate"
         x:DataType="vm:LauncherLauncherEntryViewModel">
         <Button
-          ToolTipService.ToolTip="{x:Bind Name}">
+          ToolTipService.ToolTip="{x:Bind Name}"
+          Tag="{x:Bind Command}"
+          Click="Button_Click">
           <Grid
             Padding="0">
             <Grid.RowDefinitions>

@@ -19,8 +19,8 @@ namespace TermBar.Configuration.Json.Modules {
     /// Launcher entries.
     /// </summary>
     public List<LauncherEntry> LauncherEntries { get; set; } = [
-      new("Windows Terminal", "wt", ColorEnum.Overlay0, ""),
-      new("File Explorer", "explorer", ColorEnum.Yellow, "")
+      new("Windows Terminal", "wt", [], ColorEnum.Overlay0, ""),
+      new("File Explorer", "explorer", [], ColorEnum.Yellow, "")
     ];
   }
 
@@ -40,6 +40,11 @@ namespace TermBar.Configuration.Json.Modules {
     /// The command to shell execute.
     /// </summary>
     public string? Command { get; set; } = null;
+
+    /// <summary>
+    /// Arguments to the command to shell execute.
+    /// </summary>
+    public string[]? CommandArguments { get; set; } = null;
 
     /// <summary>
     /// Whether to display <see cref="Name"/>.
@@ -62,9 +67,10 @@ namespace TermBar.Configuration.Json.Modules {
 
     public LauncherEntry() { }
 
-    public LauncherEntry(string name, string command, ColorEnum iconColor, string icon, bool displayName = false) {
+    public LauncherEntry(string name, string command, string[] commandArguments, ColorEnum iconColor, string icon, bool displayName = false) {
       Name = name;
       Command = command;
+      CommandArguments = commandArguments;
       DisplayName = displayName;
       IconColor = iconColor;
       Icon = icon;

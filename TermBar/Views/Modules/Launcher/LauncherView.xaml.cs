@@ -1,6 +1,8 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using System;
+using System.Diagnostics;
 using TermBar.Catppuccin;
 using TermBar.ViewModels.Modules.Launcher;
 
@@ -58,6 +60,34 @@ namespace TermBar.Views.Modules.Launcher {
       );
 
       ListView.Resources[typeof(TextBlock)] = textBlockStyle;
+    }
+
+    /// <summary>
+    /// Invoked when a launcher button is clicked.
+    /// </summary>
+    /// <param name="sender"><inheritdoc cref="RoutedEventHandler"
+    /// path="/param[@name='sender']"/></param>
+    /// <param name="e"><inheritdoc cref="RoutedEventHandler"
+    /// path="/param[@name='e']"/></param>
+    private void Button_Click(object sender, RoutedEventArgs e) {
+      Button button = (Button) sender;
+      (string? command, string[]? commandArguments) = (ValueTuple<string ?, string[]?>) button.Tag;
+
+      if (command is null) return;
+
+      command = Environment.ExpandEnvironmentVariables(command);
+      commandArguments ??= [];
+
+      ProcessStartInfo processStartInfo = new() {
+        FileName = command,
+        UseShellExecute = true
+      };
+
+      foreach (string commandArgument in commandArguments) {
+        processStartInfo.ArgumentList.Add(commandArgument);
+      }
+
+      Process.Start(processStartInfo);
     }
   }
 }

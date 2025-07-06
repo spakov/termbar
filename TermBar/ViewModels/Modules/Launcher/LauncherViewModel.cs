@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using TermBar.Catppuccin;
 using TermBar.Configuration.Json.Modules;
 
@@ -8,9 +6,7 @@ namespace TermBar.ViewModels.Modules.Launcher {
   /// <summary>
   /// The launcher viewmodel.
   /// </summary>
-  internal partial class LauncherViewModel : INotifyPropertyChanged {
-    public event PropertyChangedEventHandler? PropertyChanged;
-
+  internal partial class LauncherViewModel {
     private readonly List<LauncherLauncherEntryViewModel> _launcherEntries;
 
     /// <summary>
@@ -28,7 +24,7 @@ namespace TermBar.ViewModels.Modules.Launcher {
         _launcherEntries.Add(
           new() {
             Name = launcherEntry.Name,
-            Command = launcherEntry.Command,
+            Command = (launcherEntry.Command, launcherEntry.CommandArguments),
             DisplayName = launcherEntry.DisplayName,
             Icon = launcherEntry.Icon,
             IconColor = launcherEntry.IconColor is not null
@@ -38,7 +34,5 @@ namespace TermBar.ViewModels.Modules.Launcher {
         );
       }
     }
-
-    private void OnPropertyChanged([CallerMemberName] string? callerMemberName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerMemberName));
   }
 }
