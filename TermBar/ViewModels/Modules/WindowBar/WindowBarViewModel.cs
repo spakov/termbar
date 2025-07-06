@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using TermBar.Models;
 using TermBar.Views.Modules.WindowBar;
 
-namespace TermBar.ViewModels.Modules {
+namespace TermBar.ViewModels.Modules.WindowBar {
   /// <summary>
   /// The window bar viewmodel.
   /// </summary>

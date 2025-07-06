@@ -1,5 +1,5 @@
 using Microsoft.UI.Xaml.Controls;
-using TermBar.ViewModels.Modules;
+using TermBar.ViewModels.Modules.WindowDropdown;
 using Windows.Win32.Foundation;
 
 namespace TermBar.Views.Modules.WindowDropdown {

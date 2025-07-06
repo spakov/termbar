@@ -1,4 +1,4 @@
-using TermBar.ViewModels.Modules;
+using TermBar.ViewModels.Modules.Memory;
 
 namespace TermBar.Views.Modules.Memory {
   /// <summary>

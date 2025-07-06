@@ -1,4 +1,4 @@
-using TermBar.ViewModels.Modules;
+using TermBar.ViewModels.Modules.Cpu;
 
 namespace TermBar.Views.Modules.Cpu {
   /// <summary>

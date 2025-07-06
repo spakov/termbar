@@ -8,7 +8,7 @@ using TermBar.Catppuccin;
 using TermBar.Models;
 using TermBar.Views.Modules.WindowDropdown;
 
-namespace TermBar.ViewModels.Modules {
+namespace TermBar.ViewModels.Modules.WindowDropdown {
   internal partial class WindowDropdownViewModel : INotifyPropertyChanged {
     public event PropertyChangedEventHandler? PropertyChanged;
 

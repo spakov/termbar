@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace TermBar.ViewModels.Modules {
+namespace TermBar.ViewModels.Modules.Volume {
   /// <summary>
   /// The volume viewmodel.
   /// </summary>

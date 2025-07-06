@@ -1,7 +1,7 @@
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-using TermBar.ViewModels.Modules;
+using TermBar.ViewModels.Modules.Volume;
 using Windows.Win32;
 
 namespace TermBar.Views.Modules.Volume {

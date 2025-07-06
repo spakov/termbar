@@ -10,7 +10,7 @@ using Terminal;
 
 namespace TermBar.Views.Modules.Terminal {
   /// <summary>
-  /// The TermBar clock.
+  /// The TermBar terminal.
   /// </summary>
   internal sealed partial class TerminalView : ModuleView {
     private readonly Configuration.Json.TermBar config;

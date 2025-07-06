@@ -1,5 +1,5 @@
 using Microsoft.UI.Xaml.Controls;
-using TermBar.ViewModels.Modules;
+using TermBar.ViewModels.Modules.WindowBar;
 
 namespace TermBar.Views.Modules.WindowBar {
   /// <summary>

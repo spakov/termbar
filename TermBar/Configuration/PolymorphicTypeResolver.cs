@@ -26,9 +26,10 @@ namespace TermBar.Configuration {
           DerivedTypes = {
             new JsonDerivedType(typeof(Clock), typeof(Clock).Name),
             new JsonDerivedType(typeof(Cpu), typeof(Cpu).Name),
+            new JsonDerivedType(typeof(Launcher), typeof(Launcher).Name),
             new JsonDerivedType(typeof(Memory), typeof(Memory).Name),
             new JsonDerivedType(typeof(StaticText), typeof(StaticText).Name),
-            new JsonDerivedType(typeof(TermBar.Configuration.Json.Modules.Terminal), typeof(TermBar.Configuration.Json.Modules.Terminal).Name),
+            new JsonDerivedType(typeof(Json.Modules.Terminal), typeof(Json.Modules.Terminal).Name),
             new JsonDerivedType(typeof(Volume), typeof(Volume).Name),
             new JsonDerivedType(typeof(WindowBar), typeof(WindowBar).Name),
             new JsonDerivedType(typeof(WindowDropdown), typeof(WindowDropdown).Name)

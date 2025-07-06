@@ -135,6 +135,7 @@ namespace TermBar.Configuration.Json {
     /// The array of modules.
     /// </summary>
     public List<IModule>? Modules { get; set; } = [
+      new Modules.Launcher(),
       new Modules.Terminal(),
       new Modules.WindowBar(),
       new Modules.WindowDropdown(),

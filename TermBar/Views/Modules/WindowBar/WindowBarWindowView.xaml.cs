@@ -1,7 +1,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using TermBar.Styles;
-using TermBar.ViewModels.Modules;
+using TermBar.ViewModels.Modules.WindowBar;
 using Windows.Win32.Foundation;
 
 namespace TermBar.Views.Modules.WindowBar {

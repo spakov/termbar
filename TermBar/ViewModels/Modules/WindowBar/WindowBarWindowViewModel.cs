@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using TermBar.Catppuccin;
 
-namespace TermBar.ViewModels.Modules {
+namespace TermBar.ViewModels.Modules.WindowBar {
   /// <summary>
   /// The window bar window viewmodel.
   /// </summary>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<local:ModuleView
+  d:DataContext="{d:DesignInstance Type=vm:LauncherViewModel}"
+  x:Class="TermBar.Views.Modules.Launcher.LauncherView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="using:TermBar.Views"
+  xmlns:launcherview="using:TermBar.Views.Modules.Launcher"
+  xmlns:vm="using:TermBar.ViewModels.Modules.Launcher"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d">
+  <Grid
+    Padding="0">
+
+    <Grid.Resources>
+      
+      <DataTemplate
+        x:Key="LauncherEntriesEntryTemplate"
+        x:DataType="vm:LauncherLauncherEntryViewModel">
+        <Button
+          ToolTipService.ToolTip="{x:Bind Name}">
+          <TextBlock
+            Text="{x:Bind Icon}"
+            Foreground="{StaticResource AccentBrush}"
+            Grid.Row="0"
+            Grid.Column="0"/>
+        </Button>
+      </DataTemplate>
+
+      <DataTemplate
+        x:Key="LauncherEntriesNamedEntryTemplate"
+        x:DataType="vm:LauncherLauncherEntryViewModel">
+        <Button
+          ToolTipService.ToolTip="{x:Bind Name}">
+          <Grid
+            Padding="0">
+            <Grid.RowDefinitions>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition/>
+              <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock
+              Text="{x:Bind Icon}"
+              Foreground="{StaticResource AccentBrush}"
+              Grid.Row="0"
+              Grid.Column="0"/>
+            <TextBlock
+              Text="{x:Bind Name}"
+              Grid.Row="0"
+              Grid.Column="1"/>
+          </Grid>
+        </Button>
+      </DataTemplate>
+
+      <launcherview:LauncherLauncherEntryTemplateSelector
+        x:Key="LauncherLauncherEntryTemplateSelector"
+        LauncherEntriesEntryTemplate="{StaticResource LauncherEntriesEntryTemplate}"
+        LauncherEntriesNamedEntryTemplate="{StaticResource LauncherEntriesNamedEntryTemplate}"/>
+
+      <StackLayout
+        x:Name="HorizontalStackLayout"
+        Orientation="Horizontal"
+        Spacing="8"/>
+
+    </Grid.Resources>
+
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+
+    <TextBlock
+      Foreground="{StaticResource AccentBrush}"
+      Text="{Binding Icon}"
+      Grid.Row="0"
+      Grid.Column="0"/>
+
+    <ItemsRepeater
+      x:Name="ListView"
+      ItemsSource="{x:Bind ViewModel.LauncherEntries}"
+      ItemTemplate="{StaticResource LauncherLauncherEntryTemplateSelector}"
+      Layout="{StaticResource HorizontalStackLayout}"
+      Grid.Row="0"
+      Grid.Column="1"/>
+
+  </Grid>
+  
+</local:ModuleView>

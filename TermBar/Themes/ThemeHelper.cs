@@ -1,6 +1,4 @@
 ﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Media;
-using System.Diagnostics;
 using TermBar.Catppuccin;
 
 namespace TermBar.Themes {
@@ -36,10 +34,7 @@ namespace TermBar.Themes {
         "ButtonForeground",
         "ButtonForegroundPointerOver",
         "ListViewItemForeground",
-        "ListViewItemForegroundPointerOver",
-        "TextControlForeground",
-        "TextControlForegroundFocused",
-        "TextControlForegroundPointerOver"
+        "ListViewItemForegroundPointerOver"
       }) {
         SetResource(
           key,
@@ -54,10 +49,7 @@ namespace TermBar.Themes {
           "ButtonBackgroundPointerOver",
           "ButtonBorderBrushPointerOver",
           "ListViewItemBackground",
-          "ListViewItemBackgroundPointerOver",
-          "TextControlBackground",
-          "TextControlBackgroundFocused",
-          "TextControlBackgroundPointerOver"
+          "ListViewItemBackgroundPointerOver"
         }) {
           SetResource(
             key,
@@ -70,8 +62,7 @@ namespace TermBar.Themes {
         foreach (string key in new string[] {
           "ListViewItemSelectionIndicatorBrush",
           "ListViewItemSelectionIndicatorPointerOverBrush",
-          "ListViewItemSelectionIndicatorPressedBrush",
-          "TextControlBorderBrushFocused"
+          "ListViewItemSelectionIndicatorPressedBrush"
         }) {
           SetResource(
             key,
@@ -83,8 +74,7 @@ namespace TermBar.Themes {
       if (config.SelectedBackground is not null) {
         foreach (string key in new string[] {
           "ListViewItemBackgroundSelected",
-          "ListViewItemBackgroundSelectedPointerOver",
-          "TextControlSelectionHighlightColor"
+          "ListViewItemBackgroundSelectedPointerOver"
         }) {
           SetResource(
             key,

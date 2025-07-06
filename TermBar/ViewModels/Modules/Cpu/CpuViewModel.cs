@@ -2,17 +2,16 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using TermBar.Configuration.Json.Modules;
 using TermBar.Models;
 
-namespace TermBar.ViewModels.Modules {
+namespace TermBar.ViewModels.Modules.Cpu {
   /// <summary>
   /// The CPU usage monitor viewmodel.
   /// </summary>
   internal partial class CpuViewModel : INotifyPropertyChanged {
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    private readonly Cpu config;
+    private readonly Configuration.Json.Modules.Cpu config;
 
     private readonly DispatcherTimer dispatcherTimer;
 
@@ -50,7 +49,7 @@ namespace TermBar.ViewModels.Modules {
     /// <summary>
     /// Initializes a <see cref="CpuViewModel"/>.
     /// </summary>
-    public CpuViewModel(Cpu config) {
+    public CpuViewModel(Configuration.Json.Modules.Cpu config) {
       this.config = config;
 
       Icon = config.Icon;

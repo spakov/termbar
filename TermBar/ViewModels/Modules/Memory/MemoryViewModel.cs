@@ -2,17 +2,16 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using TermBar.Configuration.Json.Modules;
 using TermBar.Models;
 
-namespace TermBar.ViewModels.Modules {
+namespace TermBar.ViewModels.Modules.Memory {
   /// <summary>
   /// The memory usage monitor viewmodel.
   /// </summary>
   internal partial class MemoryViewModel : INotifyPropertyChanged {
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    private readonly Memory config;
+    private readonly Configuration.Json.Modules.Memory config;
 
     private readonly DispatcherTimer dispatcherTimer;
 
@@ -50,7 +49,7 @@ namespace TermBar.ViewModels.Modules {
     /// <summary>
     /// Initializes a <see cref="MemoryViewModel"/>.
     /// </summary>
-    public MemoryViewModel(Memory config) {
+    public MemoryViewModel(Configuration.Json.Modules.Memory config) {
       this.config = config;
 
       Icon = config.Icon;

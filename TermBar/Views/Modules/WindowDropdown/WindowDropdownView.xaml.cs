@@ -1,5 +1,5 @@
 using System;
-using TermBar.ViewModels.Modules;
+using TermBar.ViewModels.Modules.WindowDropdown;
 
 namespace TermBar.Views.Modules.WindowDropdown {
   /// <summary>
