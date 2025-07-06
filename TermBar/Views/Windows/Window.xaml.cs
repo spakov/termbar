@@ -1,3 +1,6 @@
+#if DEBUG
+using Microsoft.Extensions.Logging;
+#endif
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
@@ -14,6 +17,11 @@ namespace TermBar.Views.Windows {
   /// A TermBar "window".
   /// </summary>
   internal abstract partial class Window : UserControl, INotifyPropertyChanged {
+#if DEBUG
+    internal readonly ILogger logger;
+    internal static readonly LogLevel logLevel = App.logLevel;
+#endif
+
     public event PropertyChangedEventHandler? PropertyChanged;
 
     private readonly DispatcherTimer layoutTimer;
@@ -40,7 +48,11 @@ namespace TermBar.Views.Windows {
       set {
         if (Math.Abs(value - desiredWidth) > 1) {
           desiredWidth = value;
-          //Debug.WriteLine($"Desired width: {desiredWidth}");
+
+#if DEBUG
+          logger.LogTrace("Desired width: {desiredWidth}", desiredWidth);
+#endif
+
           OnPropertyChanged();
         }
       }
@@ -54,7 +66,11 @@ namespace TermBar.Views.Windows {
       set {
         if (Math.Abs(value - desiredHeight) > 1) {
           desiredHeight = value;
-          //Debug.WriteLine($"Desired height: {desiredHeight}");
+
+#if DEBUG
+          logger.LogTrace("Desired height: {desiredHeight}", desiredHeight);
+#endif
+
           OnPropertyChanged();
         }
       }
@@ -70,6 +86,17 @@ namespace TermBar.Views.Windows {
     /// cref="Configuration.Json.TermBar"/>.</param>
     /// <param name="child">A child element to present in the window.</param>
     protected Window(Configuration.Json.TermBar? config, UIElement? child = null) {
+#if DEBUG
+      using ILoggerFactory factory = LoggerFactory.Create(
+        builder => {
+          builder.AddDebug();
+          builder.SetMinimumLevel(logLevel);
+        }
+      );
+
+      logger = factory.CreateLogger<Window>();
+#endif
+
       this.config = config;
       this.child = child;
 

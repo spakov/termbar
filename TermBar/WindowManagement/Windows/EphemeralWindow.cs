@@ -1,4 +1,7 @@
-﻿using Microsoft.UI.Xaml;
+﻿#if DEBUG
+using Microsoft.Extensions.Logging;
+#endif
+using Microsoft.UI.Xaml;
 using System;
 using System.Diagnostics;
 using TermBar.Models;
@@ -11,6 +14,11 @@ namespace TermBar.WindowManagement.Windows {
   /// A TermBar ephemeral window.
   /// </summary>
   internal class EphemeralWindow : Window {
+#if DEBUG
+    internal readonly ILogger logger;
+    internal static readonly LogLevel logLevel = App.logLevel;
+#endif
+
     private readonly WINEVENTPROC winForegroundEventProc;
 
     private readonly Views.Windows.EphemeralWindow ephemeralWindow;
@@ -119,6 +127,17 @@ namespace TermBar.WindowManagement.Windows {
     /// window.</param>
     /// <param name="content">The content to present in the window.</param>
     internal EphemeralWindow(Configuration.Json.TermBar config, uint requestedLeft, uint requestedTop, UIElement content) : base(config.Display!, config) {
+#if DEBUG
+      using ILoggerFactory factory = LoggerFactory.Create(
+        builder => {
+          builder.AddDebug();
+          builder.SetMinimumLevel(logLevel);
+        }
+      );
+
+      logger = factory.CreateLogger<EphemeralWindow>();
+#endif
+
       Config = base.Config!;
 
       this.requestedLeft = requestedLeft;
@@ -247,13 +266,18 @@ namespace TermBar.WindowManagement.Windows {
       uint idEventThread,
       uint dwmsEventTime
     ) {
-      /*Debug.WriteLine($"EVENT_SYSTEM_FOREGROUND for HWND {hWnd}");
-      Debug.WriteLine($"  TermBar HWND is {Config.HWnd}");
-      Debug.WriteLine($"  My HWND is {base.hWnd}");
-      Debug.WriteLine($"  XAML Island HWND is {ephemeralWindowHWnd}");*/
+#if DEBUG
+      logger.LogTrace("EVENT_SYSTEM_FOREGROUND for HWND {hWnd}", hWnd);
+      logger.LogTrace("  TermBar HWND is {Config.HWnd}", Config.HWnd);
+      logger.LogTrace("  My HWND is {base.hWnd}", base.hWnd);
+      logger.LogTrace("  XAML Island HWND is {islandHWnd}", islandHWnd);
+#endif
 
       if (ignoreFirstForegroundEvent) {
-        Debug.WriteLine("Ephemeral window ignored first EVENT_SYSTEM_FOREGROUND event");
+#if DEBUG
+        logger.LogTrace("Ephemeral window ignored first EVENT_SYSTEM_FOREGROUND event");
+#endif
+
         ignoreFirstForegroundEvent = false;
 
         return;

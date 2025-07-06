@@ -1,3 +1,6 @@
+#if DEBUG
+using Microsoft.Extensions.Logging;
+#endif
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
@@ -11,6 +14,11 @@ namespace TermBar.Views.Windows {
   /// The main TermBar "window".
   /// </summary>
   internal sealed partial class TermBarWindow : Window {
+#if DEBUG
+    internal new readonly ILogger logger;
+    internal new static readonly LogLevel logLevel = App.logLevel;
+#endif
+
     private const string taskManager = "taskmgr.exe";
 
     private const string viewsModulesNamespace = "TermBar.Views.Modules";
@@ -22,6 +30,17 @@ namespace TermBar.Views.Windows {
     /// </summary>
     /// <param name="config">A <see cref="Configuration.Json.TermBar"/>.</param>
     internal TermBarWindow(Configuration.Json.TermBar config) : base(config) {
+#if DEBUG
+      using ILoggerFactory factory = LoggerFactory.Create(
+        builder => {
+          builder.AddDebug();
+          builder.SetMinimumLevel(logLevel);
+        }
+      );
+
+      logger = factory.CreateLogger<TermBarWindow>();
+#endif
+
       this.config = config;
 
       ApplyComputedStyles();
@@ -44,17 +63,25 @@ namespace TermBar.Views.Windows {
 
         Type? targetType;
 
-        Debug.WriteLine($"Attempting to instantiate {viewsModulesNamespace}.{moduleConfig.GetType().Name}.{moduleConfig.GetType().Name}View");
+#if DEBUG
+        logger.LogDebug("Attempting to instantiate {view}", $"{{viewsModulesNamespace}}.{{moduleConfig.GetType().Name}}.{{moduleConfig.GetType().Name}}View");
+#endif
 
         try {
           targetType = Type.GetType($"{viewsModulesNamespace}.{moduleConfig.GetType().Name}.{moduleConfig.GetType().Name}View");
         } catch (Exception) {
-          Debug.WriteLine("Could not GetType");
+#if DEBUG
+          logger.LogDebug("Could not GetType()");
+#endif
+
           continue;
         }
 
         if (targetType is null) {
-          Debug.WriteLine("GetType returned null");
+#if DEBUG
+          logger.LogDebug("GetType() returned null");
+#endif
+
           continue;
         }
 
@@ -70,7 +97,10 @@ namespace TermBar.Views.Windows {
             activationAttributes: null
           )!;
         } catch (Exception) {
-          Debug.WriteLine("Could not CreateInstance");
+#if DEBUG
+          logger.LogDebug("Could not CreateInstance()");
+#endif
+
           continue;
         }
 

@@ -1,4 +1,7 @@
-﻿using System;
+﻿#if DEBUG
+using Microsoft.Extensions.Logging;
+#endif
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -8,6 +11,11 @@ namespace TermBar.ViewModels.Modules.Volume {
   /// The volume viewmodel.
   /// </summary>
   internal partial class VolumeViewModel : INotifyPropertyChanged {
+#if DEBUG
+    internal readonly ILogger logger;
+    internal static readonly LogLevel logLevel = App.logLevel;
+#endif
+
     public event PropertyChangedEventHandler? PropertyChanged;
 
     private readonly Configuration.Json.Modules.Volume config;
@@ -24,7 +32,11 @@ namespace TermBar.ViewModels.Modules.Volume {
       set {
         if (_icon != value) {
           _icon = value;
-          Debug.WriteLine($"Icon changed => {_icon}");
+
+#if DEBUG
+          logger.LogDebug("Icon changed => {icon}", _icon);
+#endif
+
           OnPropertyChanged();
         }
       }
@@ -39,7 +51,11 @@ namespace TermBar.ViewModels.Modules.Volume {
       set {
         if (_volume != value) {
           _volume = value;
-          Debug.WriteLine($"Volume changed => {_volume}");
+
+#if DEBUG
+          logger.LogDebug("Volume changed => {volume}", _volume);
+#endif
+
           OnPropertyChanged();
         }
       }
@@ -65,6 +81,17 @@ namespace TermBar.ViewModels.Modules.Volume {
     /// Initializes a <see cref="VolumeViewModel"/>.
     /// </summary>
     public VolumeViewModel(Configuration.Json.Modules.Volume config) {
+#if DEBUG
+      using ILoggerFactory factory = LoggerFactory.Create(
+        builder => {
+          builder.AddDebug();
+          builder.SetMinimumLevel(logLevel);
+        }
+      );
+
+      logger = factory.CreateLogger<VolumeViewModel>();
+#endif
+
       this.config = config;
 
       Models.Volume.Instance!.VolumeChanged += Volume_VolumeChanged;
