@@ -15,7 +15,7 @@ namespace TermBar.Configuration.Json.Modules {
     public ColorEnum AccentColor { get; set; } = ColorEnum.Mauve;
 
     /// <summary>
-    /// The text to use as window icons.
+    /// The text to use as window icons by default.
     /// </summary>
     public string Icon { get; set; } = "•";
 

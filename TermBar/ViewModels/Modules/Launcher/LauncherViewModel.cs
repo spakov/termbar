@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TermBar.Catppuccin;
+using TermBar.Configuration.Json;
 using TermBar.Configuration.Json.Modules;
 
 namespace TermBar.ViewModels.Modules.Launcher {
@@ -21,17 +22,41 @@ namespace TermBar.ViewModels.Modules.Launcher {
       _launcherEntries = [];
 
       foreach (LauncherEntry launcherEntry in moduleConfig.LauncherEntries) {
-        _launcherEntries.Add(
-          new() {
-            Name = launcherEntry.Name,
-            Command = (launcherEntry.Command, launcherEntry.CommandArguments),
-            DisplayName = launcherEntry.DisplayName,
-            Icon = launcherEntry.Icon,
-            IconColor = launcherEntry.IconColor is not null
-              ? PaletteHelper.Palette[config.Flavor].Colors[(ColorEnum) launcherEntry.IconColor].SolidColorBrush
-              : PaletteHelper.Palette[config.Flavor].Colors[moduleConfig.AccentColor].SolidColorBrush
+        LauncherLauncherEntryViewModel launcherLauncherEntryViewModel = new() {
+          Name = launcherEntry.Name,
+          Command = (launcherEntry.Command, launcherEntry.CommandArguments),
+          DisplayName = launcherEntry.DisplayName
+        };
+
+        if (launcherEntry.Icon is null) {
+          if (config.WindowList.ProcessIconMap is not null && launcherEntry.Command is not null) {
+            if (config.WindowList.ProcessIconMap.TryGetValue(launcherEntry.Command, out ProcessIconMapping? processIconMapping)) {
+              launcherLauncherEntryViewModel.Icon = processIconMapping.Icon;
+            }
           }
-        );
+
+          launcherLauncherEntryViewModel.Icon ??= moduleConfig.Icon;
+        }
+
+        launcherLauncherEntryViewModel.Icon ??= launcherEntry.Icon;
+
+        if (launcherEntry.IconColor is null) {
+          if (config.WindowList.ProcessIconMap is not null && launcherEntry.Command is not null) {
+            if (config.WindowList.ProcessIconMap.TryGetValue(launcherEntry.Command, out ProcessIconMapping? processIconMapping)) {
+              if (processIconMapping.IconColor is not null) {
+                launcherLauncherEntryViewModel.IconColor = PaletteHelper.Palette[config.Flavor].Colors[(ColorEnum) processIconMapping.IconColor].SolidColorBrush;
+              }
+            }
+          }
+        }
+
+        if (launcherEntry.IconColor is not null) {
+          launcherLauncherEntryViewModel.IconColor ??= PaletteHelper.Palette[config.Flavor].Colors[(ColorEnum) launcherEntry.IconColor].SolidColorBrush;
+        }
+
+        launcherLauncherEntryViewModel.IconColor ??= PaletteHelper.Palette[config.Flavor].Colors[moduleConfig.AccentColor].SolidColorBrush;
+
+        _launcherEntries.Add(launcherLauncherEntryViewModel);
       }
     }
   }

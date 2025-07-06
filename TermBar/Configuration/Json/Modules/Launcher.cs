@@ -16,13 +16,16 @@ namespace TermBar.Configuration.Json.Modules {
     public ColorEnum AccentColor { get; set; } = ColorEnum.Rosewater;
 
     /// <summary>
+    /// The text to use as launcher icons by default.
+    /// </summary>
+    public string Icon { get; set; } = "•";
+
+    /// <summary>
     /// Launcher entries.
     /// </summary>
-    // TODO: should be using WindowList.ProcessIconMap to derive colors and
-    // icons
     public List<LauncherEntry> LauncherEntries { get; set; } = [
-      new("Windows Terminal", "wt", [], ColorEnum.Overlay0, ""),
-      new("File Explorer", "explorer", [], ColorEnum.Yellow, "")
+      new("Windows Terminal", "wt", iconColor: ColorEnum.Overlay0, icon: ""),
+      new("File Explorer", "explorer")
     ];
   }
 
@@ -56,20 +59,22 @@ namespace TermBar.Configuration.Json.Modules {
     /// <summary>
     /// The Catppuccin color to use for the launcher icon.
     /// </summary>
-    /// <remarks>Set to <c>null</c> to use the launcher module's <see
-    /// cref="Launcher.AccentColor"/>.</remarks>
+    /// <remarks>Set to <see langword="null"/> to use matches in <see
+    /// cref="WindowList.ProcessIconMap"/> and fall back to the launcher
+    /// module's <see cref="Launcher.AccentColor"/>.</remarks>
     public ColorEnum? IconColor { get; set; } = null;
 
     /// <summary>
     /// The text to use as the launcher icon.
     /// </summary>
-    /// <remarks>Set to <c>null</c> to use the WindowList module's <see
-    /// cref="Launcher.Icon"/>.</remarks>
+    /// <remarks>Set to <see langword="null"/> to use matches in <see
+    /// cref="WindowList.ProcessIconMap"/> and fall back to the launcher
+    /// module's <see cref="Launcher.Icon"/>.</remarks>
     public string? Icon { get; set; } = null;
 
     public LauncherEntry() { }
 
-    public LauncherEntry(string name, string command, string[] commandArguments, ColorEnum iconColor, string icon, bool displayName = false) {
+    public LauncherEntry(string name, string command, string[]? commandArguments = null, ColorEnum? iconColor = null, string? icon = null, bool displayName = false) {
       Name = name;
       Command = command;
       CommandArguments = commandArguments;

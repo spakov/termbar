@@ -64,7 +64,7 @@ namespace TermBar.Views.Windows {
         Type? targetType;
 
 #if DEBUG
-        logger.LogDebug("Attempting to instantiate {view}", $"{{viewsModulesNamespace}}.{{moduleConfig.GetType().Name}}.{{moduleConfig.GetType().Name}}View");
+        logger.LogDebug("Attempting to instantiate {view}", $"{viewsModulesNamespace}.{moduleConfig.GetType().Name}.{moduleConfig.GetType().Name}View");
 #endif
 
         try {
