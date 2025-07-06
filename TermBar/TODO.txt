@@ -1,3 +1,4 @@
+- A way to view the current runtime JSON configuration
 - Exception handling: display messages nicely with a StaticText that can be
   clicked to expand to show the entire error message text (probably a new
   Module)

@@ -5,12 +5,48 @@ namespace TermBar.Configuration.Json {
   /// <summary>
   /// A TermBar configuration for the window list modules.
   /// </summary>
+  /// <remarks>Process names must not include an extension!</remarks>
   internal class WindowList {
+    /// <summary>
+    /// An ordered list of window process names that should be pinned (in this
+    /// order) at the beginning of the window list.
+    /// </summary>
+    /// <remarks>These are case insensitive.</remarks>
+    public List<string>? HighPriorityWindows = [
+      "olk",
+      "devenv",
+      "librewolf"
+    ];
+
+    /// <summary>
+    /// An ordered list of window process names that should be pinned (in this
+    /// order) at the end of the window list.
+    /// </summary>
+    /// <remarks>
+    /// <list type="bullet">
+    /// <item>If a process name is in <see cref="LowPriorityWindows"/> and
+    /// <see cref="HighPriorityWindows"/>, <see cref="HighPriorityWindows"/>
+    /// takes precedence.</item>
+    /// <item>These are case insensitive.</item>
+    /// </list>
+    /// </remarks>
+    public List<string>? LowPriorityWindows = [
+      "SteelSeriesEngine"
+    ];
+
+    /// <summary>
+    /// Whether groups of windows with the same process name should be sorted
+    /// alphabetically.
+    /// </summary>
+    /// <remarks>If <see langword="false"/>, windows are simply added in the
+    /// order they were created (or, when starting, by the order they are
+    /// reported by <c>EnumWindows()</c>).</remarks>
+    public bool SortGroupsAlphabetically = true;
+
     /// <summary>
     /// The map of window process names to <see cref="ProcessIconMapping"/> to
     /// apply to windows.
     /// </summary>
-    /// <remarks>These process names do not have an extension!</remarks>
     public Dictionary<string, ProcessIconMapping>? ProcessIconMap { get; set; } = new() {
       { "devenv", new(ColorEnum.Mauve, "") },
       { "explorer", new(ColorEnum.Yellow, "") },

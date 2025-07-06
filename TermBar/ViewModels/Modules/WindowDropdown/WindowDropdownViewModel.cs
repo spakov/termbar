@@ -66,13 +66,15 @@ namespace TermBar.ViewModels.Modules.WindowDropdown {
           if (view is not null) views.Remove(view);
         } while (view is not null);
 
-        views.Add(new(config, moduleConfig, model.HWnd, model.ProcessId, model.Name));
+        view = new(config, moduleConfig, model.HWnd, model.ProcessId, model.Name);
+        WindowListHelper.OrderAndInsert(config.WindowList, view, views, view.WindowProcessId, view.WindowName!);
+
         model.PropertyChanged += (sender, e) => FindView((Window) sender!)!.WindowName = ((Window) sender!).Name;
       }
 
       models.CollectionChanged += Models_CollectionChanged;
 
-      WindowList.Instance.PropertyChanged += (sender, e) => ForegroundedWindow = WindowList.ForegroundedWindow is null ? null : FindView(WindowList.ForegroundedWindow);
+      WindowList.Instance!.PropertyChanged += (sender, e) => ForegroundedWindow = WindowList.ForegroundedWindow is null ? null : FindView(WindowList.ForegroundedWindow);
     }
 
     /// <summary>
@@ -97,7 +99,9 @@ namespace TermBar.ViewModels.Modules.WindowDropdown {
         }
 
         foreach (Window model in e.NewItems!) {
-          views.Add(new(config, moduleConfig, model.HWnd, model.ProcessId, model.Name));
+          view = new(config, moduleConfig, model.HWnd, model.ProcessId, model.Name);
+          WindowListHelper.OrderAndInsert(config.WindowList, view, views, view.WindowProcessId, view.WindowName!);
+          
           model.PropertyChanged += (sender, e) => FindView((Window) sender!)!.WindowName = ((Window) sender!).Name;
         }
       } else if (e.Action.Equals(NotifyCollectionChangedAction.Remove)) {

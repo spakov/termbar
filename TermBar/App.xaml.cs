@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Dispatching;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using System;
 using System.IO;
@@ -9,9 +10,14 @@ using TermBar.WindowManagement;
 
 namespace TermBar {
   /// <summary>
-  /// Provides application-specific behavior to supplement the default Application class.
+  /// Provides application-specific behavior to supplement the default
+  /// Application class.
   /// </summary>
   public partial class App : Application {
+#if DEBUG
+    internal static readonly LogLevel logLevel = LogLevel.Debug;
+#endif
+
     /// <summary>
     /// The window manager.
     /// </summary>
@@ -28,8 +34,9 @@ namespace TermBar {
     internal static DispatcherQueue? DispatcherQueue { get; private set; }
 
     /// <summary>
-    /// Initializes the singleton application object.  This is the first line of authored code
-    /// executed, and as such is the logical equivalent of main() or WinMain().
+    /// Initializes the singleton application object.  This is the first line
+    /// of authored code executed, and as such is the logical equivalent of
+    /// main() or WinMain().
     /// </summary>
     public App() {
       InitializeComponent();
@@ -53,12 +60,16 @@ namespace TermBar {
     /// Initializes singleton intance models when they are required to use
     /// the UI thread.
     /// </summary>
-    private static void InitializeModels() => Volume.Instance = new Volume(DispatcherQueue!);
+    private static void InitializeModels() {
+      Models.WindowList.Instance = new Models.WindowList(DispatcherQueue!);
+      Volume.Instance = new Volume(DispatcherQueue!);
+    }
 
     /// <summary>
     /// Invoked when the application is launched.
     /// </summary>
-    /// <param name="args">Details about the launch request and process.</param>
+    /// <param name="args">Details about the launch request and
+    /// process.</param>
     protected override void OnLaunched(LaunchActivatedEventArgs args) => WindowManager!.Display();
   }
 }

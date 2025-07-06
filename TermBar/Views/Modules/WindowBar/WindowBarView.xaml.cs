@@ -28,12 +28,18 @@ namespace TermBar.Views.Modules.WindowBar {
     /// cref="Configuration.Json.Modules.WindowBar"/> for this <see
     /// cref="WindowBarView"/>.</param>
     internal WindowBarView(Configuration.Json.TermBar config, Configuration.Json.Modules.WindowBar moduleConfig) : base(config, moduleConfig, skipColor: true) {
-      ViewModel = new WindowBarViewModel(config, moduleConfig);
+      ViewModel = new WindowBarViewModel(this, config, moduleConfig);
 
       InitializeComponent();
 
       ((ListView) Content).ItemClick += WindowBarView_ItemClick;
     }
+
+    /// <summary>
+    /// Sets the selected window index.
+    /// </summary>
+    /// <param name="index">The selected window index.</param>
+    internal void SetSelectedWindowIndex(int index) => ((ListView) Content).SelectedIndex = index;
 
     /// <summary>
     /// Invoked when the user clicks an item.

@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using TermBar.Models;
 using TermBar.Styles;
 using TermBar.ViewModels.Modules.WindowBar;
 using Windows.Win32.Foundation;
@@ -8,8 +9,10 @@ namespace TermBar.Views.Modules.WindowBar {
   /// <summary>
   /// The TermBar clock.
   /// </summary>
-  internal sealed partial class WindowBarWindowView : ModuleView {
+  internal sealed partial class WindowBarWindowView : ModuleView, IWindowListWindow {
     private WindowBarWindowViewModel? viewModel;
+
+    private readonly uint _windowProcessId;
 
     /// <summary>
     /// The viewmodel.
@@ -22,21 +25,22 @@ namespace TermBar.Views.Modules.WindowBar {
       }
     }
 
-    /// <summary>
-    /// The window's <see cref="HWND"/>.
-    /// </summary>
-    internal HWND HWnd { get; private set; }
+    public uint WindowProcessId => _windowProcessId;
 
-    /// <summary>
-    /// Allows updating the window's name.
-    /// </summary>
-    internal string? WindowName {
+    public string? WindowName {
+      get => viewModel?.Name;
+
       set {
         if (viewModel is not null) {
           viewModel.Name = value;
         }
       }
     }
+
+    /// <summary>
+    /// The window's <see cref="HWND"/>.
+    /// </summary>
+    internal HWND HWnd { get; private set; }
 
     /// <summary>
     /// Initializes a <see cref="WindowBarWindowView"/>.
@@ -50,6 +54,7 @@ namespace TermBar.Views.Modules.WindowBar {
     /// <param name="processId">The window's owning process ID.</param>
     /// <param name="name">The window's name.</param>
     internal WindowBarWindowView(Configuration.Json.TermBar config, Configuration.Json.Modules.WindowBar moduleConfig, HWND hWnd, uint processId, string name) : base(config, moduleConfig, skipColor: true) {
+      _windowProcessId = processId;
       HWnd = hWnd;
 
       ViewModel = new WindowBarWindowViewModel(config, moduleConfig, processId, name);

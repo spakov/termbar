@@ -1,16 +1,32 @@
 using Microsoft.UI.Xaml.Controls;
+using TermBar.Models;
 using TermBar.ViewModels.Modules.WindowDropdown;
 using Windows.Win32.Foundation;
 
 namespace TermBar.Views.Modules.WindowDropdown {
-  internal sealed partial class WindowDropdownMenuFlyoutItemView : MenuFlyoutItem {
+  internal sealed partial class WindowDropdownMenuFlyoutItemView : MenuFlyoutItem, IWindowListWindow {
     private WindowDropdownWindowViewModel? viewModel;
+
+    private readonly uint _windowProcessId;
 
     private WindowDropdownWindowViewModel? ViewModel {
       get => viewModel;
+
       set {
         viewModel = value;
         DataContext = viewModel;
+      }
+    }
+
+    public uint WindowProcessId => _windowProcessId;
+
+    public string? WindowName {
+      get => viewModel?.Name;
+
+      set {
+        if (viewModel is not null) {
+          viewModel.Name = value;
+        }
       }
     }
 
@@ -18,17 +34,6 @@ namespace TermBar.Views.Modules.WindowDropdown {
     /// The window's <see cref="HWND"/>.
     /// </summary>
     internal HWND HWnd { get; private set; }
-
-    /// <summary>
-    /// Allows updating the window's name.
-    /// </summary>
-    internal string? WindowName {
-      set {
-        if (viewModel is not null) {
-          viewModel.Name = value;
-        }
-      }
-    }
 
     /// <summary>
     /// Initializes a <see cref="WindowDropdownMenuFlyoutItemView"/>.
@@ -42,6 +47,7 @@ namespace TermBar.Views.Modules.WindowDropdown {
     /// <param name="processId">The window's owning process ID.</param>
     /// <param name="name">The window's name.</param>
     internal WindowDropdownMenuFlyoutItemView(Configuration.Json.TermBar config, Configuration.Json.Modules.WindowDropdown moduleConfig, HWND hWnd, uint processId, string name) {
+      _windowProcessId = processId;
       HWnd = hWnd;
 
       ViewModel = new WindowDropdownWindowViewModel(config, moduleConfig, processId, name);

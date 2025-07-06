@@ -4,7 +4,9 @@ DwmGetWindowAttribute
 EnumDisplayDevices
 EnumDisplayMonitors
 EnumWindows
+GetActiveWindow
 GetAncestor
+GetClassName
 GetCursorPos
 GetDpiForMonitor
 GetModuleHandle
@@ -23,14 +25,12 @@ RegisterClassEx
 SetCursor
 SetForegroundWindow
 SetLayeredWindowAttributes
-SetWindowLong
 SetWindowLongPtr
 SetWindowPos
 SetWinEventHook
 ShowWindow
 UnhookWinEvent
 USER_DEFAULT_SCREEN_DPI
-HWND_BOTTOM
 IDC_ARROW
 WHEEL_DELTA
 WINEVENT_OUTOFCONTEXT

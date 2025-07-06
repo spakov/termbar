@@ -18,6 +18,8 @@ namespace TermBar.Configuration.Json.Modules {
     /// <summary>
     /// Launcher entries.
     /// </summary>
+    // TODO: should be using WindowList.ProcessIconMap to derive colors and
+    // icons
     public List<LauncherEntry> LauncherEntries { get; set; } = [
       new("Windows Terminal", "wt", [], ColorEnum.Overlay0, ""),
       new("File Explorer", "explorer", [], ColorEnum.Yellow, "")

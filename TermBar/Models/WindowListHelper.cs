@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿#if DEBUG
+using Microsoft.Extensions.Logging;
+#endif
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -25,12 +29,24 @@ namespace TermBar.Models {
     internal const uint WINEVENT_SKIPOWNPROCESS = 0x0002;
     internal const uint WINEVENT_INCONTEXT = 0x0004;
 
+    private static readonly List<string> ignoredClassNames = [
+      "Microsoft.UI.Content.PopupWindowSiteBridge",
+      "Progman",
+      "PseudoConsoleWindow",
+      "Tooltips_Class32",
+      "WorkerW",
+      "Xaml_WindowedPopupClass"
+    ];
+
     private static WNDENUMPROC? wndEnumProc;
 
     private static readonly List<HWND> hWnds = [];
 
     private static int windowNameLength;
     private static readonly char[] windowName = new char[256];
+
+    private static int windowClassNameLength;
+    private static readonly char[] windowClassName = new char[256];
 
 #pragma warning disable IDE0044 // Add readonly modifier
     private static uint windowProcessId;
@@ -43,9 +59,16 @@ namespace TermBar.Models {
     /// </summary>
     /// <remarks>Call <see cref="UpdateWindow"/> to keep the window list in
     /// sync.</remarks>
+#if DEBUG
+    /// <param name="logger">An <see cref="ILogger"/>.</param>
+#endif
     /// <returns>An <see cref="ObservableCollection{T}"/> of
     /// <see cref="Window"/>s representing the windows to be managed.</returns>
+#if DEBUG
+    internal static ObservableCollection<Window> EnumerateWindows(ILogger logger) {
+#else
     internal static ObservableCollection<Window> EnumerateWindows() {
+#endif
       ObservableCollection<Window> windows = [];
 
       wndEnumProc = new(WndEnumProc);
@@ -59,27 +82,202 @@ namespace TermBar.Models {
 
         _windows.Add(hWnd);
         windows.Add(new(hWnd, windowProcessId, name));
+
+#if DEBUG
+        logger.LogDebug("Tracking window {hWnd} \"{name}\"", hWnd, name);
+#endif
       }
 
       return windows;
     }
 
     /// <summary>
+    /// Determines the correct order in which <paramref name="window"/> should
+    /// appear in <paramref name="windowList"/> and inserts it at the proper
+    /// index.
+    /// </summary>
+    /// <typeparam name="T">A type representing a window.</typeparam>
+    /// <param name="config">A <see cref="Configuration.Json.WindowList"/>
+    /// configuration.</param>
+    /// <param name="window">The window to be added.</param>
+    /// <param name="windowList">The window list.</param>
+    /// <param name="processId">The window's process ID.</param>
+    /// <param name="name">The window's name.</param>
+    /// <returns>The index at which the window was inserted.</returns>
+    internal static int OrderAndInsert<T>(Configuration.Json.WindowList config, T window, ObservableCollection<T> windowList, uint processId, string name) where T : IWindowListWindow {
+      Range highPriorityWindows = new(-1, -1);
+      Range normalPriorityWindows = new(-1, -1);
+      Range lowPriorityWindows = new(-1, -1);
+
+      // Adjust ranges
+      for (int i = 0; i < windowList.Count; i++) {
+        using (Process process = Process.GetProcessById((int) windowList[i].WindowProcessId)) {
+          if (config.HighPriorityWindows is not null) {
+            if (config.HighPriorityWindows.Contains(process.ProcessName)) {
+              if (highPriorityWindows.Low < 0) {
+                highPriorityWindows.Low = i;
+              }
+            } else {
+              if (normalPriorityWindows.Low < 0) {
+                normalPriorityWindows.Low = i;
+              }
+            }
+          } else {
+            if (normalPriorityWindows.Low < 0) {
+              normalPriorityWindows.Low = i;
+            }
+          }
+
+          if (config.LowPriorityWindows is not null) {
+            if (config.LowPriorityWindows.Contains(process.ProcessName)) {
+              if (lowPriorityWindows.Low < 0) {
+                lowPriorityWindows.Low = i;
+              }
+            }
+          }
+        }
+      }
+
+      if (lowPriorityWindows.High < 0 && lowPriorityWindows.Low >= 0) {
+        lowPriorityWindows.High = windowList.Count - 1;
+      }
+
+      if (normalPriorityWindows.High < 0 && normalPriorityWindows.Low >= 0) {
+        normalPriorityWindows.High = lowPriorityWindows.Low >= 0
+          ? lowPriorityWindows.Low - 1
+          : windowList.Count - 1;
+      }
+
+      if (highPriorityWindows.High < 0 && highPriorityWindows.Low >= 0) {
+        highPriorityWindows.High = normalPriorityWindows.Low >= 0
+          ? normalPriorityWindows.Low - 1
+          : windowList.Count - 1;
+      }
+
+      Range insertionRange = normalPriorityWindows;
+
+      string processName;
+      using (Process process = Process.GetProcessById((int) processId)) {
+        processName = process.ProcessName;
+      }
+
+      // Determine priority
+      if (config.LowPriorityWindows is not null) {
+        if (config.LowPriorityWindows.Contains(processName)) {
+          insertionRange = lowPriorityWindows;
+        }
+      }
+
+      if (config.HighPriorityWindows is not null) {
+        if (config.HighPriorityWindows.Contains(processName)) {
+          insertionRange = highPriorityWindows;
+        }
+      }
+
+      // If we have no insertion range at this point, our list is empty
+      if (insertionRange.Low < 0 && insertionRange.High < 0) {
+        windowList.Add(window);
+
+        return windowList.Count - 1;
+      }
+
+      int groupLowIndex = -1;
+
+      // Determine grouping
+      for (int i = insertionRange.Low; i <= insertionRange.High; i++) {
+        using (Process process = Process.GetProcessById((int) windowList[i].WindowProcessId)) {
+          if (process.ProcessName.Equals(processName, StringComparison.OrdinalIgnoreCase)) {
+            groupLowIndex = i;
+            break;
+          }
+        }
+      }
+
+      if (groupLowIndex >= 0) {
+        insertionRange.Low = groupLowIndex;
+      }
+
+      int insertionIndex = -1;
+
+      // Check for group alphabetic sorting
+      if (config.SortGroupsAlphabetically && groupLowIndex >= 0) {
+        for (int i = insertionRange.Low; i <= insertionRange.High; i++) {
+          using (Process process = Process.GetProcessById((int) windowList[i].WindowProcessId)) {
+            if (!process.ProcessName.Equals(processName, StringComparison.OrdinalIgnoreCase)) {
+              insertionIndex = i;
+              break;
+            } else {
+              if (string.Compare(windowList[i].WindowName, name, StringComparison.OrdinalIgnoreCase) > 0) {
+                insertionIndex = i;
+                break;
+              }
+            }
+          }
+        }
+      }
+
+      // Determine the insertion index
+      if (insertionIndex < 0) {
+        for (int i = insertionRange.Low; i <= insertionRange.High; i++) {
+          if (config.HighPriorityWindows is not null) {
+            if (config.HighPriorityWindows.Contains(processName)) {
+              using (Process process = Process.GetProcessById((int) windowList[i].WindowProcessId)) {
+                if (config.HighPriorityWindows.IndexOf(process.ProcessName) > config.HighPriorityWindows.IndexOf(processName)) {
+                  insertionIndex = i;
+                  break;
+                }
+              }
+            }
+          }
+
+          if (config.LowPriorityWindows is not null) {
+            if (config.LowPriorityWindows.Contains(processName)) {
+              using (Process process = Process.GetProcessById((int) windowList[i].WindowProcessId)) {
+                if (config.LowPriorityWindows.IndexOf(process.ProcessName) > config.LowPriorityWindows.IndexOf(processName)) {
+                  insertionIndex = i;
+                  break;
+                }
+              }
+            }
+          }
+        }
+
+        if (insertionIndex < 0) {
+          insertionIndex = insertionRange.High + 1;
+        }
+      }
+
+      windowList.Insert(insertionIndex, window);
+
+      return insertionIndex;
+    }
+
+    /// <summary>
     /// Determines whether a window being tracked has been foregrounded based
     /// on <paramref name="event"/>.
     /// </summary>
+#if DEBUG
+    /// <param name="logger">An <see cref="ILogger"/>.</param>
+#endif
     /// <param name="windows">The list of windows.</param>
     /// <param name="event"><inheritdoc cref="WindowList.WinSystemEventProc"
     /// path="/param[@name='event']"/></param>
     /// <param name="hWnd"><inheritdoc cref="WindowList.WinSystemEventProc"
     /// path="/param[@name='hWnd']"/></param>
+#if DEBUG
+    internal static Window? IsForegrounded(ILogger logger, ObservableCollection<Window> windows, uint @event, HWND hWnd) {
+#else
     internal static Window? IsForegrounded(ObservableCollection<Window> windows, uint @event, HWND hWnd) {
+#endif
       if (@event == EVENT_SYSTEM_FOREGROUND) {
         if (!WindowIsInteresting(hWnd)) return null;
 
         if (_windows.Contains(hWnd)) {
           foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
-            //Debug.WriteLine($"Foregrounding {hWnd}");
+#if DEBUG
+            logger.LogDebug("Is foreground: window {hWnd}", hWnd);
+#endif
+
             return window;
           }
         }
@@ -91,6 +289,9 @@ namespace TermBar.Models {
     /// <summary>
     /// Updates the list of windows based on <paramref name="event"/>.
     /// </summary>
+#if DEBUG
+    /// <param name="logger">An <see cref="ILogger"/>.</param>
+#endif
     /// <param name="windows">The list of windows.</param>
     /// <param name="event"><inheritdoc
     /// cref="WindowList.WinObjectEventProc"
@@ -98,7 +299,11 @@ namespace TermBar.Models {
     /// <param name="hWnd"><inheritdoc
     /// cref="WindowList.WinObjectEventProc"
     /// path="/param[@name='hWnd']"/></param>
+#if DEBUG
+    internal static void UpdateWindow(ILogger logger, ObservableCollection<Window> windows, uint @event, HWND hWnd) {
+#else
     internal static void UpdateWindow(ObservableCollection<Window> windows, uint @event, HWND hWnd) {
+#endif
       string name;
 
       switch (@event) {
@@ -109,9 +314,12 @@ namespace TermBar.Models {
           if (!_windows.Contains(hWnd)) {
             name = new(windowName, 0, windowNameLength);
 
+#if DEBUG
+            logger.LogDebug("Tracking window {hWnd} \"{name}\"", hWnd, name);
+#endif
+
             _windows.Add(hWnd);
             windows.Add(new(hWnd, windowProcessId, name));
-            //Debug.WriteLine($"Adding {name} ({hWnd})");
           }
 
           return;
@@ -124,8 +332,11 @@ namespace TermBar.Models {
 
           if (_windows.Contains(hWnd)) {
             foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
+#if DEBUG
+              logger.LogDebug("No longer tracking window {hWnd}", hWnd);
+#endif
+
               toRemove.Add(window);
-              //Debug.WriteLine($"Removing {hWnd}");
             }
 
             _windows.Remove(hWnd);
@@ -142,8 +353,11 @@ namespace TermBar.Models {
           if (_windows.Contains(hWnd)) {
             foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
               if (!name.Equals(window.Name)) {
+#if DEBUG
+                logger.LogDebug("Renaming window {hWnd} \"{oldName}\" -> \"{newName}\"", hWnd, window.Name, name);
+#endif
+
                 window.Name = name;
-                //Debug.WriteLine($"Renamed {name} ({hWnd})");
               }
             }
           }
@@ -155,20 +369,29 @@ namespace TermBar.Models {
     /// <summary>
     /// Brings <paramref name="hWnd"/> to the foreground.
     /// </summary>
+#if DEBUG
+    /// <param name="logger">An <see cref="ILogger"/>.</param>
+#endif
     /// <param name="windows">The list of windows.</param>
     /// <param name="hWnd"><inheritdoc
     /// cref="WindowList.WinSystemEventProc"
     /// path="/param[@name='hWnd']"/></param>
+#if DEBUG
+    internal static void Foreground(ILogger logger, ObservableCollection<Window> windows, HWND hWnd) {
+#else
     internal static void Foreground(ObservableCollection<Window> windows, HWND hWnd) {
+#endif
       if (_windows.Contains(hWnd)) {
         foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
           if (PInvoke.IsIconic(hWnd)) {
             PInvoke.ShowWindow(hWnd, SHOW_WINDOW_CMD.SW_RESTORE);
           }
 
-          PInvoke.SetForegroundWindow(hWnd);
+#if DEBUG
+          logger.LogDebug("Foregrounding: window {hWnd}", hWnd);
+#endif
 
-          //Debug.WriteLine($"Foregrounded {hWnd}");
+          PInvoke.SetForegroundWindow(hWnd);
         }
       }
     }
@@ -176,18 +399,29 @@ namespace TermBar.Models {
     /// <summary>
     /// Iconifies <paramref name="hWnd"/>.
     /// </summary>
+#if DEBUG
+    /// <param name="logger">An <see cref="ILogger"/>.</param>
+#endif
     /// <param name="windows">The list of windows.</param>
     /// <param name="hWnd"><inheritdoc
     /// cref="WindowList.WinSystemEventProc"
     /// path="/param[@name='hWnd']"/></param>
+#if DEBUG
+    internal static void Iconify(ILogger logger, ObservableCollection<Window> windows, HWND hWnd) {
+#else
     internal static void Iconify(ObservableCollection<Window> windows, HWND hWnd) {
+#endif
       if (_windows.Contains(hWnd)) {
         foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
           if (!PInvoke.IsIconic(hWnd)) {
-            PInvoke.ShowWindow(hWnd, SHOW_WINDOW_CMD.SW_MINIMIZE);
-          }
+#if DEBUG
+            logger.LogDebug("Iconifying: window {hWnd}", hWnd);
+#endif
 
-          //Debug.WriteLine($"Iconified {hWnd}");
+            PInvoke.ShowWindow(hWnd, SHOW_WINDOW_CMD.SW_MINIMIZE);
+
+            return;
+          }
         }
       }
     }
@@ -208,6 +442,19 @@ namespace TermBar.Models {
     private static bool WindowIsInteresting(HWND hWnd) {
       if (!PInvoke.IsWindow(hWnd) || !PInvoke.IsWindowVisible(hWnd)) return false;
 
+      // Get window name and name length
+      windowNameLength = PInvoke.GetWindowText(hWnd, windowName);
+
+      // Skip windows with no name
+      if (windowName[0] == 0) return false;
+
+      // Get window class
+      windowClassNameLength = PInvoke.GetClassName(hWnd, windowClassName);
+
+      // Skip ignored window class names
+      string name = new(windowClassName, 0, windowClassNameLength);
+      if (ignoredClassNames.Contains(name)) return false;
+
       // Extended styles
       int exStyle = PInvoke.GetWindowLong(hWnd, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
 
@@ -216,12 +463,6 @@ namespace TermBar.Models {
         // But keep windows that explicitly ask to be on the taskbar
         if ((exStyle & (int) WINDOW_EX_STYLE.WS_EX_APPWINDOW) == 0) return true;
       }
-
-      // Get window name and name length
-      windowNameLength = PInvoke.GetWindowText(hWnd, windowName);
-
-      // Skip windows with no name
-      if (windowName[0] == 0) return false;
 
       // Get window process ID
       unsafe {

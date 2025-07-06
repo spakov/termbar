@@ -1,4 +1,8 @@
-﻿using System;
+﻿#if DEBUG
+using Microsoft.Extensions.Logging;
+#endif
+using Microsoft.UI.Dispatching;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,29 +22,38 @@ namespace TermBar.Models {
 #pragma warning disable IDE0079 // Remove unnecessary suppression
   [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CsWinRT1028:Class is not marked partial", Justification = "Is a model")]
 #pragma warning restore IDE0079 // Remove unnecessary suppression
-  public class WindowList : INotifyPropertyChanged, IEnumerable<Window>, IList<Window> {
+  public class WindowList : INotifyPropertyChanged {
+#if DEBUG
+    internal readonly ILogger logger;
+    internal static readonly LogLevel logLevel = App.logLevel;
+#endif
+
     public event PropertyChangedEventHandler? PropertyChanged;
+
+    private readonly DispatcherQueue dispatcherQueue;
 
     private readonly WINEVENTPROC winSystemEventProc;
     private readonly WINEVENTPROC winObjectEventProc;
 
-    // TODO: need a lock on this
     private readonly ObservableCollection<Window> windows;
 
     private static Window? foregroundedWindow;
 
-    private static readonly WindowList instance = new();
+    private static WindowList? instance;
 
     /// <summary>
     /// The singleton instance.
     /// </summary>
-    public static WindowList Instance => instance;
+    public static WindowList? Instance {
+      get => instance;
+      internal set => instance = value;
+    }
 
     /// <summary>
     /// The list of <see cref="Window"/>s to be presented to the
     /// user.
     /// </summary>
-    public static ObservableCollection<Window> Windows => Instance.windows;
+    public static ObservableCollection<Window> Windows => Instance!.windows;
 
     /// <summary>
     /// The currently foregrounded window.
@@ -53,10 +66,14 @@ namespace TermBar.Models {
           foregroundedWindow = value;
 
           if (foregroundedWindow is not null) {
-            WindowListHelper.Foreground(Instance.windows, foregroundedWindow.HWnd);
+#if DEBUG
+            WindowListHelper.Foreground(Instance!.logger, Instance!.windows, foregroundedWindow.HWnd);
+#else
+            WindowListHelper.Foreground(Instance!.windows, foregroundedWindow.HWnd);
+#endif
           }
 
-          Instance.OnPropertyChanged();
+          Instance!.OnPropertyChanged();
         }
       }
     }
@@ -66,15 +83,37 @@ namespace TermBar.Models {
     /// </summary>
     public static void Iconify() {
       if (foregroundedWindow is not null) {
-        WindowListHelper.Iconify(Instance.windows, foregroundedWindow.HWnd);
+#if DEBUG
+        WindowListHelper.Iconify(Instance!.logger, Instance!.windows, foregroundedWindow.HWnd);
+#else
+        WindowListHelper.Iconify(Instance!.windows, foregroundedWindow.HWnd);
+#endif
       }
     }
 
     /// <summary>
     /// Initializes a <see cref="WindowList"/>.
     /// </summary>
-    private WindowList() {
+    internal WindowList(DispatcherQueue dispatcherQueue) {
+#if DEBUG
+      using ILoggerFactory factory = LoggerFactory.Create(
+        builder => {
+          builder.AddDebug();
+          builder.SetMinimumLevel(logLevel);
+        }
+      );
+
+      logger = factory.CreateLogger<WindowList>();
+#endif
+
+      this.dispatcherQueue = dispatcherQueue;
+
+#if DEBUG
+      windows = WindowListHelper.EnumerateWindows(logger);
+#else
       windows = WindowListHelper.EnumerateWindows();
+#endif
+
       winSystemEventProc = new(WinSystemEventProc);
       winObjectEventProc = new(WinObjectEventProc);
 
@@ -140,7 +179,11 @@ namespace TermBar.Models {
       uint idEventThread,
       uint dwmsEventTime
     ) {
+#if DEBUG
+      Window? window = WindowListHelper.IsForegrounded(logger, windows, @event, hWnd);
+#else
       Window? window = WindowListHelper.IsForegrounded(windows, @event, hWnd);
+#endif
 
       if (window is not null) ForegroundedWindow = window;
     }
@@ -186,31 +229,14 @@ namespace TermBar.Models {
       int idChild,
       uint idEventThread,
       uint dwmsEventTime
-    ) => WindowListHelper.UpdateWindow(
+    ) => dispatcherQueue.TryEnqueue(() => WindowListHelper.UpdateWindow(
+#if DEBUG
+      logger,
+#endif
       windows,
       @event,
       hWnd
-    );
-
-    Window IList<Window>.this[int index] { get => windows[index]; set => windows[index] = value; }
-
-    int ICollection<Window>.Count => windows.Count;
-
-    bool ICollection<Window>.IsReadOnly => true;
-
-    void ICollection<Window>.Add(Window item) => windows.Add(item);
-    void ICollection<Window>.Clear() => windows.Clear();
-    bool ICollection<Window>.Contains(Window item) => windows.Contains(item);
-    void ICollection<Window>.CopyTo(Window[] array, int arrayIndex) => windows.CopyTo(array, arrayIndex);
-
-    IEnumerator<Window> IEnumerable<Window>.GetEnumerator() => new WindowListViewModelEnumerator(windows);
-
-    IEnumerator IEnumerable.GetEnumerator() => new WindowListViewModelEnumerator(windows);
-
-    int IList<Window>.IndexOf(Window item) => windows.IndexOf(item);
-    void IList<Window>.Insert(int index, Window item) => windows.Insert(index, item);
-    bool ICollection<Window>.Remove(Window item) => windows.Remove(item);
-    void IList<Window>.RemoveAt(int index) => windows.RemoveAt(index);
+    ));
 
     private void OnPropertyChanged([CallerMemberName] string? callerMemberName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerMemberName));
   }
