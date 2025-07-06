@@ -217,7 +217,6 @@ namespace TermBar.Models {
 
   internal partial class WindowListViewModelEnumerator(ObservableCollection<Window> windows) : IEnumerator<Window> {
     private int index = -1;
-    private bool disposedValue;
 
     object IEnumerator.Current {
       get {
@@ -247,20 +246,6 @@ namespace TermBar.Models {
 
     void IEnumerator.Reset() => index = -1;
 
-    public void Dispose() {
-      // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-      Dispose(disposing: true);
-      GC.SuppressFinalize(this);
-    }
-
-    protected virtual void Dispose(bool disposing) {
-      if (!disposedValue) {
-        if (disposing) {
-          // TODO: dispose managed state (managed objects)
-        }
-
-        disposedValue = true;
-      }
-    }
+    public void Dispose() { }
   }
 }

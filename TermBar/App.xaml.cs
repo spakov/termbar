@@ -46,7 +46,6 @@ namespace TermBar {
         }
       }
 
-      // TODO: have models refer to DispatcherQueue property instead
       InitializeModels();
     }
 

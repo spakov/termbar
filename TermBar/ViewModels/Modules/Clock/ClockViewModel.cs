@@ -48,7 +48,6 @@ namespace TermBar.ViewModels.Modules.Clock {
     /// <summary>
     /// Initializes a <see cref="ClockViewModel"/>.
     /// </summary>
-    // TODO: missing param
     public ClockViewModel(Configuration.Json.Modules.Clock config) {
       this.config = config;
 
