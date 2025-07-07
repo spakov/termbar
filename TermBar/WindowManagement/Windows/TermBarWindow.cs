@@ -10,28 +10,28 @@ namespace TermBar.WindowManagement.Windows {
     /// <inheritdoc cref="Window.Config"/>
     protected new Configuration.Json.TermBar Config { get; init; }
 
-    private readonly uint _margin;
-    private readonly uint _padding;
+    private readonly int _margin;
+    private readonly int _padding;
 
     /// <inheritdoc cref="Window.Margin"/>
-    protected new uint Margin => Config.DpiAware ? ScaleY(_margin) : _margin;
+    protected new int Margin => Config.DpiAware ? ScaleY(_margin) : _margin;
 
     /// <inheritdoc cref="Window.Padding"/>
-    protected new uint Padding => Config.DpiAware ? ScaleY(_padding) : _padding;
+    protected new int Padding => Config.DpiAware ? ScaleY(_padding) : _padding;
 
     /// <summary>
     /// The minimum width of the TermBar window.
     /// </summary>
-    private static uint MinimumWidth => 128;
+    private static int MinimumWidth => 128;
 
     /// <summary>
     /// The maximum width of the TermBar window.
     /// </summary>
-    private uint MaximumWidth => (Config.DpiAware ? ScaleX(display.Width) : display.Width) - (Padding * 2);
+    private int MaximumWidth => (Config.DpiAware ? ScaleX(display.Width) : display.Width) - (Padding * 2);
 
-    private uint _width;
+    private int _width;
 
-    protected override uint Width {
+    protected override int Width {
       get => _width;
       set {
         if (_width != value) {
@@ -48,9 +48,9 @@ namespace TermBar.WindowManagement.Windows {
       }
     }
 
-    private readonly uint _height;
+    private readonly int _height;
 
-    protected override uint Height => Config.DpiAware ? ScaleY(_height) : _height;
+    protected override int Height => Config.DpiAware ? ScaleY(_height) : _height;
 
     /// <summary>
     /// Initializes a <see cref="TermBarWindow"/>.
@@ -63,8 +63,8 @@ namespace TermBar.WindowManagement.Windows {
 
       termBarWindow = new(Config);
 
-      _margin = (uint) base.Margin!;
-      _padding = (uint) base.Padding!;
+      _margin = (int) base.Margin!;
+      _padding = (int) base.Padding!;
       _width = InitialWindowWidth();
       _height = config.Height;
     }
@@ -94,14 +94,14 @@ namespace TermBar.WindowManagement.Windows {
     /// <param name="e"><inheritdoc
     /// cref="System.ComponentModel.PropertyChangedEventHandler"
     /// path="/param[@name='e']"/></param>
-    private void TermBarWindow_RequestResize(object? sender, System.ComponentModel.PropertyChangedEventArgs e) => Width = (uint) termBarWindow!.DesiredWidth;
+    private void TermBarWindow_RequestResize(object? sender, System.ComponentModel.PropertyChangedEventArgs e) => Width = (int) termBarWindow!.DesiredWidth;
 
     /// <summary>
     /// Determines the left location of the TermBar window.
     /// </summary>
     /// <returns>The scaled calculated left position of the TermBar
     /// window.</returns>
-    private uint WindowLeft() {
+    private int WindowLeft() {
       return (Config.DpiAware ? ScaleX(display.Left) : display.Left)
         + ((Config.DpiAware ? ScaleX(display.Width) : display.Width) / 2)
         - (Width / 2);
@@ -113,7 +113,7 @@ namespace TermBar.WindowManagement.Windows {
     /// <returns>The scaled calculated top position of the TermBar
     /// window.</returns>
     /// <exception cref="ArgumentException"></exception>
-    private uint WindowTop() {
+    private int WindowTop() {
       if (Config.Location.Equals(Location.Top)) {
         return (Config.DpiAware ? ScaleY(display.Top) : display.Top)
           + Margin;
@@ -131,8 +131,8 @@ namespace TermBar.WindowManagement.Windows {
     /// Determines the starting width of the TermBar window.
     /// </summary>
     /// <returns>The scaled calculated width of the TermBar window.</returns>
-    private uint InitialWindowWidth() {
-      uint windowWidth = (uint) ((Config.DpiAware ? ScaleX(display.Width) : display.Width) * Config.MinimumWidthPercentage);
+    private int InitialWindowWidth() {
+      int windowWidth = (int) ((Config.DpiAware ? ScaleX(display.Width) : display.Width) * Config.MinimumWidthPercentage);
 
       if (windowWidth < MinimumWidth) windowWidth = Config.DpiAware ? ScaleX(MinimumWidth) : MinimumWidth;
       if (windowWidth > (Config.DpiAware ? ScaleX(display.Width) : display.Width)) windowWidth = Config.DpiAware ? ScaleX(display.Width) : display.Width;

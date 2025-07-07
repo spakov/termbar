@@ -23,8 +23,8 @@ namespace TermBar.ViewModels.Modules.Terminal {
     private string? _windowTitle;
     private FileStream? _consoleOutput;
     private FileStream? _consoleInput;
-    private uint _rows;
-    private uint _columns;
+    private int _rows;
+    private int _columns;
     private bool _restartOnExit;
 
     private string? _icon;
@@ -101,16 +101,16 @@ namespace TermBar.ViewModels.Modules.Terminal {
     /// The number of console rows.
     /// </summary>
     public int Rows {
-      get => (int) _rows;
+      get => _rows;
 
       set {
         int oldRows = (int) _rows;
 
-        _rows = (uint) value;
+        _rows = value;
         OnPropertyChanged();
 
         if (oldRows != value) {
-          pseudoconsole.Rows = _rows;
+          pseudoconsole.Rows = (uint) _rows;
         }
       }
     }
@@ -119,16 +119,16 @@ namespace TermBar.ViewModels.Modules.Terminal {
     /// The number of console columns.
     /// </summary>
     public int Columns {
-      get => (int) _columns;
+      get => _columns;
 
       set {
-        int oldColumns = (int) _columns;
+        int oldColumns = _columns;
 
-        _columns = (uint) value;
+        _columns = value;
         OnPropertyChanged();
 
         if (oldColumns != value) {
-          pseudoconsole.Columns = _columns;
+          pseudoconsole.Columns = (uint) _columns;
         }
       }
     }
@@ -192,7 +192,7 @@ namespace TermBar.ViewModels.Modules.Terminal {
       _restartOnExit = config.RestartOnExit;
       _ansiColors = ansiColors;
 
-      pseudoconsole = new(config.Command, config.Rows, config.Columns, config.RestartOnExit);
+      pseudoconsole = new(config.Command, (uint) config.Rows, (uint) config.Columns, config.RestartOnExit);
       pseudoconsole.Ready += Pseudoconsole_Ready;
       pseudoconsole.Done += Pseudoconsole_Done;
 

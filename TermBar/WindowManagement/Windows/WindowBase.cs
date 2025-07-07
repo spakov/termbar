@@ -30,18 +30,18 @@ namespace TermBar.WindowManagement.Windows {
     protected virtual Configuration.Json.TermBar? Config { get; } = config;
 
     /// <inheritdoc cref="Configuration.Json.TermBar.Margin"/>
-    protected virtual uint? Margin { get; } = config?.Margin;
+    protected virtual int? Margin { get; } = config?.Margin;
 
     /// <inheritdoc cref="Configuration.Json.TermBar.Padding"/>
-    protected virtual uint? Padding { get; } = config?.Padding;
+    protected virtual int? Padding { get; } = config?.Padding;
 
     /// <summary>
     /// The window width, in pixels.
     /// </summary>
-    protected virtual uint Width { get; set; }
+    protected virtual int Width { get; set; }
 
     /// <inheritdoc cref="Configuration.Json.TermBar.Height"/>
-    protected virtual uint Height { get; set; }
+    protected virtual int Height { get; set; }
 
     /// <summary>
     /// Displays the window.
@@ -60,7 +60,7 @@ namespace TermBar.WindowManagement.Windows {
     /// <param name="skipActivation">Whether to include <see
     /// cref="SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE"/> in the call to <see
     /// cref="PInvoke.SetWindowPos"/>.</param>
-    protected void Display(INotifyPropertyChanged island, uint left, uint top, uint width, uint height, PropertyChangedEventHandler requestResize, bool isDialog = false, bool skipActivation = true) {
+    protected void Display(INotifyPropertyChanged island, int left, int top, int width, int height, PropertyChangedEventHandler requestResize, bool isDialog = false, bool skipActivation = true) {
       this.island = island;
       islandRequestResize = requestResize;
 
@@ -74,10 +74,10 @@ namespace TermBar.WindowManagement.Windows {
           null,
           WINDOW_STYLE.WS_POPUP
           | WINDOW_STYLE.WS_VISIBLE,
-          (int) left,
-          (int) top,
-          (int) width,
-          (int) height,
+          left,
+          top,
+          width,
+          height,
           HWND.Null,
           null,
           null,
@@ -100,8 +100,8 @@ namespace TermBar.WindowManagement.Windows {
         HWND.Null,
         0,
         0,
-        (int) width,
-        (int) height,
+        width,
+        height,
         SET_WINDOW_POS_FLAGS.SWP_NOZORDER
         | (skipActivation ? SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE : 0)
       );
@@ -118,16 +118,16 @@ namespace TermBar.WindowManagement.Windows {
     /// <param name="skipActivation">Whether to include <see
     /// cref="SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE"/> in the calls to <see
     /// cref="PInvoke.SetWindowPos"/>.</param>
-    protected void Move(uint left, uint top, uint width, uint height, bool skipActivation = true) {
+    protected void Move(int left, int top, int width, int height, bool skipActivation = true) {
       if (hWnd is null || islandHWnd is null) return;
 
       PInvoke.SetWindowPos(
         (HWND) hWnd,
         HWND.Null,
-        (int) left,
-        (int) top,
-        (int) width,
-        (int) height,
+        left,
+        top,
+        width,
+        height,
         SET_WINDOW_POS_FLAGS.SWP_NOZORDER
         | (skipActivation ? SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE : 0)
       );
@@ -137,8 +137,8 @@ namespace TermBar.WindowManagement.Windows {
         HWND.Null,
         0,
         0,
-        (int) width,
-        (int) height,
+        width,
+        height,
         SET_WINDOW_POS_FLAGS.SWP_NOZORDER
         | (skipActivation ? SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE : 0)
       );
@@ -185,13 +185,13 @@ namespace TermBar.WindowManagement.Windows {
     /// </summary>
     /// <param name="rawX">The value to scale.</param>
     /// <returns>The scaled value.</returns>
-    protected uint ScaleX(uint rawX) => rawX * (display.Dpi.x / PInvoke.USER_DEFAULT_SCREEN_DPI);
+    protected int ScaleX(int rawX) => rawX * (int) (display.Dpi.X / PInvoke.USER_DEFAULT_SCREEN_DPI);
 
     /// <summary>
     /// Returns <paramref name="rawY"/>, scaled for the display's DPI.
     /// </summary>
     /// <param name="rawY">The value to scale.</param>
     /// <returns>The scaled value.</returns>
-    protected uint ScaleY(uint rawY) => rawY * (display.Dpi.y / PInvoke.USER_DEFAULT_SCREEN_DPI);
+    protected int ScaleY(int rawY) => rawY * (int) (display.Dpi.Y / PInvoke.USER_DEFAULT_SCREEN_DPI);
   }
 }

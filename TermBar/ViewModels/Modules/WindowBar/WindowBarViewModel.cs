@@ -98,17 +98,15 @@ namespace TermBar.ViewModels.Modules.WindowBar {
         foreach (Window model in e.NewItems!) {
           view = new(config, moduleConfig, model.HWnd, model.ProcessId, model.Name);
 
-          windowBarView.DispatcherQueue.TryEnqueue(() => {
-            windowBarView.SetSelectedWindowIndex(
-              WindowListHelper.OrderAndInsert(
-                config.WindowList,
-                view,
-                views,
-                view.WindowProcessId,
-                view.WindowName!
-              )
-            );
-          });
+          windowBarView.SetSelectedWindowIndex(
+            WindowListHelper.OrderAndInsert(
+              config.WindowList,
+              view,
+              views,
+              view.WindowProcessId,
+              view.WindowName!
+            )
+          );
 
           model.PropertyChanged += (sender, e) => FindView((Window) sender!)!.WindowName = ((Window) sender!).Name;
         }

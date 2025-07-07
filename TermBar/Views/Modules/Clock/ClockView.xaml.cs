@@ -59,8 +59,8 @@ namespace TermBar.Views.Modules.Clock {
 
       WindowManagement.Windows.EphemeralWindow ephemeralWindow = new(
         config,
-        (uint) pointerPoint.Position.X,
-        (uint) pointerPoint.Position.Y,
+        (int) pointerPoint.Position.X,
+        (int) pointerPoint.Position.Y,
         new ClockCalendarView(config, moduleConfig)
       );
 

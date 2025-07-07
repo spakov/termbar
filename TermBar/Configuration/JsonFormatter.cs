@@ -83,7 +83,7 @@ namespace TermBar.Configuration {
           break;
 
         case JsonValueKind.String:
-          Append(richEditTextDocument, ref insertionPoint, $"\"{EscapeWhitespace(jsonElement.GetString()!)}\"", color);
+          Append(richEditTextDocument, ref insertionPoint, $"\"{JsonReplace(jsonElement.GetString()!)}\"", color);
 
           break;
 
@@ -139,22 +139,58 @@ namespace TermBar.Configuration {
     private static string Indent(int indent) => new(' ', indent * 2);
 
     /// <summary>
-    /// Replaces whitespace characters with their respective escaped entities.
+    /// Replaces raw characters with their respective escaped entities.
     /// </summary>
-    /// <param name="text">The string in which to replace whitespace.</param>
-    /// <returns><paramref name="text"/>, with whitespace replaced.</returns>
-    private static string EscapeWhitespace(string text) {
+    /// <remarks>
+    /// <para>This accomplishes a few goals:</para>
+    /// <list type="bullet">
+    /// <item>Keeps fancy Unicode characters like  and  easily
+    /// visible.</item>
+    /// <item>Ensures whitespace is readily identifiable.</item>
+    /// <item>Complies with RFC 7159.</item>
+    /// </list>
+    /// </remarks>
+    /// <param name="text">The string in which to replace characters.</param>
+    /// <returns><paramref name="text"/>, with characters replaced.</returns>
+    private static string JsonReplace(string text) {
       StringBuilder escapedString = new();
 
       foreach (char c in text) {
         escapedString.Append(c switch {
-          '\a' => @"\a",
+          '\\' => @"\\",
+          '"' => "\\\"",
+          (char) 0x00 => @"\u0000",
+          (char) 0x01 => @"\u0001",
+          (char) 0x02 => @"\u0002",
+          (char) 0x03 => @"\u0003",
+          (char) 0x04 => @"\u0004",
+          (char) 0x05 => @"\u0005",
+          (char) 0x06 => @"\u0006",
+          '\a' => @"\u0007",
           '\b' => @"\b",
-          '\f' => @"\f",
-          '\n' => @"\n",
-          '\r' => @"\r",
           '\t' => @"\t",
-          '\v' => @"\v",
+          '\n' => @"\n",
+          '\v' => @"\u000b",
+          '\f' => @"\f",
+          '\r' => @"\r",
+          (char) 0x0e => @"\u000e",
+          (char) 0x0f => @"\u000f",
+          (char) 0x10 => @"\u0010",
+          (char) 0x11 => @"\u0011",
+          (char) 0x12 => @"\u0012",
+          (char) 0x13 => @"\u0013",
+          (char) 0x14 => @"\u0014",
+          (char) 0x15 => @"\u0015",
+          (char) 0x16 => @"\u0016",
+          (char) 0x17 => @"\u0017",
+          (char) 0x18 => @"\u0018",
+          (char) 0x19 => @"\u0019",
+          (char) 0x1a => @"\u001a",
+          (char) 0x1b => @"\u001b",
+          (char) 0x1c => @"\u001c",
+          (char) 0x1d => @"\u001d",
+          (char) 0x1e => @"\u001e",
+          (char) 0x1f => @"\u001f",
           _ => c
         });
       }

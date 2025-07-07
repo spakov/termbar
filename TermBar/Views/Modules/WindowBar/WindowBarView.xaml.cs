@@ -39,7 +39,11 @@ namespace TermBar.Views.Modules.WindowBar {
     /// Sets the selected window index.
     /// </summary>
     /// <param name="index">The selected window index.</param>
-    internal void SetSelectedWindowIndex(int index) => ((ListView) Content).SelectedIndex = index;
+    internal void SetSelectedWindowIndex(int index) {
+      if (((ListView) Content).SelectedIndex != index) {
+        ((ListView) Content).SelectedIndex = index;
+      }
+    }
 
     /// <summary>
     /// Invoked when the user clicks an item.

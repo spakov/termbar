@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+﻿using TermBar.Configuration.Json.SchemaAttributes;
 
 namespace TermBar.Configuration.Json {
   [Description("A display. A TermBar window will be shown on each configured display.")]

@@ -1,22 +1,36 @@
-﻿using System.ComponentModel;
-using TermBar.Catppuccin;
+﻿using TermBar.Catppuccin;
+using TermBar.Configuration.Json.SchemaAttributes;
 
 namespace TermBar.Configuration.Json.Modules {
   [Description("A TermBar static text display configuration.")]
   internal class StaticText : IModule {
+    private const int orderDefault = int.MinValue;
+    private const bool expandDefault = false;
+    private const ColorEnum accentColorDefault = ColorEnum.Green;
+    private const string accentColorDefaultAsString = "Green";
+    private const string iconDefault = "";
+    private const string textDefault = "Hello, world!";
+
     [Description("The order in which the module should be displayed on the TermBar.")]
-    public int Order { get; set; } = 0;
+    [DefaultIntNumber(orderDefault)]
+    [MinimumInt(int.MinValue)]
+    [MaximumInt(int.MaxValue)]
+    public int Order { get; set; } = orderDefault;
 
     [Description("Whether the module should expand to take up as much space as possible.")]
-    public bool Expand { get; set; } = false;
+    [DefaultBoolean(expandDefault)]
+    public bool Expand { get; set; } = expandDefault;
 
     [Description("The Catppuccin color to use for the icon.")]
-    public ColorEnum AccentColor { get; set; } = ColorEnum.Green;
+    [DefaultString(accentColorDefaultAsString)]
+    public ColorEnum AccentColor { get; set; } = accentColorDefault;
 
     [Description("The text to use as the icon.")]
-    public string Icon { get; set; } = "";
+    [DefaultString(iconDefault)]
+    public string Icon { get; set; } = iconDefault;
 
     [Description("The static text to display.")]
-    public string Text { get; set; } = "Hello, world!";
+    [DefaultString(textDefault)]
+    public string Text { get; set; } = textDefault;
   }
 }

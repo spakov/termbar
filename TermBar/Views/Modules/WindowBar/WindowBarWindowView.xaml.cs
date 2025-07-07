@@ -74,8 +74,8 @@ namespace TermBar.Views.Modules.WindowBar {
 
       Style gridStyle = new(typeof(Grid));
 
-      if (moduleConfig.Windows.FixedSize is not null) {
-        gridStyle.Setters.Add(new Setter(Grid.WidthProperty, moduleConfig.Windows.FixedSize));
+      if (moduleConfig.Windows.FixedLength is not null) {
+        gridStyle.Setters.Add(new Setter(Grid.WidthProperty, moduleConfig.Windows.FixedLength));
       }
 
       if (moduleConfig.Windows.MaxLength is not null) {

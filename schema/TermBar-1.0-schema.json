@@ -20,6 +20,7 @@
             "properties": {
               "Flavor": {
                 "description": "The Catppuccin flavor to use.",
+                "default": "Mocha",
                 "enum": [
                   "Latte",
                   "Frappe",
@@ -29,6 +30,7 @@
               },
               "Background": {
                 "description": "The Catppuccin color to use for the background.",
+                "default": "Crust",
                 "enum": [
                   "Rosewater",
                   "Flamingo",
@@ -60,18 +62,24 @@
               },
               "CornerRadius": {
                 "description": "The corner radius to apply to windows.",
+                "default": 12,
+                "minimum": 0,
                 "type": "integer"
               },
               "FontFamily": {
                 "description": "The font family to use.",
+                "default": "0xProto Nerd Font Propo",
                 "type": "string"
               },
               "FontSize": {
                 "description": "The font size to use.",
+                "default": 14,
+                "minimum": 1,
                 "type": "number"
               },
               "TextColor": {
                 "description": "The Catppuccin color to use for text.",
+                "default": "Text",
                 "enum": [
                   "Rosewater",
                   "Flamingo",
@@ -103,6 +111,7 @@
               },
               "AccentBackground": {
                 "description": "The Catppuccin color to use for the background of accent items. Set to null to use the default system behavior.",
+                "default": "Mantle",
                 "enum": [
                   "Rosewater",
                   "Flamingo",
@@ -135,6 +144,7 @@
               },
               "AccentColor": {
                 "description": "The Catppuccin color to use as an accent. Set to null to use the default system behavior.",
+                "default": "Mauve",
                 "enum": [
                   "Rosewater",
                   "Flamingo",
@@ -167,6 +177,7 @@
               },
               "SelectedBackground": {
                 "description": "The Catppuccin color to use for the background of selected items. Set to null to use the default system behavior.",
+                "default": "Surface0",
                 "enum": [
                   "Rosewater",
                   "Flamingo",
@@ -199,6 +210,7 @@
               },
               "SelectedColor": {
                 "description": "The Catppuccin color to use for selected items. Set to null to use the default system behavior.",
+                "default": "Mauve",
                 "enum": [
                   "Rosewater",
                   "Flamingo",
@@ -231,6 +243,7 @@
               },
               "ClickedBackground": {
                 "description": "The Catppuccin color to use for the background of clicked items. Set to null to use the default system behavior.",
+                "default": "Surface1",
                 "enum": [
                   "Rosewater",
                   "Flamingo",
@@ -263,6 +276,7 @@
               },
               "ClickedColor": {
                 "description": "The Catppuccin color to use for clicked items. Set to null to use the default system behavior.",
+                "default": "Subtext1",
                 "enum": [
                   "Rosewater",
                   "Flamingo",
@@ -298,7 +312,7 @@
                 "type": "object",
                 "properties": {
                   "ProcessIconMap": {
-                    "description": "The map of window process names to ProcessIconMappings to apply to windows.",
+                    "description": "The map of window process names to ProcessIconMappings to apply to windows. Set to null to disable this behavior.",
                     "type": [
                       "object",
                       "null"
@@ -309,6 +323,7 @@
                       "properties": {
                         "IconColor": {
                           "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module\u0027s AccentColor.",
+                          "default": null,
                           "enum": [
                             "Rosewater",
                             "Flamingo",
@@ -341,13 +356,15 @@
                         },
                         "Icon": {
                           "description": "The text to use as the window icon. Set to null to fall back to the window list module\u0027s Icon.",
+                          "default": null,
                           "type": [
                             "string",
                             "null"
                           ]
                         },
                         "WindowNameIconMap": {
-                          "description": "The map of window name regular expressions to WindowNameIconMappings to apply to windows with this process name. These override IconColor and Icon. Set to null to disable this functionality.",
+                          "description": "The map of window name regular expressions to WindowNameIconMappings to apply to windows with this process name. Set to null to disable this functionality. These override IconColor and Icon.",
+                          "default": null,
                           "type": [
                             "object",
                             "null"
@@ -358,6 +375,7 @@
                             "properties": {
                               "IconColor": {
                                 "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module\u0027s AccentColor.",
+                                "default": null,
                                 "enum": [
                                   "Rosewater",
                                   "Flamingo",
@@ -390,6 +408,7 @@
                               },
                               "Icon": {
                                 "description": "The text to use as the window icon. Set to null to fall back to the window list module\u0027s Icon.",
+                                "default": null,
                                 "type": [
                                   "string",
                                   "null"
@@ -405,6 +424,7 @@
               },
               "Location": {
                 "description": "The window location.",
+                "default": "Top",
                 "enum": [
                   "Top",
                   "Bottom"
@@ -412,22 +432,32 @@
               },
               "DpiAware": {
                 "description": "Whether to consider display DPI.",
+                "default": true,
                 "type": "boolean"
               },
               "Margin": {
                 "description": "The margin, in pixels, between the top or bottom screen edge and the TermBar window.",
+                "default": 16,
+                "minimum": 0,
                 "type": "integer"
               },
               "Padding": {
                 "description": "The padding, in pixels, between components of the TermBar.",
+                "default": 16,
+                "minimum": 0,
                 "type": "integer"
               },
               "MinimumWidthPercentage": {
                 "description": "The minimum width, as a percentage of the total screen width, of the TermBar window. Must be between 0.0 and 1.0.",
+                "default": 0.25,
+                "minimum": 0,
+                "maximum": 1,
                 "type": "number"
               },
               "Height": {
                 "description": "The TermBar window height, in pixels.",
+                "default": 50,
+                "minimum": 1,
                 "type": "integer"
               },
               "Modules": {
@@ -450,14 +480,19 @@
                         },
                         "Order": {
                           "description": "The order in which the module should be displayed on the TermBar.",
+                          "default": 2147483647,
+                          "minimum": -2147483648,
+                          "maximum": 2147483647,
                           "type": "integer"
                         },
                         "Expand": {
                           "description": "Whether the module should expand to take up as much space as possible.",
+                          "default": false,
                           "type": "boolean"
                         },
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the clock icon.",
+                          "default": "Sapphire",
                           "enum": [
                             "Rosewater",
                             "Flamingo",
@@ -489,14 +524,18 @@
                         },
                         "Icon": {
                           "description": "The text to use as the clock icon.",
+                          "default": "\uF4AB",
                           "type": "string"
                         },
                         "TimeFormat": {
                           "description": "The time format to use for the clock. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
+                          "default": "h:mm tt",
                           "type": "string"
                         },
                         "UpdateInterval": {
                           "description": "The clock update interval, in milliseconds.",
+                          "default": 1000,
+                          "minimum": 1,
                           "type": "integer"
                         },
                         "Calendar": {
@@ -508,18 +547,22 @@
                           "properties": {
                             "TodayDayFormat": {
                               "description": "The date format to use for today\u0027s day in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
+                              "default": "dddd",
                               "type": "string"
                             },
                             "TodayDateFormat": {
                               "description": "The date format to use for today\u0027s date in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
+                              "default": "MMMM d, yyyy",
                               "type": "string"
                             },
                             "OtherDateFormat": {
                               "description": "The date format to use for months other than the current month in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
+                              "default": "MMMM yyyy",
                               "type": "string"
                             },
                             "OtherMonthFormat": {
                               "description": "The date format to use for months other than the current month in the last month and next month buttons in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
+                              "default": "MMM",
                               "type": "string"
                             }
                           }
@@ -534,14 +577,19 @@
                         },
                         "Order": {
                           "description": "The order in which the module should be displayed on the TermBar.",
+                          "default": 2147483645,
+                          "minimum": -2147483648,
+                          "maximum": 2147483647,
                           "type": "integer"
                         },
                         "Expand": {
                           "description": "Whether the module should expand to take up as much space as possible.",
+                          "default": false,
                           "type": "boolean"
                         },
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the CPU icon.",
+                          "default": "Pink",
                           "enum": [
                             "Rosewater",
                             "Flamingo",
@@ -573,18 +621,23 @@
                         },
                         "Icon": {
                           "description": "The text to use as the CPU icon.",
+                          "default": "\uF4BC",
                           "type": "string"
                         },
                         "Format": {
                           "description": "The numeric format to use for the CPU percentage. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings.",
+                          "default": "{0:N0}%",
                           "type": "string"
                         },
                         "Round": {
                           "description": "Whether to round the CPU percentage before formatting.",
+                          "default": true,
                           "type": "boolean"
                         },
                         "UpdateInterval": {
                           "description": "The CPU usage update interval, in milliseconds.",
+                          "default": 5000,
+                          "minimum": 1,
                           "type": "integer"
                         }
                       }
@@ -597,14 +650,19 @@
                         },
                         "Order": {
                           "description": "The order in which the module should be displayed on the TermBar.",
+                          "default": -1,
+                          "minimum": -2147483648,
+                          "maximum": 2147483647,
                           "type": "integer"
                         },
                         "Expand": {
                           "description": "Whether the module should expand to take up as much space as possible.",
+                          "default": false,
                           "type": "boolean"
                         },
                         "AccentColor": {
                           "description": "The Catppuccin color to use as an accent.",
+                          "default": "Rosewater",
                           "enum": [
                             "Rosewater",
                             "Flamingo",
@@ -636,6 +694,7 @@
                         },
                         "Icon": {
                           "description": "The text to use as launcher icons by default.",
+                          "default": "\u2022",
                           "type": "string"
                         },
                         "LauncherEntries": {
@@ -647,20 +706,15 @@
                             "properties": {
                               "Name": {
                                 "description": "The name of the launcher entry. This is always displayed as a tooltip and is optionally displayed in the launcher button if DisplayName is true.",
-                                "type": [
-                                  "string",
-                                  "null"
-                                ]
+                                "type": "string"
                               },
                               "Command": {
                                 "description": "The command to shell execute.",
-                                "type": [
-                                  "string",
-                                  "null"
-                                ]
+                                "type": "string"
                               },
                               "CommandArguments": {
-                                "description": "Arguments to the command to shell execute.",
+                                "description": "Arguments to the command to shell execute. Set to null for no arguments.",
+                                "default": null,
                                 "type": [
                                   "array",
                                   "null"
@@ -671,10 +725,12 @@
                               },
                               "DisplayName": {
                                 "description": "Whether to display Name in the launcher button.",
+                                "default": false,
                                 "type": "boolean"
                               },
                               "IconColor": {
                                 "description": "The Catppuccin color to use for the launcher icon. Set to null to use matches in ProcessIconMap and fall back to AccentColor.",
+                                "default": null,
                                 "enum": [
                                   "Rosewater",
                                   "Flamingo",
@@ -707,12 +763,17 @@
                               },
                               "Icon": {
                                 "description": "The text to use as the launcher icon. Set to null to use matches in ProcessIconMap and fall back to Icon.",
+                                "default": null,
                                 "type": [
                                   "string",
                                   "null"
                                 ]
                               }
-                            }
+                            },
+                            "required": [
+                              "Name",
+                              "Command"
+                            ]
                           }
                         }
                       }
@@ -725,14 +786,19 @@
                         },
                         "Order": {
                           "description": "The order in which the module should be displayed on the TermBar.",
+                          "default": 2147483644,
+                          "minimum": -2147483648,
+                          "maximum": 2147483647,
                           "type": "integer"
                         },
                         "Expand": {
                           "description": "Whether the module should expand to take up as much space as possible.",
+                          "default": false,
                           "type": "boolean"
                         },
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the memory icon.",
+                          "default": "Teal",
                           "enum": [
                             "Rosewater",
                             "Flamingo",
@@ -764,18 +830,23 @@
                         },
                         "Icon": {
                           "description": "The text to use as the memory icon.",
+                          "default": "\uF49B",
                           "type": "string"
                         },
                         "Format": {
                           "description": "The numeric format to use for the memory percentage. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings.",
+                          "default": "{0:N0}%",
                           "type": "string"
                         },
                         "Round": {
                           "description": "Whether to round the memory percentage before formatting.",
+                          "default": true,
                           "type": "boolean"
                         },
                         "UpdateInterval": {
                           "description": "The memory usage update interval, in milliseconds.",
+                          "default": 5000,
+                          "minimum": 1,
                           "type": "integer"
                         }
                       }
@@ -788,14 +859,19 @@
                         },
                         "Order": {
                           "description": "The order in which the module should be displayed on the TermBar.",
+                          "default": -2147483648,
+                          "minimum": -2147483648,
+                          "maximum": 2147483647,
                           "type": "integer"
                         },
                         "Expand": {
                           "description": "Whether the module should expand to take up as much space as possible.",
+                          "default": false,
                           "type": "boolean"
                         },
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the icon.",
+                          "default": "Green",
                           "enum": [
                             "Rosewater",
                             "Flamingo",
@@ -827,30 +903,37 @@
                         },
                         "Icon": {
                           "description": "The text to use as the icon.",
+                          "default": "\uF449",
                           "type": "string"
                         },
                         "Text": {
                           "description": "The static text to display.",
+                          "default": "Hello, world!",
                           "type": "string"
                         }
                       }
                     },
                     {
-                      "description": "A TermBar terminal configuration. For all objects, a value of null means the default TerminalControl behavior takes effect, unless otherwise noted.",
+                      "description": "A TermBar terminal configuration. For all objects that accept a null value, a value of null means the default TerminalControl behavior takes effect, unless otherwise noted.",
                       "properties": {
                         "$module": {
                           "const": "Terminal"
                         },
                         "Order": {
                           "description": "The order in which the module should be displayed on the TermBar.",
+                          "default": 0,
+                          "minimum": -2147483648,
+                          "maximum": 2147483647,
                           "type": "integer"
                         },
                         "Expand": {
                           "description": "Whether the module should expand to take up as much space as possible.",
+                          "default": false,
                           "type": "boolean"
                         },
                         "AccentColor": {
                           "description": "The Catppuccin color to use as an accent.",
+                          "default": "Lavender",
                           "enum": [
                             "Rosewater",
                             "Flamingo",
@@ -882,34 +965,45 @@
                         },
                         "Icon": {
                           "description": "The text to use as the terminal icon.",
+                          "default": "\uF489",
                           "type": "string"
                         },
                         "VisualBellIcon": {
                           "description": "The text to use as the terminal visual bell icon when the visual bell is ringing. Has no effect if UseVisualBell is false.",
+                          "default": "\uEAA2",
                           "type": "string"
                         },
                         "Command": {
                           "description": "The command to run in the terminal. This is typically a shell.",
+                          "default": "powershell",
                           "type": "string"
                         },
                         "RestartOnExit": {
                           "description": "Whether to restart Command when it exits normally.",
+                          "default": true,
                           "type": "boolean"
                         },
                         "DefaultWindowTitle": {
                           "description": "The default terminal window title. The terminal window title can be viewed as a tooltip of the terminal icon.",
+                          "default": "TermBar",
                           "type": "string"
                         },
                         "Rows": {
                           "description": "The number of rows in the terminal.",
+                          "default": 3,
+                          "minimum": 1,
                           "type": "integer"
                         },
                         "Columns": {
                           "description": "The number of columns in the terminal.",
+                          "default": 60,
+                          "minimum": 1,
                           "type": "integer"
                         },
                         "TabWidth": {
                           "description": "The default tab width in the terminal. (Practically speaking, this is virtually irrelevant today.)",
+                          "default": 8,
+                          "minimum": 1,
                           "type": [
                             "integer",
                             "null"
@@ -917,6 +1011,7 @@
                         },
                         "TextAntialiasing": {
                           "description": "The text antialiasing style to apply in the terminal. Unicode box-drawing characters are always drawn without antialiasing.",
+                          "default": "Grayscale",
                           "enum": [
                             "None",
                             "Grayscale",
@@ -926,6 +1021,7 @@
                         },
                         "FullColorEmoji": {
                           "description": "Whether to draw emoji in full color in the terminal using the Segoe UI Emoji font.",
+                          "default": false,
                           "type": [
                             "boolean",
                             "null"
@@ -933,6 +1029,7 @@
                         },
                         "UseBackgroundColorErase": {
                           "description": "Whether to use background color erase in the terminal. See https://sunaku.github.io/vim-256color-bce.html for a description of what this does.",
+                          "default": true,
                           "type": [
                             "boolean",
                             "null"
@@ -940,6 +1037,7 @@
                         },
                         "BackgroundIsInvisible": {
                           "description": "Whether to render the default background color as invisible in the terminal.",
+                          "default": true,
                           "type": [
                             "boolean",
                             "null"
@@ -947,6 +1045,7 @@
                         },
                         "UseVisualBell": {
                           "description": "Whether to use the visual bell in the terminal. If this is true, VisualBellIcon is displayed for VisualBellDisplayTime milliseconds when the terminal bell rings. If this is false, a sound plays instead.",
+                          "default": true,
                           "type": [
                             "boolean",
                             "null"
@@ -954,10 +1053,13 @@
                         },
                         "VisualBellDisplayTime": {
                           "description": "The number of milliseconds to display the visual bell in the terminal. Does nothing if UseVisualBell is false.",
+                          "default": 1000,
+                          "minimum": 1,
                           "type": "integer"
                         },
                         "UseContextMenu": {
                           "description": "Whether to show the context menu when right clicking the terminal.",
+                          "default": true,
                           "type": [
                             "boolean",
                             "null"
@@ -965,6 +1067,7 @@
                         },
                         "UseExtendedContextMenu": {
                           "description": "Whether to show the extended context menu when right clicking the terminal. Does nothing if UseContextMenu is false.",
+                          "default": true,
                           "type": [
                             "boolean",
                             "null"
@@ -972,6 +1075,7 @@
                         },
                         "CursorStyle": {
                           "description": "The default cursor style to use in the terminal.",
+                          "default": "Underline",
                           "enum": [
                             "Block",
                             "Underline",
@@ -981,6 +1085,9 @@
                         },
                         "CursorThickness": {
                           "description": "The cursor thickness in the terminal, as a fraction of the font size, between 0.0 and 1.0. Does not affect the block cursor.",
+                          "default": 0.1,
+                          "minimum": 0,
+                          "maximum": 1,
                           "type": [
                             "number",
                             "null"
@@ -988,6 +1095,7 @@
                         },
                         "CursorBlink": {
                           "description": "Whether the cursor should blink by default in the terminal.",
+                          "default": true,
                           "type": [
                             "boolean",
                             "null"
@@ -995,6 +1103,8 @@
                         },
                         "CursorBlinkRate": {
                           "description": "The number of milliseconds that pass between the blinking cursor being displayed in the terminal and hidden. Has no effect if CursorBlink is false.",
+                          "default": 500,
+                          "minimum": 1,
                           "type": [
                             "integer",
                             "null"
@@ -1002,6 +1112,7 @@
                         },
                         "CursorColor": {
                           "description": "The cursor color in the terminal.",
+                          "default": "Text",
                           "enum": [
                             "Rosewater",
                             "Flamingo",
@@ -1034,6 +1145,8 @@
                         },
                         "ScrollbackLines": {
                           "description": "The number of scrollback lines in the terminal.",
+                          "default": 5000,
+                          "minimum": 0,
                           "type": [
                             "integer",
                             "null"
@@ -1041,6 +1154,8 @@
                         },
                         "LinesPerScrollback": {
                           "description": "The number of scrollback lines per large scrollback in the terminal. A large scrollback is invoked with Shift-Page Up and reversed with Shift-Page Down.",
+                          "default": 3,
+                          "minimum": 1,
                           "type": [
                             "integer",
                             "null"
@@ -1048,6 +1163,8 @@
                         },
                         "LinesPerSmallScrollback": {
                           "description": "The number of scrollback lines per small scrollback in the terminal. A small scrollback is invoked with Shift-Up and reversed with Shift-Down.",
+                          "default": 1,
+                          "minimum": 1,
                           "type": [
                             "integer",
                             "null"
@@ -1055,6 +1172,8 @@
                         },
                         "LinesPerWheelScrollback": {
                           "description": "The number of scrollback lines per mouse wheel scroll in the terminal. A mouse wheel scroll is invoked with mouse wheel up and reversed with mouse wheel down.",
+                          "default": 1,
+                          "minimum": 1,
                           "type": [
                             "integer",
                             "null"
@@ -1062,6 +1181,7 @@
                         },
                         "CopyOnMouseUp": {
                           "description": "Whether to copy selected text in the terminal when the left mouse button is released. If this is false, the selection can be copied with Ctrl-Shift-C.",
+                          "default": true,
                           "type": [
                             "boolean",
                             "null"
@@ -1069,6 +1189,7 @@
                         },
                         "PasteOnMiddleClick": {
                           "description": "Whether to paste text in the terminal when the terminal is middle clicked. Text can also be pasted with Ctrl-Shift-V.",
+                          "default": true,
                           "type": [
                             "boolean",
                             "null"
@@ -1076,6 +1197,7 @@
                         },
                         "PasteOnRightClick": {
                           "description": "Whether to paste text in the terminal when the terminal is right clicked. Text can also be pasted with Ctrl-Shift-V. If this is true, the context menu can be displayed by right clicking the terminal while pressing Ctrl (assuming UseContextMenu is true).",
+                          "default": false,
                           "type": [
                             "boolean",
                             "null"
@@ -1083,6 +1205,7 @@
                         },
                         "CopyNewline": {
                           "description": "The line ending to use when copying text in the terminal.",
+                          "default": "\r\n",
                           "type": [
                             "string",
                             "null"
@@ -1098,6 +1221,7 @@
                               "properties": {
                                 "DefaultBackgroundColor": {
                                   "description": "The default background color to use in the terminal.",
+                                  "default": "Black",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1119,6 +1243,7 @@
                                 },
                                 "DefaultForegroundColor": {
                                   "description": "The default foreground color to use in the terminal.",
+                                  "default": "White",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1140,6 +1265,7 @@
                                 },
                                 "DefaultUnderlineColor": {
                                   "description": "The default underline color to use in the terminal.",
+                                  "default": "White",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1167,6 +1293,7 @@
                               "properties": {
                                 "Black": {
                                   "description": "Black.",
+                                  "default": "Black",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1188,6 +1315,7 @@
                                 },
                                 "Red": {
                                   "description": "Red.",
+                                  "default": "Red",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1209,6 +1337,7 @@
                                 },
                                 "Green": {
                                   "description": "Green.",
+                                  "default": "Green",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1230,6 +1359,7 @@
                                 },
                                 "Yellow": {
                                   "description": "Yellow.",
+                                  "default": "Yellow",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1251,6 +1381,7 @@
                                 },
                                 "Blue": {
                                   "description": "Blue.",
+                                  "default": "Blue",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1272,6 +1403,7 @@
                                 },
                                 "Magenta": {
                                   "description": "Magenta.",
+                                  "default": "Magenta",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1293,6 +1425,7 @@
                                 },
                                 "Cyan": {
                                   "description": "Cyan.",
+                                  "default": "Cyan",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1314,6 +1447,7 @@
                                 },
                                 "White": {
                                   "description": "White.",
+                                  "default": "White",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1341,6 +1475,7 @@
                               "properties": {
                                 "BrightBlack": {
                                   "description": "Bright black.",
+                                  "default": "BrightBlack",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1362,6 +1497,7 @@
                                 },
                                 "BrightRed": {
                                   "description": "Bright red.",
+                                  "default": "BrightRed",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1383,6 +1519,7 @@
                                 },
                                 "BrightGreen": {
                                   "description": "Bright green.",
+                                  "default": "BrightGreen",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1404,6 +1541,7 @@
                                 },
                                 "BrightYellow": {
                                   "description": "Bright yellow.",
+                                  "default": "BrightYellow",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1425,6 +1563,7 @@
                                 },
                                 "BrightBlue": {
                                   "description": "Bright blue.",
+                                  "default": "BrightBlue",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1446,6 +1585,7 @@
                                 },
                                 "BrightMagenta": {
                                   "description": "Bright magenta.",
+                                  "default": "BrightMagenta",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1467,6 +1607,7 @@
                                 },
                                 "BrightCyan": {
                                   "description": "Bright cyan.",
+                                  "default": "BrightCyan",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1488,6 +1629,7 @@
                                 },
                                 "BrightWhite": {
                                   "description": "Bright white.",
+                                  "default": "BrightWhite",
                                   "enum": [
                                     "Black",
                                     "Red",
@@ -1521,14 +1663,19 @@
                         },
                         "Order": {
                           "description": "The order in which the module should be displayed on the TermBar.",
+                          "default": 2147483646,
+                          "minimum": -2147483648,
+                          "maximum": 2147483647,
                           "type": "integer"
                         },
                         "Expand": {
                           "description": "Whether the module should expand to take up as much space as possible.",
+                          "default": false,
                           "type": "boolean"
                         },
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the volume icon.",
+                          "default": "Yellow",
                           "enum": [
                             "Rosewater",
                             "Flamingo",
@@ -1560,18 +1707,22 @@
                         },
                         "Icon": {
                           "description": "The text to use as the volume icon.",
+                          "default": "\uF485",
                           "type": "string"
                         },
                         "MutedIcon": {
                           "description": "The text to use as the muted volume icon.",
+                          "default": "\uF466",
                           "type": "string"
                         },
                         "Format": {
                           "description": "The numeric format to use for the volume percentage. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings.",
+                          "default": "{0:N0}%",
                           "type": "string"
                         },
                         "Muted": {
                           "description": "Text to be displayed in place of the volume level when muted. Set to null to always display the volume level.",
+                          "default": "",
                           "type": [
                             "string",
                             "null"
@@ -1586,14 +1737,19 @@
                           "properties": {
                             "ClickToToggleMute": {
                               "description": "Whether clicking the volume module toggles the mute state.",
+                              "default": true,
                               "type": "boolean"
                             },
                             "ScrollToAdjust": {
                               "description": "Whether scrolling over the volume module adjusts the volume level.",
+                              "default": true,
                               "type": "boolean"
                             },
                             "PercentPerScroll": {
                               "description": "The volume level change per scroll. Does nothing if ScrollToAdjust is false.",
+                              "default": 2,
+                              "minimum": 0,
+                              "maximum": 100,
                               "type": "integer"
                             }
                           }
@@ -1608,14 +1764,19 @@
                         },
                         "Order": {
                           "description": "The order in which the module should be displayed on the TermBar.",
+                          "default": 100,
+                          "minimum": -2147483648,
+                          "maximum": 2147483647,
                           "type": "integer"
                         },
                         "Expand": {
                           "description": "Whether the module should expand to take up as much space as possible.",
+                          "default": true,
                           "type": "boolean"
                         },
                         "AccentColor": {
                           "description": "The Catppuccin color to use for window icon colors by default.",
+                          "default": "Mauve",
                           "enum": [
                             "Rosewater",
                             "Flamingo",
@@ -1647,6 +1808,7 @@
                         },
                         "Icon": {
                           "description": "The text to use as window icons by default.",
+                          "default": "\u2022",
                           "type": "string"
                         },
                         "Windows": {
@@ -1656,15 +1818,19 @@
                             "null"
                           ],
                           "properties": {
-                            "FixedSize": {
-                              "description": "Whether to display windows as a fixed size.",
+                            "FixedLength": {
+                              "description": "The fixed length of windows, in pixels. Set to null for variable size.",
+                              "default": null,
+                              "minimum": 1,
                               "type": [
                                 "integer",
                                 "null"
                               ]
                             },
                             "MaxLength": {
-                              "description": "The maximum length of a window, in pixels.",
+                              "description": "The maximum length of a window, in pixels. Set to null for no maximum length.",
+                              "default": 300,
+                              "minimum": 1,
                               "type": [
                                 "integer",
                                 "null"
@@ -1672,6 +1838,7 @@
                             },
                             "NiceTruncation": {
                               "description": "Whether the window name should be truncated with \u2026 if it\u0027s too long.",
+                              "default": true,
                               "type": "boolean"
                             }
                           }
@@ -1686,14 +1853,19 @@
                         },
                         "Order": {
                           "description": "The order in which the module should be displayed on the TermBar.",
+                          "default": 101,
+                          "minimum": -2147483648,
+                          "maximum": 2147483647,
                           "type": "integer"
                         },
                         "Expand": {
                           "description": "Whether the module should expand to take up as much space as possible.",
+                          "default": false,
                           "type": "boolean"
                         },
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the dropdown icon color.",
+                          "default": "Mauve",
                           "enum": [
                             "Rosewater",
                             "Flamingo",
@@ -1725,10 +1897,12 @@
                         },
                         "DropdownIcon": {
                           "description": "The text to use as the dropdown icon.",
+                          "default": "\uEB7F",
                           "type": "string"
                         },
                         "Icon": {
                           "description": "The text to use as window icons by default.",
+                          "default": "\u2022",
                           "type": "string"
                         }
                       }
@@ -1747,6 +1921,7 @@
     },
     "StartDirectory": {
       "description": "The directory to change to when starting. Set to null to keep the directory inherited from the parent process.",
+      "default": "%USERPROFILE%",
       "type": [
         "string",
         "null"

@@ -29,22 +29,22 @@
     /// <summary>
     /// The display's left work area.
     /// </summary>
-    internal uint Left { get; private init; }
+    internal int Left { get; private init; }
 
     /// <summary>
     /// The display's top work area.
     /// </summary>
-    internal uint Top { get; private init; }
+    internal int Top { get; private init; }
 
     /// <summary>
     /// The display width.
     /// </summary>
-    internal uint Width { get; private init; }
+    internal int Width { get; private init; }
 
     /// <summary>
     /// The display height.
     /// </summary>
-    internal uint Height { get; private init; }
+    internal int Height { get; private init; }
 
     /// <summary>
     /// Initializes a <see cref="Display"/>.
@@ -57,7 +57,7 @@
     /// <param name="top"><inheritdoc cref="Top" path="/summary"/></param>
     /// <param name="width"><inheritdoc cref="Width" path="/summary"/></param>
     /// <param name="height"><inheritdoc cref="Height" path="/summary"/></param>
-    internal Display(string path, string name, string id, Dpi dpi, uint left, uint top, uint width, uint height) {
+    internal Display(string path, string name, string id, Dpi dpi, int left, int top, int width, int height) {
       Path = path;
       Name = name;
       Id = id;

@@ -1,105 +1,187 @@
-﻿using System.ComponentModel;
-using TermBar.Catppuccin;
+﻿using TermBar.Catppuccin;
+using TermBar.Configuration.Json.SchemaAttributes;
 using Terminal;
 
 namespace TermBar.Configuration.Json.Modules {
-  [Description("A TermBar terminal configuration. For all objects, a value of null means the default TerminalControl behavior takes effect, unless otherwise noted.")]
+  [Description("A TermBar terminal configuration. For all objects that accept a null value, a value of null means the default TerminalControl behavior takes effect, unless otherwise noted.")]
   internal class Terminal : IModule {
+    private const int orderDefault = 0;
+    private const bool expandDefault = false;
+    private const ColorEnum accentColorDefault = ColorEnum.Lavender;
+    private const string accentColorDefaultAsString = "Lavender";
+    private const string iconDefault = "";
+    private const string visualBellIconDefault = "";
+    private const string commandDefault = "powershell";
+    private const bool restartOnExitDefault = true;
+    private const string defaultWindowTitleDefault = "TermBar";
+    private const int rowsDefault = 3;
+    private const int columnsDefault = 60;
+    private const int tabWidthDefault = 8;
+    private const TextAntialiasingStyles textAntialiasingDefault = TextAntialiasingStyles.Grayscale;
+    private const string textAntialiasingDefaultAsString = "Grayscale";
+    private const bool fullColorEmojiDefault = false;
+    private const bool useBackgroundColorEraseDefault = true;
+    private const bool backgroundIsInvisibleDefault = true;
+    private const bool useVisualBellDefault = true;
+    private const int visualBellDisplayTimeDefault = 1000;
+    private const bool useContextMenuDefault = true;
+    private const bool useExtendedContextMenuDefault = true;
+    private const CursorStyles cursorStyleDefault = CursorStyles.Underline;
+    private const string cursorStyleDefaultAsString = "Underline";
+    private const double cursorThicknessDefault = 0.1;
+    private const bool cursorBlinkDefault = true;
+    private const int cursorBlinkRateDefault = 500;
+    private const ColorEnum cursorColorDefault = ColorEnum.Text;
+    private const string cursorColorDefaultAsString = "Text";
+    private const int scrollbackLinesDefault = 5000;
+    private const int linesPerScrollbackDefault = 3;
+    private const int linesPerSmallScrollbackDefault = 1;
+    private const int linesPerWheelScrollbackDefault = 1;
+    private const bool copyOnMouseUpDefault = true;
+    private const bool pasteOnMiddleClickDefault = true;
+    private const bool pasteOnRightClickDefault = false;
+    private const string copyNewlineDefault = "\r\n";
+
     [Description("The order in which the module should be displayed on the TermBar.")]
-    public int Order { get; set; } = 0;
+    [DefaultIntNumber(orderDefault)]
+    [MinimumInt(int.MinValue)]
+    [MaximumInt(int.MaxValue)]
+    public int Order { get; set; } = orderDefault;
 
     [Description("Whether the module should expand to take up as much space as possible.")]
-    public bool Expand { get; set; } = false;
+    [DefaultBoolean(expandDefault)]
+    public bool Expand { get; set; } = expandDefault;
 
     [Description("The Catppuccin color to use as an accent.")]
-    public ColorEnum AccentColor { get; set; } = ColorEnum.Lavender;
+    [DefaultString(accentColorDefaultAsString)]
+    public ColorEnum AccentColor { get; set; } = accentColorDefault;
 
     [Description("The text to use as the terminal icon.")]
-    public string Icon { get; set; } = "";
+    [DefaultString(iconDefault)]
+    public string Icon { get; set; } = iconDefault;
 
     [Description("The text to use as the terminal visual bell icon when the visual bell is ringing. Has no effect if UseVisualBell is false.")]
-    public string VisualBellIcon { get; set; } = "";
+    [DefaultString(visualBellIconDefault)]
+    public string VisualBellIcon { get; set; } = visualBellIconDefault;
 
     [Description("The command to run in the terminal. This is typically a shell.")]
-    public string Command { get; set; } = "powershell";
+    [DefaultString(commandDefault)]
+    public string Command { get; set; } = commandDefault;
 
     [Description("Whether to restart Command when it exits normally.")]
-    public bool RestartOnExit { get; set; } = true;
+    [DefaultBoolean(restartOnExitDefault)]
+    public bool RestartOnExit { get; set; } = restartOnExitDefault;
 
     [Description("The default terminal window title. The terminal window title can be viewed as a tooltip of the terminal icon.")]
-    public string DefaultWindowTitle { get; set; } = "TermBar";
+    [DefaultString(defaultWindowTitleDefault)]
+    public string DefaultWindowTitle { get; set; } = defaultWindowTitleDefault;
 
     [Description("The number of rows in the terminal.")]
-    public uint Rows { get; set; } = 3;
+    [DefaultIntNumber(rowsDefault)]
+    [MinimumInt(1)]
+    public int Rows { get; set; } = rowsDefault;
 
     [Description("The number of columns in the terminal.")]
-    public uint Columns { get; set; } = 60;
+    [DefaultIntNumber(columnsDefault)]
+    [MinimumInt(1)]
+    public int Columns { get; set; } = columnsDefault;
 
     [Description("The default tab width in the terminal. (Practically speaking, this is virtually irrelevant today.)")]
-    public int? TabWidth { get; set; } = 8;
+    [DefaultIntNumber(tabWidthDefault)]
+    [MinimumInt(1)]
+    public int? TabWidth { get; set; } = tabWidthDefault;
 
     [Description("The text antialiasing style to apply in the terminal. Unicode box-drawing characters are always drawn without antialiasing.")]
-    public TextAntialiasingStyles? TextAntialiasing { get; set; } = TextAntialiasingStyles.Grayscale;
+    [DefaultString(textAntialiasingDefaultAsString)]
+    public TextAntialiasingStyles? TextAntialiasing { get; set; } = textAntialiasingDefault;
 
     [Description("Whether to draw emoji in full color in the terminal using the Segoe UI Emoji font.")]
-    public bool? FullColorEmoji { get; set; } = false;
+    [DefaultBoolean(fullColorEmojiDefault)]
+    public bool? FullColorEmoji { get; set; } = fullColorEmojiDefault;
 
     [Description("Whether to use background color erase in the terminal. See https://sunaku.github.io/vim-256color-bce.html for a description of what this does.")]
-    public bool? UseBackgroundColorErase { get; set; } = true;
+    [DefaultBoolean(useBackgroundColorEraseDefault)]
+    public bool? UseBackgroundColorErase { get; set; } = useBackgroundColorEraseDefault;
 
     [Description("Whether to render the default background color as invisible in the terminal.")]
-    public bool? BackgroundIsInvisible { get; set; } = true;
+    [DefaultBoolean(backgroundIsInvisibleDefault)]
+    public bool? BackgroundIsInvisible { get; set; } = backgroundIsInvisibleDefault;
 
     [Description("Whether to use the visual bell in the terminal. If this is true, VisualBellIcon is displayed for VisualBellDisplayTime milliseconds when the terminal bell rings. If this is false, a sound plays instead.")]
-    public bool? UseVisualBell { get; set; } = true;
+    [DefaultBoolean(useVisualBellDefault)]
+    public bool? UseVisualBell { get; set; } = useVisualBellDefault;
 
     [Description("The number of milliseconds to display the visual bell in the terminal. Does nothing if UseVisualBell is false.")]
-    public int VisualBellDisplayTime { get; set; } = 1000;
+    [DefaultIntNumber(visualBellDisplayTimeDefault)]
+    [MinimumInt(1)]
+    public int VisualBellDisplayTime { get; set; } = visualBellDisplayTimeDefault;
 
     [Description("Whether to show the context menu when right clicking the terminal.")]
-    public bool? UseContextMenu { get; set; } = true;
+    [DefaultBoolean(useContextMenuDefault)]
+    public bool? UseContextMenu { get; set; } = useContextMenuDefault;
 
     [Description("Whether to show the extended context menu when right clicking the terminal. Does nothing if UseContextMenu is false.")]
-    public bool? UseExtendedContextMenu { get; set; } = true;
+    [DefaultBoolean(useExtendedContextMenuDefault)]
+    public bool? UseExtendedContextMenu { get; set; } = useExtendedContextMenuDefault;
 
     [Description("The default cursor style to use in the terminal.")]
-    public CursorStyles? CursorStyle { get; set; } = CursorStyles.Underline;
+    [DefaultString(cursorStyleDefaultAsString)]
+    public CursorStyles? CursorStyle { get; set; } = cursorStyleDefault;
 
     [Description("The cursor thickness in the terminal, as a fraction of the font size, between 0.0 and 1.0. Does not affect the block cursor.")]
-    public double? CursorThickness { get; set; } = 0.1;
+    [DefaultDoubleNumber(cursorThicknessDefault)]
+    [MinimumDouble(0.0)]
+    [MaximumDouble(1.0)]
+    public double? CursorThickness { get; set; } = cursorThicknessDefault;
 
     [Description("Whether the cursor should blink by default in the terminal.")]
-    public bool? CursorBlink { get; set; } = true;
+    [DefaultBoolean(cursorBlinkDefault)]
+    public bool? CursorBlink { get; set; } = cursorBlinkDefault;
 
     [Description("The number of milliseconds that pass between the blinking cursor being displayed in the terminal and hidden. Has no effect if CursorBlink is false.")]
-    public int? CursorBlinkRate { get; set; } = 500;
+    [DefaultIntNumber(cursorBlinkRateDefault)]
+    [MinimumInt(1)]
+    public int? CursorBlinkRate { get; set; } = cursorBlinkRateDefault;
 
     [Description("The cursor color in the terminal.")]
-    public ColorEnum? CursorColor { get; set; } = ColorEnum.Text;
+    [DefaultString(cursorColorDefaultAsString)]
+    public ColorEnum? CursorColor { get; set; } = cursorColorDefault;
 
     [Description("The number of scrollback lines in the terminal.")]
-    public int? ScrollbackLines { get; set; } = 5000;
+    [DefaultIntNumber(scrollbackLinesDefault)]
+    [MinimumInt(0)]
+    public int? ScrollbackLines { get; set; } = scrollbackLinesDefault;
 
     [Description("The number of scrollback lines per large scrollback in the terminal. A large scrollback is invoked with Shift-Page Up and reversed with Shift-Page Down.")]
-    public int? LinesPerScrollback { get; set; } = 3;
+    [DefaultIntNumber(linesPerScrollbackDefault)]
+    [MinimumInt(1)]
+    public int? LinesPerScrollback { get; set; } = linesPerScrollbackDefault;
 
     [Description("The number of scrollback lines per small scrollback in the terminal. A small scrollback is invoked with Shift-Up and reversed with Shift-Down.")]
-    public int? LinesPerSmallScrollback { get; set; } = 1;
+    [DefaultIntNumber(linesPerSmallScrollbackDefault)]
+    [MinimumInt(1)]
+    public int? LinesPerSmallScrollback { get; set; } = linesPerSmallScrollbackDefault;
 
     [Description("The number of scrollback lines per mouse wheel scroll in the terminal. A mouse wheel scroll is invoked with mouse wheel up and reversed with mouse wheel down.")]
-    public int? LinesPerWheelScrollback { get; set; } = 1;
+    [DefaultIntNumber(linesPerWheelScrollbackDefault)]
+    [MinimumInt(1)]
+    public int? LinesPerWheelScrollback { get; set; } = linesPerWheelScrollbackDefault;
 
     [Description("Whether to copy selected text in the terminal when the left mouse button is released. If this is false, the selection can be copied with Ctrl-Shift-C.")]
-    public bool? CopyOnMouseUp { get; set; } = true;
+    [DefaultBoolean(copyOnMouseUpDefault)]
+    public bool? CopyOnMouseUp { get; set; } = copyOnMouseUpDefault;
 
     [Description("Whether to paste text in the terminal when the terminal is middle clicked. Text can also be pasted with Ctrl-Shift-V.")]
-    public bool? PasteOnMiddleClick { get; set; } = true;
+    [DefaultBoolean(pasteOnMiddleClickDefault)]
+    public bool? PasteOnMiddleClick { get; set; } = pasteOnMiddleClickDefault;
 
     [Description("Whether to paste text in the terminal when the terminal is right clicked. Text can also be pasted with Ctrl-Shift-V. If this is true, the context menu can be displayed by right clicking the terminal while pressing Ctrl (assuming UseContextMenu is true).")]
-    public bool? PasteOnRightClick { get; set; } = false;
+    [DefaultBoolean(pasteOnRightClickDefault)]
+    public bool? PasteOnRightClick { get; set; } = pasteOnRightClickDefault;
 
     [Description("The line ending to use when copying text in the terminal.")]
-    public string? CopyNewline { get; set; } = "\r\n";
+    [DefaultString(copyNewlineDefault)]
+    public string? CopyNewline { get; set; } = copyNewlineDefault;
 
     [Description("The ANSI colors to use in the terminal.")]
     public TerminalColors Colors { get; set; } = new();
@@ -119,67 +201,127 @@ namespace TermBar.Configuration.Json.Modules {
 
   [Description("Terminal default ANSI colors.")]
   internal class DefaultColors {
+    private const AnsiColorEnum defaultBackgroundColorDefault = AnsiColorEnum.Black;
+    private const string defaultBackgroundColorDefaultAsString = "Black";
+    private const AnsiColorEnum defaultForegroundColorDefault = AnsiColorEnum.White;
+    private const string defaultForegroundColorDefaultAsString = "White";
+    private const AnsiColorEnum defaultUnderlineColorDefault = AnsiColorEnum.White;
+    private const string defaultUnderlineColorDefaultAsString = "White";
+
     [Description("The default background color to use in the terminal.")]
-    public AnsiColorEnum DefaultBackgroundColor { get; set; } = AnsiColorEnum.Black;
+    [DefaultString(defaultBackgroundColorDefaultAsString)]
+    public AnsiColorEnum DefaultBackgroundColor { get; set; } = defaultBackgroundColorDefault;
 
     [Description("The default foreground color to use in the terminal.")]
-    public AnsiColorEnum DefaultForegroundColor { get; set; } = AnsiColorEnum.White;
+    [DefaultString(defaultForegroundColorDefaultAsString)]
+    public AnsiColorEnum DefaultForegroundColor { get; set; } = defaultForegroundColorDefault;
 
     [Description("The default underline color to use in the terminal.")]
-    public AnsiColorEnum DefaultUnderlineColor { get; set; } = AnsiColorEnum.White;
+    [DefaultString(defaultUnderlineColorDefaultAsString)]
+    public AnsiColorEnum DefaultUnderlineColor { get; set; } = defaultUnderlineColorDefault;
   }
 
   [Description("Terminal standard (non-bright) ANSI colors.")]
   internal class StandardColors {
+    private const AnsiColorEnum blackDefault = AnsiColorEnum.Black;
+    private const string blackDefaultAsString = "Black";
+    private const AnsiColorEnum redDefault = AnsiColorEnum.Red;
+    private const string redDefaultAsString = "Red";
+    private const AnsiColorEnum greenDefault = AnsiColorEnum.Green;
+    private const string greenDefaultAsString = "Green";
+    private const AnsiColorEnum yellowDefault = AnsiColorEnum.Yellow;
+    private const string yellowDefaultAsString = "Yellow";
+    private const AnsiColorEnum blueDefault = AnsiColorEnum.Blue;
+    private const string blueDefaultAsString = "Blue";
+    private const AnsiColorEnum magentaDefault = AnsiColorEnum.Magenta;
+    private const string magentaDefaultAsString = "Magenta";
+    private const AnsiColorEnum cyanDefault = AnsiColorEnum.Cyan;
+    private const string cyanDefaultAsString = "Cyan";
+    private const AnsiColorEnum whiteDefault = AnsiColorEnum.White;
+    private const string whiteDefaultAsString = "White";
+
     [Description("Black.")]
-    public AnsiColorEnum Black { get; set; } = AnsiColorEnum.Black;
+    [DefaultString(blackDefaultAsString)]
+    public AnsiColorEnum Black { get; set; } = blackDefault;
 
     [Description("Red.")]
-    public AnsiColorEnum Red { get; set; } = AnsiColorEnum.Red;
+    [DefaultString(redDefaultAsString)]
+    public AnsiColorEnum Red { get; set; } = redDefault;
 
     [Description("Green.")]
-    public AnsiColorEnum Green { get; set; } = AnsiColorEnum.Green;
+    [DefaultString(greenDefaultAsString)]
+    public AnsiColorEnum Green { get; set; } = greenDefault;
 
     [Description("Yellow.")]
-    public AnsiColorEnum Yellow { get; set; } = AnsiColorEnum.Yellow;
+    [DefaultString(yellowDefaultAsString)]
+    public AnsiColorEnum Yellow { get; set; } = yellowDefault;
 
     [Description("Blue.")]
-    public AnsiColorEnum Blue { get; set; } = AnsiColorEnum.Blue;
+    [DefaultString(blueDefaultAsString)]
+    public AnsiColorEnum Blue { get; set; } = blueDefault;
 
     [Description("Magenta.")]
-    public AnsiColorEnum Magenta { get; set; } = AnsiColorEnum.Magenta;
+    [DefaultString(magentaDefaultAsString)]
+    public AnsiColorEnum Magenta { get; set; } = magentaDefault;
 
     [Description("Cyan.")]
-    public AnsiColorEnum Cyan { get; set; } = AnsiColorEnum.Cyan;
+    [DefaultString(cyanDefaultAsString)]
+    public AnsiColorEnum Cyan { get; set; } = cyanDefault;
 
     [Description("White.")]
-    public AnsiColorEnum White { get; set; } = AnsiColorEnum.White;
+    [DefaultString(whiteDefaultAsString)]
+    public AnsiColorEnum White { get; set; } = whiteDefault;
   }
 
   [Description("Terminal bright ANSI colors.")]
   internal class BrightColors {
+    private const AnsiColorEnum brightBlackDefault = AnsiColorEnum.BrightBlack;
+    private const string brightBlackDefaultAsString = "BrightBlack";
+    private const AnsiColorEnum brightRedDefault = AnsiColorEnum.BrightRed;
+    private const string brightRedDefaultAsString = "BrightRed";
+    private const AnsiColorEnum brightGreenDefault = AnsiColorEnum.BrightGreen;
+    private const string brightGreenDefaultAsString = "BrightGreen";
+    private const AnsiColorEnum brightYellowDefault = AnsiColorEnum.BrightYellow;
+    private const string brightYellowDefaultAsString = "BrightYellow";
+    private const AnsiColorEnum brightBlueDefault = AnsiColorEnum.BrightBlue;
+    private const string brightBlueDefaultAsString = "BrightBlue";
+    private const AnsiColorEnum brightMagentaDefault = AnsiColorEnum.BrightMagenta;
+    private const string brightMagentaDefaultAsString = "BrightMagenta";
+    private const AnsiColorEnum brightCyanDefault = AnsiColorEnum.BrightCyan;
+    private const string brightCyanDefaultAsString = "BrightCyan";
+    private const AnsiColorEnum brightWhiteDefault = AnsiColorEnum.BrightWhite;
+    private const string brightWhiteDefaultAsString = "BrightWhite";
+
     [Description("Bright black.")]
-    public AnsiColorEnum BrightBlack { get; set; } = AnsiColorEnum.BrightBlack;
+    [DefaultString(brightBlackDefaultAsString)]
+    public AnsiColorEnum BrightBlack { get; set; } = brightBlackDefault;
 
     [Description("Bright red.")]
-    public AnsiColorEnum BrightRed { get; set; } = AnsiColorEnum.BrightRed;
+    [DefaultString(brightRedDefaultAsString)]
+    public AnsiColorEnum BrightRed { get; set; } = brightRedDefault;
 
     [Description("Bright green.")]
-    public AnsiColorEnum BrightGreen { get; set; } = AnsiColorEnum.BrightGreen;
+    [DefaultString(brightGreenDefaultAsString)]
+    public AnsiColorEnum BrightGreen { get; set; } = brightGreenDefault;
 
     [Description("Bright yellow.")]
-    public AnsiColorEnum BrightYellow { get; set; } = AnsiColorEnum.BrightYellow;
+    [DefaultString(brightYellowDefaultAsString)]
+    public AnsiColorEnum BrightYellow { get; set; } = brightYellowDefault;
 
     [Description("Bright blue.")]
-    public AnsiColorEnum BrightBlue { get; set; } = AnsiColorEnum.BrightBlue;
+    [DefaultString(brightBlueDefaultAsString)]
+    public AnsiColorEnum BrightBlue { get; set; } = brightBlueDefault;
 
     [Description("Bright magenta.")]
-    public AnsiColorEnum BrightMagenta { get; set; } = AnsiColorEnum.BrightMagenta;
+    [DefaultString(brightMagentaDefaultAsString)]
+    public AnsiColorEnum BrightMagenta { get; set; } = brightMagentaDefault;
 
     [Description("Bright cyan.")]
-    public AnsiColorEnum BrightCyan { get; set; } = AnsiColorEnum.BrightCyan;
+    [DefaultString(brightCyanDefaultAsString)]
+    public AnsiColorEnum BrightCyan { get; set; } = brightCyanDefault;
 
     [Description("Bright white.")]
-    public AnsiColorEnum BrightWhite { get; set; } = AnsiColorEnum.BrightWhite;
+    [DefaultString(brightWhiteDefaultAsString)]
+    public AnsiColorEnum BrightWhite { get; set; } = brightWhiteDefault;
   }
 }

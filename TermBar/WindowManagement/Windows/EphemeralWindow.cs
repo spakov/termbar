@@ -24,8 +24,8 @@ namespace TermBar.WindowManagement.Windows {
     private readonly Views.Windows.EphemeralWindow ephemeralWindow;
     private bool ignoreFirstForegroundEvent;
 
-    private readonly uint requestedLeft;
-    private readonly uint requestedTop;
+    private readonly int requestedLeft;
+    private readonly int requestedTop;
 
     /// <inheritdoc cref="Window.Config"/>
     protected new Configuration.Json.TermBar Config { get; init; }
@@ -47,28 +47,28 @@ namespace TermBar.WindowManagement.Windows {
     /// <c>false</c> if the window can be displayed.</returns>
     internal static bool Debounce() => (DateTime.Now - LastCloseTime).Milliseconds < 100;
 
-    private readonly uint _margin;
-    private readonly uint _padding;
+    private readonly int _margin;
+    private readonly int _padding;
 
     /// <inheritdoc cref="Window.Margin"/>
-    protected new uint Margin => Config.DpiAware ? ScaleY(_margin) : _margin;
+    protected new int Margin => Config.DpiAware ? ScaleY(_margin) : _margin;
 
     /// <inheritdoc cref="Window.Padding"/>
-    protected new uint Padding => Config.DpiAware ? ScaleY(_padding) : _padding;
+    protected new int Padding => Config.DpiAware ? ScaleY(_padding) : _padding;
 
     /// <summary>
     /// The minimum width of the ephemeral window.
     /// </summary>
-    private static uint MinimumWidth => 300;
+    private static int MinimumWidth => 300;
 
     /// <summary>
     /// The maximum width of the ephemeral window.
     /// </summary>
-    private uint MaximumWidth => (Config.DpiAware ? ScaleX(display.Width) : display.Width) - (Padding * 2);
+    private int MaximumWidth => (Config.DpiAware ? ScaleX(display.Width) : display.Width) - (Padding * 2);
 
-    private uint _width;
+    private int _width;
 
-    protected override uint Width {
+    protected override int Width {
       get => _width;
       set {
         if (_width != value) {
@@ -89,16 +89,16 @@ namespace TermBar.WindowManagement.Windows {
     /// <summary>
     /// The minimum height of the ephemeral window.
     /// </summary>
-    private static uint MinimumHeight => 300;
+    private static int MinimumHeight => 300;
 
     /// <summary>
     /// The maximum height of the ephemeral window.
     /// </summary>
-    private uint MaximumHeight => (Config.DpiAware ? ScaleX(display.Height) : display.Height) - (Padding * 2);
+    private int MaximumHeight => (Config.DpiAware ? ScaleX(display.Height) : display.Height) - (Padding * 2);
 
-    private uint _height;
+    private int _height;
 
-    protected override uint Height {
+    protected override int Height {
       get => _height;
       set {
         if (_height != value) {
@@ -126,7 +126,7 @@ namespace TermBar.WindowManagement.Windows {
     /// <param name="requestedTop">The requested top position of the
     /// window.</param>
     /// <param name="content">The content to present in the window.</param>
-    internal EphemeralWindow(Configuration.Json.TermBar config, uint requestedLeft, uint requestedTop, UIElement content) : base(config.Display!, config) {
+    internal EphemeralWindow(Configuration.Json.TermBar config, int requestedLeft, int requestedTop, UIElement content) : base(config.Display!, config) {
 #if DEBUG
       using ILoggerFactory factory = LoggerFactory.Create(
         builder => {
@@ -146,8 +146,8 @@ namespace TermBar.WindowManagement.Windows {
       ephemeralWindow = new(Config, content);
       winForegroundEventProc = new(WinForegroundEventProc);
 
-      _margin = (uint) base.Margin!;
-      _padding = (uint) base.Padding!;
+      _margin = (int) base.Margin!;
+      _padding = (int) base.Padding!;
       _width = Config.DpiAware ? ScaleX(MinimumWidth) : MinimumWidth;
       _height = Config.DpiAware ? ScaleY(MinimumHeight) : MinimumHeight;
     }
@@ -189,8 +189,8 @@ namespace TermBar.WindowManagement.Windows {
     /// cref="System.ComponentModel.PropertyChangedEventHandler"
     /// path="/param[@name='e']"/></param>
     private void TermBarWindow_RequestResize(object? sender, System.ComponentModel.PropertyChangedEventArgs e) {
-      Width = (uint) ephemeralWindow!.DesiredWidth;
-      Height = (uint) ephemeralWindow!.DesiredHeight;
+      Width = (int) ephemeralWindow!.DesiredWidth;
+      Height = (int) ephemeralWindow!.DesiredHeight;
     }
 
     /// <summary>
@@ -198,7 +198,7 @@ namespace TermBar.WindowManagement.Windows {
     /// </summary>
     /// <returns>The scaled calculated left position of the ephemeral
     /// window.</returns>
-    private uint WindowLeft() {
+    private int WindowLeft() {
       return requestedLeft + Width + Margin > (Config.DpiAware ? ScaleX(display.Width) : display.Width)
         ? (Config.DpiAware ? ScaleX(display.Width) : display.Width) - Width - Margin
         : requestedLeft;
@@ -210,7 +210,7 @@ namespace TermBar.WindowManagement.Windows {
     /// <returns>The scaled calculated top position of the ephemeral
     /// window.</returns>
     /// <exception cref="ArgumentException"></exception>
-    private uint WindowTop() {
+    private int WindowTop() {
       if (Config.Location.Equals(Location.Top)) {
         return requestedTop < (Config.DpiAware ? ScaleY(display.Top) : display.Top) + Config.Height + (Margin * 2)
           ? (Config.DpiAware ? ScaleY(display.Top) : display.Top) + Config.Height + (Margin * 2)

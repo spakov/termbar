@@ -16,32 +16,32 @@ namespace TermBar.WindowManagement.Windows {
     /// <inheritdoc cref="Window.Config"/>
     protected new Configuration.Json.TermBar Config { get; init; }
 
-    private readonly uint _margin;
-    private readonly uint _padding;
+    private readonly int _margin;
+    private readonly int _padding;
 
     private bool dragging;
     private Rectangle draggingWindowRectangle;
     private Point draggingCursorPosition;
 
     /// <inheritdoc cref="Window.Margin"/>
-    protected new uint Margin => Config.DpiAware ? ScaleY(_margin) : _margin;
+    protected new int Margin => Config.DpiAware ? ScaleY(_margin) : _margin;
 
     /// <inheritdoc cref="Window.Padding"/>
-    protected new uint Padding => Config.DpiAware ? ScaleY(_padding) : _padding;
+    protected new int Padding => Config.DpiAware ? ScaleY(_padding) : _padding;
 
     /// <summary>
     /// The minimum width of the dialog window.
     /// </summary>
-    private static uint MinimumWidth => 300;
+    private static int MinimumWidth => 300;
 
     /// <summary>
     /// The maximum width of the dialog window.
     /// </summary>
-    private uint MaximumWidth => (Config.DpiAware ? ScaleX(display.Width) : display.Width) - (Padding * 2);
+    private int MaximumWidth => (Config.DpiAware ? ScaleX(display.Width) : display.Width) - (Padding * 2);
 
-    private uint _width;
+    private int _width;
 
-    protected override uint Width {
+    protected override int Width {
       get => _width;
       set {
         if (_width != value) {
@@ -62,16 +62,16 @@ namespace TermBar.WindowManagement.Windows {
     /// <summary>
     /// The minimum height of the dialog window.
     /// </summary>
-    private static uint MinimumHeight => 150;
+    private static int MinimumHeight => 150;
 
     /// <summary>
     /// The maximum height of the dialog window.
     /// </summary>
-    private uint MaximumHeight => (Config.DpiAware ? ScaleX(display.Height) : display.Height) - (Padding * 2);
+    private int MaximumHeight => (Config.DpiAware ? ScaleX(display.Height) : display.Height) - (Padding * 2);
 
-    private uint _height;
+    private int _height;
 
-    protected override uint Height {
+    protected override int Height {
       get => _height;
       set {
         if (_height != value) {
@@ -100,8 +100,8 @@ namespace TermBar.WindowManagement.Windows {
 
       dialogWindow = new(Config, content);
 
-      _margin = (uint) base.Margin!;
-      _padding = (uint) base.Padding!;
+      _margin = (int) base.Margin!;
+      _padding = (int) base.Padding!;
       _width = Config.DpiAware ? ScaleX(MinimumWidth) : MinimumWidth;
       _height = Config.DpiAware ? ScaleY(MinimumHeight) : MinimumHeight;
 
@@ -136,8 +136,8 @@ namespace TermBar.WindowManagement.Windows {
     /// cref="PropertyChangedEventHandler"
     /// path="/param[@name='e']"/></param>
     private void TermBarWindow_RequestResize(object? sender, PropertyChangedEventArgs e) {
-      Width = (uint) dialogWindow!.DesiredWidth;
-      Height = (uint) dialogWindow!.DesiredHeight;
+      Width = (int) dialogWindow!.DesiredWidth;
+      Height = (int) dialogWindow!.DesiredHeight;
     }
 
     /// <summary>
@@ -145,7 +145,7 @@ namespace TermBar.WindowManagement.Windows {
     /// </summary>
     /// <returns>The scaled calculated left position of the dialog
     /// window.</returns>
-    private uint WindowLeft() {
+    private int WindowLeft() {
       return (Config.DpiAware ? ScaleX(display.Left) : display.Left)
         + ((Config.DpiAware ? ScaleX(display.Width) : display.Width) / 2)
         - (Width / 2);
@@ -156,7 +156,7 @@ namespace TermBar.WindowManagement.Windows {
     /// </summary>
     /// <returns>The scaled calculated top position of the dialog
     /// window.</returns>
-    private uint WindowTop() {
+    private int WindowTop() {
       return (Config.DpiAware ? ScaleY(display.Top) : display.Top)
         + ((Config.DpiAware ? ScaleY(display.Height) : display.Height) / 2)
         - (Height / 2);
@@ -203,10 +203,10 @@ namespace TermBar.WindowManagement.Windows {
         }
 
         Move(
-          (uint) (draggingWindowRectangle.X + (cursorPosition.X - draggingCursorPosition.X)),
-          (uint) (draggingWindowRectangle.Y + (cursorPosition.Y - draggingCursorPosition.Y)),
-          (uint) draggingWindowRectangle.Width,
-          (uint) draggingWindowRectangle.Height,
+          draggingWindowRectangle.X + (cursorPosition.X - draggingCursorPosition.X),
+          draggingWindowRectangle.Y + (cursorPosition.Y - draggingCursorPosition.Y),
+          draggingWindowRectangle.Width,
+          draggingWindowRectangle.Height,
           skipActivation: true
         );
       }

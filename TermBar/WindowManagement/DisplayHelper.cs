@@ -47,7 +47,7 @@ namespace TermBar.WindowManagement {
           if (GetMonitorInfoW(hMonitor, ref monitorInfo)) {
             Dpi dpi;
 
-            PInvoke.GetDpiForMonitor(hMonitor, MONITOR_DPI_TYPE.MDT_EFFECTIVE_DPI, out dpi.x, out dpi.y);
+            PInvoke.GetDpiForMonitor(hMonitor, MONITOR_DPI_TYPE.MDT_EFFECTIVE_DPI, out dpi.X, out dpi.Y);
             monitors.Add((monitorInfo, dpi));
           }
 
@@ -90,10 +90,10 @@ namespace TermBar.WindowManagement {
                 name: _monitorDevice.DeviceString.ToString(),
                 id: _monitorDevice.DeviceID.ToString(),
                 dpi: dpi,
-                left: (uint) _monitorInfo.rcWork.left,
-                top: (uint) _monitorInfo.rcWork.top,
-                width: (uint) _monitorInfo.rcMonitor.Width,
-                height: (uint) _monitorInfo.rcMonitor.Height
+                left: _monitorInfo.rcWork.left,
+                top: _monitorInfo.rcWork.top,
+                width: _monitorInfo.rcMonitor.Width,
+                height: _monitorInfo.rcMonitor.Height
               )
             );
           }
