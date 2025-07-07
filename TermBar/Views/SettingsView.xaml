@@ -8,49 +8,92 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   mc:Ignorable="d">
   <Grid
-    x:Name="Settings"
     Background="Transparent">
+    
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
-      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
+
     <Grid.ColumnDefinitions>
-      <ColumnDefinition/>
+      <ColumnDefinition Width="300"/>
+      <ColumnDefinition Width="600"/>
     </Grid.ColumnDefinitions>
+
     <StackPanel
+      x:Name="ConfigFileLocation"
       Orientation="Vertical"
+      VerticalAlignment="Center"
       Grid.Row="0"
       Grid.Column="0">
+
       <TextBlock
         Style="{StaticResource Prose}"
-        Text="The TermBar configuration file is located here:"/>
+        Text="The TermBar configuration file is located here:"
+        Grid.Row="1"
+        Grid.Column="0"/>
+      
       <TextBlock
         x:Name="ConfigPathTextBlock"
         Style="{StaticResource Prose}"
-        Text="{x:Bind ConfigPath}"/>
+        Text="{x:Bind ConfigPath}"
+        Grid.Row="2"
+        Grid.Column="0"/>
+
       <TextBlock
         Style="{StaticResource Prose}"
-        Text="Edit it in your favorite editor and restart TermBar to see the changes."/>
+        Text="Edit it in your favorite editor and restart TermBar to see the changes."
+        Grid.Row="3"
+        Grid.Column="0"/>
+
     </StackPanel>
+
+    <Grid
+      x:Name="RuntimeInfo"
+      Grid.Row="0"
+      Grid.Column="1">
+
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+
+      <TextBlock
+        Text="Runtime configuration:"
+        Grid.Row="0"
+        Grid.Column="0"/>
+
+      <RichEditBox
+        x:Name="RuntimeConfig"
+        Height="400"
+        Grid.Row="1"
+        Grid.Column="0"/>
+
+      <TextBlock
+        Text="Detected displays:"
+        Grid.Row="2"
+        Grid.Column="0"/>
+
+      <TextBox
+        Text="{x:Bind DisplayList}"
+        Height="100"
+        Grid.Row="3"
+        Grid.Column="0"/>
+
+    </Grid>
+
     <StackPanel
       x:Name="Buttons"
+      HorizontalAlignment="Right"
       Grid.Row="1"
-      Grid.Column="0">
-      <Button
-        x:Name="CopyPath"
-        Click="CopyPath_Click">
-        <TextBlock Text="Copy Config File Path"/>
-      </Button>
-      <Button
-        x:Name="ShowInExplorer"
-        Click="ShowInExplorer_Click">
-        <TextBlock Text="Show Config File in Explorer"/>
-      </Button>
-      <Button
-        x:Name="OK"
-        Click="OK_Click">
-        <TextBlock Text="OK"/>
-      </Button>
+      Grid.Column="0"
+      Grid.ColumnSpan="2">
       <Button
         x:Name="Exit"
         Style="{StaticResource AccentedButton}"
@@ -64,6 +107,22 @@
         Click="Restart_Click">
         <TextBlock Text="Restart TermBar"/>
       </Button>
+      <Button
+        x:Name="CopyPath"
+        Click="CopyPath_Click">
+        <TextBlock Text="Copy Config File Path"/>
+      </Button>
+      <Button
+        x:Name="ShowInExplorer"
+        Click="ShowInExplorer_Click">
+        <TextBlock Text="Show Config File in Explorer"/>
+      </Button>
+      <Button
+        x:Name="Close"
+        Click="Close_Click">
+        <TextBlock Text="Close"/>
+      </Button>
     </StackPanel>
+
   </Grid>
 </local:ModuleView>

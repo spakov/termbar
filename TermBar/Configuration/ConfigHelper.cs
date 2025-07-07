@@ -12,7 +12,7 @@ namespace TermBar.Configuration {
   internal static class ConfigHelper {
     private const string configFile = "config.json";
 
-    private static readonly JsonSerializerOptions? jsonSerializerOptions = new() {
+    private static readonly JsonSerializerOptions jsonSerializerOptions = new() {
       WriteIndented = true,
       PropertyNameCaseInsensitive = true,
       Converters = { new JsonStringEnumConverter() },
@@ -23,6 +23,11 @@ namespace TermBar.Configuration {
     /// The path to the configuration file.
     /// </summary>
     internal static string ConfigPath => $@"{Windows.Storage.ApplicationData.Current.LocalFolder.Path}\{configFile}";
+
+    /// <summary>
+    /// JSON serializer options.
+    /// </summary>
+    internal static JsonSerializerOptions JsonSerializerOptions => jsonSerializerOptions;
 
     /// <summary>
     /// Loads an existing configuration file or creates a default one.

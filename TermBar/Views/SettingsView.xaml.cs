@@ -1,11 +1,16 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.Windows.AppNotifications;
 using Microsoft.Windows.AppNotifications.Builder;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
+using System.Text.Json;
 using TermBar.Catppuccin;
 using TermBar.Configuration;
 using TermBar.Styles;
+using TermBar.WindowManagement;
 using Windows.ApplicationModel.DataTransfer;
 
 namespace TermBar.Views {
@@ -25,10 +30,22 @@ namespace TermBar.Views {
     /// </summary>
     internal WindowManagement.Windows.DialogWindow? Owner { get; set; }
 
-    /// <inheritdoc cref="ConfigHelper.ConfigPath"/>
 #pragma warning disable IDE0079 // Remove unnecessary suppression
 #pragma warning disable CA1822 // Mark members as static
+
+    /// <inheritdoc cref="ConfigHelper.ConfigPath"/>
     private string ConfigPath => ConfigHelper.ConfigPath;
+
+    /// <summary>
+    /// The runtime JSON configuration.
+    /// </summary>
+    //private string RuntimeConfig { get; set; }
+
+    /// <summary>
+    /// The list of detected displays.
+    /// </summary>
+    private string DisplayList { get; set; }
+
 #pragma warning restore CA1822 // Mark members as static
 #pragma warning restore IDE0079 // Remove unnecessary suppression
 
@@ -43,8 +60,29 @@ namespace TermBar.Views {
     internal SettingsView(Configuration.Json.TermBar config) : base(config) {
       this.config = config;
 
+      StringBuilder displayList = new();
+
+      foreach (KeyValuePair<string, Display> display in DisplayHelper.GetDisplays()) {
+        displayList.AppendLine(display.Key);
+      }
+
+      DisplayList = displayList.ToString();
+
       ApplyComputedStyles();
       InitializeComponent();
+
+      JsonFormatter.FormatJson(
+        RuntimeConfig,
+        JsonSerializer.Serialize(config, ConfigHelper.JsonSerializerOptions),
+        new(
+          defaultColor: PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Lavender].WUIColor,
+          objectColor: PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Text].WUIColor,
+          stringColor: PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Sky].WUIColor,
+          numberColor: PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Maroon].WUIColor,
+          booleanColor: PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Blue].WUIColor,
+          nullColor: PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Mauve].WUIColor
+        )
+      );
     }
 
     /// <summary>
@@ -54,6 +92,8 @@ namespace TermBar.Views {
       ApplyComputedGridStyle();
       ApplyComputedStackPanelStyle();
       ApplyComputedProseStyle();
+      ApplyComputedRichEditBoxStyle();
+      ApplyComputedTextBoxStyle();
       ApplyComputedAccentStyles();
     }
 
@@ -93,9 +133,46 @@ namespace TermBar.Views {
       StylesHelper.MergeWithAncestor(textBlockStyle, this, typeof(TextBlock));
 
       textBlockStyle.Setters.Add(new Setter(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Left));
-      textBlockStyle.Setters.Add(new Setter(TextBlock.PaddingProperty, $"0,{config.Padding / 2}"));
+      textBlockStyle.Setters.Add(new Setter(TextBlock.TextWrappingProperty, TextWrapping.WrapWholeWords));
 
       Resources["Prose"] = textBlockStyle;
+    }
+
+    /// <summary>
+    /// Applies computed styles to <see cref="RichEditBox"/>.
+    /// </summary>
+    private void ApplyComputedRichEditBoxStyle() {
+      Style richEditBoxStyle = new(typeof(RichEditBox));
+
+      StylesHelper.MergeWithAncestor(richEditBoxStyle, (Border) Content, typeof(RichEditBox));
+
+      richEditBoxStyle.Setters.Add(new Setter(RichEditBox.FontFamilyProperty, new FontFamily(config.FontFamily)));
+      richEditBoxStyle.Setters.Add(new Setter(RichEditBox.FontSizeProperty, config.FontSize));
+      richEditBoxStyle.Setters.Add(new Setter(RichEditBox.IsReadOnlyProperty, true));
+      richEditBoxStyle.Setters.Add(new Setter(RichEditBox.AcceptsReturnProperty, true));
+      richEditBoxStyle.Setters.Add(new Setter(ScrollViewer.VerticalScrollBarVisibilityProperty, ScrollBarVisibility.Auto));
+      richEditBoxStyle.Setters.Add(new Setter(ScrollViewer.HorizontalScrollBarVisibilityProperty, ScrollBarVisibility.Auto));
+
+      Resources[typeof(RichEditBox)] = richEditBoxStyle;
+    }
+
+    /// <summary>
+    /// Applies computed styles to <see cref="TextBox"/>.
+    /// </summary>
+    private void ApplyComputedTextBoxStyle() {
+      Style textBoxStyle = new(typeof(TextBox));
+
+      StylesHelper.MergeWithAncestor(textBoxStyle, (Border) Content, typeof(TextBox));
+
+      textBoxStyle.Setters.Add(new Setter(TextBox.FontFamilyProperty, new FontFamily(config.FontFamily)));
+      textBoxStyle.Setters.Add(new Setter(TextBox.FontSizeProperty, config.FontSize));
+      textBoxStyle.Setters.Add(new Setter(TextBox.ForegroundProperty, PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Text].SolidColorBrush));
+      textBoxStyle.Setters.Add(new Setter(TextBox.IsReadOnlyProperty, true));
+      textBoxStyle.Setters.Add(new Setter(TextBox.AcceptsReturnProperty, true));
+      textBoxStyle.Setters.Add(new Setter(ScrollViewer.VerticalScrollBarVisibilityProperty, ScrollBarVisibility.Auto));
+      textBoxStyle.Setters.Add(new Setter(ScrollViewer.HorizontalScrollBarVisibilityProperty, ScrollBarVisibility.Auto));
+
+      Resources[typeof(TextBox)] = textBoxStyle;
     }
 
     /// <summary>
@@ -161,13 +238,13 @@ namespace TermBar.Views {
     private void ShowInExplorer_Click(object sender, RoutedEventArgs e) => Process.Start(explorer, $"/select,\"{ConfigPath}\"");
 
     /// <summary>
-    /// Invoked when the user clicks the OK button.
+    /// Invoked when the user clicks the Close button.
     /// </summary>
     /// <param name="sender"><inheritdoc cref="RoutedEventHandler"
     /// path="/param[@name='sender']"/></param>
     /// <param name="e"><inheritdoc cref="RoutedEventHandler"
     /// path="/param[@name='e']"/></param>
-    private void OK_Click(object sender, RoutedEventArgs e) => Owner?.Close();
+    private void Close_Click(object sender, RoutedEventArgs e) => Owner?.Close();
 
     /// <summary>
     /// Invoked when the user clicks the exit button.
