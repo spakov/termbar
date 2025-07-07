@@ -1,76 +1,43 @@
-﻿using TermBar.Catppuccin;
+﻿using System.ComponentModel;
+using TermBar.Catppuccin;
 
 namespace TermBar.Configuration.Json.Modules {
-  /// <summary>
-  /// A TermBar clock configuration.
-  /// </summary>
+  [Description("A TermBar clock configuration.")]
   internal class Clock : IModule {
+    [Description("The order in which the module should be displayed on the TermBar.")]
     public int Order { get; set; } = int.MaxValue;
 
+    [Description("Whether the module should expand to take up as much space as possible.")]
     public bool Expand { get; set; } = false;
 
-    /// <summary>
-    /// The Catppuccin color to use for the clock icon.
-    /// </summary>
+    [Description("The Catppuccin color to use for the clock icon.")]
     public ColorEnum AccentColor { get; set; } = ColorEnum.Sapphire;
 
-    /// <summary>
-    /// The text to use as the clock icon.
-    /// </summary>
+    [Description("The text to use as the clock icon.")]
     public string Icon { get; set; } = "";
 
-    /// <summary>
-    /// The time format to use, as in
-    /// https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.
-    /// </summary>
+    [Description("The time format to use for the clock. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.")]
     public string TimeFormat { get; set; } = "h:mm tt";
 
-    /// <summary>
-    /// The clock update interval, in milliseconds.
-    /// </summary>
+    [Description("The clock update interval, in milliseconds.")]
     public uint UpdateInterval { get; set; } = 1000;
 
-    /// <summary>
-    /// Calendar configuration.
-    /// </summary>
-    /// <remarks>
-    /// <para>The calendar is displayed by clicking on the clock.</para>
-    /// <para>Set to <c>null</c> to disable the calendar.</para>
-    /// </remarks>
+    [Description("Clock module calendar configuration. Set to null to disable the calendar. The calendar can be displayed by clicking on the clock module.")]
     public Calendar? Calendar { get; set; } = new();
   }
 
-  /// <summary>
-  /// A TermBar clock calendar configuration.
-  /// </summary>
+  [Description("The clock module calendar configuration.")]
   internal class Calendar {
-    /// <summary>
-    /// The date format to use, as in
-    /// https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings,
-    /// for today's day.
-    /// </summary>
+    [Description("The date format to use for today's day in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.")]
     public string TodayDayFormat { get; set; } = "dddd";
 
-    /// <summary>
-    /// The date format to use, as in
-    /// https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings,
-    /// for today's date.
-    /// </summary>
+    [Description("The date format to use for today's date in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.")]
     public string TodayDateFormat { get; set; } = "MMMM d, yyyy";
 
-    /// <summary>
-    /// The date format to use, as in
-    /// https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings,
-    /// for the header for months other than today's month.
-    /// </summary>
+    [Description("The date format to use for months other than the current month in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.")]
     public string OtherDateFormat { get; set; } = "MMMM yyyy";
 
-    /// <summary>
-    /// The date format to use, as in
-    /// https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings,
-    /// for months other than today's month in last month and next month
-    /// buttons.
-    /// </summary>
+    [Description("The date format to use for months other than the current month in the last month and next month buttons in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.")]
     public string OtherMonthFormat { get; set; } = "MMM";
   }
 }

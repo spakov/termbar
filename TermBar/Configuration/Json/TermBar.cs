@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using TermBar.Catppuccin;
 using Windows.Win32.Foundation;
 
 namespace TermBar.Configuration.Json {
-  /// <summary>
-  /// A TermBar configuration for a display.
-  /// </summary>
+  [Description("The TermBar configuration for a display.")]
   internal class TermBar {
     /// <summary>
     /// The <see cref="WindowManagement.Display"/> this <see cref="TermBar"/>
@@ -23,117 +22,64 @@ namespace TermBar.Configuration.Json {
     /// it.</remarks>
     internal HWND? HWnd { get; set; }
 
-    /// <summary>
-    /// The Catppuccin flavor to use.
-    /// </summary>
+    [Description("The Catppuccin flavor to use.")]
     public FlavorEnum Flavor { get; set; } = FlavorEnum.Mocha;
 
-    /// <summary>
-    /// The Catppuccin color to use as the background.
-    /// </summary>
+    [Description("The Catppuccin color to use for the background.")]
     public ColorEnum Background { get; set; } = ColorEnum.Crust;
 
-    /// <summary>
-    /// The corner radius to apply to the window.
-    /// </summary>
+    [Description("The corner radius to apply to windows.")]
     public uint CornerRadius { get; set; } = 12;
 
-    /// <summary>
-    /// The font family to use.
-    /// </summary>
+    [Description("The font family to use.")]
     public string FontFamily { get; set; } = "0xProto Nerd Font Propo";
 
-    /// <summary>
-    /// The font size to use.
-    /// </summary>
+    [Description("The font size to use.")]
     public double FontSize { get; set; } = 16.0;
 
-    /// <summary>
-    /// The Catppuccin color to use for text.
-    /// </summary>
+    [Description("The Catppuccin color to use for text.")]
     public ColorEnum TextColor { get; set; } = ColorEnum.Text;
 
-    /// <summary>
-    /// The Catppuccin color to use as the background of accent items.
-    /// </summary>
-    /// <remarks>Set to <c>null</c> to use the default system
-    /// behavior.</remarks>
+    [Description("The Catppuccin color to use for the background of accent items. Set to null to use the default system behavior.")]
     public ColorEnum? AccentBackground { get; set; } = ColorEnum.Mantle;
 
-    /// <summary>
-    /// The Catppuccin color to use as an accent color.
-    /// </summary>
-    /// <remarks>Set to <c>null</c> to use the default system
-    /// behavior.</remarks>
+    [Description("The Catppuccin color to use as an accent. Set to null to use the default system behavior.")]
     public ColorEnum? AccentColor { get; set; } = ColorEnum.Mauve;
 
-    /// <summary>
-    /// The Catppuccin color to use as the background of selected items.
-    /// </summary>
-    /// <remarks>Set to <c>null</c> to use the default system
-    /// behavior.</remarks>
+    [Description("The Catppuccin color to use for the background of selected items. Set to null to use the default system behavior.")]
     public ColorEnum? SelectedBackground { get; set; } = ColorEnum.Surface0;
 
-    /// <summary>
-    /// The Catppuccin color to use for selected items.
-    /// </summary>
-    /// <remarks>Set to <c>null</c> to use the default system
-    /// behavior.</remarks>
+    [Description("The Catppuccin color to use for selected items. Set to null to use the default system behavior.")]
     public ColorEnum? SelectedColor { get; set; } = ColorEnum.Mauve;
 
-    /// <summary>
-    /// The Catppuccin color to use as the background of clicked items.
-    /// </summary>
-    /// <remarks>Set to <c>null</c> to use the default system
-    /// behavior.</remarks>
+    [Description("The Catppuccin color to use for the background of clicked items. Set to null to use the default system behavior.")]
     public ColorEnum? ClickedBackground { get; set; } = ColorEnum.Surface1;
 
-    /// <summary>
-    /// The Catppuccin color to use for clicked items.
-    /// </summary>
-    /// <remarks>Set to <c>null</c> to use the default system
-    /// behavior.</remarks>
+    [Description("The Catppuccin color to use for clicked items. Set to null to use the default system behavior.")]
     public ColorEnum? ClickedColor { get; set; } = ColorEnum.Subtext1;
 
-    /// <summary>
-    /// The configuration for window list modules.
-    /// </summary>
+    [Description("The window list configuration.")]
     public WindowList WindowList { get; set; } = new();
 
-    /// <inheritdoc cref="WindowManagement.Location"/>
+    [Description("The window location.")]
     public WindowManagement.Location Location { get; set; } = WindowManagement.Location.Top;
 
-    /// <summary>
-    /// Whether to consider display DPI.
-    /// </summary>
+    [Description("Whether to consider display DPI.")]
     public bool DpiAware { get; set; } = true;
 
-    /// <summary>
-    /// The margin, in pixels, between the top or bottom screen edge and the
-    /// TermBar window.
-    /// </summary>
+    [Description("The margin, in pixels, between the top or bottom screen edge and the TermBar window.")]
     public uint Margin { get; set; } = 16;
 
-    /// <summary>
-    /// The padding, in pixels, between components of the TermBar.
-    /// </summary>
+    [Description("The padding, in pixels, between components of the TermBar.")]
     public uint Padding { get; set; } = 16;
 
-    /// <summary>
-    /// The minimum width, as a percentage of the total screen width, of the
-    /// TermBar window.
-    /// </summary>
-    /// <remarks>Must be between 0 and 1.</remarks>
+    [Description("The minimum width, as a percentage of the total screen width, of the TermBar window. Must be between 0.0 and 1.0.")]
     public double MinimumWidthPercentage { get; set; } = 0.25;
 
-    /// <summary>
-    /// The window height, in pixels.
-    /// </summary>
+    [Description("The TermBar window height, in pixels.")]
     public uint Height { get; set; } = 48;
 
-    /// <summary>
-    /// The array of modules.
-    /// </summary>
+    [Description("TermBar modules.")]
     public List<IModule>? Modules { get; set; } = [
       new Modules.Launcher(),
       new Modules.Terminal(),

@@ -1,27 +1,22 @@
-﻿using TermBar.Catppuccin;
+﻿using System.ComponentModel;
+using TermBar.Catppuccin;
 
 namespace TermBar.Configuration.Json.Modules {
-  /// <summary>
-  /// A TermBar static text configuration.
-  /// </summary>
+  [Description("A TermBar static text display configuration.")]
   internal class StaticText : IModule {
+    [Description("The order in which the module should be displayed on the TermBar.")]
     public int Order { get; set; } = 0;
 
+    [Description("Whether the module should expand to take up as much space as possible.")]
     public bool Expand { get; set; } = false;
 
-    /// <summary>
-    /// The Catppuccin color to use for the icon.
-    /// </summary>
+    [Description("The Catppuccin color to use for the icon.")]
     public ColorEnum AccentColor { get; set; } = ColorEnum.Green;
 
-    /// <summary>
-    /// The text to use as the icon.
-    /// </summary>
+    [Description("The text to use as the icon.")]
     public string Icon { get; set; } = "";
 
-    /// <summary>
-    /// The text to display.
-    /// </summary>
+    [Description("The static text to display.")]
     public string Text { get; set; } = "Hello, world!";
   }
 }

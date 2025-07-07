@@ -1,339 +1,185 @@
-﻿using TermBar.Catppuccin;
+﻿using System.ComponentModel;
+using TermBar.Catppuccin;
 using Terminal;
 
 namespace TermBar.Configuration.Json.Modules {
-  /// <summary>
-  /// A TermBar terminal configuration.
-  /// </summary>
-  /// <remarks>For all nullable properties: <see langword="null"/> means the
-  /// default TerminalControl behavior takes effect.</remarks>
+  [Description("A TermBar terminal configuration. For all objects, a value of null means the default TerminalControl behavior takes effect, unless otherwise noted.")]
   internal class Terminal : IModule {
+    [Description("The order in which the module should be displayed on the TermBar.")]
     public int Order { get; set; } = 0;
 
+    [Description("Whether the module should expand to take up as much space as possible.")]
     public bool Expand { get; set; } = false;
 
-    /// <summary>
-    /// The Catppuccin color to use for the terminal icon.
-    /// </summary>
+    [Description("The Catppuccin color to use as an accent.")]
     public ColorEnum AccentColor { get; set; } = ColorEnum.Lavender;
 
-    /// <summary>
-    /// The text to use as the terminal icon.
-    /// </summary>
+    [Description("The text to use as the terminal icon.")]
     public string Icon { get; set; } = "";
 
-    /// <summary>
-    /// The text to use as the terminal visual bell icon.
-    /// </summary>
-    /// <remarks>Not used if the visual bell is disabled.</remarks>
+    [Description("The text to use as the terminal visual bell icon when the visual bell is ringing. Has no effect if UseVisualBell is false.")]
     public string VisualBellIcon { get; set; } = "";
 
-    /// <summary>
-    /// The command to run in the terminal.
-    /// </summary>
-    /// <remarks>This is typically a shell.</remarks>
-    public string Command { get; set; } = "pwsh.exe";
+    [Description("The command to run in the terminal. This is typically a shell.")]
+    public string Command { get; set; } = "powershell";
 
-    /// <summary>
-    /// Whether to restart <see cref="Command"/> when it exits normally.
-    /// </summary>
+    [Description("Whether to restart Command when it exits normally.")]
     public bool RestartOnExit { get; set; } = true;
 
-    /// <summary>
-    /// The default window title.
-    /// </summary>
-    /// <remarks>The window title can be viewed by mousing over the terminal
-    /// icon.</remarks>
+    [Description("The default terminal window title. The terminal window title can be viewed as a tooltip of the terminal icon.")]
     public string DefaultWindowTitle { get; set; } = "TermBar";
 
-    /// <summary>
-    /// The number of rows in the terminal.
-    /// </summary>
+    [Description("The number of rows in the terminal.")]
     public uint Rows { get; set; } = 3;
 
-    /// <summary>
-    /// The number of columns in the terminal.
-    /// </summary>
+    [Description("The number of columns in the terminal.")]
     public uint Columns { get; set; } = 60;
 
-    /// <summary>
-    /// The default tab width in the terminal.
-    /// </summary>
-    /// <remarks>Practically speaking, this is virtually irrelevant
-    /// today.</remarks>
+    [Description("The default tab width in the terminal. (Practically speaking, this is virtually irrelevant today.)")]
     public int? TabWidth { get; set; } = 8;
 
-    /// <summary>
-    /// The text antialiasing style to apply.
-    /// </summary>
-    /// <remarks>Unicode box-drawing characters are always drawn without
-    /// antialiasing.</remarks>
+    [Description("The text antialiasing style to apply in the terminal. Unicode box-drawing characters are always drawn without antialiasing.")]
     public TextAntialiasingStyles? TextAntialiasing { get; set; } = TextAntialiasingStyles.Grayscale;
 
-    /// <summary>
-    /// Whether to draw emoji in full color using the Segoe UI Emoji font.
-    /// </summary>
+    [Description("Whether to draw emoji in full color in the terminal using the Segoe UI Emoji font.")]
     public bool? FullColorEmoji { get; set; } = false;
 
-    /// <summary>
-    /// Whether to use background color erase.
-    /// </summary>
-    /// <remarks>See <see
-    /// href="https://sunaku.github.io/vim-256color-bce.html"/> for a
-    /// description of what this does.</remarks>
+    [Description("Whether to use background color erase in the terminal. See https://sunaku.github.io/vim-256color-bce.html for a description of what this does.")]
     public bool? UseBackgroundColorErase { get; set; } = true;
 
-    /// <summary>
-    /// Whether to render the default background color as invisible.
-    /// </summary>
+    [Description("Whether to render the default background color as invisible in the terminal.")]
     public bool? BackgroundIsInvisible { get; set; } = true;
 
-    /// <summary>
-    /// Whether to use the visual bell rather than playing a sound when the
-    /// terminal bell rings.
-    /// </summary>
-    /// <remarks>The bell causes <see cref="VisualBellIcon"/> to be displayed
-    /// for <see cref="VisualBellDisplayTime"/> milliseconds.</remarks>
+    [Description("Whether to use the visual bell in the terminal. If this is true, VisualBellIcon is displayed for VisualBellDisplayTime milliseconds when the terminal bell rings. If this is false, a sound plays instead.")]
     public bool? UseVisualBell { get; set; } = true;
 
-    /// <summary>
-    /// The number of milliseconds to display <see cref="VisualBellIcon"/> when
-    /// the visual bell rings.
-    /// </summary>
-    /// <remarks>Does nothing if <see cref="UseVisualBell"/> is <see
-    /// langword="false"/>.</remarks>
+    [Description("The number of milliseconds to display the visual bell in the terminal. Does nothing if UseVisualBell is false.")]
     public int VisualBellDisplayTime { get; set; } = 1000;
 
-    /// <summary>
-    /// Whether to show the context menu when right-clicking the terminal.
-    /// </summary>
+    [Description("Whether to show the context menu when right clicking the terminal.")]
     public bool? UseContextMenu { get; set; } = true;
 
-    /// <summary>
-    /// Whether to show the extended context menu when right-clicking the
-    /// terminal.
-    /// </summary>
-    /// <remarks>Does nothing if <see cref="UseContextMenu"/> is <see
-    /// langword="false"/>.</remarks>
+    [Description("Whether to show the extended context menu when right clicking the terminal. Does nothing if UseContextMenu is false.")]
     public bool? UseExtendedContextMenu { get; set; } = true;
 
-    /// <summary>
-    /// The cursor style to use by default.
-    /// </summary>
+    [Description("The default cursor style to use in the terminal.")]
     public CursorStyles? CursorStyle { get; set; } = CursorStyles.Underline;
 
-    /// <summary>
-    /// The cursor thickness, as a fraction of the font size, between 0.0 and
-    /// 1.0.
-    /// </summary>
-    /// <remarks>Does not affect the block cursor.</remarks>
+    [Description("The cursor thickness in the terminal, as a fraction of the font size, between 0.0 and 1.0. Does not affect the block cursor.")]
     public double? CursorThickness { get; set; } = 0.1;
 
-    /// <summary>
-    /// Whether the cursor should blink by default.
-    /// </summary>
+    [Description("Whether the cursor should blink by default in the terminal.")]
     public bool? CursorBlink { get; set; } = true;
 
-    /// <summary>
-    /// The number of milliseconds that pass between the blinking cursor being
-    /// displayed and not displayed.
-    /// </summary>
-    /// <remarks>Has no effect if <see cref="CursorBlink"/> is <see
-    /// langword="false"/>.</remarks>
+    [Description("The number of milliseconds that pass between the blinking cursor being displayed in the terminal and hidden. Has no effect if CursorBlink is false.")]
     public int? CursorBlinkRate { get; set; } = 500;
 
-    /// <summary>
-    /// The cursor color.
-    /// </summary>
+    [Description("The cursor color in the terminal.")]
     public ColorEnum? CursorColor { get; set; } = ColorEnum.Text;
 
-    /// <summary>
-    /// The number of scrollback lines.
-    /// </summary>
+    [Description("The number of scrollback lines in the terminal.")]
     public int? ScrollbackLines { get; set; } = 5000;
 
-    /// <summary>
-    /// The number of lines to scroll per large scrollback.
-    /// </summary>
-    /// <remarks>A large scrollback is invoked with Shift-Page Up and reversed
-    /// with Shift-Page Down.</remarks>
+    [Description("The number of scrollback lines per large scrollback in the terminal. A large scrollback is invoked with Shift-Page Up and reversed with Shift-Page Down.")]
     public int? LinesPerScrollback { get; set; } = 12;
 
-    /// <summary>
-    /// The number of lines to scroll per small scrollback.
-    /// </summary>
-    /// <remarks>A large scrollback is invoked with Shift-Up and reversed with
-    /// Shift-Down.</remarks>
+    [Description("The number of scrollback lines per small scrollback in the terminal. A small scrollback is invoked with Shift-Up and reversed with Shift-Down.")]
     public int? LinesPerSmallScrollback { get; set; } = 1;
 
-    /// <summary>
-    /// The number of lines to scroll per mouse wheel scrollback.
-    /// </summary>
-    /// <remarks>A mouse wheel scrollback is invoked with mouse wheel up and
-    /// reversed with mouse wheel down.</remarks>
+    [Description("The number of scrollback lines per mouse wheel scroll in the terminal. A mouse wheel scroll is invoked with mouse wheel up and reversed with mouse wheel down.")]
     public int? LinesPerWheelScrollback { get; set; } = 8;
 
-    /// <summary>
-    /// Whether to copy selected terminal text when the left mouse button is
-    /// released.
-    /// </summary>
-    /// <remarks>If this is <see langword="false"/>, the selection can be
-    /// copied with Ctrl-Shift-C.</remarks>
+    [Description("Whether to copy selected text in the terminal when the left mouse button is released. If this is false, the selection can be copied with Ctrl-Shift-C.")]
     public bool? CopyOnMouseUp { get; set; } = true;
 
-    /// <summary>
-    /// Whether to paste from the clipboard when the terminal is middle
-    /// clicked.
-    /// </summary>
+    [Description("Whether to paste text in the terminal when the terminal is middle clicked. Text can also be pasted with Ctrl-Shift-V.")]
     public bool? PasteOnMiddleClick { get; set; } = true;
 
-    /// <summary>
-    /// Whether to paste from the clipboard when the terminal is right
-    /// clicked.
-    /// </summary>
-    /// <remarks>If this is <see langword="true"/>, the context menu can be
-    /// accessed with Ctrl-Right Click (if <see cref="UseContextMenu"/> is
-    /// <see langword="true"/>).</remarks>
+    [Description("Whether to paste text in the terminal when the terminal is right clicked. Text can also be pasted with Ctrl-Shift-V. If this is true, the context menu can be displayed by right clicking the terminal while pressing Ctrl (assuming UseContextMenu is true).")]
     public bool? PasteOnRightClick { get; set; } = false;
 
-    /// <summary>
-    /// The line ending to use for lines copied from the terminal.
-    /// </summary>
+    [Description("The line ending to use when copying text in the terminal.")]
     public string? CopyNewline { get; set; } = "\r\n";
 
-    /// <summary>
-    /// The ANSI colors to use for the terminal.
-    /// </summary>
+    [Description("The ANSI colors to use in the terminal.")]
     public TerminalColors Colors { get; set; } = new();
   }
 
-  /// <summary>
-  /// A TermBar terminal colors configuration.
-  /// </summary>
+  [Description("Terminal ANSI colors.")]
   internal class TerminalColors {
-    /// <summary>
-    /// The terminal default ANSI colors.
-    /// </summary>
+    [Description("The default ANSI colors to use in the terminal.")]
     public DefaultColors DefaultColors { get; set; } = new();
 
-    /// <summary>
-    /// The terminal standard ANSI colors.
-    /// </summary>
+    [Description("The standard (non-bright) ANSI colors to use in the terminal.")]
     public StandardColors StandardColors { get; set; } = new();
 
-    /// <summary>
-    /// The terminal bright ANSI colors.
-    /// </summary>
+    [Description("The bright ANSI colors to use in the terminal.")]
     public BrightColors BrightColors { get; set; } = new();
   }
 
-  /// <summary>
-  /// A TermBar terminal default colors configuration.
-  /// </summary>
+  [Description("Terminal default ANSI colors.")]
   internal class DefaultColors {
-    /// <summary>
-    /// The default background color.
-    /// </summary>
+    [Description("The default background color to use in the terminal.")]
     public AnsiColorEnum DefaultBackgroundColor { get; set; } = AnsiColorEnum.Black;
 
-    /// <summary>
-    /// The default foreground color.
-    /// </summary>
+    [Description("The default foreground color to use in the terminal.")]
     public AnsiColorEnum DefaultForegroundColor { get; set; } = AnsiColorEnum.White;
 
-    /// <summary>
-    /// The default underline color.
-    /// </summary>
+    [Description("The default underline color to use in the terminal.")]
     public AnsiColorEnum DefaultUnderlineColor { get; set; } = AnsiColorEnum.White;
   }
 
-  /// <summary>
-  /// A TermBar terminal standard colors configuration.
-  /// </summary>
+  [Description("Terminal standard (non-bright) ANSI colors.")]
   internal class StandardColors {
-    /// <summary>
-    /// Black.
-    /// </summary>
+    [Description("Black.")]
     public AnsiColorEnum Black { get; set; } = AnsiColorEnum.Black;
 
-    /// <summary>
-    /// Red.
-    /// </summary>
+    [Description("Red.")]
     public AnsiColorEnum Red { get; set; } = AnsiColorEnum.Red;
 
-    /// <summary>
-    /// Green.
-    /// </summary>
+    [Description("Green.")]
     public AnsiColorEnum Green { get; set; } = AnsiColorEnum.Green;
 
-    /// <summary>
-    /// Yellow.
-    /// </summary>
+    [Description("Yellow.")]
     public AnsiColorEnum Yellow { get; set; } = AnsiColorEnum.Yellow;
 
-    /// <summary>
-    /// Blue.
-    /// </summary>
+    [Description("Blue.")]
     public AnsiColorEnum Blue { get; set; } = AnsiColorEnum.Blue;
 
-    /// <summary>
-    /// Magenta.
-    /// </summary>
+    [Description("Magenta.")]
     public AnsiColorEnum Magenta { get; set; } = AnsiColorEnum.Magenta;
 
-    /// <summary>
-    /// Cyan.
-    /// </summary>
+    [Description("Cyan.")]
     public AnsiColorEnum Cyan { get; set; } = AnsiColorEnum.Cyan;
 
-    /// <summary>
-    /// White.
-    /// </summary>
+    [Description("White.")]
     public AnsiColorEnum White { get; set; } = AnsiColorEnum.White;
   }
 
-  /// <summary>
-  /// A TermBar terminal bright colors configuration.
-  /// </summary>
+  [Description("Terminal bright ANSI colors.")]
   internal class BrightColors {
-    /// <summary>
-    /// Bright black.
-    /// </summary>
+    [Description("Bright black.")]
     public AnsiColorEnum BrightBlack { get; set; } = AnsiColorEnum.BrightBlack;
 
-    /// <summary>
-    /// Bright red.
-    /// </summary>
+    [Description("Bright red.")]
     public AnsiColorEnum BrightRed { get; set; } = AnsiColorEnum.BrightRed;
 
-    /// <summary>
-    /// Bright green.
-    /// </summary>
+    [Description("Bright green.")]
     public AnsiColorEnum BrightGreen { get; set; } = AnsiColorEnum.BrightGreen;
 
-    /// <summary>
-    /// Bright yellow.
-    /// </summary>
+    [Description("Bright yellow.")]
     public AnsiColorEnum BrightYellow { get; set; } = AnsiColorEnum.BrightYellow;
 
-    /// <summary>
-    /// Bright blue.
-    /// </summary>
+    [Description("Bright blue.")]
     public AnsiColorEnum BrightBlue { get; set; } = AnsiColorEnum.BrightBlue;
 
-    /// <summary>
-    /// Bright magenta.
-    /// </summary>
+    [Description("Bright magenta.")]
     public AnsiColorEnum BrightMagenta { get; set; } = AnsiColorEnum.BrightMagenta;
 
-    /// <summary>
-    /// Bright cyan.
-    /// </summary>
+    [Description("Bright cyan.")]
     public AnsiColorEnum BrightCyan { get; set; } = AnsiColorEnum.BrightCyan;
 
-    /// <summary>
-    /// Bright white.
-    /// </summary>
+    [Description("Bright white.")]
     public AnsiColorEnum BrightWhite { get; set; } = AnsiColorEnum.BrightWhite;
   }
 }

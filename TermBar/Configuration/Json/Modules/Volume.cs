@@ -1,63 +1,43 @@
-﻿using TermBar.Catppuccin;
+﻿using System.ComponentModel;
+using TermBar.Catppuccin;
 
 namespace TermBar.Configuration.Json.Modules {
-  /// <summary>
-  /// A TermBar volume configuration.
-  /// </summary>
+  [Description("A TermBar volume level configuration.")]
   internal class Volume : IModule {
+    [Description("The order in which the module should be displayed on the TermBar.")]
     public int Order { get; set; } = int.MaxValue - 1;
 
+    [Description("Whether the module should expand to take up as much space as possible.")]
     public bool Expand { get; set; } = false;
 
-    /// <summary>
-    /// The Catppuccin color to use for the volume icon.
-    /// </summary>
+    [Description("The Catppuccin color to use for the volume icon.")]
     public ColorEnum AccentColor { get; set; } = ColorEnum.Yellow;
 
-    /// <summary>
-    /// The text to use as the volume icon.
-    /// </summary>
+    [Description("The text to use as the volume icon.")]
     public string Icon { get; set; } = "";
 
-    /// <summary>
-    /// The text to use as the muted volume icon.
-    /// </summary>
+    [Description("The text to use as the muted volume icon.")]
     public string MutedIcon { get; set; } = "";
 
-    /// <summary>
-    /// The numeric format to use, as in
-    /// https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings.
-    /// </summary>
+    [Description("The numeric format to use for the volume percentage. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings.")]
     public string Format { get; set; } = "{0:N0}%";
 
-    /// <summary>
-    /// The text to use when the volume is muted.
-    /// </summary>
-    /// <remarks>Set to <c>null</c> to use <see cref="Format"/>
-    /// instead.</remarks>
+    [Description("Text to be displayed in place of the volume level when muted. Set to null to always display the volume level.")]
     public string? Muted { get; set; } = "";
 
-    /// <summary>
-    /// Volume module interaction configuration.
-    /// </summary>
-    /// <remarks>Set to <c>null</c> to disable the interaction.</remarks>
+    [Description("Volume module interaction configuration. Set to null to disable interaction.")]
     public VolumeInteraction? VolumeInteraction { get; set; } = new();
   }
 
+  [Description("The volume module interaction configuration.")]
   internal class VolumeInteraction {
-    /// <summary>
-    /// Whether clicking the volume toggles the mute state.
-    /// </summary>
+    [Description("Whether clicking the volume module toggles the mute state.")]
     public bool ClickToToggleMute { get; set; } = true;
 
-    /// <summary>
-    /// Whether scrolling over the volume adjusts it.
-    /// </summary>
+    [Description("Whether scrolling over the volume module adjusts the volume level.")]
     public bool ScrollToAdjust { get; set; } = true;
 
-    /// <summary>
-    /// The volume percentage change per scroll.
-    /// </summary>
+    [Description("The volume level change per scroll. Does nothing if ScrollToAdjust is false.")]
     public uint PercentPerScroll { get; set; } = 2;
   }
 }

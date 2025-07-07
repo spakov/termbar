@@ -22,7 +22,6 @@ namespace TermBar.Configuration {
           TypeDiscriminatorPropertyName = module,
           IgnoreUnrecognizedTypeDiscriminators = false,
           UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FailSerialization,
-          // TODO: plugin infrastructure updates this eventually
           DerivedTypes = {
             new JsonDerivedType(typeof(Clock), typeof(Clock).Name),
             new JsonDerivedType(typeof(Cpu), typeof(Cpu).Name),

@@ -1,20 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace TermBar.Configuration.Json {
-  /// <summary>
-  /// The TermBar configuration file.
-  /// </summary>
+  [Description("The TermBar configuration.")]
   internal class Config {
-    /// <summary>
-    /// A list of displays.
-    /// </summary>
+    [Description("A list of displays.")]
     public required List<Display> Displays { get; set; }
 
-    /// <summary>
-    /// The directory to change to when starting.
-    /// </summary>
-    /// <remarks>Set to <see langword="null"/> to keep the directory inherited
-    /// from the parent process.</remarks>
+    [Description("The directory to change to when starting. Set to null to keep the directory inherited from the parent process.")]
     public string? StartDirectory { get; set; } = "%USERPROFILE%";
   }
 }

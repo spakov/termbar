@@ -1,49 +1,34 @@
-﻿using TermBar.Catppuccin;
+﻿using System.ComponentModel;
+using TermBar.Catppuccin;
 
 namespace TermBar.Configuration.Json.Modules {
-  /// <summary>
-  /// A TermBar window bar configuration.
-  /// </summary>
+  [Description("A TermBar window bar configuration.")]
   internal class WindowBar : IModule {
+    [Description("The order in which the module should be displayed on the TermBar.")]
     public int Order { get; set; } = 100;
 
+    [Description("Whether the module should expand to take up as much space as possible.")]
     public bool Expand { get; set; } = true;
 
-    /// <summary>
-    /// The Catppuccin color to use for window icons.
-    /// </summary>
+    [Description("The Catppuccin color to use for window icon colors by default.")]
     public ColorEnum AccentColor { get; set; } = ColorEnum.Mauve;
 
-    /// <summary>
-    /// The text to use as window icons by default.
-    /// </summary>
+    [Description("The text to use as window icons by default.")]
     public string Icon { get; set; } = "•";
 
-    /// <summary>
-    /// Windows configuration.
-    /// </summary>
+    [Description("Windows configuration.")]
     public Windows? Windows { get; set; } = new();
   }
 
-  /// <summary>
-  /// A TermBar window bar windows configuration.
-  /// </summary>
+  [Description("A TermBar window bar windows configuration.")]
   internal class Windows {
-    /// <summary>
-    /// Keep windows set to a fixed size, in pixels.
-    /// </summary>
-    /// <remarks>Set to <c>null</c> for variable size.</remarks>
+    [Description("Whether to display windows as a fixed size.")]
     public uint? FixedSize { get; set; } = null;
 
-    /// <summary>
-    /// The maximum length of a window, in pixels.
-    /// </summary>
-    /// <remarks>Set to <c>null</c> for no maximum length.</remarks>
+    [Description("The maximum length of a window, in pixels.")]
     public uint? MaxLength { get; set; } = 300;
 
-    /// <summary>
-    /// Whether the window name should be truncated with … if it's too long.
-    /// </summary>
+    [Description("Whether the window name should be truncated with … if it's too long.")]
     public bool NiceTruncation { get; set; } = true;
   }
 }

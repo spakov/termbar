@@ -73,7 +73,7 @@ namespace TermBar.Views {
 
       JsonFormatter.FormatJson(
         RuntimeConfig,
-        JsonSerializer.Serialize(config, ConfigHelper.JsonSerializerOptions),
+        JsonSerializer.Serialize(App.Config, ConfigHelper.JsonSerializerOptions),
         new(
           defaultColor: PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Lavender].WUIColor,
           objectColor: PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Text].WUIColor,

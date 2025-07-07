@@ -1,4 +1,5 @@
-﻿using TermBar.Catppuccin;
+﻿using System.ComponentModel;
+using TermBar.Catppuccin;
 
 namespace TermBar.Configuration.Json {
   /// <summary>

@@ -1,0 +1,1759 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "The TermBar configuration.",
+  "type": "object",
+  "properties": {
+    "Displays": {
+      "description": "A list of displays.",
+      "type": "array",
+      "items": {
+        "description": "A display. A TermBar window will be shown on each configured display.",
+        "type": "object",
+        "properties": {
+          "Id": {
+            "description": "The display ID. These can be viewed in the TermBar settings.",
+            "type": "string"
+          },
+          "TermBar": {
+            "description": "The TermBar configuration for the display.",
+            "type": "object",
+            "properties": {
+              "Flavor": {
+                "description": "The Catppuccin flavor to use.",
+                "enum": [
+                  "Latte",
+                  "Frappe",
+                  "Macchiato",
+                  "Mocha"
+                ]
+              },
+              "Background": {
+                "description": "The Catppuccin color to use for the background.",
+                "enum": [
+                  "Rosewater",
+                  "Flamingo",
+                  "Pink",
+                  "Mauve",
+                  "Red",
+                  "Maroon",
+                  "Peach",
+                  "Yellow",
+                  "Green",
+                  "Teal",
+                  "Sky",
+                  "Sapphire",
+                  "Blue",
+                  "Lavender",
+                  "Text",
+                  "Subtext1",
+                  "Subtext0",
+                  "Overlay2",
+                  "Overlay1",
+                  "Overlay0",
+                  "Surface2",
+                  "Surface1",
+                  "Surface0",
+                  "Base",
+                  "Mantle",
+                  "Crust"
+                ]
+              },
+              "CornerRadius": {
+                "description": "The corner radius to apply to windows.",
+                "type": "integer"
+              },
+              "FontFamily": {
+                "description": "The font family to use.",
+                "type": "string"
+              },
+              "FontSize": {
+                "description": "The font size to use.",
+                "type": "number"
+              },
+              "TextColor": {
+                "description": "The Catppuccin color to use for text.",
+                "enum": [
+                  "Rosewater",
+                  "Flamingo",
+                  "Pink",
+                  "Mauve",
+                  "Red",
+                  "Maroon",
+                  "Peach",
+                  "Yellow",
+                  "Green",
+                  "Teal",
+                  "Sky",
+                  "Sapphire",
+                  "Blue",
+                  "Lavender",
+                  "Text",
+                  "Subtext1",
+                  "Subtext0",
+                  "Overlay2",
+                  "Overlay1",
+                  "Overlay0",
+                  "Surface2",
+                  "Surface1",
+                  "Surface0",
+                  "Base",
+                  "Mantle",
+                  "Crust"
+                ]
+              },
+              "AccentBackground": {
+                "description": "The Catppuccin color to use for the background of accent items. Set to null to use the default system behavior.",
+                "enum": [
+                  "Rosewater",
+                  "Flamingo",
+                  "Pink",
+                  "Mauve",
+                  "Red",
+                  "Maroon",
+                  "Peach",
+                  "Yellow",
+                  "Green",
+                  "Teal",
+                  "Sky",
+                  "Sapphire",
+                  "Blue",
+                  "Lavender",
+                  "Text",
+                  "Subtext1",
+                  "Subtext0",
+                  "Overlay2",
+                  "Overlay1",
+                  "Overlay0",
+                  "Surface2",
+                  "Surface1",
+                  "Surface0",
+                  "Base",
+                  "Mantle",
+                  "Crust",
+                  null
+                ]
+              },
+              "AccentColor": {
+                "description": "The Catppuccin color to use as an accent. Set to null to use the default system behavior.",
+                "enum": [
+                  "Rosewater",
+                  "Flamingo",
+                  "Pink",
+                  "Mauve",
+                  "Red",
+                  "Maroon",
+                  "Peach",
+                  "Yellow",
+                  "Green",
+                  "Teal",
+                  "Sky",
+                  "Sapphire",
+                  "Blue",
+                  "Lavender",
+                  "Text",
+                  "Subtext1",
+                  "Subtext0",
+                  "Overlay2",
+                  "Overlay1",
+                  "Overlay0",
+                  "Surface2",
+                  "Surface1",
+                  "Surface0",
+                  "Base",
+                  "Mantle",
+                  "Crust",
+                  null
+                ]
+              },
+              "SelectedBackground": {
+                "description": "The Catppuccin color to use for the background of selected items. Set to null to use the default system behavior.",
+                "enum": [
+                  "Rosewater",
+                  "Flamingo",
+                  "Pink",
+                  "Mauve",
+                  "Red",
+                  "Maroon",
+                  "Peach",
+                  "Yellow",
+                  "Green",
+                  "Teal",
+                  "Sky",
+                  "Sapphire",
+                  "Blue",
+                  "Lavender",
+                  "Text",
+                  "Subtext1",
+                  "Subtext0",
+                  "Overlay2",
+                  "Overlay1",
+                  "Overlay0",
+                  "Surface2",
+                  "Surface1",
+                  "Surface0",
+                  "Base",
+                  "Mantle",
+                  "Crust",
+                  null
+                ]
+              },
+              "SelectedColor": {
+                "description": "The Catppuccin color to use for selected items. Set to null to use the default system behavior.",
+                "enum": [
+                  "Rosewater",
+                  "Flamingo",
+                  "Pink",
+                  "Mauve",
+                  "Red",
+                  "Maroon",
+                  "Peach",
+                  "Yellow",
+                  "Green",
+                  "Teal",
+                  "Sky",
+                  "Sapphire",
+                  "Blue",
+                  "Lavender",
+                  "Text",
+                  "Subtext1",
+                  "Subtext0",
+                  "Overlay2",
+                  "Overlay1",
+                  "Overlay0",
+                  "Surface2",
+                  "Surface1",
+                  "Surface0",
+                  "Base",
+                  "Mantle",
+                  "Crust",
+                  null
+                ]
+              },
+              "ClickedBackground": {
+                "description": "The Catppuccin color to use for the background of clicked items. Set to null to use the default system behavior.",
+                "enum": [
+                  "Rosewater",
+                  "Flamingo",
+                  "Pink",
+                  "Mauve",
+                  "Red",
+                  "Maroon",
+                  "Peach",
+                  "Yellow",
+                  "Green",
+                  "Teal",
+                  "Sky",
+                  "Sapphire",
+                  "Blue",
+                  "Lavender",
+                  "Text",
+                  "Subtext1",
+                  "Subtext0",
+                  "Overlay2",
+                  "Overlay1",
+                  "Overlay0",
+                  "Surface2",
+                  "Surface1",
+                  "Surface0",
+                  "Base",
+                  "Mantle",
+                  "Crust",
+                  null
+                ]
+              },
+              "ClickedColor": {
+                "description": "The Catppuccin color to use for clicked items. Set to null to use the default system behavior.",
+                "enum": [
+                  "Rosewater",
+                  "Flamingo",
+                  "Pink",
+                  "Mauve",
+                  "Red",
+                  "Maroon",
+                  "Peach",
+                  "Yellow",
+                  "Green",
+                  "Teal",
+                  "Sky",
+                  "Sapphire",
+                  "Blue",
+                  "Lavender",
+                  "Text",
+                  "Subtext1",
+                  "Subtext0",
+                  "Overlay2",
+                  "Overlay1",
+                  "Overlay0",
+                  "Surface2",
+                  "Surface1",
+                  "Surface0",
+                  "Base",
+                  "Mantle",
+                  "Crust",
+                  null
+                ]
+              },
+              "WindowList": {
+                "description": "The window list configuration.",
+                "type": "object",
+                "properties": {
+                  "ProcessIconMap": {
+                    "description": "The map of window process names to ProcessIconMappings to apply to windows.",
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "additionalProperties": {
+                      "description": "A window list process icon mapping, which allows configuration of window attributes per process name.",
+                      "type": "object",
+                      "properties": {
+                        "IconColor": {
+                          "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module\u0027s AccentColor.",
+                          "enum": [
+                            "Rosewater",
+                            "Flamingo",
+                            "Pink",
+                            "Mauve",
+                            "Red",
+                            "Maroon",
+                            "Peach",
+                            "Yellow",
+                            "Green",
+                            "Teal",
+                            "Sky",
+                            "Sapphire",
+                            "Blue",
+                            "Lavender",
+                            "Text",
+                            "Subtext1",
+                            "Subtext0",
+                            "Overlay2",
+                            "Overlay1",
+                            "Overlay0",
+                            "Surface2",
+                            "Surface1",
+                            "Surface0",
+                            "Base",
+                            "Mantle",
+                            "Crust",
+                            null
+                          ]
+                        },
+                        "Icon": {
+                          "description": "The text to use as the window icon. Set to null to fall back to the window list module\u0027s Icon.",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "WindowNameIconMap": {
+                          "description": "The map of window name regular expressions to WindowNameIconMappings to apply to windows with this process name. These override IconColor and Icon. Set to null to disable this functionality.",
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "additionalProperties": {
+                            "description": "A window name icon mapping, which allows configuration of window attributes per regular expression matching the window name.",
+                            "type": "object",
+                            "properties": {
+                              "IconColor": {
+                                "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module\u0027s AccentColor.",
+                                "enum": [
+                                  "Rosewater",
+                                  "Flamingo",
+                                  "Pink",
+                                  "Mauve",
+                                  "Red",
+                                  "Maroon",
+                                  "Peach",
+                                  "Yellow",
+                                  "Green",
+                                  "Teal",
+                                  "Sky",
+                                  "Sapphire",
+                                  "Blue",
+                                  "Lavender",
+                                  "Text",
+                                  "Subtext1",
+                                  "Subtext0",
+                                  "Overlay2",
+                                  "Overlay1",
+                                  "Overlay0",
+                                  "Surface2",
+                                  "Surface1",
+                                  "Surface0",
+                                  "Base",
+                                  "Mantle",
+                                  "Crust",
+                                  null
+                                ]
+                              },
+                              "Icon": {
+                                "description": "The text to use as the window icon. Set to null to fall back to the window list module\u0027s Icon.",
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "Location": {
+                "description": "The window location.",
+                "enum": [
+                  "Top",
+                  "Bottom"
+                ]
+              },
+              "DpiAware": {
+                "description": "Whether to consider display DPI.",
+                "type": "boolean"
+              },
+              "Margin": {
+                "description": "The margin, in pixels, between the top or bottom screen edge and the TermBar window.",
+                "type": "integer"
+              },
+              "Padding": {
+                "description": "The padding, in pixels, between components of the TermBar.",
+                "type": "integer"
+              },
+              "MinimumWidthPercentage": {
+                "description": "The minimum width, as a percentage of the total screen width, of the TermBar window. Must be between 0.0 and 1.0.",
+                "type": "number"
+              },
+              "Height": {
+                "description": "The TermBar window height, in pixels.",
+                "type": "integer"
+              },
+              "Modules": {
+                "description": "TermBar modules.",
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "$module"
+                  ],
+                  "anyOf": [
+                    {
+                      "description": "A TermBar clock configuration.",
+                      "properties": {
+                        "$module": {
+                          "const": "Clock"
+                        },
+                        "Order": {
+                          "description": "The order in which the module should be displayed on the TermBar.",
+                          "type": "integer"
+                        },
+                        "Expand": {
+                          "description": "Whether the module should expand to take up as much space as possible.",
+                          "type": "boolean"
+                        },
+                        "AccentColor": {
+                          "description": "The Catppuccin color to use for the clock icon.",
+                          "enum": [
+                            "Rosewater",
+                            "Flamingo",
+                            "Pink",
+                            "Mauve",
+                            "Red",
+                            "Maroon",
+                            "Peach",
+                            "Yellow",
+                            "Green",
+                            "Teal",
+                            "Sky",
+                            "Sapphire",
+                            "Blue",
+                            "Lavender",
+                            "Text",
+                            "Subtext1",
+                            "Subtext0",
+                            "Overlay2",
+                            "Overlay1",
+                            "Overlay0",
+                            "Surface2",
+                            "Surface1",
+                            "Surface0",
+                            "Base",
+                            "Mantle",
+                            "Crust"
+                          ]
+                        },
+                        "Icon": {
+                          "description": "The text to use as the clock icon.",
+                          "type": "string"
+                        },
+                        "TimeFormat": {
+                          "description": "The time format to use for the clock. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
+                          "type": "string"
+                        },
+                        "UpdateInterval": {
+                          "description": "The clock update interval, in milliseconds.",
+                          "type": "integer"
+                        },
+                        "Calendar": {
+                          "description": "Clock module calendar configuration. Set to null to disable the calendar. The calendar can be displayed by clicking on the clock module.",
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "TodayDayFormat": {
+                              "description": "The date format to use for today\u0027s day in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
+                              "type": "string"
+                            },
+                            "TodayDateFormat": {
+                              "description": "The date format to use for today\u0027s date in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
+                              "type": "string"
+                            },
+                            "OtherDateFormat": {
+                              "description": "The date format to use for months other than the current month in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
+                              "type": "string"
+                            },
+                            "OtherMonthFormat": {
+                              "description": "The date format to use for months other than the current month in the last month and next month buttons in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "description": "A TermBar CPU monitor configuration.",
+                      "properties": {
+                        "$module": {
+                          "const": "Cpu"
+                        },
+                        "Order": {
+                          "description": "The order in which the module should be displayed on the TermBar.",
+                          "type": "integer"
+                        },
+                        "Expand": {
+                          "description": "Whether the module should expand to take up as much space as possible.",
+                          "type": "boolean"
+                        },
+                        "AccentColor": {
+                          "description": "The Catppuccin color to use for the CPU icon.",
+                          "enum": [
+                            "Rosewater",
+                            "Flamingo",
+                            "Pink",
+                            "Mauve",
+                            "Red",
+                            "Maroon",
+                            "Peach",
+                            "Yellow",
+                            "Green",
+                            "Teal",
+                            "Sky",
+                            "Sapphire",
+                            "Blue",
+                            "Lavender",
+                            "Text",
+                            "Subtext1",
+                            "Subtext0",
+                            "Overlay2",
+                            "Overlay1",
+                            "Overlay0",
+                            "Surface2",
+                            "Surface1",
+                            "Surface0",
+                            "Base",
+                            "Mantle",
+                            "Crust"
+                          ]
+                        },
+                        "Icon": {
+                          "description": "The text to use as the CPU icon.",
+                          "type": "string"
+                        },
+                        "Format": {
+                          "description": "The numeric format to use for the CPU percentage. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings.",
+                          "type": "string"
+                        },
+                        "Round": {
+                          "description": "Whether to round the CPU percentage before formatting.",
+                          "type": "boolean"
+                        },
+                        "UpdateInterval": {
+                          "description": "The CPU usage update interval, in milliseconds.",
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    {
+                      "description": "A TermBar launcher configuration.",
+                      "properties": {
+                        "$module": {
+                          "const": "Launcher"
+                        },
+                        "Order": {
+                          "description": "The order in which the module should be displayed on the TermBar.",
+                          "type": "integer"
+                        },
+                        "Expand": {
+                          "description": "Whether the module should expand to take up as much space as possible.",
+                          "type": "boolean"
+                        },
+                        "AccentColor": {
+                          "description": "The Catppuccin color to use as an accent.",
+                          "enum": [
+                            "Rosewater",
+                            "Flamingo",
+                            "Pink",
+                            "Mauve",
+                            "Red",
+                            "Maroon",
+                            "Peach",
+                            "Yellow",
+                            "Green",
+                            "Teal",
+                            "Sky",
+                            "Sapphire",
+                            "Blue",
+                            "Lavender",
+                            "Text",
+                            "Subtext1",
+                            "Subtext0",
+                            "Overlay2",
+                            "Overlay1",
+                            "Overlay0",
+                            "Surface2",
+                            "Surface1",
+                            "Surface0",
+                            "Base",
+                            "Mantle",
+                            "Crust"
+                          ]
+                        },
+                        "Icon": {
+                          "description": "The text to use as launcher icons by default.",
+                          "type": "string"
+                        },
+                        "LauncherEntries": {
+                          "description": "Launcher entries.",
+                          "type": "array",
+                          "items": {
+                            "description": "A TermBar launcher entry.",
+                            "type": "object",
+                            "properties": {
+                              "Name": {
+                                "description": "The name of the launcher entry. This is always displayed as a tooltip and is optionally displayed in the launcher button if DisplayName is true.",
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "Command": {
+                                "description": "The command to shell execute.",
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "CommandArguments": {
+                                "description": "Arguments to the command to shell execute.",
+                                "type": [
+                                  "array",
+                                  "null"
+                                ],
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "DisplayName": {
+                                "description": "Whether to display Name in the launcher button.",
+                                "type": "boolean"
+                              },
+                              "IconColor": {
+                                "description": "The Catppuccin color to use for the launcher icon. Set to null to use matches in ProcessIconMap and fall back to AccentColor.",
+                                "enum": [
+                                  "Rosewater",
+                                  "Flamingo",
+                                  "Pink",
+                                  "Mauve",
+                                  "Red",
+                                  "Maroon",
+                                  "Peach",
+                                  "Yellow",
+                                  "Green",
+                                  "Teal",
+                                  "Sky",
+                                  "Sapphire",
+                                  "Blue",
+                                  "Lavender",
+                                  "Text",
+                                  "Subtext1",
+                                  "Subtext0",
+                                  "Overlay2",
+                                  "Overlay1",
+                                  "Overlay0",
+                                  "Surface2",
+                                  "Surface1",
+                                  "Surface0",
+                                  "Base",
+                                  "Mantle",
+                                  "Crust",
+                                  null
+                                ]
+                              },
+                              "Icon": {
+                                "description": "The text to use as the launcher icon. Set to null to use matches in ProcessIconMap and fall back to Icon.",
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "description": "A TermBar memory monitor configuration.",
+                      "properties": {
+                        "$module": {
+                          "const": "Memory"
+                        },
+                        "Order": {
+                          "description": "The order in which the module should be displayed on the TermBar.",
+                          "type": "integer"
+                        },
+                        "Expand": {
+                          "description": "Whether the module should expand to take up as much space as possible.",
+                          "type": "boolean"
+                        },
+                        "AccentColor": {
+                          "description": "The Catppuccin color to use for the memory icon.",
+                          "enum": [
+                            "Rosewater",
+                            "Flamingo",
+                            "Pink",
+                            "Mauve",
+                            "Red",
+                            "Maroon",
+                            "Peach",
+                            "Yellow",
+                            "Green",
+                            "Teal",
+                            "Sky",
+                            "Sapphire",
+                            "Blue",
+                            "Lavender",
+                            "Text",
+                            "Subtext1",
+                            "Subtext0",
+                            "Overlay2",
+                            "Overlay1",
+                            "Overlay0",
+                            "Surface2",
+                            "Surface1",
+                            "Surface0",
+                            "Base",
+                            "Mantle",
+                            "Crust"
+                          ]
+                        },
+                        "Icon": {
+                          "description": "The text to use as the memory icon.",
+                          "type": "string"
+                        },
+                        "Format": {
+                          "description": "The numeric format to use for the memory percentage. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings.",
+                          "type": "string"
+                        },
+                        "Round": {
+                          "description": "Whether to round the memory percentage before formatting.",
+                          "type": "boolean"
+                        },
+                        "UpdateInterval": {
+                          "description": "The memory usage update interval, in milliseconds.",
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    {
+                      "description": "A TermBar static text display configuration.",
+                      "properties": {
+                        "$module": {
+                          "const": "StaticText"
+                        },
+                        "Order": {
+                          "description": "The order in which the module should be displayed on the TermBar.",
+                          "type": "integer"
+                        },
+                        "Expand": {
+                          "description": "Whether the module should expand to take up as much space as possible.",
+                          "type": "boolean"
+                        },
+                        "AccentColor": {
+                          "description": "The Catppuccin color to use for the icon.",
+                          "enum": [
+                            "Rosewater",
+                            "Flamingo",
+                            "Pink",
+                            "Mauve",
+                            "Red",
+                            "Maroon",
+                            "Peach",
+                            "Yellow",
+                            "Green",
+                            "Teal",
+                            "Sky",
+                            "Sapphire",
+                            "Blue",
+                            "Lavender",
+                            "Text",
+                            "Subtext1",
+                            "Subtext0",
+                            "Overlay2",
+                            "Overlay1",
+                            "Overlay0",
+                            "Surface2",
+                            "Surface1",
+                            "Surface0",
+                            "Base",
+                            "Mantle",
+                            "Crust"
+                          ]
+                        },
+                        "Icon": {
+                          "description": "The text to use as the icon.",
+                          "type": "string"
+                        },
+                        "Text": {
+                          "description": "The static text to display.",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "description": "A TermBar terminal configuration. For all objects, a value of null means the default TerminalControl behavior takes effect, unless otherwise noted.",
+                      "properties": {
+                        "$module": {
+                          "const": "Terminal"
+                        },
+                        "Order": {
+                          "description": "The order in which the module should be displayed on the TermBar.",
+                          "type": "integer"
+                        },
+                        "Expand": {
+                          "description": "Whether the module should expand to take up as much space as possible.",
+                          "type": "boolean"
+                        },
+                        "AccentColor": {
+                          "description": "The Catppuccin color to use as an accent.",
+                          "enum": [
+                            "Rosewater",
+                            "Flamingo",
+                            "Pink",
+                            "Mauve",
+                            "Red",
+                            "Maroon",
+                            "Peach",
+                            "Yellow",
+                            "Green",
+                            "Teal",
+                            "Sky",
+                            "Sapphire",
+                            "Blue",
+                            "Lavender",
+                            "Text",
+                            "Subtext1",
+                            "Subtext0",
+                            "Overlay2",
+                            "Overlay1",
+                            "Overlay0",
+                            "Surface2",
+                            "Surface1",
+                            "Surface0",
+                            "Base",
+                            "Mantle",
+                            "Crust"
+                          ]
+                        },
+                        "Icon": {
+                          "description": "The text to use as the terminal icon.",
+                          "type": "string"
+                        },
+                        "VisualBellIcon": {
+                          "description": "The text to use as the terminal visual bell icon when the visual bell is ringing. Has no effect if UseVisualBell is false.",
+                          "type": "string"
+                        },
+                        "Command": {
+                          "description": "The command to run in the terminal. This is typically a shell.",
+                          "type": "string"
+                        },
+                        "RestartOnExit": {
+                          "description": "Whether to restart Command when it exits normally.",
+                          "type": "boolean"
+                        },
+                        "DefaultWindowTitle": {
+                          "description": "The default terminal window title. The terminal window title can be viewed as a tooltip of the terminal icon.",
+                          "type": "string"
+                        },
+                        "Rows": {
+                          "description": "The number of rows in the terminal.",
+                          "type": "integer"
+                        },
+                        "Columns": {
+                          "description": "The number of columns in the terminal.",
+                          "type": "integer"
+                        },
+                        "TabWidth": {
+                          "description": "The default tab width in the terminal. (Practically speaking, this is virtually irrelevant today.)",
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        },
+                        "TextAntialiasing": {
+                          "description": "The text antialiasing style to apply in the terminal. Unicode box-drawing characters are always drawn without antialiasing.",
+                          "enum": [
+                            "None",
+                            "Grayscale",
+                            "ClearType",
+                            null
+                          ]
+                        },
+                        "FullColorEmoji": {
+                          "description": "Whether to draw emoji in full color in the terminal using the Segoe UI Emoji font.",
+                          "type": [
+                            "boolean",
+                            "null"
+                          ]
+                        },
+                        "UseBackgroundColorErase": {
+                          "description": "Whether to use background color erase in the terminal. See https://sunaku.github.io/vim-256color-bce.html for a description of what this does.",
+                          "type": [
+                            "boolean",
+                            "null"
+                          ]
+                        },
+                        "BackgroundIsInvisible": {
+                          "description": "Whether to render the default background color as invisible in the terminal.",
+                          "type": [
+                            "boolean",
+                            "null"
+                          ]
+                        },
+                        "UseVisualBell": {
+                          "description": "Whether to use the visual bell in the terminal. If this is true, VisualBellIcon is displayed for VisualBellDisplayTime milliseconds when the terminal bell rings. If this is false, a sound plays instead.",
+                          "type": [
+                            "boolean",
+                            "null"
+                          ]
+                        },
+                        "VisualBellDisplayTime": {
+                          "description": "The number of milliseconds to display the visual bell in the terminal. Does nothing if UseVisualBell is false.",
+                          "type": "integer"
+                        },
+                        "UseContextMenu": {
+                          "description": "Whether to show the context menu when right clicking the terminal.",
+                          "type": [
+                            "boolean",
+                            "null"
+                          ]
+                        },
+                        "UseExtendedContextMenu": {
+                          "description": "Whether to show the extended context menu when right clicking the terminal. Does nothing if UseContextMenu is false.",
+                          "type": [
+                            "boolean",
+                            "null"
+                          ]
+                        },
+                        "CursorStyle": {
+                          "description": "The default cursor style to use in the terminal.",
+                          "enum": [
+                            "Block",
+                            "Underline",
+                            "Bar",
+                            null
+                          ]
+                        },
+                        "CursorThickness": {
+                          "description": "The cursor thickness in the terminal, as a fraction of the font size, between 0.0 and 1.0. Does not affect the block cursor.",
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "CursorBlink": {
+                          "description": "Whether the cursor should blink by default in the terminal.",
+                          "type": [
+                            "boolean",
+                            "null"
+                          ]
+                        },
+                        "CursorBlinkRate": {
+                          "description": "The number of milliseconds that pass between the blinking cursor being displayed in the terminal and hidden. Has no effect if CursorBlink is false.",
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        },
+                        "CursorColor": {
+                          "description": "The cursor color in the terminal.",
+                          "enum": [
+                            "Rosewater",
+                            "Flamingo",
+                            "Pink",
+                            "Mauve",
+                            "Red",
+                            "Maroon",
+                            "Peach",
+                            "Yellow",
+                            "Green",
+                            "Teal",
+                            "Sky",
+                            "Sapphire",
+                            "Blue",
+                            "Lavender",
+                            "Text",
+                            "Subtext1",
+                            "Subtext0",
+                            "Overlay2",
+                            "Overlay1",
+                            "Overlay0",
+                            "Surface2",
+                            "Surface1",
+                            "Surface0",
+                            "Base",
+                            "Mantle",
+                            "Crust",
+                            null
+                          ]
+                        },
+                        "ScrollbackLines": {
+                          "description": "The number of scrollback lines in the terminal.",
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        },
+                        "LinesPerScrollback": {
+                          "description": "The number of scrollback lines per large scrollback in the terminal. A large scrollback is invoked with Shift-Page Up and reversed with Shift-Page Down.",
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        },
+                        "LinesPerSmallScrollback": {
+                          "description": "The number of scrollback lines per small scrollback in the terminal. A small scrollback is invoked with Shift-Up and reversed with Shift-Down.",
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        },
+                        "LinesPerWheelScrollback": {
+                          "description": "The number of scrollback lines per mouse wheel scroll in the terminal. A mouse wheel scroll is invoked with mouse wheel up and reversed with mouse wheel down.",
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        },
+                        "CopyOnMouseUp": {
+                          "description": "Whether to copy selected text in the terminal when the left mouse button is released. If this is false, the selection can be copied with Ctrl-Shift-C.",
+                          "type": [
+                            "boolean",
+                            "null"
+                          ]
+                        },
+                        "PasteOnMiddleClick": {
+                          "description": "Whether to paste text in the terminal when the terminal is middle clicked. Text can also be pasted with Ctrl-Shift-V.",
+                          "type": [
+                            "boolean",
+                            "null"
+                          ]
+                        },
+                        "PasteOnRightClick": {
+                          "description": "Whether to paste text in the terminal when the terminal is right clicked. Text can also be pasted with Ctrl-Shift-V. If this is true, the context menu can be displayed by right clicking the terminal while pressing Ctrl (assuming UseContextMenu is true).",
+                          "type": [
+                            "boolean",
+                            "null"
+                          ]
+                        },
+                        "CopyNewline": {
+                          "description": "The line ending to use when copying text in the terminal.",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "Colors": {
+                          "description": "The ANSI colors to use in the terminal.",
+                          "type": "object",
+                          "properties": {
+                            "DefaultColors": {
+                              "description": "The default ANSI colors to use in the terminal.",
+                              "type": "object",
+                              "properties": {
+                                "DefaultBackgroundColor": {
+                                  "description": "The default background color to use in the terminal.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "DefaultForegroundColor": {
+                                  "description": "The default foreground color to use in the terminal.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "DefaultUnderlineColor": {
+                                  "description": "The default underline color to use in the terminal.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                }
+                              }
+                            },
+                            "StandardColors": {
+                              "description": "The standard (non-bright) ANSI colors to use in the terminal.",
+                              "type": "object",
+                              "properties": {
+                                "Black": {
+                                  "description": "Black.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "Red": {
+                                  "description": "Red.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "Green": {
+                                  "description": "Green.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "Yellow": {
+                                  "description": "Yellow.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "Blue": {
+                                  "description": "Blue.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "Magenta": {
+                                  "description": "Magenta.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "Cyan": {
+                                  "description": "Cyan.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "White": {
+                                  "description": "White.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                }
+                              }
+                            },
+                            "BrightColors": {
+                              "description": "The bright ANSI colors to use in the terminal.",
+                              "type": "object",
+                              "properties": {
+                                "BrightBlack": {
+                                  "description": "Bright black.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "BrightRed": {
+                                  "description": "Bright red.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "BrightGreen": {
+                                  "description": "Bright green.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "BrightYellow": {
+                                  "description": "Bright yellow.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "BrightBlue": {
+                                  "description": "Bright blue.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "BrightMagenta": {
+                                  "description": "Bright magenta.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "BrightCyan": {
+                                  "description": "Bright cyan.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                },
+                                "BrightWhite": {
+                                  "description": "Bright white.",
+                                  "enum": [
+                                    "Black",
+                                    "Red",
+                                    "Green",
+                                    "Yellow",
+                                    "Blue",
+                                    "Magenta",
+                                    "Cyan",
+                                    "White",
+                                    "BrightBlack",
+                                    "BrightRed",
+                                    "BrightGreen",
+                                    "BrightYellow",
+                                    "BrightBlue",
+                                    "BrightMagenta",
+                                    "BrightCyan",
+                                    "BrightWhite"
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "description": "A TermBar volume level configuration.",
+                      "properties": {
+                        "$module": {
+                          "const": "Volume"
+                        },
+                        "Order": {
+                          "description": "The order in which the module should be displayed on the TermBar.",
+                          "type": "integer"
+                        },
+                        "Expand": {
+                          "description": "Whether the module should expand to take up as much space as possible.",
+                          "type": "boolean"
+                        },
+                        "AccentColor": {
+                          "description": "The Catppuccin color to use for the volume icon.",
+                          "enum": [
+                            "Rosewater",
+                            "Flamingo",
+                            "Pink",
+                            "Mauve",
+                            "Red",
+                            "Maroon",
+                            "Peach",
+                            "Yellow",
+                            "Green",
+                            "Teal",
+                            "Sky",
+                            "Sapphire",
+                            "Blue",
+                            "Lavender",
+                            "Text",
+                            "Subtext1",
+                            "Subtext0",
+                            "Overlay2",
+                            "Overlay1",
+                            "Overlay0",
+                            "Surface2",
+                            "Surface1",
+                            "Surface0",
+                            "Base",
+                            "Mantle",
+                            "Crust"
+                          ]
+                        },
+                        "Icon": {
+                          "description": "The text to use as the volume icon.",
+                          "type": "string"
+                        },
+                        "MutedIcon": {
+                          "description": "The text to use as the muted volume icon.",
+                          "type": "string"
+                        },
+                        "Format": {
+                          "description": "The numeric format to use for the volume percentage. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings.",
+                          "type": "string"
+                        },
+                        "Muted": {
+                          "description": "Text to be displayed in place of the volume level when muted. Set to null to always display the volume level.",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "VolumeInteraction": {
+                          "description": "Volume module interaction configuration. Set to null to disable interaction.",
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "ClickToToggleMute": {
+                              "description": "Whether clicking the volume module toggles the mute state.",
+                              "type": "boolean"
+                            },
+                            "ScrollToAdjust": {
+                              "description": "Whether scrolling over the volume module adjusts the volume level.",
+                              "type": "boolean"
+                            },
+                            "PercentPerScroll": {
+                              "description": "The volume level change per scroll. Does nothing if ScrollToAdjust is false.",
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "description": "A TermBar window bar configuration.",
+                      "properties": {
+                        "$module": {
+                          "const": "WindowBar"
+                        },
+                        "Order": {
+                          "description": "The order in which the module should be displayed on the TermBar.",
+                          "type": "integer"
+                        },
+                        "Expand": {
+                          "description": "Whether the module should expand to take up as much space as possible.",
+                          "type": "boolean"
+                        },
+                        "AccentColor": {
+                          "description": "The Catppuccin color to use for window icon colors by default.",
+                          "enum": [
+                            "Rosewater",
+                            "Flamingo",
+                            "Pink",
+                            "Mauve",
+                            "Red",
+                            "Maroon",
+                            "Peach",
+                            "Yellow",
+                            "Green",
+                            "Teal",
+                            "Sky",
+                            "Sapphire",
+                            "Blue",
+                            "Lavender",
+                            "Text",
+                            "Subtext1",
+                            "Subtext0",
+                            "Overlay2",
+                            "Overlay1",
+                            "Overlay0",
+                            "Surface2",
+                            "Surface1",
+                            "Surface0",
+                            "Base",
+                            "Mantle",
+                            "Crust"
+                          ]
+                        },
+                        "Icon": {
+                          "description": "The text to use as window icons by default.",
+                          "type": "string"
+                        },
+                        "Windows": {
+                          "description": "Windows configuration.",
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "FixedSize": {
+                              "description": "Whether to display windows as a fixed size.",
+                              "type": [
+                                "integer",
+                                "null"
+                              ]
+                            },
+                            "MaxLength": {
+                              "description": "The maximum length of a window, in pixels.",
+                              "type": [
+                                "integer",
+                                "null"
+                              ]
+                            },
+                            "NiceTruncation": {
+                              "description": "Whether the window name should be truncated with \u2026 if it\u0027s too long.",
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "description": "A TermBar window dropdown configuration.",
+                      "properties": {
+                        "$module": {
+                          "const": "WindowDropdown"
+                        },
+                        "Order": {
+                          "description": "The order in which the module should be displayed on the TermBar.",
+                          "type": "integer"
+                        },
+                        "Expand": {
+                          "description": "Whether the module should expand to take up as much space as possible.",
+                          "type": "boolean"
+                        },
+                        "AccentColor": {
+                          "description": "The Catppuccin color to use for the dropdown icon color.",
+                          "enum": [
+                            "Rosewater",
+                            "Flamingo",
+                            "Pink",
+                            "Mauve",
+                            "Red",
+                            "Maroon",
+                            "Peach",
+                            "Yellow",
+                            "Green",
+                            "Teal",
+                            "Sky",
+                            "Sapphire",
+                            "Blue",
+                            "Lavender",
+                            "Text",
+                            "Subtext1",
+                            "Subtext0",
+                            "Overlay2",
+                            "Overlay1",
+                            "Overlay0",
+                            "Surface2",
+                            "Surface1",
+                            "Surface0",
+                            "Base",
+                            "Mantle",
+                            "Crust"
+                          ]
+                        },
+                        "DropdownIcon": {
+                          "description": "The text to use as the dropdown icon.",
+                          "type": "string"
+                        },
+                        "Icon": {
+                          "description": "The text to use as window icons by default.",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "Id",
+          "TermBar"
+        ]
+      }
+    },
+    "StartDirectory": {
+      "description": "The directory to change to when starting. Set to null to keep the directory inherited from the parent process.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "Displays"
+  ]
+}

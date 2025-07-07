@@ -1,75 +1,47 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using TermBar.Catppuccin;
 
 namespace TermBar.Configuration.Json.Modules {
-  /// <summary>
-  /// A TermBar launcher configuration.
-  /// </summary>
+  [Description("A TermBar launcher configuration.")]
   internal class Launcher : IModule {
+    [Description("The order in which the module should be displayed on the TermBar.")]
     public int Order { get; set; } = -1;
 
+    [Description("Whether the module should expand to take up as much space as possible.")]
     public bool Expand { get; set; } = false;
 
-    /// <summary>
-    /// The Catppuccin color to use as the default for launcher entry icons.
-    /// </summary>
+    [Description("The Catppuccin color to use as an accent.")]
     public ColorEnum AccentColor { get; set; } = ColorEnum.Rosewater;
 
-    /// <summary>
-    /// The text to use as launcher icons by default.
-    /// </summary>
+    [Description("The text to use as launcher icons by default.")]
     public string Icon { get; set; } = "•";
 
-    /// <summary>
-    /// Launcher entries.
-    /// </summary>
+    [Description("Launcher entries.")]
     public List<LauncherEntry> LauncherEntries { get; set; } = [
       new("Windows Terminal", "wt", iconColor: ColorEnum.Overlay0, icon: ""),
       new("File Explorer", "explorer")
     ];
   }
 
-  /// <summary>
-  /// A TermBar launcher entry configuration.
-  /// </summary>
+  [Description("A TermBar launcher entry.")]
   internal class LauncherEntry {
-    /// <summary>
-    /// The name of the launcher entry.
-    /// </summary>
-    /// <remarks>This is always displayed as a tooltip and is optionally
-    /// displayed in the launcher button if <see cref="DisplayName"/> is <see
-    /// langword="true"/>.</remarks>
+    [Description("The name of the launcher entry. This is always displayed as a tooltip and is optionally displayed in the launcher button if DisplayName is true.")]
     public string? Name { get; set; } = null;
 
-    /// <summary>
-    /// The command to shell execute.
-    /// </summary>
+    [Description("The command to shell execute.")]
     public string? Command { get; set; } = null;
 
-    /// <summary>
-    /// Arguments to the command to shell execute.
-    /// </summary>
+    [Description("Arguments to the command to shell execute.")]
     public string[]? CommandArguments { get; set; } = null;
 
-    /// <summary>
-    /// Whether to display <see cref="Name"/>.
-    /// </summary>
+    [Description("Whether to display Name in the launcher button.")]
     public bool DisplayName { get; set; } = false;
 
-    /// <summary>
-    /// The Catppuccin color to use for the launcher icon.
-    /// </summary>
-    /// <remarks>Set to <see langword="null"/> to use matches in <see
-    /// cref="WindowList.ProcessIconMap"/> and fall back to the launcher
-    /// module's <see cref="Launcher.AccentColor"/>.</remarks>
+    [Description("The Catppuccin color to use for the launcher icon. Set to null to use matches in ProcessIconMap and fall back to AccentColor.")]
     public ColorEnum? IconColor { get; set; } = null;
 
-    /// <summary>
-    /// The text to use as the launcher icon.
-    /// </summary>
-    /// <remarks>Set to <see langword="null"/> to use matches in <see
-    /// cref="WindowList.ProcessIconMap"/> and fall back to the launcher
-    /// module's <see cref="Launcher.Icon"/>.</remarks>
+    [Description("The text to use as the launcher icon. Set to null to use matches in ProcessIconMap and fall back to Icon.")]
     public string? Icon { get; set; } = null;
 
     public LauncherEntry() { }

@@ -1,52 +1,26 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using TermBar.Catppuccin;
 
 namespace TermBar.Configuration.Json {
-  /// <summary>
-  /// A TermBar configuration for the window list modules.
-  /// </summary>
-  /// <remarks>Process names must not include an extension!</remarks>
+  [Description("The TermBar configuration for window lists. Process names must not include an extension!")]
   internal class WindowList {
-    /// <summary>
-    /// An ordered list of window process names that should be pinned (in this
-    /// order) at the beginning of the window list.
-    /// </summary>
-    /// <remarks>These are case insensitive.</remarks>
+    [Description("An ordered list of window process names that should be pinned, in this order, at the beginning of the window list.")]
     public List<string>? HighPriorityWindows = [
       "olk",
       "devenv",
       "librewolf"
     ];
 
-    /// <summary>
-    /// An ordered list of window process names that should be pinned (in this
-    /// order) at the end of the window list.
-    /// </summary>
-    /// <remarks>
-    /// <list type="bullet">
-    /// <item>If a process name is in <see cref="LowPriorityWindows"/> and
-    /// <see cref="HighPriorityWindows"/>, <see cref="HighPriorityWindows"/>
-    /// takes precedence.</item>
-    /// <item>These are case insensitive.</item>
-    /// </list>
-    /// </remarks>
+    [Description("An ordered list of window process names that should be pinned, in this order, at the end of the window list. If a process name is in LowPriorityWindows and in HighPriorityWindows, HighPriorityWindows takes precedence.")]
     public List<string>? LowPriorityWindows = [
       "SteelSeriesEngine"
     ];
 
-    /// <summary>
-    /// Whether groups of windows with the same process name should be sorted
-    /// alphabetically.
-    /// </summary>
-    /// <remarks>If <see langword="false"/>, windows are simply added in the
-    /// order they were created (or, when starting, by the order they are
-    /// reported by <c>EnumWindows()</c>).</remarks>
+    [Description("Whether groups of windows with the same process name should be sorted alphabetically. If false, windows are simply added to the window list in the order they were created (or, when starting, in the order they are reported by the operating system).")]
     public bool SortGroupsAlphabetically = true;
 
-    /// <summary>
-    /// The map of window process names to <see cref="ProcessIconMapping"/> to
-    /// apply to windows.
-    /// </summary>
+    [Description("The map of window process names to ProcessIconMappings to apply to windows.")]
     public Dictionary<string, ProcessIconMapping>? ProcessIconMap { get; set; } = new() {
       { "devenv", new(ColorEnum.Mauve, "") },
       { "explorer", new(ColorEnum.Yellow, "") },
@@ -67,30 +41,15 @@ namespace TermBar.Configuration.Json {
     };
   }
 
-  /// <summary>
-  /// A TermBar configuration for the window list modules' icon mapping.
-  /// </summary>
+  [Description("A window list process icon mapping, which allows configuration of window attributes per process name.")]
   internal class ProcessIconMapping {
-    /// <summary>
-    /// The Catppuccin color to use for the window icon.
-    /// </summary>
-    /// <remarks>Set to <c>null</c> to use the window list module's <see
-    /// cref="Modules.WindowBar.AccentColor"/>.</remarks>
+    [Description("The Catppuccin color to use for the window icon. Set to null to fall back to the window list module's AccentColor.")]
     public ColorEnum? IconColor { get; set; } = null;
 
-    /// <summary>
-    /// The text to use as window icons.
-    /// </summary>
-    /// <remarks>Set to <c>null</c> to use the window list module's <see
-    /// cref="Modules.WindowBar.Icon"/>.</remarks>
+    [Description("The text to use as the window icon. Set to null to fall back to the window list module's Icon.")]
     public string? Icon { get; set; } = null;
 
-    /// <summary>
-    /// The map of window name regular expressions to match to <see
-    /// cref="WindowNameIconMapping"/> to apply to windows.
-    /// </summary>
-    /// <remarks>These override <see cref="IconColor"/> and <see
-    /// cref="Icon"/>.</remarks>
+    [Description("The map of window name regular expressions to WindowNameIconMappings to apply to windows with this process name. These override IconColor and Icon. Set to null to disable this functionality.")]
     public Dictionary<string, WindowNameIconMapping>? WindowNameIconMap { get; set; } = null;
 
     public ProcessIconMapping() { }
@@ -102,22 +61,12 @@ namespace TermBar.Configuration.Json {
     }
   }
 
-  /// <summary>
-  /// A TermBar configuration for the window list modules' icon mapping.
-  /// </summary>
+  [Description("A window name icon mapping, which allows configuration of window attributes per regular expression matching the window name.")]
   internal class WindowNameIconMapping {
-    /// <summary>
-    /// The Catppuccin color to use for the window icon.
-    /// </summary>
-    /// <remarks>Set to <c>null</c> to use the window list module's <see
-    /// cref="Modules.WindowBar.AccentColor"/>.</remarks>
+    [Description("The Catppuccin color to use for the window icon. Set to null to fall back to the window list module's AccentColor.")]
     public ColorEnum? IconColor { get; set; } = null;
 
-    /// <summary>
-    /// The text to use as window icons.
-    /// </summary>
-    /// <remarks>Set to <c>null</c> to use the window list module's <see
-    /// cref="Modules.WindowBar.Icon"/>.</remarks>
+    [Description("The text to use as the window icon. Set to null to fall back to the window list module's Icon.")]
     public string? Icon { get; set; } = null;
 
     public WindowNameIconMapping() { }

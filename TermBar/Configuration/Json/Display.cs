@@ -1,16 +1,12 @@
-﻿namespace TermBar.Configuration.Json {
-  /// <summary>
-  /// A TermBar configuration file display.
-  /// </summary>
+﻿using System.ComponentModel;
+
+namespace TermBar.Configuration.Json {
+  [Description("A display. A TermBar window will be shown on each configured display.")]
   internal class Display {
-    /// <summary>
-    /// The display ID.
-    /// </summary>
+    [Description("The display ID. These can be viewed in the TermBar settings.")]
     public required string Id { get; set; }
 
-    /// <summary>
-    /// The TermBar configuration for the display.
-    /// </summary>
+    [Description("The TermBar configuration for the display.")]
     public required TermBar TermBar { get; set; }
   }
 }
