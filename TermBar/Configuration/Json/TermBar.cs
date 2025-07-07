@@ -35,7 +35,7 @@ namespace TermBar.Configuration.Json {
     public string FontFamily { get; set; } = "0xProto Nerd Font Propo";
 
     [Description("The font size to use.")]
-    public double FontSize { get; set; } = 16.0;
+    public double FontSize { get; set; } = 14.0;
 
     [Description("The Catppuccin color to use for text.")]
     public ColorEnum TextColor { get; set; } = ColorEnum.Text;
@@ -77,7 +77,7 @@ namespace TermBar.Configuration.Json {
     public double MinimumWidthPercentage { get; set; } = 0.25;
 
     [Description("The TermBar window height, in pixels.")]
-    public uint Height { get; set; } = 48;
+    public uint Height { get; set; } = 50;
 
     [Description("TermBar modules.")]
     public List<IModule>? Modules { get; set; } = [

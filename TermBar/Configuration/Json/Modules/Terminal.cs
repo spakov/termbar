@@ -81,13 +81,13 @@ namespace TermBar.Configuration.Json.Modules {
     public int? ScrollbackLines { get; set; } = 5000;
 
     [Description("The number of scrollback lines per large scrollback in the terminal. A large scrollback is invoked with Shift-Page Up and reversed with Shift-Page Down.")]
-    public int? LinesPerScrollback { get; set; } = 12;
+    public int? LinesPerScrollback { get; set; } = 3;
 
     [Description("The number of scrollback lines per small scrollback in the terminal. A small scrollback is invoked with Shift-Up and reversed with Shift-Down.")]
     public int? LinesPerSmallScrollback { get; set; } = 1;
 
     [Description("The number of scrollback lines per mouse wheel scroll in the terminal. A mouse wheel scroll is invoked with mouse wheel up and reversed with mouse wheel down.")]
-    public int? LinesPerWheelScrollback { get; set; } = 8;
+    public int? LinesPerWheelScrollback { get; set; } = 1;
 
     [Description("Whether to copy selected text in the terminal when the left mouse button is released. If this is false, the selection can be copied with Ctrl-Shift-C.")]
     public bool? CopyOnMouseUp { get; set; } = true;
