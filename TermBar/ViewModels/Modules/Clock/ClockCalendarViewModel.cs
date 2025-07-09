@@ -1,10 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Catppuccin;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using TermBar.Catppuccin;
 
 namespace TermBar.ViewModels.Modules.Clock {
   /// <summary>
@@ -144,7 +144,7 @@ namespace TermBar.ViewModels.Modules.Clock {
         TextBlock day = new() { Text = i.ToString() };
 
         if (Date.Year == DateTime.Now.Year && Date.Month == DateTime.Now.Month && i == DateTime.Now.Day) {
-          day.Foreground = PaletteHelper.Palette[config.Flavor].Colors[moduleConfig.AccentColor].SolidColorBrush;
+          day.Foreground = Palette.Instance[config.Flavor].Colors[moduleConfig.AccentColor].SolidColorBrush;
         }
 
         Days.Add(day);

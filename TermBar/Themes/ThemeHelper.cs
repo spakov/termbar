@@ -1,5 +1,5 @@
-﻿using Microsoft.UI.Xaml;
-using TermBar.Catppuccin;
+﻿using Catppuccin;
+using Microsoft.UI.Xaml;
 
 namespace TermBar.Themes {
   /// <summary>
@@ -38,7 +38,7 @@ namespace TermBar.Themes {
       }) {
         SetResource(
           key,
-          PaletteHelper.Palette[config.Flavor].Colors[config.TextColor].SolidColorBrush
+          Palette.Instance[config.Flavor].Colors[config.TextColor].SolidColorBrush
         );
       }
 
@@ -53,7 +53,7 @@ namespace TermBar.Themes {
         }) {
           SetResource(
             key,
-            PaletteHelper.Palette[config.Flavor].Colors[(ColorEnum) config.AccentBackground].SolidColorBrush
+            Palette.Instance[config.Flavor].Colors[(ColorEnum) config.AccentBackground].SolidColorBrush
           );
         }
       }
@@ -66,7 +66,7 @@ namespace TermBar.Themes {
         }) {
           SetResource(
             key,
-            PaletteHelper.Palette[config.Flavor].Colors[(ColorEnum) config.AccentColor].SolidColorBrush
+            Palette.Instance[config.Flavor].Colors[(ColorEnum) config.AccentColor].SolidColorBrush
           );
         }
       }
@@ -78,7 +78,7 @@ namespace TermBar.Themes {
         }) {
           SetResource(
             key,
-            PaletteHelper.Palette[config.Flavor].Colors[(ColorEnum) config.SelectedBackground].SolidColorBrush
+            Palette.Instance[config.Flavor].Colors[(ColorEnum) config.SelectedBackground].SolidColorBrush
           );
         }
       }
@@ -89,7 +89,7 @@ namespace TermBar.Themes {
         }) {
           SetResource(
             key,
-            PaletteHelper.Palette[config.Flavor].Colors[(ColorEnum) config.SelectedColor].SolidColorBrush
+            Palette.Instance[config.Flavor].Colors[(ColorEnum) config.SelectedColor].SolidColorBrush
           );
         }
       }
@@ -102,7 +102,7 @@ namespace TermBar.Themes {
         }) {
           SetResource(
             key,
-            PaletteHelper.Palette[config.Flavor].Colors[(ColorEnum) config.ClickedBackground].SolidColorBrush
+            Palette.Instance[config.Flavor].Colors[(ColorEnum) config.ClickedBackground].SolidColorBrush
           );
         }
       }
@@ -114,7 +114,7 @@ namespace TermBar.Themes {
         }) {
           SetResource(
             key,
-            PaletteHelper.Palette[config.Flavor].Colors[(ColorEnum) config.ClickedColor].SolidColorBrush
+            Palette.Instance[config.Flavor].Colors[(ColorEnum) config.ClickedColor].SolidColorBrush
           );
         }
       }

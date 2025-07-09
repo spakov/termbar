@@ -150,6 +150,7 @@
     <ProjectReference Include="..\..\w6t\ConPTY\ConPTY.csproj" />
     <ProjectReference Include="..\..\w6t\Terminal\Terminal.csproj" />
     <ProjectReference Include="..\..\w6t\WideCharacter\WideCharacter.csproj" />
+    <ProjectReference Include="..\Catppuccin\Catppuccin.csproj" />
     <ProjectReference Include="..\EndpointVolumeInterop\EndpointVolumeInterop.vcxproj" ReferenceOutputAssembly="false" />
   </ItemGroup>
   

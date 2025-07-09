@@ -1,4 +1,4 @@
-﻿using TermBar.Catppuccin;
+﻿using Catppuccin;
 using TermBar.Configuration.Json.SchemaAttributes;
 
 namespace TermBar.Configuration.Json.Modules {

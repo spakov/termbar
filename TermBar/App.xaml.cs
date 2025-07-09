@@ -14,7 +14,6 @@ using TermBar.Configuration;
 using TermBar.Configuration.Json;
 using TermBar.Models;
 using TermBar.WindowManagement;
-using System.Text.Json;
 
 namespace TermBar {
   /// <summary>
@@ -63,6 +62,15 @@ namespace TermBar {
           Directory.SetCurrentDirectory(expandedStartDirectory);
         }
       }
+
+      UnhandledException += (sender, e) => {
+        Windows.Win32.PInvoke.MessageBox(
+          Windows.Win32.Foundation.HWND.Null,
+          $"Unhandled exception: {e.Exception}",
+          "Unhandled Exception",
+          Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_STYLE.MB_OK
+        );
+      };
 
 #if DEBUG
       if (Environment.CommandLine.Contains("GenerateSchema")) {

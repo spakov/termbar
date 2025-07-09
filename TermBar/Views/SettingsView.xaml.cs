@@ -1,3 +1,4 @@
+using Catppuccin;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
@@ -7,7 +8,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
-using TermBar.Catppuccin;
 using TermBar.Configuration;
 using TermBar.Styles;
 using TermBar.WindowManagement;
@@ -75,12 +75,12 @@ namespace TermBar.Views {
         RuntimeConfig,
         JsonSerializer.Serialize(App.Config, Configuration.Json.ConfigContext.Default.Config),
         new(
-          defaultColor: PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Lavender].WUIColor,
-          objectColor: PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Text].WUIColor,
-          stringColor: PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Sky].WUIColor,
-          numberColor: PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Maroon].WUIColor,
-          booleanColor: PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Blue].WUIColor,
-          nullColor: PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Mauve].WUIColor
+          defaultColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Lavender].WUIColor,
+          objectColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Text].WUIColor,
+          stringColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Sky].WUIColor,
+          numberColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Maroon].WUIColor,
+          booleanColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Blue].WUIColor,
+          nullColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Mauve].WUIColor
         )
       );
     }
@@ -166,7 +166,7 @@ namespace TermBar.Views {
 
       textBoxStyle.Setters.Add(new Setter(TextBox.FontFamilyProperty, new FontFamily(config.FontFamily)));
       textBoxStyle.Setters.Add(new Setter(TextBox.FontSizeProperty, config.FontSize));
-      textBoxStyle.Setters.Add(new Setter(TextBox.ForegroundProperty, PaletteHelper.Palette[config.Flavor].Colors[ColorEnum.Text].SolidColorBrush));
+      textBoxStyle.Setters.Add(new Setter(TextBox.ForegroundProperty, Palette.Instance[config.Flavor].Colors[ColorEnum.Text].SolidColorBrush));
       textBoxStyle.Setters.Add(new Setter(TextBox.IsReadOnlyProperty, true));
       textBoxStyle.Setters.Add(new Setter(TextBox.AcceptsReturnProperty, true));
       textBoxStyle.Setters.Add(new Setter(ScrollViewer.VerticalScrollBarVisibilityProperty, ScrollBarVisibility.Auto));
@@ -190,7 +190,7 @@ namespace TermBar.Views {
         new Setter(
           Button.BackgroundProperty,
           config.AccentBackground is not null
-            ? PaletteHelper.Palette[config.Flavor].Colors[(ColorEnum) config.AccentBackground].SolidColorBrush
+            ? Palette.Instance[config.Flavor].Colors[(ColorEnum) config.AccentBackground].SolidColorBrush
             : Application.Current.Resources["SystemAccentColorLight3"]
         )
       );
@@ -199,7 +199,7 @@ namespace TermBar.Views {
         new Setter(
           TextBlock.ForegroundProperty,
           config.AccentColor is not null
-            ? PaletteHelper.Palette[config.Flavor].Colors[(ColorEnum) config.AccentColor].SolidColorBrush
+            ? Palette.Instance[config.Flavor].Colors[(ColorEnum) config.AccentColor].SolidColorBrush
             : Application.Current.Resources["SystemAccentColor"]
         )
       );

@@ -1,5 +1,5 @@
-﻿using System.Text.Json.Serialization;
-using TermBar.Catppuccin;
+﻿using Catppuccin;
+using System.Text.Json.Serialization;
 using TermBar.Configuration.Json.Modules;
 
 namespace TermBar.Configuration.Json {

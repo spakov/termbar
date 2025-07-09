@@ -1,10 +1,9 @@
+using Catppuccin;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using System;
-using System.Diagnostics.CodeAnalysis;
-using TermBar.Catppuccin;
 using TermBar.Styles;
 using TermBar.ViewModels.Modules.Terminal;
 using Terminal;
@@ -66,27 +65,27 @@ namespace TermBar.Views.Modules.Terminal {
     /// <returns>An <see cref="AnsiProcessor.AnsiColors.Palette"/>.</returns>
     internal AnsiProcessor.AnsiColors.Palette GetPalette() {
       return new() {
-        DefaultBackgroundColor = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.DefaultColors.DefaultBackgroundColor].SDColor,
-        DefaultForegroundColor = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.DefaultColors.DefaultForegroundColor].SDColor,
-        DefaultUnderlineColor = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.DefaultColors.DefaultUnderlineColor].SDColor,
+        DefaultBackgroundColor = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.DefaultColors.DefaultBackgroundColor].SDColor,
+        DefaultForegroundColor = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.DefaultColors.DefaultForegroundColor].SDColor,
+        DefaultUnderlineColor = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.DefaultColors.DefaultUnderlineColor].SDColor,
 
-        Black = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Black].SDColor,
-        Red = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Red].SDColor,
-        Green = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Green].SDColor,
-        Yellow = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Yellow].SDColor,
-        Blue = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Blue].SDColor,
-        Magenta = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Magenta].SDColor,
-        Cyan = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Cyan].SDColor,
-        White = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.White].SDColor,
+        Black = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Black].SDColor,
+        Red = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Red].SDColor,
+        Green = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Green].SDColor,
+        Yellow = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Yellow].SDColor,
+        Blue = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Blue].SDColor,
+        Magenta = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Magenta].SDColor,
+        Cyan = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.Cyan].SDColor,
+        White = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.StandardColors.White].SDColor,
 
-        BrightBlack = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightBlack].SDColor,
-        BrightRed = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightRed].SDColor,
-        BrightGreen = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightGreen].SDColor,
-        BrightYellow = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightYellow].SDColor,
-        BrightBlue = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightBlue].SDColor,
-        BrightMagenta = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightMagenta].SDColor,
-        BrightCyan = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightCyan].SDColor,
-        BrightWhite = PaletteHelper.Palette[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightWhite].SDColor
+        BrightBlack = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightBlack].SDColor,
+        BrightRed = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightRed].SDColor,
+        BrightGreen = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightGreen].SDColor,
+        BrightYellow = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightYellow].SDColor,
+        BrightBlue = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightBlue].SDColor,
+        BrightMagenta = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightMagenta].SDColor,
+        BrightCyan = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightCyan].SDColor,
+        BrightWhite = Palette.Instance[config.Flavor].AnsiColors[moduleConfig.Colors.BrightColors.BrightWhite].SDColor
       };
     }
 
@@ -155,7 +154,7 @@ namespace TermBar.Views.Modules.Terminal {
       textBoxStyle.Setters.Add(
         new Setter(
           TextBox.ForegroundProperty,
-          PaletteHelper.Palette[config.Flavor].Colors[config.TextColor].SolidColorBrush
+          Palette.Instance[config.Flavor].Colors[config.TextColor].SolidColorBrush
         )
       );
 
@@ -184,7 +183,7 @@ namespace TermBar.Views.Modules.Terminal {
       if (moduleConfig.CursorThickness is not null) TerminalControl.CursorThickness = (double) moduleConfig.CursorThickness;
       if (moduleConfig.CursorBlink is not null) TerminalControl.CursorBlink = (bool) moduleConfig.CursorBlink;
       if (moduleConfig.CursorBlinkRate is not null) TerminalControl.CursorBlinkRate = (int) moduleConfig.CursorBlinkRate;
-      if (moduleConfig.CursorColor is not null) TerminalControl.CursorColor = PaletteHelper.Palette[config.Flavor].Colors[moduleConfig.AccentColor].WUIColor;
+      if (moduleConfig.CursorColor is not null) TerminalControl.CursorColor = Palette.Instance[config.Flavor].Colors[moduleConfig.AccentColor].WUIColor;
       if (moduleConfig.ScrollbackLines is not null) TerminalControl.Scrollback = (int) moduleConfig.ScrollbackLines;
       if (moduleConfig.LinesPerScrollback is not null) TerminalControl.LinesPerScrollback = (int) moduleConfig.LinesPerScrollback;
       if (moduleConfig.LinesPerSmallScrollback is not null) TerminalControl.LinesPerSmallScrollback = (int) moduleConfig.LinesPerSmallScrollback;

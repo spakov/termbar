@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using TermBar.Catppuccin;
+﻿using Catppuccin;
+using System.Collections.Generic;
 using TermBar.Configuration.Json.SchemaAttributes;
 using TermBar.WindowManagement;
 using Windows.Win32.Foundation;

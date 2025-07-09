@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <Target Name="GenerateCatppuccin" BeforeTargets="BeforeCompile">
+    <Exec Command="dotnet run --project ..\CatppuccinGenerator\CatppuccinGenerator.csproj --outputPath $(MSBuildProjectDirectory) --generateSDColor --generateWUIColor --generateSolidColorBrush" />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250606001" />
+  </ItemGroup>
+
+</Project>

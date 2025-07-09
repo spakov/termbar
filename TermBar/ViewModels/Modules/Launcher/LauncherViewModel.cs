@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using TermBar.Catppuccin;
+﻿using Catppuccin;
+using System.Collections.Generic;
 using TermBar.Configuration.Json;
 using TermBar.Configuration.Json.Modules;
 
@@ -44,17 +44,17 @@ namespace TermBar.ViewModels.Modules.Launcher {
           if (config.WindowList.ProcessIconMap is not null && launcherEntry.Command is not null) {
             if (config.WindowList.ProcessIconMap.TryGetValue(launcherEntry.Command, out ProcessIconMapping? processIconMapping)) {
               if (processIconMapping.IconColor is not null) {
-                launcherLauncherEntryViewModel.IconColor = PaletteHelper.Palette[config.Flavor].Colors[(ColorEnum) processIconMapping.IconColor].SolidColorBrush;
+                launcherLauncherEntryViewModel.IconColor = Palette.Instance[config.Flavor].Colors[(ColorEnum) processIconMapping.IconColor].SolidColorBrush;
               }
             }
           }
         }
 
         if (launcherEntry.IconColor is not null) {
-          launcherLauncherEntryViewModel.IconColor ??= PaletteHelper.Palette[config.Flavor].Colors[(ColorEnum) launcherEntry.IconColor].SolidColorBrush;
+          launcherLauncherEntryViewModel.IconColor ??= Palette.Instance[config.Flavor].Colors[(ColorEnum) launcherEntry.IconColor].SolidColorBrush;
         }
 
-        launcherLauncherEntryViewModel.IconColor ??= PaletteHelper.Palette[config.Flavor].Colors[moduleConfig.AccentColor].SolidColorBrush;
+        launcherLauncherEntryViewModel.IconColor ??= Palette.Instance[config.Flavor].Colors[moduleConfig.AccentColor].SolidColorBrush;
 
         _launcherEntries.Add(launcherLauncherEntryViewModel);
       }

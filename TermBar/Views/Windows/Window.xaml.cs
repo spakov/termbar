@@ -1,12 +1,12 @@
 #if DEBUG
 using Microsoft.Extensions.Logging;
 #endif
+using Catppuccin;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using TermBar.Catppuccin;
 using TermBar.Themes;
 using Windows.Foundation;
 using Windows.Win32;
@@ -126,7 +126,7 @@ namespace TermBar.Views.Windows {
     /// </summary>
     protected void ApplyComputedStyles() {
       if (config is not null) {
-        ((Border) Content).Background = PaletteHelper.Palette[config.Flavor].Colors[config.Background].SolidColorBrush;
+        ((Border) Content).Background = Palette.Instance[config.Flavor].Colors[config.Background].SolidColorBrush;
         ((Border) Content).CornerRadius = new(config.CornerRadius);
       }
 

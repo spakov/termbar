@@ -1,8 +1,8 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Catppuccin;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using System.Diagnostics.CodeAnalysis;
-using TermBar.Catppuccin;
 using TermBar.Configuration.Json;
 using TermBar.Styles;
 
@@ -31,7 +31,7 @@ namespace TermBar.Views {
     /// foreground color styles.</param>
     internal ModuleView(Configuration.Json.TermBar config, IModule? moduleConfig = null, bool skipColor = false) {
       if (moduleConfig is not null) {
-        Resources["AccentBrush"] = PaletteHelper.Palette[config.Flavor].Colors[moduleConfig.AccentColor].SolidColorBrush;
+        Resources["AccentBrush"] = Palette.Instance[config.Flavor].Colors[moduleConfig.AccentColor].SolidColorBrush;
       }
 
       ApplyComputedStyles(config, skipColor);
@@ -56,7 +56,7 @@ namespace TermBar.Views {
         textBlockStyle.Setters.Add(
           new Setter(
             TextBlock.ForegroundProperty,
-            PaletteHelper.Palette[config.Flavor].Colors[config.TextColor].SolidColorBrush
+            Palette.Instance[config.Flavor].Colors[config.TextColor].SolidColorBrush
           )
         );
       }

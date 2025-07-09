@@ -1,10 +1,9 @@
+using Catppuccin;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using TermBar.Catppuccin;
 using TermBar.ViewModels.Modules.Launcher;
 
 namespace TermBar.Views.Modules.Launcher {
@@ -57,7 +56,7 @@ namespace TermBar.Views.Modules.Launcher {
       textBlockStyle.Setters.Add(
         new Setter(
           TextBlock.ForegroundProperty,
-          PaletteHelper.Palette[config.Flavor].Colors[config.TextColor].SolidColorBrush
+          Palette.Instance[config.Flavor].Colors[config.TextColor].SolidColorBrush
         )
       );
 

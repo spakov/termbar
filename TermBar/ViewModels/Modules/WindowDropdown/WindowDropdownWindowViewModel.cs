@@ -1,10 +1,10 @@
-﻿using Microsoft.UI.Xaml.Media;
+﻿using Catppuccin;
+using Microsoft.UI.Xaml.Media;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
-using TermBar.Catppuccin;
 
 namespace TermBar.ViewModels.Modules.WindowDropdown {
   /// <summary>
@@ -89,7 +89,7 @@ namespace TermBar.ViewModels.Modules.WindowDropdown {
       }
 
       Icon = moduleConfig.Icon;
-      IconForegroundBrush = PaletteHelper.Palette[config.Flavor].Colors[moduleConfig.AccentColor].SolidColorBrush;
+      IconForegroundBrush = Palette.Instance[config.Flavor].Colors[moduleConfig.AccentColor].SolidColorBrush;
       Name = name;
     }
 
@@ -106,7 +106,7 @@ namespace TermBar.ViewModels.Modules.WindowDropdown {
             }
 
             if (processIconMapping.IconColor is not null) {
-              IconForegroundBrush = PaletteHelper.Palette[config.Flavor].Colors[(ColorEnum) processIconMapping.IconColor].SolidColorBrush;
+              IconForegroundBrush = Palette.Instance[config.Flavor].Colors[(ColorEnum) processIconMapping.IconColor].SolidColorBrush;
             }
 
             if (processIconMapping.WindowNameIconMap is not null) {
@@ -117,7 +117,7 @@ namespace TermBar.ViewModels.Modules.WindowDropdown {
                   }
 
                   if (windowNameIconMapping.Value.IconColor is not null) {
-                    IconForegroundBrush = PaletteHelper.Palette[config.Flavor].Colors[(ColorEnum) windowNameIconMapping.Value.IconColor].SolidColorBrush;
+                    IconForegroundBrush = Palette.Instance[config.Flavor].Colors[(ColorEnum) windowNameIconMapping.Value.IconColor].SolidColorBrush;
                   }
                 }
               }

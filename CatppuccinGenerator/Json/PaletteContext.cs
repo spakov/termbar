@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace TermBar.Catppuccin.Json {
+namespace CatppuccinGenerator.Json {
   [JsonSerializable(typeof(Palette))]
   internal partial class PaletteContext : JsonSerializerContext { }
 }

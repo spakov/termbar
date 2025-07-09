@@ -1,10 +1,10 @@
-﻿using Microsoft.UI.Xaml.Media;
+﻿using Catppuccin;
+using Microsoft.UI.Xaml.Media;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using TermBar.Catppuccin;
 using TermBar.Models;
 using TermBar.Views.Modules.WindowDropdown;
 
@@ -26,7 +26,7 @@ namespace TermBar.ViewModels.Modules.WindowDropdown {
     /// <summary>
     /// The dropdown icon color.
     /// </summary>
-    internal SolidColorBrush? IconColor => PaletteHelper.Palette[config.Flavor].Colors[moduleConfig.AccentColor].SolidColorBrush;
+    internal SolidColorBrush? IconColor => Palette.Instance[config.Flavor].Colors[moduleConfig.AccentColor].SolidColorBrush;
 
     /// <summary>
     /// The list of <see cref="WindowDropdownMenuFlyoutItemView"/>s to be
