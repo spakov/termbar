@@ -1,6 +1,7 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using System.Diagnostics.CodeAnalysis;
 using TermBar.Catppuccin;
 using TermBar.Configuration.Json;
 using TermBar.Styles;
@@ -9,6 +10,7 @@ namespace TermBar.Views {
   /// <summary>
   /// A TermBar module view.
   /// </summary>
+  [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicConstructors)]
   internal partial class ModuleView : UserControl {
     /// <summary>
     /// Initializes a <see cref="ModuleView"/>.

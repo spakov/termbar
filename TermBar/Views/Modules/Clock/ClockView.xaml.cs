@@ -7,6 +7,7 @@ namespace TermBar.Views.Modules.Clock {
   /// <summary>
   /// The TermBar clock.
   /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1812:Class is apparently never instantiated", Justification = "Instantiated with Activator.CreateInstance()")]
   internal sealed partial class ClockView : ModuleView {
     private readonly Configuration.Json.TermBar config;
     private readonly Configuration.Json.Modules.Clock moduleConfig;

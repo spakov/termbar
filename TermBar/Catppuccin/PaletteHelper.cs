@@ -56,7 +56,7 @@ namespace TermBar.Catppuccin {
           }
 
           using (StreamReader reader = new(_localPaletteJsonFile)) {
-            palette = JsonSerializer.Deserialize<Palette>(reader.BaseStream)!;
+            palette = JsonSerializer.Deserialize(reader.BaseStream, PaletteContext.Default.Palette)!;
           }
         }
 

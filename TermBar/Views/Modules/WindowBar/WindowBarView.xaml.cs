@@ -1,10 +1,12 @@
 using Microsoft.UI.Xaml.Controls;
+using System.Diagnostics.CodeAnalysis;
 using TermBar.ViewModels.Modules.WindowBar;
 
 namespace TermBar.Views.Modules.WindowBar {
   /// <summary>
   /// The TermBar window bar.
   /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1812:Class is apparently never instantiated", Justification = "Instantiated with Activator.CreateInstance()")]
   internal sealed partial class WindowBarView : ModuleView {
     private WindowBarViewModel? viewModel;
 

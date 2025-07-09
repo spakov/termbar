@@ -4,6 +4,7 @@ namespace TermBar.Views.Modules.Cpu {
   /// <summary>
   /// The TermBar CPU usage monitor.
   /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1812:Class is apparently never instantiated", Justification = "Instantiated with Activator.CreateInstance()")]
   internal sealed partial class CpuView : ModuleView {
     /// <summary>
     /// Initializes a <see cref="CpuView"/>.

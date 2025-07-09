@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using TermBar.Catppuccin;
 using TermBar.Styles;
 using TermBar.ViewModels.Modules.Terminal;
@@ -12,6 +13,7 @@ namespace TermBar.Views.Modules.Terminal {
   /// <summary>
   /// The TermBar terminal.
   /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1812:Class is apparently never instantiated", Justification = "Instantiated with Activator.CreateInstance()")]
   internal sealed partial class TerminalView : ModuleView {
     private readonly Configuration.Json.TermBar config;
     private readonly Configuration.Json.Modules.Terminal moduleConfig;

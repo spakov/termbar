@@ -1,6 +1,7 @@
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using System.Diagnostics.CodeAnalysis;
 using TermBar.ViewModels.Modules.Volume;
 using Windows.Win32;
 
@@ -8,6 +9,7 @@ namespace TermBar.Views.Modules.Volume {
   /// <summary>
   /// The TermBar volume monitor.
   /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1812:Class is apparently never instantiated", Justification = "Instantiated with Activator.CreateInstance()")]
   internal sealed partial class VolumeView : ModuleView {
     private readonly Configuration.Json.Modules.Volume moduleConfig;
 

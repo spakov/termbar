@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using System.Reflection;
 using System.Text.Json.Nodes;
 using System.Text.Json.Schema;
+using TermBar.Configuration.Json.SchemaAttributes;
 using Windows.Win32;
 #endif
 using Microsoft.UI.Dispatching;
@@ -13,7 +14,7 @@ using TermBar.Configuration;
 using TermBar.Configuration.Json;
 using TermBar.Models;
 using TermBar.WindowManagement;
-using TermBar.Configuration.Json.SchemaAttributes;
+using System.Text.Json;
 
 namespace TermBar {
   /// <summary>
@@ -46,6 +47,8 @@ namespace TermBar {
     /// main() or WinMain().
     /// </summary>
     public App() {
+      TrimRoots.PreserveTrimmableClasses();
+
       InitializeComponent();
 
       WindowManager = new();
@@ -63,7 +66,8 @@ namespace TermBar {
 
 #if DEBUG
       if (Environment.CommandLine.Contains("GenerateSchema")) {
-        JsonNode schema = ConfigHelper.JsonSerializerOptions.GetJsonSchemaAsNode(
+        JsonSerializerOptions jsonSerializerOptions = new() { WriteIndented = true };
+        JsonNode schema = jsonSerializerOptions.GetJsonSchemaAsNode(
           typeof(Config),
           new() {
             TreatNullObliviousAsNonNullable = true,

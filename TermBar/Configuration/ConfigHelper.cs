@@ -12,12 +12,11 @@ namespace TermBar.Configuration {
   internal static class ConfigHelper {
     private const string configFile = "config.json";
 
-    private static readonly JsonSerializerOptions jsonSerializerOptions = new() {
+    /*private static readonly JsonSerializerOptions jsonSerializerOptions = new() {
       WriteIndented = true,
       PropertyNameCaseInsensitive = true,
-      Converters = { new JsonStringEnumConverter() },
-      TypeInfoResolver = new PolymorphicTypeResolver()
-    };
+      Converters = { new JsonStringEnumConverter() }
+    };*/
 
     /// <summary>
     /// The path to the configuration file.
@@ -27,7 +26,7 @@ namespace TermBar.Configuration {
     /// <summary>
     /// JSON serializer options.
     /// </summary>
-    internal static JsonSerializerOptions JsonSerializerOptions => jsonSerializerOptions;
+    //internal static JsonSerializerOptions JsonSerializerOptions => jsonSerializerOptions;
 
     /// <summary>
     /// Loads an existing configuration file or creates a default one.
@@ -53,14 +52,14 @@ namespace TermBar.Configuration {
         JsonSerializer.Serialize(
           streamWriter.BaseStream,
           config,
-          jsonSerializerOptions
+          ConfigContext.Default.Config
         );
       } else {
         using StreamReader streamReader = new(ConfigPath);
 
-        config = JsonSerializer.Deserialize<Config>(
+        config = JsonSerializer.Deserialize(
           streamReader.BaseStream,
-          jsonSerializerOptions
+          ConfigContext.Default.Config
         )!;
       }
 

@@ -240,38 +240,4 @@ namespace TermBar.Models {
 
     private void OnPropertyChanged([CallerMemberName] string? callerMemberName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerMemberName));
   }
-
-  internal partial class WindowListViewModelEnumerator(ObservableCollection<Window> windows) : IEnumerator<Window> {
-    private int index = -1;
-
-    object IEnumerator.Current {
-      get {
-        try {
-          return windows[index];
-        } catch (IndexOutOfRangeException) {
-          throw new InvalidOperationException();
-        }
-      }
-    }
-
-    Window IEnumerator<Window>.Current {
-      get {
-        try {
-          return windows[index];
-        } catch (IndexOutOfRangeException) {
-          throw new InvalidOperationException();
-        }
-      }
-    }
-
-    bool IEnumerator.MoveNext() {
-      index++;
-
-      return index < windows.Count;
-    }
-
-    void IEnumerator.Reset() => index = -1;
-
-    public void Dispose() { }
-  }
 }

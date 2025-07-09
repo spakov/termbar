@@ -1,10 +1,12 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using TermBar.ViewModels.Modules.WindowDropdown;
 
 namespace TermBar.Views.Modules.WindowDropdown {
   /// <summary>
   /// The TermBar window dropdown.
   /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1812:Class is apparently never instantiated", Justification = "Instantiated with Activator.CreateInstance()")]
   internal sealed partial class WindowDropdownView : ModuleView {
     private WindowDropdownViewModel? viewModel;
 

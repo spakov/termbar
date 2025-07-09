@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using TermBar.Catppuccin;
 using TermBar.ViewModels.Modules.Launcher;
 
@@ -10,6 +11,7 @@ namespace TermBar.Views.Modules.Launcher {
   /// <summary>
   /// The TermBar launcher.
   /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1812:Class is apparently never instantiated", Justification = "Instantiated with Activator.CreateInstance()")]
   internal sealed partial class LauncherView : ModuleView {
     private LauncherViewModel? viewModel;
 

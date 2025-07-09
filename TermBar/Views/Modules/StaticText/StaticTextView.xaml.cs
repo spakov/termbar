@@ -1,7 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TermBar.Views.Modules.StaticText {
   /// <summary>
   /// The TermBar static text.
   /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1812:Class is apparently never instantiated", Justification = "Instantiated with Activator.CreateInstance()")]
   internal sealed partial class StaticTextView : ModuleView {
     /// <summary>
     /// Initializes a <see cref="StaticTextView"/>.

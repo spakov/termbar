@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using TermBar.ViewModels.Modules.Memory;
 
 namespace TermBar.Views.Modules.Memory {
   /// <summary>
   /// The TermBar memory usage monitor.
   /// </summary>
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1812:Class is apparently never instantiated", Justification = "Instantiated with Activator.CreateInstance()")]
   internal sealed partial class MemoryView : ModuleView {
     /// <summary>
     /// Initializes a <see cref="MemoryView"/>.

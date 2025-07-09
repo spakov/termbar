@@ -143,7 +143,9 @@ namespace TermBar.ViewModels.Modules.Clock {
       for (int i = Date.Day; i <= DateTime.DaysInMonth(Date.Year, Date.Month); i++) {
         TextBlock day = new() { Text = i.ToString() };
 
-        if (Date.Year == DateTime.Now.Year && Date.Month == DateTime.Now.Month && i == DateTime.Now.Day)           day.Foreground = PaletteHelper.Palette[config.Flavor].Colors[moduleConfig.AccentColor].SolidColorBrush;
+        if (Date.Year == DateTime.Now.Year && Date.Month == DateTime.Now.Month && i == DateTime.Now.Day) {
+          day.Foreground = PaletteHelper.Palette[config.Flavor].Colors[moduleConfig.AccentColor].SolidColorBrush;
+        }
 
         Days.Add(day);
       }

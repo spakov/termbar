@@ -1,10 +1,21 @@
-﻿using System.ComponentModel;
+﻿using System.Text.Json.Serialization;
 using TermBar.Catppuccin;
+using TermBar.Configuration.Json.Modules;
 
 namespace TermBar.Configuration.Json {
   /// <summary>
   /// The interface that all modules implement.
   /// </summary>
+  [JsonPolymorphic(TypeDiscriminatorPropertyName = "$module")]
+  [JsonDerivedType(typeof(Clock), "Clock")]
+  [JsonDerivedType(typeof(Cpu), "Cpu")]
+  [JsonDerivedType(typeof(Launcher), "Launcher")]
+  [JsonDerivedType(typeof(Memory), "Memory")]
+  [JsonDerivedType(typeof(StaticText), "StaticText")]
+  [JsonDerivedType(typeof(Modules.Terminal), "Terminal")]
+  [JsonDerivedType(typeof(Volume), "Volume")]
+  [JsonDerivedType(typeof(WindowBar), "WindowBar")]
+  [JsonDerivedType(typeof(WindowDropdown), "WindowDropdown")]
   internal interface IModule {
     /// <summary>
     /// The order in which the module should be displayed.
