@@ -5,4 +5,5 @@
 **/nupkg/
 **/obj/
 **/out/
+EndpointVolumeInterop/x64
 TermBar/Properties/launchSettings.json

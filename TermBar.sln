@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terminal", "..\w6t\Terminal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WideCharacter", "..\w6t\WideCharacter\WideCharacter.csproj", "{F7679ADF-D76B-05EE-0138-DB89DEA342C1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EndpointVolumeInterop", "EndpointVolumeInterop\EndpointVolumeInterop.vcxproj", "{2698A2E5-A9E3-4C89-A29A-74380F576FD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -65,6 +67,14 @@ Global
 		{F7679ADF-D76B-05EE-0138-DB89DEA342C1}.Release|ARM64.Build.0 = Release|ARM64
 		{F7679ADF-D76B-05EE-0138-DB89DEA342C1}.Release|x64.ActiveCfg = Release|x64
 		{F7679ADF-D76B-05EE-0138-DB89DEA342C1}.Release|x64.Build.0 = Release|x64
+		{2698A2E5-A9E3-4C89-A29A-74380F576FD3}.Debug|ARM64.ActiveCfg = Debug|x64
+		{2698A2E5-A9E3-4C89-A29A-74380F576FD3}.Debug|ARM64.Build.0 = Debug|x64
+		{2698A2E5-A9E3-4C89-A29A-74380F576FD3}.Debug|x64.ActiveCfg = Debug|x64
+		{2698A2E5-A9E3-4C89-A29A-74380F576FD3}.Debug|x64.Build.0 = Debug|x64
+		{2698A2E5-A9E3-4C89-A29A-74380F576FD3}.Release|ARM64.ActiveCfg = Release|x64
+		{2698A2E5-A9E3-4C89-A29A-74380F576FD3}.Release|ARM64.Build.0 = Release|x64
+		{2698A2E5-A9E3-4C89-A29A-74380F576FD3}.Release|x64.ActiveCfg = Release|x64
+		{2698A2E5-A9E3-4C89-A29A-74380F576FD3}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

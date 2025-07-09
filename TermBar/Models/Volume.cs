@@ -1,6 +1,6 @@
 ﻿using Microsoft.UI.Dispatching;
-using NAudio.CoreAudioApi;
 using System;
+using System.Runtime.InteropServices;
 
 namespace TermBar.Models {
   /// <summary>
@@ -8,6 +8,33 @@ namespace TermBar.Models {
   /// </summary>
   internal partial class Volume : IDisposable {
     internal event Action? VolumeChanged;
+
+    [LibraryImport("EndpointVolumeInterop.dll")]
+    private static partial int InitializeAudioMonitor();
+
+    [LibraryImport("EndpointVolumeInterop.dll")]
+    private static partial void SetVolumeChangedCallback(IntPtr cb);
+
+    [LibraryImport("EndpointVolumeInterop.dll")]
+    private static partial void CleanupAudioMonitor();
+
+    [LibraryImport("EndpointVolumeInterop.dll")]
+    private static partial int SetMasterVolume(float level);
+
+    [LibraryImport("EndpointVolumeInterop.dll")]
+    private static partial int GetMasterVolume(out float level);
+
+    [LibraryImport("EndpointVolumeInterop.dll")]
+    private static partial int SetMute([MarshalAs(UnmanagedType.Bool)] bool mute);
+
+    [LibraryImport("EndpointVolumeInterop.dll")]
+    private static partial int GetMute([MarshalAs(UnmanagedType.Bool)] out bool mute);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    private delegate void VolumeChangedCallback(float newVolume);
+
+    private readonly VolumeChangedCallback volumeChangedCallback;
+    private readonly bool isInitialized;
 
     /// <summary>
     /// The singleton instance.
@@ -18,19 +45,34 @@ namespace TermBar.Models {
 
     private readonly DispatcherQueue dispatcherQueue;
 
-    private readonly MMDeviceEnumerator enumerator;
-    private readonly MMDevice defaultDevice;
-    private readonly AudioEndpointVolume volume;
-
     /// <summary>
     /// The volume percent.
     /// </summary>
+    /// <exception cref="COMException"></exception>
+    /// <exception cref="InvalidOperationException"></exception>
     internal float VolumePercent {
-      get => volume.MasterVolumeLevelScalar * 100;
+      get {
+        if (!isInitialized) {
+          throw new InvalidOperationException("Must call InitializeAudioMonitor() first.");
+        }
+
+        int hr = GetMasterVolume(out float level);
+        System.Diagnostics.Debug.WriteLine($"Volume level: {level}");
+
+        return hr == 0
+          ? level * 100
+          : throw new COMException("Failed to get volume level.", Marshal.GetHRForLastWin32Error());
+      }
 
       set {
-        if (Math.Abs((volume.MasterVolumeLevelScalar * 100) - value) > 1) {
-          volume.MasterVolumeLevelScalar = value / 100;
+        if (!isInitialized) {
+          throw new InvalidOperationException("Must call InitializeAudioMonitor() first.");
+        }
+
+        int hr = SetMasterVolume(value / 100);
+
+        if (hr != 0) {
+          throw new COMException("Failed to set volume level.", hr);
         }
       }
     }
@@ -38,12 +80,30 @@ namespace TermBar.Models {
     /// <summary>
     /// Whether the volume is muted.
     /// </summary>
+    /// <exception cref="COMException"></exception>
     internal bool VolumeMuted {
-      get => volume.Mute;
+      get {
+        if (!isInitialized) {
+          throw new InvalidOperationException("Must call InitializeAudioMonitor() first.");
+        }
+
+        int hr = GetMute(out bool mute);
+        System.Diagnostics.Debug.WriteLine($"Volume mute: {mute}");
+
+        return hr == 0
+          ? mute
+          : throw new COMException("Failed to get volume level.", Marshal.GetHRForLastWin32Error());
+      }
 
       set {
-        if (volume.Mute != value) {
-          volume.Mute = value;
+        if (!isInitialized) {
+          throw new InvalidOperationException("Must call InitializeAudioMonitor() first.");
+        }
+
+        int hr = SetMute(value);
+
+        if (hr != 0) {
+          throw new COMException("Failed to set mute state.", hr);
         }
       }
     }
@@ -52,25 +112,27 @@ namespace TermBar.Models {
     /// Invoked when the volume changes.
     /// </summary>
     /// <param name="_">Unused.</param>
-    internal void OnVolumeChanged(AudioVolumeNotificationData _) => dispatcherQueue.TryEnqueue(() => VolumeChanged?.Invoke());
+    internal void OnVolumeChanged(float _) => dispatcherQueue.TryEnqueue(() => VolumeChanged?.Invoke());
 
     /// <summary>
     /// Initializes a <see cref="Volume"/>.
     /// </summary>
+    /// <exception cref="COMException"></exception>
     internal Volume(DispatcherQueue dispatcherQueue) {
       this.dispatcherQueue = dispatcherQueue;
 
-      enumerator = new();
-      defaultDevice = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
-      volume = defaultDevice.AudioEndpointVolume;
-      volume.OnVolumeNotification += OnVolumeChanged;
+      int hr = InitializeAudioMonitor();
+
+      if (hr != 0) {
+        throw new COMException("Failed to initialize audio monitor.", hr);
+      }
+
+      volumeChangedCallback = OnVolumeChanged;
+      SetVolumeChangedCallback(Marshal.GetFunctionPointerForDelegate(volumeChangedCallback));
+
+      isInitialized = true;
     }
 
-    public void Dispose() {
-      volume.OnVolumeNotification -= OnVolumeChanged;
-      volume.Dispose();
-      defaultDevice.Dispose();
-      enumerator.Dispose();
-    }
+    public void Dispose() => CleanupAudioMonitor();
   }
 }
