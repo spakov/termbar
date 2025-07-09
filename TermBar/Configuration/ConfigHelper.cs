@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using TermBar.Configuration.Json;
 using TermBar.WindowManagement;
 
@@ -11,12 +10,6 @@ namespace TermBar.Configuration {
   /// </summary>
   internal static class ConfigHelper {
     private const string configFile = "config.json";
-
-    /*private static readonly JsonSerializerOptions jsonSerializerOptions = new() {
-      WriteIndented = true,
-      PropertyNameCaseInsensitive = true,
-      Converters = { new JsonStringEnumConverter() }
-    };*/
 
     /// <summary>
     /// The path to the configuration file.
