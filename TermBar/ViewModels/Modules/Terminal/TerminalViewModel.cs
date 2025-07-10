@@ -1,12 +1,12 @@
-﻿using ConPTY;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using TermBar.Views.Modules.Terminal;
+using Spakov.ConPTY;
+using Spakov.TermBar.Views.Modules.Terminal;
 
-namespace TermBar.ViewModels.Modules.Terminal {
+namespace Spakov.TermBar.ViewModels.Modules.Terminal {
   /// <summary>
   /// The terminal viewmodel.
   /// </summary>

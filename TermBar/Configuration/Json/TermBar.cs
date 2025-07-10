@@ -1,10 +1,10 @@
-﻿using Catppuccin;
+﻿using Spakov.Catppuccin;
+using Spakov.TermBar.Configuration.Json.SchemaAttributes;
+using Spakov.TermBar.WindowManagement;
 using System.Collections.Generic;
-using TermBar.Configuration.Json.SchemaAttributes;
-using TermBar.WindowManagement;
 using Windows.Win32.Foundation;
 
-namespace TermBar.Configuration.Json {
+namespace Spakov.TermBar.Configuration.Json {
   [Description("The TermBar configuration for a display.")]
   internal class TermBar {
     private const FlavorEnum flavorDefault = FlavorEnum.Mocha;

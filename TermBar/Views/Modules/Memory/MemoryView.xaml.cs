@@ -1,7 +1,7 @@
+using Spakov.TermBar.ViewModels.Modules.Memory;
 using System.Diagnostics.CodeAnalysis;
-using TermBar.ViewModels.Modules.Memory;
 
-namespace TermBar.Views.Modules.Memory {
+namespace Spakov.TermBar.Views.Modules.Memory {
   /// <summary>
   /// The TermBar memory usage monitor.
   /// </summary>

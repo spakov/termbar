@@ -1,23 +1,23 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using TermBar.ViewModels.Modules.Clock;
-using TermBar.ViewModels.Modules.Cpu;
-using TermBar.ViewModels.Modules.Launcher;
-using TermBar.ViewModels.Modules.Memory;
-using TermBar.ViewModels.Modules.Terminal;
-using TermBar.ViewModels.Modules.Volume;
-using TermBar.ViewModels.Modules.WindowBar;
-using TermBar.ViewModels.Modules.WindowDropdown;
-using TermBar.Views.Modules.Clock;
-using TermBar.Views.Modules.Cpu;
-using TermBar.Views.Modules.Launcher;
-using TermBar.Views.Modules.Memory;
-using TermBar.Views.Modules.StaticText;
-using TermBar.Views.Modules.Terminal;
-using TermBar.Views.Modules.Volume;
-using TermBar.Views.Modules.WindowBar;
-using TermBar.Views.Modules.WindowDropdown;
+﻿using Spakov.TermBar.ViewModels.Modules.Clock;
+using Spakov.TermBar.ViewModels.Modules.Cpu;
+using Spakov.TermBar.ViewModels.Modules.Launcher;
+using Spakov.TermBar.ViewModels.Modules.Memory;
+using Spakov.TermBar.ViewModels.Modules.Terminal;
+using Spakov.TermBar.ViewModels.Modules.Volume;
+using Spakov.TermBar.ViewModels.Modules.WindowBar;
+using Spakov.TermBar.ViewModels.Modules.WindowDropdown;
+using Spakov.TermBar.Views.Modules.Clock;
+using Spakov.TermBar.Views.Modules.Cpu;
+using Spakov.TermBar.Views.Modules.Launcher;
+using Spakov.TermBar.Views.Modules.Memory;
+using Spakov.TermBar.Views.Modules.StaticText;
+using Spakov.TermBar.Views.Modules.Terminal;
+using Spakov.TermBar.Views.Modules.Volume;
+using Spakov.TermBar.Views.Modules.WindowBar;
+using Spakov.TermBar.Views.Modules.WindowDropdown;
+using System.Diagnostics.CodeAnalysis;
 
-namespace TermBar {
+namespace Spakov.TermBar {
   /// <summary>
   /// Prevents trimming of classes that are never instantiated with new().
   /// </summary>

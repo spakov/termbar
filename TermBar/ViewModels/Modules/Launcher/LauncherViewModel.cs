@@ -1,9 +1,9 @@
-﻿using Catppuccin;
+﻿using Spakov.Catppuccin;
+using Spakov.TermBar.Configuration.Json;
+using Spakov.TermBar.Configuration.Json.Modules;
 using System.Collections.Generic;
-using TermBar.Configuration.Json;
-using TermBar.Configuration.Json.Modules;
 
-namespace TermBar.ViewModels.Modules.Launcher {
+namespace Spakov.TermBar.ViewModels.Modules.Launcher {
   /// <summary>
   /// The launcher viewmodel.
   /// </summary>

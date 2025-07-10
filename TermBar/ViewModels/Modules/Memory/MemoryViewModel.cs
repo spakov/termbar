@@ -2,9 +2,9 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using TermBar.Models;
+using Spakov.TermBar.Models;
 
-namespace TermBar.ViewModels.Modules.Memory {
+namespace Spakov.TermBar.ViewModels.Modules.Memory {
   /// <summary>
   /// The memory usage monitor viewmodel.
   /// </summary>

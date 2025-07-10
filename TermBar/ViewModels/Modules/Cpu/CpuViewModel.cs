@@ -1,10 +1,10 @@
 ﻿using Microsoft.UI.Xaml;
+using Spakov.TermBar.Models;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using TermBar.Models;
 
-namespace TermBar.ViewModels.Modules.Cpu {
+namespace Spakov.TermBar.ViewModels.Modules.Cpu {
   /// <summary>
   /// The CPU usage monitor viewmodel.
   /// </summary>

@@ -1,12 +1,12 @@
-﻿using Catppuccin;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Spakov.Catppuccin;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
 
-namespace TermBar.ViewModels.Modules.Clock {
+namespace Spakov.TermBar.ViewModels.Modules.Clock {
   /// <summary>
   /// The clock calendar viewmodel.
   /// </summary>

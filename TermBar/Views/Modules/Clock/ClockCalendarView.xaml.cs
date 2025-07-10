@@ -1,9 +1,9 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using TermBar.Styles;
-using TermBar.ViewModels.Modules.Clock;
+using Spakov.TermBar.Styles;
+using Spakov.TermBar.ViewModels.Modules.Clock;
 
-namespace TermBar.Views.Modules.Clock {
+namespace Spakov.TermBar.Views.Modules.Clock {
   /// <summary>
   /// The TermBar clock calendar.
   /// </summary>

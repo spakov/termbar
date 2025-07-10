@@ -3,13 +3,13 @@ using Microsoft.Extensions.Logging;
 #endif
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Spakov.TermBar.Configuration;
+using Spakov.TermBar.Configuration.Json;
+using Spakov.TermBar.Styles;
 using System;
 using System.Diagnostics;
-using TermBar.Configuration;
-using TermBar.Configuration.Json;
-using TermBar.Styles;
 
-namespace TermBar.Views.Windows {
+namespace Spakov.TermBar.Views.Windows {
   /// <summary>
   /// The main TermBar "window".
   /// </summary>

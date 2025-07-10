@@ -6,7 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Specialized;
 
-namespace TermBar.Views.Modules.WindowDropdown {
+namespace Spakov.TermBar.Views.Modules.WindowDropdown {
   /// <summary>
   /// A <see cref="MenuFlyout"/> with an <see cref="ItemsSourceProperty"/>.
   /// </summary>

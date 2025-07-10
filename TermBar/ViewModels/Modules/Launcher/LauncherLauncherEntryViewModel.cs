@@ -1,6 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Media;
 
-namespace TermBar.ViewModels.Modules.Launcher {
+namespace Spakov.TermBar.ViewModels.Modules.Launcher {
   internal class LauncherLauncherEntryViewModel {
     public string? Name { get; set; }
     public (string?, string[]?) Command { get; set; }

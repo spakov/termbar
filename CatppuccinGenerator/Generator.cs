@@ -23,7 +23,7 @@ namespace CatppuccinGenerator {
       /* </auto-generated>                                                         */
       /*****************************************************************************/
 
-      namespace Catppuccin {
+      namespace {namespace} {
         /// <summary>
         /// The Catppuccin palette.json file.
         /// </summary>
@@ -101,7 +101,7 @@ namespace CatppuccinGenerator {
       /* </auto-generated>                                                         */
       /*****************************************************************************/
 
-      namespace Catppuccin {
+      namespace {namespace} {
         /// <summary>
         /// A Catppuccin palette.json flavor.
         /// </summary>
@@ -132,7 +132,7 @@ namespace CatppuccinGenerator {
       /* </auto-generated>                                                         */
       /*****************************************************************************/
 
-      namespace Catppuccin {
+      namespace {namespace} {
         /// <summary>
         /// Catppuccin flavor colors in palette.json.
         /// </summary>
@@ -323,7 +323,7 @@ namespace CatppuccinGenerator {
       /* </auto-generated>                                                         */
       /*****************************************************************************/
 
-      namespace Catppuccin {
+      namespace {namespace} {
         /// <summary>
         /// A Catppuccin flavor color in palette.json.
         /// </summary>
@@ -423,7 +423,7 @@ namespace CatppuccinGenerator {
       /* </auto-generated>                                                         */
       /*****************************************************************************/
 
-      namespace Catppuccin {
+      namespace {namespace} {
         /// <summary>
         /// A Catppuccin flavor color rgb object in palette.json.
         /// </summary>
@@ -459,7 +459,7 @@ namespace CatppuccinGenerator {
       /* </auto-generated>                                                         */
       /*****************************************************************************/
 
-      namespace Catppuccin {
+      namespace {namespace} {
         /// <summary>
         /// Catppuccin flavor ANSI colors in palette.json.
         /// </summary>
@@ -548,7 +548,7 @@ namespace CatppuccinGenerator {
       /* </auto-generated>                                                         */
       /*****************************************************************************/
 
-      namespace Catppuccin {
+      namespace {namespace} {
         /// <summary>
         /// A Catppuccin palette.json ANSI color pair.
         /// </summary>
@@ -577,7 +577,7 @@ namespace CatppuccinGenerator {
       /* </auto-generated>                                                         */
       /*****************************************************************************/
 
-      namespace Catppuccin {
+      namespace {namespace} {
         /// <summary>
         /// Catppuccin flavors.
         /// </summary>
@@ -601,7 +601,7 @@ namespace CatppuccinGenerator {
       /* </auto-generated>                                                         */
       /*****************************************************************************/
 
-      namespace Catppuccin {
+      namespace {namespace} {
         /// <summary>
         /// Catppuccin colors.
         /// </summary>
@@ -647,7 +647,7 @@ namespace CatppuccinGenerator {
       /* </auto-generated>                                                         */
       /*****************************************************************************/
 
-      namespace Catppuccin {
+      namespace {namespace} {
         /// <summary>
         /// Catppuccin ANSI colors.
         /// </summary>
@@ -673,6 +673,7 @@ namespace CatppuccinGenerator {
       """;
 
     private readonly string? outputPath;
+    private readonly string @namespace;
     private readonly bool generateSDColor;
     private readonly bool generateWUIColor;
     private readonly bool generateSolidColorBrush;
@@ -681,11 +682,15 @@ namespace CatppuccinGenerator {
     /// Initializes a <see cref="Generator"/>.
     /// </summary>
     /// <param name="outputPath">The generated code output path.</param>
+    /// <param name="namespace">The namespace to use for generated
+    /// code.</param>
     /// <param name="generateSDColor">Whether to generate SDColor.</param>
     /// <param name="generateWUIColor">Whether to generate WUIColor.</param>
-    /// <param name="generateSolidColorBrush">Whether to generate SolidColorBrush.</param>
-    internal Generator(string? outputPath, bool generateSDColor, bool generateWUIColor, bool generateSolidColorBrush) {
+    /// <param name="generateSolidColorBrush">Whether to generate
+    /// SolidColorBrush.</param>
+    internal Generator(string? outputPath, string @namespace, bool generateSDColor, bool generateWUIColor, bool generateSolidColorBrush) {
       this.outputPath = outputPath;
+      this.@namespace = @namespace;
       this.generateSDColor = generateSDColor;
       this.generateWUIColor = generateWUIColor;
       this.generateSolidColorBrush = generateSolidColorBrush;
@@ -724,6 +729,9 @@ namespace CatppuccinGenerator {
         using (StreamWriter paletteDotCsStream = new(outputFilePath, new FileStreamOptions() { Access = FileAccess.Write, Mode = FileMode.Create })) {
           paletteDotCsStream.Write(
             paletteDotCsContent.Replace(
+              "{namespace}",
+              @namespace
+              ).Replace(
               "{latte}",
               Palette.ToCode(palette.Latte, paletteDotCsContentIndent)
             ).Replace(
@@ -747,7 +755,12 @@ namespace CatppuccinGenerator {
 
       try {
         using (StreamWriter flavorDotCsStream = new(outputFilePath, new FileStreamOptions() { Access = FileAccess.Write, Mode = FileMode.Create })) {
-          flavorDotCsStream.Write(flavorDotCsContent);
+          flavorDotCsStream.Write(
+            flavorDotCsContent.Replace(
+              "{namespace}",
+              @namespace
+            )
+          );
         }
       } catch (IOException e) {
         Console.Error.WriteLine($"Unable to write to {outputFilePath}. {e.Message}");
@@ -758,7 +771,12 @@ namespace CatppuccinGenerator {
 
       try {
         using (StreamWriter colorsDotCsStream = new(outputFilePath, new FileStreamOptions() { Access = FileAccess.Write, Mode = FileMode.Create })) {
-          colorsDotCsStream.Write(colorsDotCsContent);
+          colorsDotCsStream.Write(
+            colorsDotCsContent.Replace(
+              "{namespace}",
+              @namespace
+            )
+          );
         }
       } catch (IOException e) {
         Console.Error.WriteLine($"Unable to write to {outputFilePath}. {e.Message}");
@@ -769,7 +787,10 @@ namespace CatppuccinGenerator {
 
       try {
         using (StreamWriter colorDotCsStream = new(outputFilePath, new FileStreamOptions() { Access = FileAccess.Write, Mode = FileMode.Create })) {
-          string _colorDotCsContent = colorDotCsContent;
+          string _colorDotCsContent = colorDotCsContent.Replace(
+            "{namespace}",
+            @namespace
+          );
 
           _colorDotCsContent = generateSDColor
             ? _colorDotCsContent.Replace("{sdColor}", colorDotCsSDColorContent)
@@ -794,7 +815,12 @@ namespace CatppuccinGenerator {
 
       try {
         using (StreamWriter rgbDotCsStream = new(outputFilePath, new FileStreamOptions() { Access = FileAccess.Write, Mode = FileMode.Create })) {
-          rgbDotCsStream.Write(rgbDotCsContent);
+          rgbDotCsStream.Write(
+            rgbDotCsContent.Replace(
+              "{namespace}",
+              @namespace
+            )
+          );
         }
       } catch (IOException e) {
         Console.Error.WriteLine($"Unable to write to {outputFilePath}. {e.Message}");
@@ -805,7 +831,12 @@ namespace CatppuccinGenerator {
 
       try {
         using (StreamWriter ansiColorsDotCsStream = new(outputFilePath, new FileStreamOptions() { Access = FileAccess.Write, Mode = FileMode.Create })) {
-          ansiColorsDotCsStream.Write(ansiColorsDotCsContent);
+          ansiColorsDotCsStream.Write(
+            ansiColorsDotCsContent.Replace(
+              "{namespace}",
+              @namespace
+            )
+          );
         }
       } catch (IOException e) {
         Console.Error.WriteLine($"Unable to write to {outputFilePath}. {e.Message}");
@@ -816,7 +847,12 @@ namespace CatppuccinGenerator {
 
       try {
         using (StreamWriter ansiColorPairDotCsStream = new(outputFilePath, new FileStreamOptions() { Access = FileAccess.Write, Mode = FileMode.Create })) {
-          ansiColorPairDotCsStream.Write(ansiColorPairDotCsContent);
+          ansiColorPairDotCsStream.Write(
+            ansiColorPairDotCsContent.Replace(
+              "{namespace}",
+              @namespace
+            )
+          );
         }
       } catch (IOException e) {
         Console.Error.WriteLine($"Unable to write to {outputFilePath}. {e.Message}");
@@ -827,7 +863,12 @@ namespace CatppuccinGenerator {
 
       try {
         using (StreamWriter flavorEnumDotCsStream = new(outputFilePath, new FileStreamOptions() { Access = FileAccess.Write, Mode = FileMode.Create })) {
-          flavorEnumDotCsStream.Write(flavorEnumDotCsContent);
+          flavorEnumDotCsStream.Write(
+            flavorEnumDotCsContent.Replace(
+              "{namespace}",
+              @namespace
+            )
+          );
         }
       } catch (IOException e) {
         Console.Error.WriteLine($"Unable to write to {outputFilePath}. {e.Message}");
@@ -838,7 +879,12 @@ namespace CatppuccinGenerator {
 
       try {
         using (StreamWriter colorEnumDotCsStream = new(outputFilePath, new FileStreamOptions() { Access = FileAccess.Write, Mode = FileMode.Create })) {
-          colorEnumDotCsStream.Write(colorEnumDotCsContent);
+          colorEnumDotCsStream.Write(
+            colorEnumDotCsContent.Replace(
+              "{namespace}",
+              @namespace
+            )
+          );
         }
       } catch (IOException e) {
         Console.Error.WriteLine($"Unable to write to {outputFilePath}. {e.Message}");
@@ -849,7 +895,12 @@ namespace CatppuccinGenerator {
 
       try {
         using (StreamWriter ansiColorEnumDotCsStream = new(outputFilePath, new FileStreamOptions() { Access = FileAccess.Write, Mode = FileMode.Create })) {
-          ansiColorEnumDotCsStream.Write(ansiColorEnumDotCsContent);
+          ansiColorEnumDotCsStream.Write(
+            ansiColorEnumDotCsContent.Replace(
+              "{namespace}",
+              @namespace
+            )
+          );
         }
       } catch (IOException e) {
         Console.Error.WriteLine($"Unable to write to {outputFilePath}. {e.Message}");

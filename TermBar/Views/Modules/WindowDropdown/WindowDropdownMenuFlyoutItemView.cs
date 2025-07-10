@@ -1,9 +1,9 @@
 using Microsoft.UI.Xaml.Controls;
-using TermBar.Models;
-using TermBar.ViewModels.Modules.WindowDropdown;
+using Spakov.TermBar.Models;
+using Spakov.TermBar.ViewModels.Modules.WindowDropdown;
 using Windows.Win32.Foundation;
 
-namespace TermBar.Views.Modules.WindowDropdown {
+namespace Spakov.TermBar.Views.Modules.WindowDropdown {
   internal sealed partial class WindowDropdownMenuFlyoutItemView : MenuFlyoutItem, IWindowListWindow {
     private WindowDropdownWindowViewModel? viewModel;
 

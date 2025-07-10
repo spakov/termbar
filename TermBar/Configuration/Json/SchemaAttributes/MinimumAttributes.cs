@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TermBar.Configuration.Json.SchemaAttributes {
+namespace Spakov.TermBar.Configuration.Json.SchemaAttributes {
   /// <summary>
   /// Represents a JSON Schema <c>minimum</c> range validation keyword.
   /// </summary>

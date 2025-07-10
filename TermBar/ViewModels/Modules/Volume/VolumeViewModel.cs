@@ -5,7 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace TermBar.ViewModels.Modules.Volume {
+namespace Spakov.TermBar.ViewModels.Modules.Volume {
   /// <summary>
   /// The volume viewmodel.
   /// </summary>

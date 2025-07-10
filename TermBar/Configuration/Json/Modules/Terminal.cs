@@ -1,8 +1,8 @@
-﻿using Catppuccin;
-using TermBar.Configuration.Json.SchemaAttributes;
-using Terminal;
+﻿using Spakov.Catppuccin;
+using Spakov.TermBar.Configuration.Json.SchemaAttributes;
+using Spakov.Terminal;
 
-namespace TermBar.Configuration.Json.Modules {
+namespace Spakov.TermBar.Configuration.Json.Modules {
   [Description("A TermBar terminal configuration. For all objects that accept a null value, a value of null means the default TerminalControl behavior takes effect, unless otherwise noted.")]
   internal class Terminal : IModule {
     private const int orderDefault = 0;

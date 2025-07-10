@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Spakov.TermBar.Models;
+using Spakov.TermBar.Views.Modules.WindowBar;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using TermBar.Models;
-using TermBar.Views.Modules.WindowBar;
 
-namespace TermBar.ViewModels.Modules.WindowBar {
+namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
   /// <summary>
   /// The window bar viewmodel.
   /// </summary>

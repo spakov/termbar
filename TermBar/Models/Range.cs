@@ -1,4 +1,4 @@
-﻿namespace TermBar.Models {
+﻿namespace Spakov.TermBar.Models {
   /// <summary>
   /// A range of integers.
   /// </summary>

@@ -1,12 +1,12 @@
-﻿using Catppuccin;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using Spakov.Catppuccin;
+using Spakov.TermBar.Configuration.Json;
+using Spakov.TermBar.Styles;
 using System.Diagnostics.CodeAnalysis;
-using TermBar.Configuration.Json;
-using TermBar.Styles;
 
-namespace TermBar.Views {
+namespace Spakov.TermBar.Views {
   /// <summary>
   /// A TermBar module view.
   /// </summary>

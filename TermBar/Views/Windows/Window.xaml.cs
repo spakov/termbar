@@ -1,18 +1,18 @@
 #if DEBUG
 using Microsoft.Extensions.Logging;
 #endif
-using Catppuccin;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Spakov.Catppuccin;
+using Spakov.TermBar.Themes;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using TermBar.Themes;
 using Windows.Foundation;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 
-namespace TermBar.Views.Windows {
+namespace Spakov.TermBar.Views.Windows {
   /// <summary>
   /// A TermBar "window".
   /// </summary>

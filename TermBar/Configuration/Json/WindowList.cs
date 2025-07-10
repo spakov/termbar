@@ -1,8 +1,8 @@
-﻿using Catppuccin;
+﻿using Spakov.Catppuccin;
+using Spakov.TermBar.Configuration.Json.SchemaAttributes;
 using System.Collections.Generic;
-using TermBar.Configuration.Json.SchemaAttributes;
 
-namespace TermBar.Configuration.Json {
+namespace Spakov.TermBar.Configuration.Json {
   [Description("The TermBar configuration for window lists. Process names must not include an extension!")]
   internal class WindowList {
     [Description("An ordered list of window process names that should be pinned, in this order, at the beginning of the window list. Set to null to disable this behavior.")]

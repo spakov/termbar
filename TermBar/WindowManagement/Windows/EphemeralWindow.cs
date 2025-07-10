@@ -2,14 +2,14 @@
 using Microsoft.Extensions.Logging;
 #endif
 using Microsoft.UI.Xaml;
+using Spakov.TermBar.Models;
 using System;
 using System.Diagnostics;
-using TermBar.Models;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.Accessibility;
 
-namespace TermBar.WindowManagement.Windows {
+namespace Spakov.TermBar.WindowManagement.Windows {
   /// <summary>
   /// A TermBar ephemeral window.
   /// </summary>

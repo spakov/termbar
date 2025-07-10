@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using Windows.Win32.Foundation;
 
-namespace TermBar.Models {
+namespace Spakov.TermBar.Models {
   /// <summary>
   /// A window.
   /// </summary>
@@ -29,7 +29,7 @@ namespace TermBar.Models {
     /// </summary>
     public string Name {
       get => _name;
-      
+
       internal set {
         if (_name != value) {
           _name = value;

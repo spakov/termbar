@@ -7,7 +7,7 @@ using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
 
-namespace TermBar.WindowManagement.Windows {
+namespace Spakov.TermBar.WindowManagement.Windows {
   /// <summary>
   /// The base class from which all TermBar windows derive.
   /// </summary>

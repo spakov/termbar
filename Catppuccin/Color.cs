@@ -9,7 +9,7 @@ using System.Collections.Generic;
 /* </auto-generated>                                                         */
 /*****************************************************************************/
 
-namespace Catppuccin {
+namespace Spakov.Catppuccin {
   /// <summary>
   /// A Catppuccin flavor color in palette.json.
   /// </summary>

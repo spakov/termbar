@@ -1,12 +1,12 @@
-using Catppuccin;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using Spakov.Catppuccin;
+using Spakov.TermBar.ViewModels.Modules.Launcher;
 using System;
 using System.Diagnostics;
-using TermBar.ViewModels.Modules.Launcher;
 
-namespace TermBar.Views.Modules.Launcher {
+namespace Spakov.TermBar.Views.Modules.Launcher {
   /// <summary>
   /// The TermBar launcher.
   /// </summary>
@@ -72,7 +72,7 @@ namespace TermBar.Views.Modules.Launcher {
     /// path="/param[@name='e']"/></param>
     private void Button_Click(object sender, RoutedEventArgs e) {
       Button button = (Button) sender;
-      (string? command, string[]? commandArguments) = (ValueTuple<string ?, string[]?>) button.Tag;
+      (string? command, string[]? commandArguments) = (ValueTuple<string?, string[]?>) button.Tag;
 
       if (command is null) return;
 

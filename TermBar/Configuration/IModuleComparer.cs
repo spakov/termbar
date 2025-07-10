@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using TermBar.Configuration.Json;
+﻿using Spakov.TermBar.Configuration.Json;
+using System.Collections.Generic;
 
-namespace TermBar.Configuration {
+namespace Spakov.TermBar.Configuration {
   /// <summary>
   /// Allows comparing <see cref="IModule"/>s by their <see
   /// cref="IModule.Order"/>.

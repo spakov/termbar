@@ -1,6 +1,6 @@
-﻿using TermBar.Configuration.Json.SchemaAttributes;
+﻿using Spakov.TermBar.Configuration.Json.SchemaAttributes;
 
-namespace TermBar.Configuration.Json {
+namespace Spakov.TermBar.Configuration.Json {
   [Description("A display. A TermBar window will be shown on each configured display.")]
   internal class Display {
     [Description("The display ID. These can be viewed in the TermBar settings.")]

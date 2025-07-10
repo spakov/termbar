@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using Windows.Win32;
 
-namespace TermBar.WindowManagement.Windows {
+namespace Spakov.TermBar.WindowManagement.Windows {
   /// <summary>
   /// A TermBar dialog window.
   /// </summary>

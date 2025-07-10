@@ -1,8 +1,8 @@
-﻿using Catppuccin;
+﻿using Spakov.Catppuccin;
+using Spakov.TermBar.Configuration.Json.SchemaAttributes;
 using System.Collections.Generic;
-using TermBar.Configuration.Json.SchemaAttributes;
 
-namespace TermBar.Configuration.Json.Modules {
+namespace Spakov.TermBar.Configuration.Json.Modules {
   [Description("A TermBar launcher configuration.")]
   internal class Launcher : IModule {
     private const int orderDefault = -1;

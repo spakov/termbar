@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <local:ModuleView
   d:DataContext="{x:Bind vm:WindowBarViewModel}"
-  x:Class="TermBar.Views.Modules.WindowBar.WindowBarView"
+  x:Class="Spakov.TermBar.Views.Modules.WindowBar.WindowBarView"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:local="using:TermBar.Views"
-  xmlns:vm="using:TermBar.ViewModels.Modules.WindowBar"
+  xmlns:local="using:Spakov.TermBar.Views"
+  xmlns:vm="using:Spakov.TermBar.ViewModels.Modules.WindowBar"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   mc:Ignorable="d">

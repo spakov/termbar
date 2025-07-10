@@ -7,7 +7,7 @@
 /* </auto-generated>                                                         */
 /*****************************************************************************/
 
-namespace Catppuccin {
+namespace Spakov.Catppuccin {
   /// <summary>
   /// A Catppuccin palette.json ANSI color pair.
   /// </summary>

@@ -1,8 +1,8 @@
 using Microsoft.UI.Xaml.Controls;
+using Spakov.TermBar.ViewModels.Modules.WindowBar;
 using System.Diagnostics.CodeAnalysis;
-using TermBar.ViewModels.Modules.WindowBar;
 
-namespace TermBar.Views.Modules.WindowBar {
+namespace Spakov.TermBar.Views.Modules.WindowBar {
   /// <summary>
   /// The TermBar window bar.
   /// </summary>

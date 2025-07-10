@@ -1,7 +1,7 @@
-﻿using Catppuccin;
-using TermBar.Configuration.Json.SchemaAttributes;
+﻿using Spakov.Catppuccin;
+using Spakov.TermBar.Configuration.Json.SchemaAttributes;
 
-namespace TermBar.Configuration.Json.Modules {
+namespace Spakov.TermBar.Configuration.Json.Modules {
   [Description("A TermBar window dropdown configuration.")]
   internal class WindowDropdown : IModule {
     private const int orderDefault = 101;

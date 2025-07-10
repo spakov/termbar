@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TermBar.WindowManagement.Windows {
+namespace Spakov.TermBar.WindowManagement.Windows {
   /// <summary>
   /// A TermBar window.
   /// </summary>

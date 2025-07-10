@@ -1,6 +1,6 @@
-using TermBar.ViewModels.Modules.Cpu;
+using Spakov.TermBar.ViewModels.Modules.Cpu;
 
-namespace TermBar.Views.Modules.Cpu {
+namespace Spakov.TermBar.Views.Modules.Cpu {
   /// <summary>
   /// The TermBar CPU usage monitor.
   /// </summary>

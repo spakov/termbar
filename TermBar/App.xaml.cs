@@ -1,21 +1,22 @@
 ﻿#if DEBUG
 using Microsoft.Extensions.Logging;
+using Spakov.TermBar.Configuration.Json.SchemaAttributes;
 using System.Reflection;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Schema;
-using TermBar.Configuration.Json.SchemaAttributes;
 using Windows.Win32;
 #endif
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
+using Spakov.TermBar.Configuration;
+using Spakov.TermBar.Configuration.Json;
+using Spakov.TermBar.Models;
+using Spakov.TermBar.WindowManagement;
 using System;
 using System.IO;
-using TermBar.Configuration;
-using TermBar.Configuration.Json;
-using TermBar.Models;
-using TermBar.WindowManagement;
 
-namespace TermBar {
+namespace Spakov.TermBar {
   /// <summary>
   /// Provides application-specific behavior to supplement the default
   /// Application class.

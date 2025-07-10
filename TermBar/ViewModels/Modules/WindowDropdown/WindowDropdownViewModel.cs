@@ -1,14 +1,14 @@
-﻿using Catppuccin;
-using Microsoft.UI.Xaml.Media;
+﻿using Microsoft.UI.Xaml.Media;
+using Spakov.Catppuccin;
+using Spakov.TermBar.Models;
+using Spakov.TermBar.Views.Modules.WindowDropdown;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using TermBar.Models;
-using TermBar.Views.Modules.WindowDropdown;
 
-namespace TermBar.ViewModels.Modules.WindowDropdown {
+namespace Spakov.TermBar.ViewModels.Modules.WindowDropdown {
   internal partial class WindowDropdownViewModel : INotifyPropertyChanged {
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -101,7 +101,7 @@ namespace TermBar.ViewModels.Modules.WindowDropdown {
         foreach (Window model in e.NewItems!) {
           view = new(config, moduleConfig, model.HWnd, model.ProcessId, model.Name);
           WindowListHelper.OrderAndInsert(config.WindowList, view, views, view.WindowProcessId, view.WindowName!);
-          
+
           model.PropertyChanged += (sender, e) => FindView((Window) sender!)!.WindowName = ((Window) sender!).Name;
         }
       } else if (e.Action.Equals(NotifyCollectionChangedAction.Remove)) {

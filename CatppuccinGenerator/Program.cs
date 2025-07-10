@@ -7,6 +7,11 @@ internal class Program {
       Description = "The generated code output path."
     };
 
+    Option<string> namespaceOption = new("--namespace", ["-n"]) {
+      Description = "The namespace to use for generated code.",
+      Required = true
+    };
+
     Option<bool> generateSDColorOption = new("--generateSDColor", ["-s"]) {
       Description = "Whether the generated Color should include SDColor."
     };
@@ -24,6 +29,7 @@ internal class Program {
     };
 
     rootCommand.Options.Add(outputPathOption);
+    rootCommand.Options.Add(namespaceOption);
     rootCommand.Options.Add(generateSDColorOption);
     rootCommand.Options.Add(generateWUIColorOption);
     rootCommand.Options.Add(generateSolidColorBrushOption);
@@ -31,6 +37,7 @@ internal class Program {
     rootCommand.SetAction(parseResult => {
       return new Generator(
         parseResult.GetValue(outputPathOption),
+        parseResult.GetValue(namespaceOption)!,
         parseResult.GetValue(generateSDColorOption),
         parseResult.GetValue(generateWUIColorOption) || parseResult.GetValue(generateSolidColorBrushOption),
         parseResult.GetValue(generateSolidColorBrushOption)

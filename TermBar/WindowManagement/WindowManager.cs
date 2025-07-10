@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Spakov.TermBar.WindowManagement.Windows;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using TermBar.WindowManagement.Windows;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
 
-namespace TermBar.WindowManagement {
+namespace Spakov.TermBar.WindowManagement {
   /// <summary>
   /// The TermBar window manager.
   /// </summary>

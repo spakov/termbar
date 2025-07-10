@@ -7,7 +7,7 @@
 /* </auto-generated>                                                         */
 /*****************************************************************************/
 
-namespace Catppuccin {
+namespace Spakov.Catppuccin {
   /// <summary>
   /// A Catppuccin flavor color rgb object in palette.json.
   /// </summary>

@@ -1,8 +1,8 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using TermBar.ViewModels.Modules.Launcher;
+using Spakov.TermBar.ViewModels.Modules.Launcher;
 
-namespace TermBar.Views.Modules.Launcher {
+namespace Spakov.TermBar.Views.Modules.Launcher {
   public partial class LauncherLauncherEntryTemplateSelector : DataTemplateSelector {
     public DataTemplate? LauncherEntriesEntryTemplate { get; set; }
     public DataTemplate? LauncherEntriesNamedEntryTemplate { get; set; }

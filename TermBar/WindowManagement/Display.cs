@@ -1,4 +1,4 @@
-﻿namespace TermBar.WindowManagement {
+﻿namespace Spakov.TermBar.WindowManagement {
   /// <summary>
   /// A display.
   /// </summary>

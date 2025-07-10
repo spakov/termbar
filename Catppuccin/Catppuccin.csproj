@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <Target Name="GenerateCatppuccin" BeforeTargets="BeforeCompile">
-    <Exec Command="dotnet run --project ..\CatppuccinGenerator\CatppuccinGenerator.csproj --outputPath $(MSBuildProjectDirectory) --generateSDColor --generateWUIColor --generateSolidColorBrush" />
+    <Exec Command="dotnet run --project ..\CatppuccinGenerator\CatppuccinGenerator.csproj --outputPath $(MSBuildProjectDirectory) --namespace Spakov.Catppuccin --generateSDColor --generateWUIColor --generateSolidColorBrush" />
   </Target>
 
   <ItemGroup>

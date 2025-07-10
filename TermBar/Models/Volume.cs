@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace TermBar.Models {
+namespace Spakov.TermBar.Models {
   /// <summary>
   /// The volume model.
   /// </summary>

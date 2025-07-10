@@ -11,7 +11,7 @@ using Windows.Win32.Foundation;
 using Windows.Win32.Graphics.Dwm;
 using Windows.Win32.UI.WindowsAndMessaging;
 
-namespace TermBar.Models {
+namespace Spakov.TermBar.Models {
   /// <summary>
   /// Helper methods abstracting Win32 for <see cref="WindowList"/>.
   /// </summary>

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using TermBar.Configuration.Json.SchemaAttributes;
+﻿using Spakov.TermBar.Configuration.Json.SchemaAttributes;
+using System.Collections.Generic;
 
-namespace TermBar.Configuration.Json {
+namespace Spakov.TermBar.Configuration.Json {
   [Description("The TermBar configuration.")]
   internal class Config {
     private const string startDirectoryDefault = "%USERPROFILE%";

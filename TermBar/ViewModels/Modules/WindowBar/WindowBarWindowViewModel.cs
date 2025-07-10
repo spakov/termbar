@@ -1,12 +1,12 @@
-﻿using Catppuccin;
-using Microsoft.UI.Xaml.Media;
+﻿using Microsoft.UI.Xaml.Media;
+using Spakov.Catppuccin;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
-namespace TermBar.ViewModels.Modules.WindowBar {
+namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
   /// <summary>
   /// The window bar window viewmodel.
   /// </summary>

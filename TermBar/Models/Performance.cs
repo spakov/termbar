@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace TermBar.Models {
+namespace Spakov.TermBar.Models {
   /// <summary>
   /// The performance model.
   /// </summary>

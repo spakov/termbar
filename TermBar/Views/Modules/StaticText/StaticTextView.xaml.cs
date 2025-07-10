@@ -1,6 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
-
-namespace TermBar.Views.Modules.StaticText {
+namespace Spakov.TermBar.Views.Modules.StaticText {
   /// <summary>
   /// The TermBar static text.
   /// </summary>

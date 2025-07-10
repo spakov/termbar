@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <local:ModuleView
   d:DataContext="{d:DesignInstance Type=vm:ClockViewModel}"
-  x:Class="TermBar.Views.Modules.Clock.ClockView"
+  x:Class="Spakov.TermBar.Views.Modules.Clock.ClockView"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:local="using:TermBar.Views"
-  xmlns:vm="using:TermBar.ViewModels.Modules.Clock"
+  xmlns:local="using:Spakov.TermBar.Views"
+  xmlns:vm="using:Spakov.TermBar.ViewModels.Modules.Clock"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   mc:Ignorable="d">

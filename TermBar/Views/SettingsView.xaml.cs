@@ -1,19 +1,19 @@
-using Catppuccin;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.Windows.AppNotifications;
 using Microsoft.Windows.AppNotifications.Builder;
+using Spakov.Catppuccin;
+using Spakov.TermBar.Configuration;
+using Spakov.TermBar.Styles;
+using Spakov.TermBar.WindowManagement;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
-using TermBar.Configuration;
-using TermBar.Styles;
-using TermBar.WindowManagement;
 using Windows.ApplicationModel.DataTransfer;
 
-namespace TermBar.Views {
+namespace Spakov.TermBar.Views {
   /// <summary>
   /// The TermBar settings view.
   /// </summary>

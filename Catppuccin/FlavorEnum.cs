@@ -7,7 +7,7 @@
 /* </auto-generated>                                                         */
 /*****************************************************************************/
 
-namespace Catppuccin {
+namespace Spakov.Catppuccin {
   /// <summary>
   /// Catppuccin flavors.
   /// </summary>

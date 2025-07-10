@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TermBar.Configuration.Json.SchemaAttributes {
+namespace Spakov.TermBar.Configuration.Json.SchemaAttributes {
   /// <summary>
   /// Represents a JSON Schema <c>default</c> annotation for a string (<see
   /// cref="System.Text.Json.JsonValueKind.String"/>).

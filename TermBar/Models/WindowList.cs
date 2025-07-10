@@ -12,7 +12,7 @@ using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.Accessibility;
 
-namespace TermBar.Models {
+namespace Spakov.TermBar.Models {
   /// <summary>
   /// The window list.
   /// </summary>

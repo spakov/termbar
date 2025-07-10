@@ -1,6 +1,6 @@
 using Microsoft.UI.Xaml;
 
-namespace TermBar.Views.Windows {
+namespace Spakov.TermBar.Views.Windows {
   /// <summary>
   /// An ephemeral "window".
   /// </summary>

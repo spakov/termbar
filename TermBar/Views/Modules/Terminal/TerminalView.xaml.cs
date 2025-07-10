@@ -1,14 +1,14 @@
-using Catppuccin;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using Spakov.Catppuccin;
+using Spakov.TermBar.Styles;
+using Spakov.TermBar.ViewModels.Modules.Terminal;
+using Spakov.Terminal;
 using System;
-using TermBar.Styles;
-using TermBar.ViewModels.Modules.Terminal;
-using Terminal;
 
-namespace TermBar.Views.Modules.Terminal {
+namespace Spakov.TermBar.Views.Modules.Terminal {
   /// <summary>
   /// The TermBar terminal.
   /// </summary>

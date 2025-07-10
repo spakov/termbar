@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using Windows.UI;
 
-namespace TermBar.Configuration {
+namespace Spakov.TermBar.Configuration {
   /// <summary>
   /// A simple JSON syntax highlighter.
   /// </summary>

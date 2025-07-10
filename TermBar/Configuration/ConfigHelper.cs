@@ -1,10 +1,10 @@
-﻿using System.IO;
+﻿using Spakov.TermBar.Configuration.Json;
+using Spakov.TermBar.WindowManagement;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
-using TermBar.Configuration.Json;
-using TermBar.WindowManagement;
 
-namespace TermBar.Configuration {
+namespace Spakov.TermBar.Configuration {
   /// <summary>
   /// Configuration helper methods.
   /// </summary>

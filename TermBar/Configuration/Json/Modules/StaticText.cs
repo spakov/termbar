@@ -1,7 +1,7 @@
-﻿using Catppuccin;
-using TermBar.Configuration.Json.SchemaAttributes;
+﻿using Spakov.Catppuccin;
+using Spakov.TermBar.Configuration.Json.SchemaAttributes;
 
-namespace TermBar.Configuration.Json.Modules {
+namespace Spakov.TermBar.Configuration.Json.Modules {
   [Description("A TermBar static text display configuration.")]
   internal class StaticText : IModule {
     private const int orderDefault = int.MinValue;

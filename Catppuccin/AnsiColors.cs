@@ -9,7 +9,7 @@ using System;
 /* </auto-generated>                                                         */
 /*****************************************************************************/
 
-namespace Catppuccin {
+namespace Spakov.Catppuccin {
   /// <summary>
   /// Catppuccin flavor ANSI colors in palette.json.
   /// </summary>

@@ -1,8 +1,8 @@
-﻿using Catppuccin;
+﻿using Spakov.Catppuccin;
+using Spakov.TermBar.Configuration.Json.Modules;
 using System.Text.Json.Serialization;
-using TermBar.Configuration.Json.Modules;
 
-namespace TermBar.Configuration.Json {
+namespace Spakov.TermBar.Configuration.Json {
   /// <summary>
   /// The interface that all modules implement.
   /// </summary>

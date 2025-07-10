@@ -1,4 +1,4 @@
-﻿namespace TermBar.Models {
+﻿namespace Spakov.TermBar.Models {
   /// <summary>
   /// A window that can be managed by <see cref="WindowListHelper"/>.
   /// </summary>

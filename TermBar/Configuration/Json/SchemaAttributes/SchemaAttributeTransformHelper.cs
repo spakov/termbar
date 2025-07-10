@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Text.Json.Nodes;
 using System.Text.Json.Schema;
 
-namespace TermBar.Configuration.Json.SchemaAttributes {
+namespace Spakov.TermBar.Configuration.Json.SchemaAttributes {
   /// <summary>
   /// Contains schema node transformation methods.
   /// </summary>

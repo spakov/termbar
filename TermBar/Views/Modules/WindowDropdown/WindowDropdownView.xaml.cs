@@ -1,8 +1,8 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
-using TermBar.ViewModels.Modules.WindowDropdown;
+using Spakov.TermBar.ViewModels.Modules.WindowDropdown;
 
-namespace TermBar.Views.Modules.WindowDropdown {
+namespace Spakov.TermBar.Views.Modules.WindowDropdown {
   /// <summary>
   /// The TermBar window dropdown.
   /// </summary>

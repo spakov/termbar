@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace TermBar.ViewModels.Modules.Clock {
+namespace Spakov.TermBar.ViewModels.Modules.Clock {
   /// <summary>
   /// The clock viewmodel.
   /// </summary>

@@ -1,7 +1,7 @@
 ﻿using Microsoft.UI.Xaml;
 using System;
 
-namespace TermBar.Styles {
+namespace Spakov.TermBar.Styles {
   internal static class StylesHelper {
     /// <summary>
     /// Given a <paramref name="style"/>, sets <paramref name="style"/>'s <see

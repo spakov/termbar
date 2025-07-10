@@ -1,11 +1,11 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using TermBar.Models;
-using TermBar.Styles;
-using TermBar.ViewModels.Modules.WindowBar;
+using Spakov.TermBar.Models;
+using Spakov.TermBar.Styles;
+using Spakov.TermBar.ViewModels.Modules.WindowBar;
 using Windows.Win32.Foundation;
 
-namespace TermBar.Views.Modules.WindowBar {
+namespace Spakov.TermBar.Views.Modules.WindowBar {
   /// <summary>
   /// The TermBar clock.
   /// </summary>

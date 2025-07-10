@@ -1,7 +1,7 @@
-﻿using Catppuccin;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
+using Spakov.Catppuccin;
 
-namespace TermBar.Themes {
+namespace Spakov.TermBar.Themes {
   /// <summary>
   /// Application theme helper methods.
   /// </summary>

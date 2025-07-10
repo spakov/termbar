@@ -11,11 +11,9 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="677bb89d-8544-42bd-a87f-2616044e3d4f"
+    Name="TermBar"
     Publisher="CN=spakov"
     Version="$(BuildVersionSimple)" />
-
-  <mp:PhoneIdentity PhoneProductId="677bb89d-8544-42bd-a87f-2616044e3d4f" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>TermBar</DisplayName>
@@ -24,7 +22,6 @@
   </Properties>
 
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
     <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
   </Dependencies>
 
@@ -38,7 +35,7 @@
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
         DisplayName="TermBar"
-        Description="A window manager with a taskbar."
+        Description="A window manager with a terminal."
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png">
