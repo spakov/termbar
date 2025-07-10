@@ -18,9 +18,7 @@
     ScrollViewer.VerticalScrollBarVisibility="Hidden"
     SelectionMode="Single"
     IsItemClickEnabled="True"
-    AllowDrop="True"
-    CanDragItems="True"
-    CanReorderItems="True">
+    LayoutUpdated="ListView_LayoutUpdated">
     <ListView.ItemsPanel>
       <ItemsPanelTemplate>
         <ItemsStackPanel Orientation="Horizontal"/>

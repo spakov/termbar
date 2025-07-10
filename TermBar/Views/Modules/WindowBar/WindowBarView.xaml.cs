@@ -1,6 +1,6 @@
 using Microsoft.UI.Xaml.Controls;
 using Spakov.TermBar.ViewModels.Modules.WindowBar;
-using System.Diagnostics.CodeAnalysis;
+using System;
 
 namespace Spakov.TermBar.Views.Modules.WindowBar {
   /// <summary>
@@ -9,6 +9,8 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
   [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1812:Class is apparently never instantiated", Justification = "Instantiated with Activator.CreateInstance()")]
   internal sealed partial class WindowBarView : ModuleView {
     private WindowBarViewModel? viewModel;
+
+    private int? requestedSelectedIndex;
 
     /// <summary>
     /// The viewmodel.
@@ -32,6 +34,8 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
     internal WindowBarView(Configuration.Json.TermBar config, Configuration.Json.Modules.WindowBar moduleConfig) : base(config, moduleConfig, skipColor: true) {
       ViewModel = new WindowBarViewModel(this, config, moduleConfig);
 
+      requestedSelectedIndex = null;
+
       InitializeComponent();
 
       ((ListView) Content).ItemClick += WindowBarView_ItemClick;
@@ -41,11 +45,7 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
     /// Sets the selected window index.
     /// </summary>
     /// <param name="index">The selected window index.</param>
-    internal void SetSelectedWindowIndex(int index) {
-      if (((ListView) Content).SelectedIndex != index) {
-        ((ListView) Content).SelectedIndex = index;
-      }
-    }
+    internal void SetSelectedWindowIndex(int index) => requestedSelectedIndex = index;
 
     /// <summary>
     /// Invoked when the user clicks an item.
@@ -59,6 +59,20 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
     private void WindowBarView_ItemClick(object sender, ItemClickEventArgs e) {
       if (e.ClickedItem.Equals(ViewModel!.ForegroundedWindow)) {
         WindowBarViewModel.Iconify();
+      }
+    }
+
+    /// <summary>
+    /// Invoked when the <see cref="ListView"/> updates its layout.
+    /// </summary>
+    /// <param name="sender"><inheritdoc cref="EventHandler"
+    /// path="/param[@name='sender']"/></param>
+    /// <param name="e"><inheritdoc cref="EventHandler"
+    /// path="/param[@name='e']"/></param>
+    private void ListView_LayoutUpdated(object sender, object e) {
+      if (requestedSelectedIndex is not null) {
+        ((ListView) Content).SelectedIndex = (int) requestedSelectedIndex;
+        requestedSelectedIndex = null;
       }
     }
   }

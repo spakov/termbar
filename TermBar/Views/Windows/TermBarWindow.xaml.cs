@@ -21,7 +21,7 @@ namespace Spakov.TermBar.Views.Windows {
 
     private const string taskManager = "taskmgr.exe";
 
-    private const string viewsModulesNamespace = "TermBar.Views.Modules";
+    private const string viewsModulesNamespace = "Spakov.TermBar.Views.Modules";
 
     private readonly Configuration.Json.TermBar config;
 
