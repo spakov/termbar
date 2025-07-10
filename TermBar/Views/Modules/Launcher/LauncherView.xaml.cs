@@ -85,7 +85,7 @@ namespace Spakov.TermBar.Views.Modules.Launcher {
       };
 
       foreach (string commandArgument in commandArguments) {
-        processStartInfo.ArgumentList.Add(commandArgument);
+        processStartInfo.ArgumentList.Add(Environment.ExpandEnvironmentVariables(commandArgument));
       }
 
       Process.Start(processStartInfo);

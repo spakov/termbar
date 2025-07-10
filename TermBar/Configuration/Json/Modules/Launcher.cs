@@ -39,7 +39,10 @@ namespace Spakov.TermBar.Configuration.Json.Modules {
       },
       new() {
         Name = "File Explorer",
-        Command = "explorer"
+        Command = "explorer",
+        CommandArguments = [
+          "%USERPROFILE%"
+        ]
       }
     ];
   }
