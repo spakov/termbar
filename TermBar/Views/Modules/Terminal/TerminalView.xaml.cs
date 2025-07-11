@@ -48,7 +48,7 @@ namespace Spakov.TermBar.Views.Modules.Terminal {
       visualBellTimer.Interval = TimeSpan.FromMilliseconds(moduleConfig.VisualBellDisplayTime);
       visualBellTimer.Tick += VisualBellTimer_Tick;
 
-      ViewModel = new TerminalViewModel(this, moduleConfig, GetPalette());
+      ViewModel = new TerminalViewModel(this, config, moduleConfig, GetPalette());
 
       InitializeComponent();
       ApplyComputedGridStyle();
@@ -168,30 +168,6 @@ namespace Spakov.TermBar.Views.Modules.Terminal {
     /// path="/param[@name='sender']"/></param>
     /// <param name="e"><inheritdoc cref="RoutedEventHandler"
     /// path="/param[@name='e']"/></param>
-    private void TerminalControl_Loaded(object sender, RoutedEventArgs e) {
-      if (moduleConfig.TabWidth is not null) TerminalControl.TabWidth = (int) moduleConfig.TabWidth;
-      TerminalControl.FontFamily = config.FontFamily;
-      TerminalControl.FontSize = config.FontSize;
-      if (moduleConfig.TextAntialiasing is not null) TerminalControl.TextAntialiasing = (TextAntialiasingStyles) moduleConfig.TextAntialiasing;
-      if (moduleConfig.FullColorEmoji is not null) TerminalControl.FullColorEmoji = (bool) moduleConfig.FullColorEmoji;
-      if (moduleConfig.UseBackgroundColorErase is not null) TerminalControl.UseBackgroundColorErase = (bool) moduleConfig.UseBackgroundColorErase;
-      if (moduleConfig.BackgroundIsInvisible is not null) TerminalControl.BackgroundIsInvisible = (bool) moduleConfig.BackgroundIsInvisible;
-      if (moduleConfig.UseVisualBell is not null) TerminalControl.UseVisualBell = (bool) moduleConfig.UseVisualBell;
-      if (moduleConfig.UseContextMenu is not null) TerminalControl.UseContextMenu = (bool) moduleConfig.UseContextMenu;
-      if (moduleConfig.UseExtendedContextMenu is not null) TerminalControl.UseExtendedContextMenu = (bool) moduleConfig.UseExtendedContextMenu;
-      if (moduleConfig.CursorStyle is not null) TerminalControl.CursorStyle = (CursorStyles) moduleConfig.CursorStyle;
-      if (moduleConfig.CursorThickness is not null) TerminalControl.CursorThickness = (double) moduleConfig.CursorThickness;
-      if (moduleConfig.CursorBlink is not null) TerminalControl.CursorBlink = (bool) moduleConfig.CursorBlink;
-      if (moduleConfig.CursorBlinkRate is not null) TerminalControl.CursorBlinkRate = (int) moduleConfig.CursorBlinkRate;
-      if (moduleConfig.CursorColor is not null) TerminalControl.CursorColor = Palette.Instance[config.Flavor].Colors[moduleConfig.AccentColor].WUIColor;
-      if (moduleConfig.ScrollbackLines is not null) TerminalControl.Scrollback = (int) moduleConfig.ScrollbackLines;
-      if (moduleConfig.LinesPerScrollback is not null) TerminalControl.LinesPerScrollback = (int) moduleConfig.LinesPerScrollback;
-      if (moduleConfig.LinesPerSmallScrollback is not null) TerminalControl.LinesPerSmallScrollback = (int) moduleConfig.LinesPerSmallScrollback;
-      if (moduleConfig.LinesPerWheelScrollback is not null) TerminalControl.LinesPerWheelScrollback = (int) moduleConfig.LinesPerWheelScrollback;
-      if (moduleConfig.CopyOnMouseUp is not null) TerminalControl.CopyOnMouseUp = (bool) moduleConfig.CopyOnMouseUp;
-      if (moduleConfig.PasteOnMiddleClick is not null) TerminalControl.PasteOnMiddleClick = (bool) moduleConfig.PasteOnMiddleClick;
-      if (moduleConfig.PasteOnRightClick is not null) TerminalControl.PasteOnRightClick = (bool) moduleConfig.PasteOnRightClick;
-      if (moduleConfig.CopyNewline is not null) TerminalControl.CopyNewline = (string) moduleConfig.CopyNewline;
-    }
+    private void TerminalControl_Loaded(object sender, RoutedEventArgs e) => ViewModel!.BindSettings(TerminalControl);
   }
 }

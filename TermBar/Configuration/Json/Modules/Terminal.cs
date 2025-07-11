@@ -86,6 +86,14 @@ namespace Spakov.TermBar.Configuration.Json.Modules {
     [MinimumInt(1)]
     public int Columns { get; set; } = columnsDefault;
 
+    [Description("The font family to use in the terminal. Set to null to use the TermBar font family.")]
+    [DefaultNull]
+    public string? FontFamily { get; set; } = null;
+
+    [Description("The font size to use in the terminal. Set to null to use the TermBar font size.")]
+    [DefaultNull]
+    public double? FontSize { get; set; } = null;
+
     [Description("The default tab width in the terminal. (Practically speaking, this is virtually irrelevant today.)")]
     [DefaultIntNumber(tabWidthDefault)]
     [MinimumInt(1)]
