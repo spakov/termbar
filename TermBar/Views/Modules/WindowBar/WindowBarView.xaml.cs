@@ -10,6 +10,8 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
   internal sealed partial class WindowBarView : ModuleView {
     private WindowBarViewModel? viewModel;
 
+    private readonly Configuration.Json.Modules.WindowBar config;
+
     private int? requestedSelectedIndex;
 
     /// <summary>
@@ -32,6 +34,8 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
     /// cref="Configuration.Json.Modules.WindowBar"/> for this <see
     /// cref="WindowBarView"/>.</param>
     internal WindowBarView(Configuration.Json.TermBar config, Configuration.Json.Modules.WindowBar moduleConfig) : base(config, moduleConfig, skipColor: true) {
+      this.config = moduleConfig;
+
       ViewModel = new WindowBarViewModel(this, config, moduleConfig);
 
       requestedSelectedIndex = null;
@@ -39,6 +43,10 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
       InitializeComponent();
 
       ((ListView) Content).ItemClick += WindowBarView_ItemClick;
+
+      if (moduleConfig.Windows is not null && moduleConfig.Windows.ScrollIntoView) {
+        ((ListView) Content).SelectionChanged += ListView_SelectionChanged;
+      }
     }
 
     /// <summary>
@@ -48,7 +56,7 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
     internal void SetSelectedWindowIndex(int index) => requestedSelectedIndex = index;
 
     /// <summary>
-    /// Invoked when the user clicks an item.
+    /// Invoked when the user clicks a window.
     /// </summary>
     /// <remarks>Note that foregrounding is handled separately via
     /// <c>SelectedItem</c>.</remarks>
@@ -73,6 +81,24 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
       if (requestedSelectedIndex is not null) {
         ((ListView) Content).SelectedIndex = (int) requestedSelectedIndex;
         requestedSelectedIndex = null;
+      }
+    }
+
+    /// <summary>
+    /// Invoked when the <see cref="ListView"/>'s selection has finished
+    /// changing.
+    /// </summary>
+    /// <param name="sender"><inheritdoc cref="EventHandler"
+    /// path="/param[@name='sender']"/></param>
+    /// <param name="e"><inheritdoc cref="EventHandler"
+    /// path="/param[@name='e']"/></param>
+    private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+      if (config.Windows is not null && config.Windows.ScrollIntoView) {
+        if (((ListView) Content).SelectedItem is not null) {
+          if (((ListView) Content).SelectedIndex < ((ListView) Content).Items.Count) {
+            ((ListView) Content).ScrollIntoView(((ListView) Content).Items[((ListView) Content).SelectedIndex]);
+          }
+        }
       }
     }
   }

@@ -169,13 +169,13 @@ namespace Spakov.TermBar.WindowManagement.Windows {
       ignoreFirstForegroundEvent = true;
 
       _ = PInvoke.SetWinEventHook(
-        WindowListHelper.EVENT_SYSTEM_FOREGROUND,
-        WindowListHelper.EVENT_SYSTEM_FOREGROUND,
+        PInvoke.EVENT_SYSTEM_FOREGROUND,
+        PInvoke.EVENT_SYSTEM_FOREGROUND,
         (HMODULE) (nint) 0,
         winForegroundEventProc,
         0,
         0,
-        WindowListHelper.WINEVENT_OUTOFCONTEXT
+        PInvoke.WINEVENT_OUTOFCONTEXT
       );
     }
 

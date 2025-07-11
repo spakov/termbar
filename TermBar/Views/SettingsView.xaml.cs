@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Foundation;
 
 namespace Spakov.TermBar.Views {
   /// <summary>
@@ -22,6 +23,9 @@ namespace Spakov.TermBar.Views {
     private const string explorer = "explorer.exe";
 
     private readonly Configuration.Json.TermBar config;
+
+    private readonly string runtimeConfig;
+    private readonly JsonFormatSyntaxColors jsonFormatSyntaxColors;
 
     private readonly DataPackage dataPackage = new();
 
@@ -35,11 +39,6 @@ namespace Spakov.TermBar.Views {
 
     /// <inheritdoc cref="ConfigHelper.ConfigPath"/>
     private string ConfigPath => ConfigHelper.ConfigPath;
-
-    /// <summary>
-    /// The runtime JSON configuration.
-    /// </summary>
-    //private string RuntimeConfig { get; set; }
 
     /// <summary>
     /// The list of detected displays.
@@ -71,18 +70,43 @@ namespace Spakov.TermBar.Views {
       ApplyComputedStyles();
       InitializeComponent();
 
+      runtimeConfig = JsonSerializer.Serialize(App.Config, Configuration.Json.ConfigContext.Default.Config);
+      jsonFormatSyntaxColors = new(
+        defaultColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Lavender].WUIColor,
+        objectColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Text].WUIColor,
+        stringColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Sky].WUIColor,
+        numberColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Maroon].WUIColor,
+        booleanColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Blue].WUIColor,
+        nullColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Mauve].WUIColor
+      );
+
+      RuntimeConfig.ActualThemeChanged += RuntimeConfig_ActualThemeChanged;
+
       JsonFormatter.FormatJson(
         RuntimeConfig,
-        JsonSerializer.Serialize(App.Config, Configuration.Json.ConfigContext.Default.Config),
-        new(
-          defaultColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Lavender].WUIColor,
-          objectColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Text].WUIColor,
-          stringColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Sky].WUIColor,
-          numberColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Maroon].WUIColor,
-          booleanColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Blue].WUIColor,
-          nullColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Mauve].WUIColor
-        )
+        runtimeConfig,
+        jsonFormatSyntaxColors
       );
+    }
+
+    /// <summary>
+    /// Invoked when the RuntimeConfig theme changes.
+    /// </summary>
+    /// <param name="sender"><inheritdoc
+    /// cref="TypedEventHandler{TSender, TResult}"
+    /// path="/param[@name='sender']"/></param>
+    /// <param name="args"><inheritdoc
+    /// cref="TypedEventHandler{TSender, TResult}"
+    /// path="/param[@name='args']"/></param>
+    private void RuntimeConfig_ActualThemeChanged(FrameworkElement sender, object args) {
+      // This property actually matters, even programmatically
+      RuntimeConfig.IsReadOnly = false;
+      JsonFormatter.FormatJson(
+        RuntimeConfig,
+        runtimeConfig,
+        jsonFormatSyntaxColors
+      );
+      RuntimeConfig.IsReadOnly = true;
     }
 
     /// <summary>
@@ -98,7 +122,7 @@ namespace Spakov.TermBar.Views {
     }
 
     /// <summary>
-    /// Applies computed styles to <see cref="Grid"/>.
+    /// Applies computed styles to <c>LayoutGrid</c>.
     /// </summary>
     private void ApplyComputedGridStyle() {
       Style gridStyle = new(typeof(Grid));
@@ -108,7 +132,7 @@ namespace Spakov.TermBar.Views {
       gridStyle.Setters.Add(new Setter(Grid.PaddingProperty, config.Padding.ToString()));
       gridStyle.Setters.Add(new Setter(Grid.RowSpacingProperty, config.Padding));
 
-      Resources[typeof(Grid)] = gridStyle;
+      Resources["LayoutGrid"] = gridStyle;
     }
 
     /// <summary>
@@ -151,7 +175,7 @@ namespace Spakov.TermBar.Views {
       richEditBoxStyle.Setters.Add(new Setter(RichEditBox.IsReadOnlyProperty, true));
       richEditBoxStyle.Setters.Add(new Setter(RichEditBox.AcceptsReturnProperty, true));
       richEditBoxStyle.Setters.Add(new Setter(ScrollViewer.VerticalScrollBarVisibilityProperty, ScrollBarVisibility.Auto));
-      richEditBoxStyle.Setters.Add(new Setter(ScrollViewer.HorizontalScrollBarVisibilityProperty, ScrollBarVisibility.Auto));
+      richEditBoxStyle.Setters.Add(new Setter(ScrollViewer.HorizontalScrollBarVisibilityProperty, ScrollBarVisibility.Hidden));
 
       Resources[typeof(RichEditBox)] = richEditBoxStyle;
     }

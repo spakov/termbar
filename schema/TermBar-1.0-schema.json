@@ -311,6 +311,30 @@
                 "description": "The window list configuration.",
                 "type": "object",
                 "properties": {
+                  "HighPriorityWindows": {
+                    "description": "An ordered list of window process names that should be pinned, in this order, at the beginning of the window list. Set to null to disable this behavior.",
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "LowPriorityWindows": {
+                    "description": "An ordered list of window process names that should be pinned, in this order, at the end of the window list. Set to null to disable this behavior. If a process name is in LowPriorityWindows and in HighPriorityWindows, HighPriorityWindows takes precedence.",
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "SortGroupsAlphabetically": {
+                    "description": "Whether groups of windows with the same process name should be sorted alphabetically. If false, windows are simply added to the window list in the order they were created (or, when starting, in the order they are reported by the operating system).",
+                    "type": "boolean"
+                  },
                   "ProcessIconMap": {
                     "description": "The map of window process names to ProcessIconMappings to apply to windows. Set to null to disable this behavior.",
                     "type": [
@@ -322,7 +346,7 @@
                       "type": "object",
                       "properties": {
                         "IconColor": {
-                          "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module\u0027s AccentColor.",
+                          "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module\u2019s AccentColor.",
                           "default": null,
                           "enum": [
                             "Rosewater",
@@ -355,7 +379,7 @@
                           ]
                         },
                         "Icon": {
-                          "description": "The text to use as the window icon. Set to null to fall back to the window list module\u0027s Icon.",
+                          "description": "The text to use as the window icon. Set to null to fall back to the window list module\u2019s Icon.",
                           "default": null,
                           "type": [
                             "string",
@@ -374,7 +398,7 @@
                             "type": "object",
                             "properties": {
                               "IconColor": {
-                                "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module\u0027s AccentColor.",
+                                "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module\u2019s AccentColor.",
                                 "default": null,
                                 "enum": [
                                   "Rosewater",
@@ -407,7 +431,7 @@
                                 ]
                               },
                               "Icon": {
-                                "description": "The text to use as the window icon. Set to null to fall back to the window list module\u0027s Icon.",
+                                "description": "The text to use as the window icon. Set to null to fall back to the window list module\u2019s Icon.",
                                 "default": null,
                                 "type": [
                                   "string",
@@ -546,12 +570,12 @@
                           ],
                           "properties": {
                             "TodayDayFormat": {
-                              "description": "The date format to use for today\u0027s day in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
+                              "description": "The date format to use for today\u2019s day in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
                               "default": "dddd",
                               "type": "string"
                             },
                             "TodayDateFormat": {
-                              "description": "The date format to use for today\u0027s date in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
+                              "description": "The date format to use for today\u2019s date in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
                               "default": "MMMM d, yyyy",
                               "type": "string"
                             },
@@ -1812,7 +1836,7 @@
                           "type": "string"
                         },
                         "Windows": {
-                          "description": "Windows configuration.",
+                          "description": "Windows configuration. Set to null to disable these features and allow system default behaviors to take place.",
                           "type": [
                             "object",
                             "null"
@@ -1837,7 +1861,12 @@
                               ]
                             },
                             "NiceTruncation": {
-                              "description": "Whether the window name should be truncated with \u2026 if it\u0027s too long.",
+                              "description": "Whether the window name should be truncated with \u2026 if it\u2019s too long.",
+                              "default": true,
+                              "type": "boolean"
+                            },
+                            "ScrollIntoView": {
+                              "description": "Whether to scroll the window list to show the selected window.",
                               "default": true,
                               "type": "boolean"
                             }

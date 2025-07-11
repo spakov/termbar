@@ -16,19 +16,6 @@ namespace Spakov.TermBar.Models {
   /// Helper methods abstracting Win32 for <see cref="WindowList"/>.
   /// </summary>
   internal static class WindowListHelper {
-    internal const uint EVENT_SYSTEM_FOREGROUND = 0x0003;
-
-    internal const uint EVENT_OBJECT_CREATE = 0x8000;
-    internal const uint EVENT_OBJECT_DESTROY = 0x8001;
-    internal const uint EVENT_OBJECT_SHOW = 0x8002;
-    internal const uint EVENT_OBJECT_HIDE = 0x8003;
-    internal const uint EVENT_OBJECT_NAMECHANGE = 0x800C;
-
-    internal const uint WINEVENT_OUTOFCONTEXT = 0x0000;
-    internal const uint WINEVENT_SKIPOWNTHREAD = 0x0001;
-    internal const uint WINEVENT_SKIPOWNPROCESS = 0x0002;
-    internal const uint WINEVENT_INCONTEXT = 0x0004;
-
     private static readonly List<string> ignoredClassNames = [
       "Microsoft.UI.Content.PopupWindowSiteBridge",
       "Progman",
@@ -269,7 +256,7 @@ namespace Spakov.TermBar.Models {
 #else
     internal static Window? IsForegrounded(ObservableCollection<Window> windows, uint @event, HWND hWnd) {
 #endif
-      if (@event == EVENT_SYSTEM_FOREGROUND) {
+      if (@event == PInvoke.EVENT_SYSTEM_FOREGROUND) {
         if (!WindowIsInteresting(hWnd)) return null;
 
         if (_windows.Contains(hWnd)) {
@@ -307,8 +294,9 @@ namespace Spakov.TermBar.Models {
       string name;
 
       switch (@event) {
-        case EVENT_OBJECT_CREATE:
-        case EVENT_OBJECT_SHOW:
+        case PInvoke.EVENT_OBJECT_CREATE:
+        case PInvoke.EVENT_OBJECT_SHOW:
+        case PInvoke.EVENT_OBJECT_UNCLOAKED:
           if (!WindowIsInteresting(hWnd)) return;
 
           if (!_windows.Contains(hWnd)) {
@@ -324,8 +312,9 @@ namespace Spakov.TermBar.Models {
 
           return;
 
-        case EVENT_OBJECT_DESTROY:
-        case EVENT_OBJECT_HIDE:
+        case PInvoke.EVENT_OBJECT_DESTROY:
+        case PInvoke.EVENT_OBJECT_HIDE:
+        case PInvoke.EVENT_OBJECT_CLOAKED:
           if (WindowIsInteresting(hWnd)) return;
 
           ObservableCollection<Window> toRemove = [];
@@ -345,7 +334,7 @@ namespace Spakov.TermBar.Models {
 
           return;
 
-        case EVENT_OBJECT_NAMECHANGE:
+        case PInvoke.EVENT_OBJECT_NAMECHANGE:
           if (!WindowIsInteresting(hWnd)) return;
 
           name = new(windowName, 0, windowNameLength);

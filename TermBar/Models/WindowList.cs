@@ -118,23 +118,23 @@ namespace Spakov.TermBar.Models {
       winObjectEventProc = new(WinObjectEventProc);
 
       _ = PInvoke.SetWinEventHook(
-        WindowListHelper.EVENT_SYSTEM_FOREGROUND,
-        WindowListHelper.EVENT_SYSTEM_FOREGROUND,
+        PInvoke.EVENT_SYSTEM_FOREGROUND,
+        PInvoke.EVENT_SYSTEM_FOREGROUND,
         (HMODULE) (nint) 0,
         winSystemEventProc,
         0,
         0,
-        WindowListHelper.WINEVENT_OUTOFCONTEXT | WindowListHelper.WINEVENT_SKIPOWNPROCESS
+        PInvoke.WINEVENT_OUTOFCONTEXT | PInvoke.WINEVENT_SKIPOWNPROCESS
       );
 
       _ = PInvoke.SetWinEventHook(
-        WindowListHelper.EVENT_OBJECT_CREATE,
-        WindowListHelper.EVENT_OBJECT_NAMECHANGE,
+        PInvoke.EVENT_OBJECT_CREATE,
+        PInvoke.EVENT_OBJECT_UNCLOAKED,
         (HMODULE) (nint) 0,
         winObjectEventProc,
         0,
         0,
-        WindowListHelper.WINEVENT_OUTOFCONTEXT | WindowListHelper.WINEVENT_SKIPOWNPROCESS
+        PInvoke.WINEVENT_OUTOFCONTEXT | PInvoke.WINEVENT_SKIPOWNPROCESS
       );
     }
 

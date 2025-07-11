@@ -28,7 +28,7 @@ namespace Spakov.TermBar.Configuration.Json.Modules {
     [DefaultString(iconDefault)]
     public string Icon { get; set; } = iconDefault;
 
-    [Description("Windows configuration.")]
+    [Description("Windows configuration. Set to null to disable these features and allow system default behaviors to take place.")]
     public Windows? Windows { get; set; } = new();
   }
 
@@ -36,6 +36,7 @@ namespace Spakov.TermBar.Configuration.Json.Modules {
   internal class Windows {
     private const int maxLengthDefault = 300;
     private const bool niceTruncationDefault = true;
+    private const bool scrollIntoViewDefault = true;
 
     [Description("The fixed length of windows, in pixels. Set to null for variable size.")]
     [DefaultNull]
@@ -50,5 +51,9 @@ namespace Spakov.TermBar.Configuration.Json.Modules {
     [Description("Whether the window name should be truncated with … if it’s too long.")]
     [DefaultBoolean(niceTruncationDefault)]
     public bool NiceTruncation { get; set; } = niceTruncationDefault;
+
+    [Description("Whether to scroll the window list to show the selected window.")]
+    [DefaultBoolean(scrollIntoViewDefault)]
+    public bool ScrollIntoView { get; set; } = scrollIntoViewDefault;
   }
 }

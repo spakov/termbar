@@ -49,7 +49,15 @@ namespace Spakov.TermBar.Themes {
           "ButtonBackgroundPointerOver",
           "ButtonBorderBrushPointerOver",
           "ListViewItemBackground",
-          "ListViewItemBackgroundPointerOver"
+          "ListViewItemBackgroundPointerOver",
+          "TextControlBackground",
+          "TextControlBorderBrush",
+          "TextControlBackgroundPointerOver",
+          "TextControlBorderBrushPointerOver",
+          "TextControlBackgroundFocused",
+          "TextControlBorderBrushFocused",
+          "TextControlBackgroundDisabled",
+          "TextControlBorderBrushDisabled"
         }) {
           SetResource(
             key,
@@ -60,6 +68,8 @@ namespace Spakov.TermBar.Themes {
 
       if (config.AccentColor is not null) {
         foreach (string key in new string[] {
+          "DropDownButtonForegroundSecondary",
+          "DropDownButtonForegroundSecondaryPointerOver",
           "ListViewItemSelectionIndicatorBrush",
           "ListViewItemSelectionIndicatorPointerOverBrush",
           "ListViewItemSelectionIndicatorPressedBrush"
@@ -110,6 +120,7 @@ namespace Spakov.TermBar.Themes {
       if (config.ClickedColor is not null) {
         foreach (string key in new string[] {
           "ButtonForegroundPressed",
+          "DropDownButtonForegroundSecondaryPressed",
           "ListViewItemForegroundPressed"
         }) {
           SetResource(

@@ -8,6 +8,7 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   mc:Ignorable="d">
   <Grid
+    Style="{StaticResource LayoutGrid}"
     Background="Transparent">
     
     <Grid.RowDefinitions>
@@ -50,6 +51,7 @@
 
     <Grid
       x:Name="RuntimeInfo"
+      Style="{StaticResource LayoutGrid}"
       Grid.Row="0"
       Grid.Column="1">
 

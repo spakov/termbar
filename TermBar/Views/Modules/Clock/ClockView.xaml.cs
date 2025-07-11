@@ -54,6 +54,7 @@ namespace Spakov.TermBar.Views.Modules.Clock {
     /// <param name="e"><inheritdoc cref="PointerEventHandler"
     /// path="/param[@name='e']"/></param>
     private void StackPanel_PointerPressed(object sender, PointerRoutedEventArgs e) {
+      if (!e.GetCurrentPoint((StackPanel) sender).Properties.IsLeftButtonPressed) return;
       if (WindowManagement.Windows.EphemeralWindow.Debounce()) return;
 
       PointerPoint pointerPoint = e.GetCurrentPoint(null);
