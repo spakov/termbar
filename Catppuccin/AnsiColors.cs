@@ -55,6 +55,29 @@ namespace Spakov.Catppuccin {
     public required AnsiColorPair White { get; set; }
 
     /// <summary>
+    /// Allows looking up an <see cref="AnsiColorEnum"/> by <paramref
+    /// name="red"/>, <paramref name="green"/>, and <paramref name="blue"/>.
+    /// </summary>
+    /// <param name="red">The color's red component.</param>
+    /// <param name="green">The color's green component.</param>
+    /// <param name="blue">The color's blue component.</param>
+    /// <returns>An <see cref="AnsiColorEnum"/>, or <see langword="null"/> if
+    /// there is no match.</returns>
+    public AnsiColorEnum? FromRGB(int red, int green, int blue) {
+      foreach (int ansiColorEnumIndex in Enum.GetValues(typeof(AnsiColorEnum))) {
+        if (
+          this[(AnsiColorEnum) ansiColorEnumIndex].Rgb.Red == red
+          && this[(AnsiColorEnum) ansiColorEnumIndex].Rgb.Green == green
+          && this[(AnsiColorEnum) ansiColorEnumIndex].Rgb.Blue == blue
+        ) {
+          return (AnsiColorEnum) ansiColorEnumIndex;
+        }
+      }
+
+      return null;
+    }
+
+    /// <summary>
     /// Allows indexing of the ANSI color using <paramref name="ansiColor"/>.
     /// </summary>
     /// <param name="ansiColor">The ANSI color.</param>
