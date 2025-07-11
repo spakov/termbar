@@ -6,19 +6,17 @@ namespace Spakov.TermBar.Configuration.Json {
   [Description("The TermBar configuration for window lists. Process names must not include an extension!")]
   internal class WindowList {
     [Description("An ordered list of window process names that should be pinned, in this order, at the beginning of the window list. Set to null to disable this behavior.")]
-    public List<string>? HighPriorityWindows = [
+    public List<string>? HighPriorityWindows { get; set; } = [
       "olk",
       "devenv",
       "librewolf"
     ];
 
     [Description("An ordered list of window process names that should be pinned, in this order, at the end of the window list. Set to null to disable this behavior. If a process name is in LowPriorityWindows and in HighPriorityWindows, HighPriorityWindows takes precedence.")]
-    public List<string>? LowPriorityWindows = [
-      "SteelSeriesEngine"
-    ];
+    public List<string>? LowPriorityWindows { get; set; } = null;
 
     [Description("Whether groups of windows with the same process name should be sorted alphabetically. If false, windows are simply added to the window list in the order they were created (or, when starting, in the order they are reported by the operating system).")]
-    public bool SortGroupsAlphabetically = true;
+    public bool SortGroupsAlphabetically { get; set; } = true;
 
     [Description("The map of window process names to ProcessIconMappings to apply to windows. Set to null to disable this behavior.")]
     public Dictionary<string, ProcessIconMapping>? ProcessIconMap { get; set; } = new() {
