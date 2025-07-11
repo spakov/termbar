@@ -1,6 +1,5 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
 using Spakov.TermBar.ViewModels.Modules.WindowDropdown;
+using System;
 
 namespace Spakov.TermBar.Views.Modules.WindowDropdown {
   /// <summary>

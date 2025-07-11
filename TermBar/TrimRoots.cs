@@ -48,6 +48,7 @@ namespace Spakov.TermBar {
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(WindowBarWindowViewModel))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.NonPublicConstructors, typeof(WindowDropdownView))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(WindowDropdownViewModel))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(WindowDropdownWindowViewModel))]
     public static void PreserveTrimmableClasses() { }
   }
 }

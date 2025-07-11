@@ -44,13 +44,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  
-  <ItemGroup>
-    <None Remove="Clock.xaml" />
-    <None Remove="Styles\TextBlock.xaml" />
-    <None Remove="Views\Modules\ClockCalendarView.xaml" />
-    <None Remove="Views\Modules\WindowDropdownView.xaml" />
-  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -113,36 +106,89 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Page Update="Memory.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Cpu.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Styles\ItemsStackPanel.xaml">
-      <SubType>Designer</SubType>
-    </Page>
+    <Folder Include="Styles\" />
     <Page Update="Styles\GridView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Styles\StackPanel.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="TermBarWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="Assets\Fonts\" />
+    <Page Update="Styles\ItemsStackPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Styles\StackPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Styles\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Styles\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    
     <Folder Include="Views\Modules\Clock\" />
+    <Page Update="Views\Modules\Clock\ClockCalendarView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\Modules\Clock\ClockView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    
     <Folder Include="Views\Modules\Cpu\" />
+    <Page Update="Views\Modules\Cpu\CpuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    
+    <Folder Include="Views\Modules\Launcher\" />
+    <Page Update="Views\Modules\Launcher\LauncherView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    
     <Folder Include="Views\Modules\Memory\" />
-    <Folder Include="Views\Modules\WindowDropdown\" />
-    <Folder Include="Views\Modules\WindowBar\" />
-    <Folder Include="Views\Modules\Volume\" />
+    <Page Update="Views\Modules\Memory\MemoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    
     <Folder Include="Views\Modules\StaticText\" />
+    <Page Update="Views\Modules\StaticText\StaticTextView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    
+    <Folder Include="Views\Modules\Terminal\" />
+    <Page Update="Views\Modules\Terminal\TerminalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    
+    <Folder Include="Views\Modules\Volume\" />
+    <Page Update="Views\Modules\Volume\VolumeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    
+    <Folder Include="Views\Modules\WindowBar\" />
+    <Page Update="Views\Modules\WindowBar\WindowBarView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\Modules\WindowBar\WindowBarWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    
+    <Folder Include="Views\Modules\WindowDropdown\" />
+    <Page Update="Views\Modules\WindowDropdown\WindowDropdownView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    
     <Folder Include="Views\Windows\" />
+    <Page Update="Views\Windows\DialogWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\Windows\EphemeralWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\Windows\TermBarWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+
+    <Folder Include="Views\" />
+    <Page Update="Views\SettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   
   <ItemGroup>
@@ -158,35 +204,8 @@
     <PRIResource Include="..\..\w6t\Terminal\Strings\**\*.resw" />
   </ItemGroup>
   
-  <ItemGroup>
-    <Page Update="Views\DialogWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Modules\ClockCalendarView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Page Update="Views\Modules\WindowDropdownView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Page Update="Styles\TextBlock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Page Update="Clock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  
   <PropertyGroup Label="Globals">
-    <WebView2DispatchAdapterNamespace>spakov.TermBar</WebView2DispatchAdapterNamespace>
+    <WebView2DispatchAdapterNamespace>Spakov.TermBar</WebView2DispatchAdapterNamespace>
   </PropertyGroup>
 
   <!--

@@ -75,8 +75,7 @@ namespace Spakov.TermBar {
 
 #if DEBUG
       if (Environment.CommandLine.Contains("GenerateSchema")) {
-        JsonSerializerOptions jsonSerializerOptions = new() { WriteIndented = true };
-        JsonNode schema = jsonSerializerOptions.GetJsonSchemaAsNode(
+        JsonNode schema = ConfigContext.Default.Options.GetJsonSchemaAsNode(
           typeof(Config),
           new() {
             TreatNullObliviousAsNonNullable = true,

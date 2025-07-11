@@ -17,11 +17,6 @@ namespace Spakov.TermBar.Configuration {
     internal static string ConfigPath => $@"{Windows.Storage.ApplicationData.Current.LocalFolder.Path}\{configFile}";
 
     /// <summary>
-    /// JSON serializer options.
-    /// </summary>
-    //internal static JsonSerializerOptions JsonSerializerOptions => jsonSerializerOptions;
-
-    /// <summary>
     /// Loads an existing configuration file or creates a default one.
     /// </summary>
     /// <param name="windowManager"><inheritdoc cref="WindowManager"
