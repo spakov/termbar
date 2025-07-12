@@ -68,44 +68,47 @@ namespace Spakov.TermBar.Views.Windows {
 
 #if DEBUG
         logger.LogDebug("Attempting to instantiate {view}", $"{viewsModulesNamespace}.{moduleConfig.GetType().Name}.{moduleConfig.GetType().Name}View");
-#endif
 
         try {
-          targetType = Type.GetType($"{viewsModulesNamespace}.{moduleConfig.GetType().Name}.{moduleConfig.GetType().Name}View");
-        } catch (Exception) {
-#if DEBUG
-          logger.LogDebug("Could not GetType()");
 #endif
+        targetType = Type.GetType($"{viewsModulesNamespace}.{moduleConfig.GetType().Name}.{moduleConfig.GetType().Name}View");
+#if DEBUG
+        } catch (Exception) {
+
+          logger.LogDebug("Could not GetType()");
 
           continue;
         }
+#endif
 
         if (targetType is null) {
 #if DEBUG
           logger.LogDebug("GetType() returned null");
 #endif
 
-          continue;
+          throw new InvalidOperationException($"Unable to create instance of module {moduleConfig.GetType().Name}.");
         }
 
         ModuleView moduleView;
 
-        try {
-          moduleView = (ModuleView) Activator.CreateInstance(
-            type: targetType,
-            bindingAttr: System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic,
-            binder: null,
-            args: [config, moduleConfig],
-            culture: null,
-            activationAttributes: null
-          )!;
-        } catch (Exception) {
 #if DEBUG
-          logger.LogDebug("Could not CreateInstance()");
+        try {
 #endif
+        moduleView = (ModuleView) Activator.CreateInstance(
+          type: targetType!,
+          bindingAttr: System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic,
+          binder: null,
+          args: [config, moduleConfig],
+          culture: null,
+          activationAttributes: null
+        )!;
+#if DEBUG
+        } catch (Exception) {
+          logger.LogDebug("Could not CreateInstance()");
 
           continue;
         }
+#endif
 
         Grid.SetRow(moduleView, 0);
         Grid.SetColumn(moduleView, moduleIndex++);

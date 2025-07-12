@@ -186,6 +186,9 @@
     </Page>
 
     <Folder Include="Views\" />
+    <Page Update="Views\ExceptionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\SettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

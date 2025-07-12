@@ -4,16 +4,19 @@ using Spakov.TermBar.Configuration.Json.SchemaAttributes;
 using System.Reflection;
 using System.Text.Json.Nodes;
 using System.Text.Json.Schema;
-using Windows.Win32;
 #endif
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Spakov.TermBar.Configuration;
 using Spakov.TermBar.Configuration.Json;
 using Spakov.TermBar.Models;
+using Spakov.TermBar.Views;
 using Spakov.TermBar.WindowManagement;
 using System;
 using System.IO;
+using System.Linq;
+using System.Text.Json;
+using Windows.Win32;
 
 namespace Spakov.TermBar {
   /// <summary>
@@ -24,6 +27,11 @@ namespace Spakov.TermBar {
 #if DEBUG
     internal static readonly LogLevel logLevel = LogLevel.Debug;
 #endif
+
+    private Exception? criticalFailure;
+
+    private ExceptionView? exceptionView;
+    private WindowManagement.Windows.DialogWindow? exceptionDialogWindow;
 
     /// <summary>
     /// The window manager.
@@ -48,12 +56,18 @@ namespace Spakov.TermBar {
     public App() {
       TrimRoots.PreserveTrimmableClasses();
 
+      criticalFailure = null;
       InitializeComponent();
-
       WindowManager = new();
 
       ConfigHelper.JsonSerializerOptions.Encoder = JavaScriptEncoderJsonTartare.Instance;
-      Config = ConfigHelper.Load(WindowManager);
+
+      try {
+        Config = ConfigHelper.Load(WindowManager);
+      } catch (JsonException e) {
+        criticalFailure = e;
+        return;
+      }
 
       DispatcherQueue = DispatcherQueue.GetForCurrentThread();
 
@@ -64,15 +78,6 @@ namespace Spakov.TermBar {
           Directory.SetCurrentDirectory(expandedStartDirectory);
         }
       }
-
-      UnhandledException += (sender, e) => {
-        PInvoke.MessageBox(
-          Windows.Win32.Foundation.HWND.Null,
-          $"Unhandled exception: {e.Exception}",
-          "Unhandled Exception",
-          Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_STYLE.MB_OK
-        );
-      };
 
 #if DEBUG
       if (Environment.CommandLine.Contains("GenerateSchema")) {
@@ -118,6 +123,100 @@ namespace Spakov.TermBar {
     /// </summary>
     /// <param name="args">Details about the launch request and
     /// process.</param>
-    protected override void OnLaunched(LaunchActivatedEventArgs args) => WindowManager!.Display();
+    protected override void OnLaunched(LaunchActivatedEventArgs args) {
+      if (criticalFailure is null) {
+        WindowManager!.Display();
+        UnhandledException += App_UnhandledException;
+      } else {
+        UnhandledExceptionHandler(criticalFailure);
+      }
+    }
+
+    /// <summary>
+    /// Invoked when an unhandled exception occurs.
+    /// </summary>
+    /// <param name="sender"><inheritdoc
+    /// cref="UnhandledExceptionEventHandler"
+    /// path="/param[@name='sender']"/></param>
+    /// <param name="e"><inheritdoc
+    /// cref="UnhandledExceptionEventHandler"
+    /// path="/param[@name='e']"/></param>
+    private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e) {
+      criticalFailure = e.Exception;
+      e.Handled = true;
+
+      UnhandledExceptionHandler(criticalFailure);
+    }
+
+    /// <summary>
+    /// A very nice method of displaying <paramref name="e"/>.
+    /// </summary>
+    /// <param name="e">An <see cref="Exception"/>.</param>
+    private void UnhandledExceptionHandler(Exception e) {
+      System.Diagnostics.Debug.WriteLine("Exception handler");
+
+      if (WindowManager is null) {
+        FallbackUnhandledExceptionHandler(e);
+
+        return;
+      }
+
+      try {
+        Config ??= new() {
+          Displays = [
+            new() {
+            Id = WindowManager.Displays.Keys.ToList()[0],
+            TermBar = new()
+          }
+          ]
+        };
+
+        if (Config.Displays[0].TermBar.Display is null) {
+          Config.Displays[0].TermBar.Display = WindowManager.Displays[Config.Displays[0].Id];
+        }
+
+        exceptionView ??= new(Config.Displays[0].TermBar, e);
+
+        if (exceptionDialogWindow is null) {
+          exceptionDialogWindow = new(
+            Config.Displays[0].TermBar,
+            exceptionView
+          );
+
+          exceptionView.Owner = exceptionDialogWindow;
+          exceptionDialogWindow.Closing += ExceptionDialogWindow_Closing;
+          exceptionDialogWindow.Display();
+        }
+      } catch (Exception) {
+        FallbackUnhandledExceptionHandler(e);
+      }
+    }
+
+    /// <summary>
+    /// A fallback method of displaying <paramref name="e"/>.
+    /// </summary>
+    /// <param name="e">An <see cref="Exception"/>.</param>
+    private static void FallbackUnhandledExceptionHandler(Exception e) {
+      PInvoke.MessageBox(
+        Windows.Win32.Foundation.HWND.Null,
+        $"Unhandled exception: {e}",
+        "Unhandled Exception",
+        Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_STYLE.MB_OK
+      );
+    }
+
+    /// <summary>
+    /// Invoked when the exception window is closing.
+    /// </summary>
+    private void ExceptionDialogWindow_Closing() {
+      if (exceptionDialogWindow is not null) {
+        exceptionDialogWindow.Closing -= ExceptionDialogWindow_Closing;
+      }
+
+      exceptionDialogWindow = null;
+      exceptionView = null;
+
+      Current.Exit();
+    }
   }
 }

@@ -1,33 +1,20 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.Windows.AppNotifications;
-using Microsoft.Windows.AppNotifications.Builder;
 using Spakov.Catppuccin;
-using Spakov.TermBar.Configuration;
 using Spakov.TermBar.Styles;
-using Spakov.TermBar.WindowManagement;
-using System.Collections.Generic;
+using System;
 using System.Diagnostics;
-using System.Text;
 using System.Text.Json;
-using Windows.ApplicationModel.DataTransfer;
-using Windows.Foundation;
 
 namespace Spakov.TermBar.Views {
   /// <summary>
-  /// The TermBar settings view.
+  /// The TermBar exception view.
   /// </summary>
-  internal sealed partial class SettingsView : ModuleView {
+  internal sealed partial class ExceptionView : ModuleView {
     private const string termBar = "TermBar.exe";
-    private const string explorer = "explorer.exe";
 
     private readonly Configuration.Json.TermBar config;
-
-    private readonly string runtimeConfig;
-    private readonly JsonFormatSyntaxColors jsonFormatSyntaxColors;
-
-    private readonly DataPackage dataPackage = new();
 
     /// <summary>
     /// The owning window.
@@ -37,73 +24,55 @@ namespace Spakov.TermBar.Views {
 #pragma warning disable IDE0079 // Remove unnecessary suppression
 #pragma warning disable CA1822 // Mark members as static
 
-    /// <inheritdoc cref="ConfigHelper.ConfigPath"/>
-    private string ConfigPath => ConfigHelper.ConfigPath;
+    /// <summary>
+    /// The exception message.
+    /// </summary>
+    private string? Message { get; set; }
 
     /// <summary>
-    /// The list of detected displays.
+    /// The likely cause of the exception.
     /// </summary>
-    private string DisplayList { get; set; }
+    private string LikelyCause { get; set; }
+
+    /// <summary>
+    /// The exception stack trace.
+    /// </summary>
+    private string? StackTrace { get; set; }
 
 #pragma warning restore CA1822 // Mark members as static
 #pragma warning restore IDE0079 // Remove unnecessary suppression
 
     /// <summary>
-    /// Initializes a <see cref="SettingsView"/>.
+    /// Initializes an <see cref="ExceptionView"/>.
     /// </summary>
     /// <param name="config"><inheritdoc cref="ModuleView.ModuleView"
     /// path="/param[@name='config']"/></param>
-    internal SettingsView(Configuration.Json.TermBar config) : base(config) {
+    /// <param name="e">The exception that led to this view being
+    /// created.</param>
+    internal ExceptionView(Configuration.Json.TermBar config, Exception e) : base(config) {
       this.config = config;
 
-      StringBuilder displayList = new();
-
-      foreach (KeyValuePair<string, Display> display in DisplayHelper.GetDisplays()) {
-        displayList.AppendLine(display.Key);
-      }
-
-      DisplayList = displayList.ToString();
+      Message = e.Message;
+      LikelyCause = GetLikelyCause(e);
+      StackTrace = e.StackTrace;
 
       ApplyComputedStyles();
       InitializeComponent();
-
-      runtimeConfig = JsonSerializer.Serialize(App.Config, Configuration.Json.ConfigContext.Default.Config);
-      jsonFormatSyntaxColors = new(
-        defaultColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Lavender].WUIColor,
-        objectColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Text].WUIColor,
-        stringColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Sky].WUIColor,
-        numberColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Maroon].WUIColor,
-        booleanColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Blue].WUIColor,
-        nullColor: Palette.Instance[config.Flavor].Colors[ColorEnum.Mauve].WUIColor
-      );
-
-      RuntimeConfig.ActualThemeChanged += RuntimeConfig_ActualThemeChanged;
-
-      JsonFormatter.FormatJson(
-        RuntimeConfig,
-        runtimeConfig,
-        jsonFormatSyntaxColors
-      );
     }
 
     /// <summary>
-    /// Invoked when the RuntimeConfig theme changes.
+    /// Returns the likely cause of <paramref name="e"/> in human-readable
+    /// text.
     /// </summary>
-    /// <param name="sender"><inheritdoc
-    /// cref="TypedEventHandler{TSender, TResult}"
-    /// path="/param[@name='sender']"/></param>
-    /// <param name="args"><inheritdoc
-    /// cref="TypedEventHandler{TSender, TResult}"
-    /// path="/param[@name='args']"/></param>
-    private void RuntimeConfig_ActualThemeChanged(FrameworkElement sender, object args) {
-      // This property actually matters, even programmatically
-      RuntimeConfig.IsReadOnly = false;
-      JsonFormatter.FormatJson(
-        RuntimeConfig,
-        runtimeConfig,
-        jsonFormatSyntaxColors
-      );
-      RuntimeConfig.IsReadOnly = true;
+    /// <param name="e">An <see cref="Exception"/>.</param>
+    /// <returns></returns>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:Convert to conditional expression", Justification = "Maximize readability")]
+    private static string GetLikelyCause(Exception e) {
+      if (e is JsonException) {
+        return "There's an error in your configuration file.";
+      } else {
+        return "You've found a bug.";
+      }
     }
 
     /// <summary>
@@ -113,7 +82,6 @@ namespace Spakov.TermBar.Views {
       ApplyComputedGridStyle();
       ApplyComputedStackPanelStyle();
       ApplyComputedProseStyle();
-      ApplyComputedRichEditBoxStyle();
       ApplyComputedTextBoxStyle();
       ApplyComputedAccentStyles();
     }
@@ -150,31 +118,28 @@ namespace Spakov.TermBar.Views {
     /// </summary>
     private void ApplyComputedProseStyle() {
       Style textBlockStyle = new(typeof(TextBlock));
+      Style accentedTextBlockStyle = new(typeof(TextBlock));
 
       StylesHelper.MergeWithAncestor(textBlockStyle, this, typeof(TextBlock));
+      StylesHelper.MergeWithAncestor(accentedTextBlockStyle, this, typeof(TextBlock));
 
       textBlockStyle.Setters.Add(new Setter(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Left));
       textBlockStyle.Setters.Add(new Setter(TextBlock.TextWrappingProperty, TextWrapping.WrapWholeWords));
 
       Resources["Prose"] = textBlockStyle;
-    }
 
-    /// <summary>
-    /// Applies computed styles to <see cref="RichEditBox"/>.
-    /// </summary>
-    private void ApplyComputedRichEditBoxStyle() {
-      Style richEditBoxStyle = new(typeof(RichEditBox));
+      accentedTextBlockStyle.Setters.Add(new Setter(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Left));
+      accentedTextBlockStyle.Setters.Add(new Setter(TextBlock.TextWrappingProperty, TextWrapping.WrapWholeWords));
+      accentedTextBlockStyle.Setters.Add(
+        new Setter(
+          TextBlock.ForegroundProperty,
+          config.AccentColor is not null
+            ? Palette.Instance[config.Flavor].Colors[(ColorEnum) config.AccentColor].SolidColorBrush
+            : Application.Current.Resources["SystemAccentColor"]
+        )
+      );
 
-      StylesHelper.MergeWithAncestor(richEditBoxStyle, (Border) Content, typeof(RichEditBox));
-
-      richEditBoxStyle.Setters.Add(new Setter(RichEditBox.FontFamilyProperty, new FontFamily(config.FontFamily)));
-      richEditBoxStyle.Setters.Add(new Setter(RichEditBox.FontSizeProperty, config.FontSize));
-      richEditBoxStyle.Setters.Add(new Setter(RichEditBox.IsReadOnlyProperty, true));
-      richEditBoxStyle.Setters.Add(new Setter(RichEditBox.AcceptsReturnProperty, true));
-      richEditBoxStyle.Setters.Add(new Setter(ScrollViewer.VerticalScrollBarVisibilityProperty, ScrollBarVisibility.Auto));
-      richEditBoxStyle.Setters.Add(new Setter(ScrollViewer.HorizontalScrollBarVisibilityProperty, ScrollBarVisibility.Hidden));
-
-      Resources[typeof(RichEditBox)] = richEditBoxStyle;
+      Resources["AccentedProse"] = accentedTextBlockStyle;
     }
 
     /// <summary>
@@ -190,6 +155,7 @@ namespace Spakov.TermBar.Views {
       textBoxStyle.Setters.Add(new Setter(TextBox.ForegroundProperty, Palette.Instance[config.Flavor].Colors[ColorEnum.Text].SolidColorBrush));
       textBoxStyle.Setters.Add(new Setter(TextBox.IsReadOnlyProperty, true));
       textBoxStyle.Setters.Add(new Setter(TextBox.AcceptsReturnProperty, true));
+      textBoxStyle.Setters.Add(new Setter(TextBox.TextWrappingProperty, TextWrapping.Wrap));
       textBoxStyle.Setters.Add(new Setter(ScrollViewer.VerticalScrollBarVisibilityProperty, ScrollBarVisibility.Auto));
       textBoxStyle.Setters.Add(new Setter(ScrollViewer.HorizontalScrollBarVisibilityProperty, ScrollBarVisibility.Auto));
 
@@ -228,44 +194,6 @@ namespace Spakov.TermBar.Views {
       Resources["AccentedButton"] = accentedButtonStyle;
       Resources["AccentedTextBlock"] = accentedTextBlockStyle;
     }
-
-    /// <summary>
-    /// Invoked when the user clicks on the config path.
-    /// </summary>
-    /// <param name="sender"><inheritdoc cref="RoutedEventHandler"
-    /// path="/param[@name='sender']"/></param>
-    /// <param name="e"><inheritdoc cref="RoutedEventHandler"
-    /// path="/param[@name='e']"/></param>
-    private void CopyPath_Click(object sender, RoutedEventArgs e) {
-      dataPackage.RequestedOperation = DataPackageOperation.Copy;
-      dataPackage.SetText(ConfigPath);
-      Clipboard.SetContent(dataPackage);
-
-      AppNotificationManager.Default.Show(
-        new AppNotificationBuilder()
-          .AddText("Path copied")
-          .AddText("The configuration file path has been copied to the clipboard.")
-          .BuildNotification()
-      );
-    }
-
-    /// <summary>
-    /// Invoked when the user clicks the "show in Explorer" button.
-    /// </summary>
-    /// <param name="sender"><inheritdoc cref="RoutedEventHandler"
-    /// path="/param[@name='sender']"/></param>
-    /// <param name="e"><inheritdoc cref="RoutedEventHandler"
-    /// path="/param[@name='e']"/></param>
-    private void ShowInExplorer_Click(object sender, RoutedEventArgs e) => Process.Start(explorer, $"/select,\"{ConfigPath}\"");
-
-    /// <summary>
-    /// Invoked when the user clicks the Close button.
-    /// </summary>
-    /// <param name="sender"><inheritdoc cref="RoutedEventHandler"
-    /// path="/param[@name='sender']"/></param>
-    /// <param name="e"><inheritdoc cref="RoutedEventHandler"
-    /// path="/param[@name='e']"/></param>
-    private void Close_Click(object sender, RoutedEventArgs e) => Owner?.Close();
 
     /// <summary>
     /// Invoked when the user clicks the exit button.
