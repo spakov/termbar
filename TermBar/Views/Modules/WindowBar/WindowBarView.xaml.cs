@@ -79,8 +79,10 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
     /// path="/param[@name='e']"/></param>
     private void ListView_LayoutUpdated(object sender, object e) {
       if (requestedSelectedIndex is not null) {
-        ((ListView) Content).SelectedIndex = (int) requestedSelectedIndex;
-        requestedSelectedIndex = null;
+        if ((int) requestedSelectedIndex < ((ListView) Content).Items.Count) {
+          ((ListView) Content).SelectedIndex = (int) requestedSelectedIndex;
+          requestedSelectedIndex = null;
+        }
       }
     }
 
