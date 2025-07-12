@@ -1,6 +1,7 @@
 ﻿using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Hosting;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using Windows.Win32;
@@ -16,6 +17,8 @@ namespace Spakov.TermBar.WindowManagement.Windows {
   /// <param name="config">The <see cref="Configuration.Json.TermBar"/> for
   /// this window.</param>
   internal abstract class Window(Display display, Configuration.Json.TermBar? config) {
+    public event Action? Closing;
+
     protected readonly Display display = display;
 
     private INotifyPropertyChanged? island;
@@ -165,6 +168,8 @@ namespace Spakov.TermBar.WindowManagement.Windows {
     /// Closes the window politely.
     /// </summary>
     internal void Close() {
+      Closing?.Invoke();
+
       PInvoke.PostMessage((HWND) islandHWnd!, PInvoke.WM_CLOSE, 0, 0);
 
       if (island is not null && islandRequestResize is not null) {

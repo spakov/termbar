@@ -25,6 +25,9 @@ namespace Spakov.TermBar.Views.Windows {
 
     private readonly Configuration.Json.TermBar config;
 
+    private SettingsView? settingsView;
+    private WindowManagement.Windows.DialogWindow? settingsDialogWindow;
+
     /// <summary>
     /// Initializes a <see cref="TermBarWindow"/>.
     /// </summary>
@@ -148,15 +151,30 @@ namespace Spakov.TermBar.Views.Windows {
     /// <param name="e"><inheritdoc cref="RoutedEventHandler"
     /// path="/param[@name='e']"/></param>
     private void TermBarSettingsMenuFlyoutItem_Click(object sender, RoutedEventArgs e) {
-      SettingsView settingsView = new(config);
+      settingsView ??= new(config);
 
-      WindowManagement.Windows.DialogWindow dialogWindow = new(
-        config,
-        settingsView
-      );
+      if (settingsDialogWindow is null) {
+        settingsDialogWindow = new(
+          config,
+          settingsView
+        );
 
-      settingsView.Owner = dialogWindow;
-      dialogWindow.Display();
+        settingsView.Owner = settingsDialogWindow;
+        settingsDialogWindow.Closing += SettingsDialogWindow_Closing;
+        settingsDialogWindow.Display();
+      }
+    }
+
+    /// <summary>
+    /// Invoked when the settings window is closing.
+    /// </summary>
+    private void SettingsDialogWindow_Closing() {
+      if (settingsDialogWindow is not null) {
+        settingsDialogWindow.Closing -= SettingsDialogWindow_Closing;
+      }
+
+      settingsDialogWindow = null;
+      settingsView = null;
     }
   }
 }
