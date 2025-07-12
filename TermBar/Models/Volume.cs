@@ -57,7 +57,6 @@ namespace Spakov.TermBar.Models {
         }
 
         int hr = GetMasterVolume(out float level);
-        System.Diagnostics.Debug.WriteLine($"Volume level: {level}");
 
         return hr == 0
           ? level * 100
@@ -88,7 +87,6 @@ namespace Spakov.TermBar.Models {
         }
 
         int hr = GetMute(out bool mute);
-        System.Diagnostics.Debug.WriteLine($"Volume mute: {mute}");
 
         return hr == 0
           ? mute
