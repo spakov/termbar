@@ -667,6 +667,79 @@
                       }
                     },
                     {
+                      "description": "A TermBar GPU monitor configuration.",
+                      "properties": {
+                        "$module": {
+                          "const": "Gpu"
+                        },
+                        "Order": {
+                          "description": "The order in which the module should be displayed on the TermBar.",
+                          "default": 2147483644,
+                          "minimum": -2147483648,
+                          "maximum": 2147483647,
+                          "type": "integer"
+                        },
+                        "Expand": {
+                          "description": "Whether the module should expand to take up as much space as possible.",
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "AccentColor": {
+                          "description": "The Catppuccin color to use for the GPU icon.",
+                          "default": "Teal",
+                          "enum": [
+                            "Rosewater",
+                            "Flamingo",
+                            "Pink",
+                            "Mauve",
+                            "Red",
+                            "Maroon",
+                            "Peach",
+                            "Yellow",
+                            "Green",
+                            "Teal",
+                            "Sky",
+                            "Sapphire",
+                            "Blue",
+                            "Lavender",
+                            "Text",
+                            "Subtext1",
+                            "Subtext0",
+                            "Overlay2",
+                            "Overlay1",
+                            "Overlay0",
+                            "Surface2",
+                            "Surface1",
+                            "Surface0",
+                            "Base",
+                            "Mantle",
+                            "Crust"
+                          ]
+                        },
+                        "Icon": {
+                          "description": "The text to use as the GPU icon.",
+                          "default": "󰢮",
+                          "type": "string"
+                        },
+                        "Format": {
+                          "description": "The numeric format to use for the GPU percentage. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings.",
+                          "default": "{0:N0}%",
+                          "type": "string"
+                        },
+                        "Round": {
+                          "description": "Whether to round the GPU percentage before formatting.",
+                          "default": true,
+                          "type": "boolean"
+                        },
+                        "UpdateInterval": {
+                          "description": "The GPU usage update interval, in milliseconds.",
+                          "default": 5000,
+                          "minimum": 1,
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    {
                       "description": "A TermBar launcher configuration.",
                       "properties": {
                         "$module": {
@@ -810,7 +883,7 @@
                         },
                         "Order": {
                           "description": "The order in which the module should be displayed on the TermBar.",
-                          "default": 2147483644,
+                          "default": 2147483643,
                           "minimum": -2147483648,
                           "maximum": 2147483647,
                           "type": "integer"
@@ -822,7 +895,7 @@
                         },
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the memory icon.",
-                          "default": "Teal",
+                          "default": "Maroon",
                           "enum": [
                             "Rosewater",
                             "Flamingo",

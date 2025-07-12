@@ -141,6 +141,7 @@ namespace Spakov.TermBar.Configuration.Json {
       new Modules.WindowBar(),
       new Modules.WindowDropdown(),
       new Modules.Memory(),
+      new Modules.Gpu(),
       new Modules.Cpu(),
       new Modules.Volume(),
       new Modules.Clock()

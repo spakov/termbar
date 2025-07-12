@@ -9,6 +9,7 @@ namespace Spakov.TermBar.Configuration.Json {
   [JsonPolymorphic(TypeDiscriminatorPropertyName = "$module")]
   [JsonDerivedType(typeof(Clock), "Clock")]
   [JsonDerivedType(typeof(Cpu), "Cpu")]
+  [JsonDerivedType(typeof(Gpu), "Gpu")]
   [JsonDerivedType(typeof(Launcher), "Launcher")]
   [JsonDerivedType(typeof(Memory), "Memory")]
   [JsonDerivedType(typeof(StaticText), "StaticText")]

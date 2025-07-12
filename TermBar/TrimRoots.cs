@@ -1,5 +1,6 @@
 ﻿using Spakov.TermBar.ViewModels.Modules.Clock;
 using Spakov.TermBar.ViewModels.Modules.Cpu;
+using Spakov.TermBar.ViewModels.Modules.Gpu;
 using Spakov.TermBar.ViewModels.Modules.Launcher;
 using Spakov.TermBar.ViewModels.Modules.Memory;
 using Spakov.TermBar.ViewModels.Modules.Terminal;
@@ -8,6 +9,7 @@ using Spakov.TermBar.ViewModels.Modules.WindowBar;
 using Spakov.TermBar.ViewModels.Modules.WindowDropdown;
 using Spakov.TermBar.Views.Modules.Clock;
 using Spakov.TermBar.Views.Modules.Cpu;
+using Spakov.TermBar.Views.Modules.Gpu;
 using Spakov.TermBar.Views.Modules.Launcher;
 using Spakov.TermBar.Views.Modules.Memory;
 using Spakov.TermBar.Views.Modules.StaticText;
@@ -33,6 +35,8 @@ namespace Spakov.TermBar {
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(ClockCalendarViewModel))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.NonPublicConstructors, typeof(CpuView))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(CpuViewModel))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.NonPublicConstructors, typeof(GpuView))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(GpuViewModel))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.NonPublicConstructors, typeof(LauncherView))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(LauncherViewModel))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.NonPublicConstructors, typeof(MemoryView))]

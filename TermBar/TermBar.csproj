@@ -135,6 +135,11 @@
     <Page Update="Views\Modules\Cpu\CpuView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+
+    <Folder Include="Views\Modules\Gpu\" />
+    <Page Update="Views\Modules\Gpu\GpuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     
     <Folder Include="Views\Modules\Launcher\" />
     <Page Update="Views\Modules\Launcher\LauncherView.xaml">

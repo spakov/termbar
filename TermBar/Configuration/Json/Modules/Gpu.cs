@@ -2,13 +2,13 @@
 using Spakov.TermBar.Configuration.Json.SchemaAttributes;
 
 namespace Spakov.TermBar.Configuration.Json.Modules {
-  [Description("A TermBar memory monitor configuration.")]
-  internal class Memory : IModule {
-    private const int orderDefault = int.MaxValue - 4;
+  [Description("A TermBar GPU monitor configuration.")]
+  internal class Gpu : IModule {
+    private const int orderDefault = int.MaxValue - 3;
     private const bool expandDefault = false;
-    private const ColorEnum accentColorDefault = ColorEnum.Maroon;
-    private const string accentColorDefaultAsString = "Maroon";
-    private const string iconDefault = "";
+    private const ColorEnum accentColorDefault = ColorEnum.Teal;
+    private const string accentColorDefaultAsString = "Teal";
+    private const string iconDefault = "󰢮";
     private const string formatDefault = "{0:N0}%";
     private const bool roundDefault = true;
     private const int updateIntervalDefault = 5000;
@@ -23,23 +23,23 @@ namespace Spakov.TermBar.Configuration.Json.Modules {
     [DefaultBoolean(expandDefault)]
     public bool Expand { get; set; } = expandDefault;
 
-    [Description("The Catppuccin color to use for the memory icon.")]
+    [Description("The Catppuccin color to use for the GPU icon.")]
     [DefaultString(accentColorDefaultAsString)]
     public ColorEnum AccentColor { get; set; } = accentColorDefault;
 
-    [Description("The text to use as the memory icon.")]
+    [Description("The text to use as the GPU icon.")]
     [DefaultString(iconDefault)]
     public string Icon { get; set; } = iconDefault;
 
-    [Description("The numeric format to use for the memory percentage. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings.")]
+    [Description("The numeric format to use for the GPU percentage. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings.")]
     [DefaultString(formatDefault)]
     public string Format { get; set; } = formatDefault;
 
-    [Description("Whether to round the memory percentage before formatting.")]
+    [Description("Whether to round the GPU percentage before formatting.")]
     [DefaultBoolean(roundDefault)]
     public bool Round { get; set; } = roundDefault;
 
-    [Description("The memory usage update interval, in milliseconds.")]
+    [Description("The GPU usage update interval, in milliseconds.")]
     [DefaultIntNumber(updateIntervalDefault)]
     [MinimumInt(1)]
     public int UpdateInterval { get; set; } = updateIntervalDefault;

@@ -4,22 +4,22 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Spakov.TermBar.ViewModels.Modules.Cpu {
+namespace Spakov.TermBar.ViewModels.Modules.Gpu {
   /// <summary>
-  /// The CPU usage monitor viewmodel.
+  /// The GPU usage monitor viewmodel.
   /// </summary>
-  internal partial class CpuViewModel : INotifyPropertyChanged {
+  internal partial class GpuViewModel : INotifyPropertyChanged {
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    private readonly Configuration.Json.Modules.Cpu config;
+    private readonly Configuration.Json.Modules.Gpu config;
 
     private readonly DispatcherTimer dispatcherTimer;
 
     private string? _icon;
-    private string? _cpu;
+    private string? _gpu;
 
     /// <summary>
-    /// The CPU icon.
+    /// The GPU icon.
     /// </summary>
     public string? Icon {
       get => _icon;
@@ -33,23 +33,23 @@ namespace Spakov.TermBar.ViewModels.Modules.Cpu {
     }
 
     /// <summary>
-    /// The CPU usage.
+    /// The GPU usage.
     /// </summary>
-    public string? Cpu {
-      get => _cpu;
+    public string? Gpu {
+      get => _gpu;
 
       set {
-        if (_cpu != value) {
-          _cpu = value;
+        if (_gpu != value) {
+          _gpu = value;
           OnPropertyChanged();
         }
       }
     }
 
     /// <summary>
-    /// Initializes a <see cref="CpuViewModel"/>.
+    /// Initializes a <see cref="GpuViewModel"/>.
     /// </summary>
-    public CpuViewModel(Configuration.Json.Modules.Cpu config) {
+    public GpuViewModel(Configuration.Json.Modules.Gpu config) {
       this.config = config;
 
       Icon = config.Icon;
@@ -65,13 +65,13 @@ namespace Spakov.TermBar.ViewModels.Modules.Cpu {
     }
 
     /// <summary>
-    /// Updates the CPU usage.
+    /// Updates the GPU usage.
     /// </summary>
     /// <param name="sender"><inheritdoc cref="EventHandler"
     /// path="/param[@name='sender']"/></param>
     /// <param name="e"><inheritdoc cref="EventHandler"
     /// path="/param[@name='e']"/></param>
-    private void Tick(object? sender, object e) => Cpu = string.Format(config.Format, config.Round ? Math.Round(Performance.CpuPercent, 0, MidpointRounding.AwayFromZero) : Performance.CpuPercent);
+    private void Tick(object? sender, object e) => Gpu = string.Format(config.Format, config.Round ? Math.Round(Performance.GpuPercent, 0, MidpointRounding.AwayFromZero) : Performance.GpuPercent);
 
     private void OnPropertyChanged([CallerMemberName] string? callerMemberName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerMemberName));
   }
