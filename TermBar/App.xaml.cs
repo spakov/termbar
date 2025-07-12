@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Spakov.TermBar.Configuration.Json.SchemaAttributes;
 using System.Reflection;
-using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Schema;
 using Windows.Win32;
@@ -52,6 +51,8 @@ namespace Spakov.TermBar {
       InitializeComponent();
 
       WindowManager = new();
+
+      ConfigHelper.JsonSerializerOptions.Encoder = JavaScriptEncoderJsonTartare.Instance;
       Config = ConfigHelper.Load(WindowManager);
 
       DispatcherQueue = DispatcherQueue.GetForCurrentThread();
@@ -65,7 +66,7 @@ namespace Spakov.TermBar {
       }
 
       UnhandledException += (sender, e) => {
-        Windows.Win32.PInvoke.MessageBox(
+        PInvoke.MessageBox(
           Windows.Win32.Foundation.HWND.Null,
           $"Unhandled exception: {e.Exception}",
           "Unhandled Exception",
@@ -75,7 +76,7 @@ namespace Spakov.TermBar {
 
 #if DEBUG
       if (Environment.CommandLine.Contains("GenerateSchema")) {
-        JsonNode schema = ConfigContext.Default.Options.GetJsonSchemaAsNode(
+        JsonNode schema = ConfigHelper.JsonSerializerOptions.GetJsonSchemaAsNode(
           typeof(Config),
           new() {
             TreatNullObliviousAsNonNullable = true,
@@ -87,7 +88,7 @@ namespace Spakov.TermBar {
 
         string filename = $"TermBar-{Assembly.GetExecutingAssembly().GetName().Version!.Major}.{Assembly.GetExecutingAssembly().GetName().Version!.Minor}-schema.json";
 
-        File.WriteAllText(filename, schema.ToString());
+        File.WriteAllText(filename, schema.ToJsonString(ConfigHelper.JsonSerializerOptions));
 
         PInvoke.MessageBox(
           Windows.Win32.Foundation.HWND.Null,

@@ -11,10 +11,17 @@ namespace Spakov.TermBar.Configuration {
   internal static class ConfigHelper {
     private const string configFile = "config.json";
 
+    private static readonly JsonSerializerOptions jsonSerializerOptions = new(ConfigContext.Default.Options);
+
     /// <summary>
     /// The path to the configuration file.
     /// </summary>
     internal static string ConfigPath => $@"{Windows.Storage.ApplicationData.Current.LocalFolder.Path}\{configFile}";
+
+    /// <summary>
+    /// The <see cref="System.Text.Json.JsonSerializerOptions"/>.
+    /// </summary>
+    internal static JsonSerializerOptions JsonSerializerOptions => jsonSerializerOptions;
 
     /// <summary>
     /// Loads an existing configuration file or creates a default one.
@@ -22,6 +29,9 @@ namespace Spakov.TermBar.Configuration {
     /// <param name="windowManager"><inheritdoc cref="WindowManager"
     /// path="/summary"/></param>
     /// <returns>A <see cref="Config"/>.</returns>
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "Types are preserved, reflection required")]
+#pragma warning restore IDE0079 // Remove unnecessary suppression
     internal static Config Load(WindowManager windowManager) {
       Config config;
 
@@ -40,7 +50,7 @@ namespace Spakov.TermBar.Configuration {
         JsonSerializer.Serialize(
           streamWriter.BaseStream,
           config,
-          ConfigContext.Default.Config
+          JsonSerializerOptions
         );
       } else {
         using StreamReader streamReader = new(ConfigPath);

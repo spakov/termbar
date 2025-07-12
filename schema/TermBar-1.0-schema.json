@@ -346,7 +346,7 @@
                       "type": "object",
                       "properties": {
                         "IconColor": {
-                          "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module\u2019s AccentColor.",
+                          "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module’s AccentColor.",
                           "default": null,
                           "enum": [
                             "Rosewater",
@@ -379,7 +379,7 @@
                           ]
                         },
                         "Icon": {
-                          "description": "The text to use as the window icon. Set to null to fall back to the window list module\u2019s Icon.",
+                          "description": "The text to use as the window icon. Set to null to fall back to the window list module’s Icon.",
                           "default": null,
                           "type": [
                             "string",
@@ -398,7 +398,7 @@
                             "type": "object",
                             "properties": {
                               "IconColor": {
-                                "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module\u2019s AccentColor.",
+                                "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module’s AccentColor.",
                                 "default": null,
                                 "enum": [
                                   "Rosewater",
@@ -431,7 +431,7 @@
                                 ]
                               },
                               "Icon": {
-                                "description": "The text to use as the window icon. Set to null to fall back to the window list module\u2019s Icon.",
+                                "description": "The text to use as the window icon. Set to null to fall back to the window list module’s Icon.",
                                 "default": null,
                                 "type": [
                                   "string",
@@ -548,7 +548,7 @@
                         },
                         "Icon": {
                           "description": "The text to use as the clock icon.",
-                          "default": "\uF4AB",
+                          "default": "",
                           "type": "string"
                         },
                         "TimeFormat": {
@@ -570,12 +570,12 @@
                           ],
                           "properties": {
                             "TodayDayFormat": {
-                              "description": "The date format to use for today\u2019s day in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
+                              "description": "The date format to use for today’s day in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
                               "default": "dddd",
                               "type": "string"
                             },
                             "TodayDateFormat": {
-                              "description": "The date format to use for today\u2019s date in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
+                              "description": "The date format to use for today’s date in the calendar. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings.",
                               "default": "MMMM d, yyyy",
                               "type": "string"
                             },
@@ -645,7 +645,7 @@
                         },
                         "Icon": {
                           "description": "The text to use as the CPU icon.",
-                          "default": "\uF4BC",
+                          "default": "",
                           "type": "string"
                         },
                         "Format": {
@@ -718,7 +718,7 @@
                         },
                         "Icon": {
                           "description": "The text to use as launcher icons by default.",
-                          "default": "\u2022",
+                          "default": "•",
                           "type": "string"
                         },
                         "LauncherEntries": {
@@ -854,7 +854,7 @@
                         },
                         "Icon": {
                           "description": "The text to use as the memory icon.",
-                          "default": "\uF49B",
+                          "default": "",
                           "type": "string"
                         },
                         "Format": {
@@ -927,7 +927,7 @@
                         },
                         "Icon": {
                           "description": "The text to use as the icon.",
-                          "default": "\uF449",
+                          "default": "",
                           "type": "string"
                         },
                         "Text": {
@@ -989,12 +989,12 @@
                         },
                         "Icon": {
                           "description": "The text to use as the terminal icon.",
-                          "default": "\uF489",
+                          "default": "",
                           "type": "string"
                         },
                         "VisualBellIcon": {
                           "description": "The text to use as the terminal visual bell icon when the visual bell is ringing. Has no effect if UseVisualBell is false.",
-                          "default": "\uEAA2",
+                          "default": "",
                           "type": "string"
                         },
                         "Command": {
@@ -1023,6 +1023,22 @@
                           "default": 60,
                           "minimum": 1,
                           "type": "integer"
+                        },
+                        "FontFamily": {
+                          "description": "The font family to use in the terminal. Set to null to use the TermBar font family.",
+                          "default": null,
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "FontSize": {
+                          "description": "The font size to use in the terminal. Set to null to use the TermBar font size.",
+                          "default": null,
+                          "type": [
+                            "number",
+                            "null"
+                          ]
                         },
                         "TabWidth": {
                           "description": "The default tab width in the terminal. (Practically speaking, this is virtually irrelevant today.)",
@@ -1731,12 +1747,12 @@
                         },
                         "Icon": {
                           "description": "The text to use as the volume icon.",
-                          "default": "\uF485",
+                          "default": "",
                           "type": "string"
                         },
                         "MutedIcon": {
                           "description": "The text to use as the muted volume icon.",
-                          "default": "\uF466",
+                          "default": "",
                           "type": "string"
                         },
                         "Format": {
@@ -1832,7 +1848,7 @@
                         },
                         "Icon": {
                           "description": "The text to use as window icons by default.",
-                          "default": "\u2022",
+                          "default": "•",
                           "type": "string"
                         },
                         "Windows": {
@@ -1861,7 +1877,7 @@
                               ]
                             },
                             "NiceTruncation": {
-                              "description": "Whether the window name should be truncated with \u2026 if it\u2019s too long.",
+                              "description": "Whether the window name should be truncated with … if it’s too long.",
                               "default": true,
                               "type": "boolean"
                             },
@@ -1926,12 +1942,12 @@
                         },
                         "DropdownIcon": {
                           "description": "The text to use as the dropdown icon.",
-                          "default": "\uEB7F",
+                          "default": "",
                           "type": "string"
                         },
                         "Icon": {
                           "description": "The text to use as window icons by default.",
-                          "default": "\u2022",
+                          "default": "•",
                           "type": "string"
                         }
                       }
