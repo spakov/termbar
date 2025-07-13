@@ -1,5 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "config.json",
   "description": "The TermBar configuration.",
   "type": "object",
   "properties": {
@@ -31,34 +32,7 @@
               "Background": {
                 "description": "The Catppuccin color to use for the background.",
                 "default": "Crust",
-                "enum": [
-                  "Rosewater",
-                  "Flamingo",
-                  "Pink",
-                  "Mauve",
-                  "Red",
-                  "Maroon",
-                  "Peach",
-                  "Yellow",
-                  "Green",
-                  "Teal",
-                  "Sky",
-                  "Sapphire",
-                  "Blue",
-                  "Lavender",
-                  "Text",
-                  "Subtext1",
-                  "Subtext0",
-                  "Overlay2",
-                  "Overlay1",
-                  "Overlay0",
-                  "Surface2",
-                  "Surface1",
-                  "Surface0",
-                  "Base",
-                  "Mantle",
-                  "Crust"
-                ]
+                "$ref": "#/$defs/colorEnum"
               },
               "CornerRadius": {
                 "description": "The corner radius to apply to windows.",
@@ -80,232 +54,37 @@
               "TextColor": {
                 "description": "The Catppuccin color to use for text.",
                 "default": "Text",
-                "enum": [
-                  "Rosewater",
-                  "Flamingo",
-                  "Pink",
-                  "Mauve",
-                  "Red",
-                  "Maroon",
-                  "Peach",
-                  "Yellow",
-                  "Green",
-                  "Teal",
-                  "Sky",
-                  "Sapphire",
-                  "Blue",
-                  "Lavender",
-                  "Text",
-                  "Subtext1",
-                  "Subtext0",
-                  "Overlay2",
-                  "Overlay1",
-                  "Overlay0",
-                  "Surface2",
-                  "Surface1",
-                  "Surface0",
-                  "Base",
-                  "Mantle",
-                  "Crust"
-                ]
+                "$ref": "#/$defs/colorEnum"
               },
               "AccentBackground": {
                 "description": "The Catppuccin color to use for the background of accent items. Set to null to use the default system behavior.",
                 "default": "Mantle",
-                "enum": [
-                  "Rosewater",
-                  "Flamingo",
-                  "Pink",
-                  "Mauve",
-                  "Red",
-                  "Maroon",
-                  "Peach",
-                  "Yellow",
-                  "Green",
-                  "Teal",
-                  "Sky",
-                  "Sapphire",
-                  "Blue",
-                  "Lavender",
-                  "Text",
-                  "Subtext1",
-                  "Subtext0",
-                  "Overlay2",
-                  "Overlay1",
-                  "Overlay0",
-                  "Surface2",
-                  "Surface1",
-                  "Surface0",
-                  "Base",
-                  "Mantle",
-                  "Crust",
-                  null
-                ]
+                "$ref": "#/$defs/nullableColorEnum"
               },
               "AccentColor": {
                 "description": "The Catppuccin color to use as an accent. Set to null to use the default system behavior.",
                 "default": "Mauve",
-                "enum": [
-                  "Rosewater",
-                  "Flamingo",
-                  "Pink",
-                  "Mauve",
-                  "Red",
-                  "Maroon",
-                  "Peach",
-                  "Yellow",
-                  "Green",
-                  "Teal",
-                  "Sky",
-                  "Sapphire",
-                  "Blue",
-                  "Lavender",
-                  "Text",
-                  "Subtext1",
-                  "Subtext0",
-                  "Overlay2",
-                  "Overlay1",
-                  "Overlay0",
-                  "Surface2",
-                  "Surface1",
-                  "Surface0",
-                  "Base",
-                  "Mantle",
-                  "Crust",
-                  null
-                ]
+                "$ref": "#/$defs/nullableColorEnum"
               },
               "SelectedBackground": {
                 "description": "The Catppuccin color to use for the background of selected items. Set to null to use the default system behavior.",
                 "default": "Surface0",
-                "enum": [
-                  "Rosewater",
-                  "Flamingo",
-                  "Pink",
-                  "Mauve",
-                  "Red",
-                  "Maroon",
-                  "Peach",
-                  "Yellow",
-                  "Green",
-                  "Teal",
-                  "Sky",
-                  "Sapphire",
-                  "Blue",
-                  "Lavender",
-                  "Text",
-                  "Subtext1",
-                  "Subtext0",
-                  "Overlay2",
-                  "Overlay1",
-                  "Overlay0",
-                  "Surface2",
-                  "Surface1",
-                  "Surface0",
-                  "Base",
-                  "Mantle",
-                  "Crust",
-                  null
-                ]
+                "$ref": "#/$defs/nullableColorEnum"
               },
               "SelectedColor": {
                 "description": "The Catppuccin color to use for selected items. Set to null to use the default system behavior.",
                 "default": "Mauve",
-                "enum": [
-                  "Rosewater",
-                  "Flamingo",
-                  "Pink",
-                  "Mauve",
-                  "Red",
-                  "Maroon",
-                  "Peach",
-                  "Yellow",
-                  "Green",
-                  "Teal",
-                  "Sky",
-                  "Sapphire",
-                  "Blue",
-                  "Lavender",
-                  "Text",
-                  "Subtext1",
-                  "Subtext0",
-                  "Overlay2",
-                  "Overlay1",
-                  "Overlay0",
-                  "Surface2",
-                  "Surface1",
-                  "Surface0",
-                  "Base",
-                  "Mantle",
-                  "Crust",
-                  null
-                ]
+                "$ref": "#/$defs/nullableColorEnum"
               },
               "ClickedBackground": {
                 "description": "The Catppuccin color to use for the background of clicked items. Set to null to use the default system behavior.",
                 "default": "Surface1",
-                "enum": [
-                  "Rosewater",
-                  "Flamingo",
-                  "Pink",
-                  "Mauve",
-                  "Red",
-                  "Maroon",
-                  "Peach",
-                  "Yellow",
-                  "Green",
-                  "Teal",
-                  "Sky",
-                  "Sapphire",
-                  "Blue",
-                  "Lavender",
-                  "Text",
-                  "Subtext1",
-                  "Subtext0",
-                  "Overlay2",
-                  "Overlay1",
-                  "Overlay0",
-                  "Surface2",
-                  "Surface1",
-                  "Surface0",
-                  "Base",
-                  "Mantle",
-                  "Crust",
-                  null
-                ]
+                "$ref": "#/$defs/nullableColorEnum"
               },
               "ClickedColor": {
                 "description": "The Catppuccin color to use for clicked items. Set to null to use the default system behavior.",
                 "default": "Subtext1",
-                "enum": [
-                  "Rosewater",
-                  "Flamingo",
-                  "Pink",
-                  "Mauve",
-                  "Red",
-                  "Maroon",
-                  "Peach",
-                  "Yellow",
-                  "Green",
-                  "Teal",
-                  "Sky",
-                  "Sapphire",
-                  "Blue",
-                  "Lavender",
-                  "Text",
-                  "Subtext1",
-                  "Subtext0",
-                  "Overlay2",
-                  "Overlay1",
-                  "Overlay0",
-                  "Surface2",
-                  "Surface1",
-                  "Surface0",
-                  "Base",
-                  "Mantle",
-                  "Crust",
-                  null
-                ]
+                "$ref": "#/$defs/nullableColorEnum"
               },
               "WindowList": {
                 "description": "The window list configuration.",
@@ -348,35 +127,7 @@
                         "IconColor": {
                           "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module’s AccentColor.",
                           "default": null,
-                          "enum": [
-                            "Rosewater",
-                            "Flamingo",
-                            "Pink",
-                            "Mauve",
-                            "Red",
-                            "Maroon",
-                            "Peach",
-                            "Yellow",
-                            "Green",
-                            "Teal",
-                            "Sky",
-                            "Sapphire",
-                            "Blue",
-                            "Lavender",
-                            "Text",
-                            "Subtext1",
-                            "Subtext0",
-                            "Overlay2",
-                            "Overlay1",
-                            "Overlay0",
-                            "Surface2",
-                            "Surface1",
-                            "Surface0",
-                            "Base",
-                            "Mantle",
-                            "Crust",
-                            null
-                          ]
+                          "$ref": "#/$defs/nullableColorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the window icon. Set to null to fall back to the window list module’s Icon.",
@@ -400,35 +151,7 @@
                               "IconColor": {
                                 "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module’s AccentColor.",
                                 "default": null,
-                                "enum": [
-                                  "Rosewater",
-                                  "Flamingo",
-                                  "Pink",
-                                  "Mauve",
-                                  "Red",
-                                  "Maroon",
-                                  "Peach",
-                                  "Yellow",
-                                  "Green",
-                                  "Teal",
-                                  "Sky",
-                                  "Sapphire",
-                                  "Blue",
-                                  "Lavender",
-                                  "Text",
-                                  "Subtext1",
-                                  "Subtext0",
-                                  "Overlay2",
-                                  "Overlay1",
-                                  "Overlay0",
-                                  "Surface2",
-                                  "Surface1",
-                                  "Surface0",
-                                  "Base",
-                                  "Mantle",
-                                  "Crust",
-                                  null
-                                ]
+                                "$ref": "#/$defs/nullableColorEnum"
                               },
                               "Icon": {
                                 "description": "The text to use as the window icon. Set to null to fall back to the window list module’s Icon.",
@@ -500,6 +223,7 @@
                       "description": "A TermBar clock configuration.",
                       "properties": {
                         "$module": {
+                          "description": "The module type.",
                           "const": "Clock"
                         },
                         "Order": {
@@ -517,34 +241,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the clock icon.",
                           "default": "Sapphire",
-                          "enum": [
-                            "Rosewater",
-                            "Flamingo",
-                            "Pink",
-                            "Mauve",
-                            "Red",
-                            "Maroon",
-                            "Peach",
-                            "Yellow",
-                            "Green",
-                            "Teal",
-                            "Sky",
-                            "Sapphire",
-                            "Blue",
-                            "Lavender",
-                            "Text",
-                            "Subtext1",
-                            "Subtext0",
-                            "Overlay2",
-                            "Overlay1",
-                            "Overlay0",
-                            "Surface2",
-                            "Surface1",
-                            "Surface0",
-                            "Base",
-                            "Mantle",
-                            "Crust"
-                          ]
+                          "$ref": "#/$defs/colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the clock icon.",
@@ -591,12 +288,17 @@
                             }
                           }
                         }
-                      }
+                      },
+                      "required": [
+                        "$module"
+                      ],
+                      "$ref": "#/$defs/Clock module"
                     },
                     {
                       "description": "A TermBar CPU monitor configuration.",
                       "properties": {
                         "$module": {
+                          "description": "The module type.",
                           "const": "Cpu"
                         },
                         "Order": {
@@ -614,34 +316,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the CPU icon.",
                           "default": "Pink",
-                          "enum": [
-                            "Rosewater",
-                            "Flamingo",
-                            "Pink",
-                            "Mauve",
-                            "Red",
-                            "Maroon",
-                            "Peach",
-                            "Yellow",
-                            "Green",
-                            "Teal",
-                            "Sky",
-                            "Sapphire",
-                            "Blue",
-                            "Lavender",
-                            "Text",
-                            "Subtext1",
-                            "Subtext0",
-                            "Overlay2",
-                            "Overlay1",
-                            "Overlay0",
-                            "Surface2",
-                            "Surface1",
-                            "Surface0",
-                            "Base",
-                            "Mantle",
-                            "Crust"
-                          ]
+                          "$ref": "#/$defs/colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the CPU icon.",
@@ -664,12 +339,17 @@
                           "minimum": 1,
                           "type": "integer"
                         }
-                      }
+                      },
+                      "required": [
+                        "$module"
+                      ],
+                      "$ref": "#/$defs/Cpu module"
                     },
                     {
                       "description": "A TermBar GPU monitor configuration.",
                       "properties": {
                         "$module": {
+                          "description": "The module type.",
                           "const": "Gpu"
                         },
                         "Order": {
@@ -687,34 +367,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the GPU icon.",
                           "default": "Teal",
-                          "enum": [
-                            "Rosewater",
-                            "Flamingo",
-                            "Pink",
-                            "Mauve",
-                            "Red",
-                            "Maroon",
-                            "Peach",
-                            "Yellow",
-                            "Green",
-                            "Teal",
-                            "Sky",
-                            "Sapphire",
-                            "Blue",
-                            "Lavender",
-                            "Text",
-                            "Subtext1",
-                            "Subtext0",
-                            "Overlay2",
-                            "Overlay1",
-                            "Overlay0",
-                            "Surface2",
-                            "Surface1",
-                            "Surface0",
-                            "Base",
-                            "Mantle",
-                            "Crust"
-                          ]
+                          "$ref": "#/$defs/colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the GPU icon.",
@@ -737,12 +390,17 @@
                           "minimum": 1,
                           "type": "integer"
                         }
-                      }
+                      },
+                      "required": [
+                        "$module"
+                      ],
+                      "$ref": "#/$defs/Gpu module"
                     },
                     {
                       "description": "A TermBar launcher configuration.",
                       "properties": {
                         "$module": {
+                          "description": "The module type.",
                           "const": "Launcher"
                         },
                         "Order": {
@@ -758,36 +416,9 @@
                           "type": "boolean"
                         },
                         "AccentColor": {
-                          "description": "The Catppuccin color to use as an accent.",
+                          "description": "The Catppuccin color to use for launcher icons by default.",
                           "default": "Rosewater",
-                          "enum": [
-                            "Rosewater",
-                            "Flamingo",
-                            "Pink",
-                            "Mauve",
-                            "Red",
-                            "Maroon",
-                            "Peach",
-                            "Yellow",
-                            "Green",
-                            "Teal",
-                            "Sky",
-                            "Sapphire",
-                            "Blue",
-                            "Lavender",
-                            "Text",
-                            "Subtext1",
-                            "Subtext0",
-                            "Overlay2",
-                            "Overlay1",
-                            "Overlay0",
-                            "Surface2",
-                            "Surface1",
-                            "Surface0",
-                            "Base",
-                            "Mantle",
-                            "Crust"
-                          ]
+                          "$ref": "#/$defs/colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as launcher icons by default.",
@@ -828,35 +459,7 @@
                               "IconColor": {
                                 "description": "The Catppuccin color to use for the launcher icon. Set to null to use matches in ProcessIconMap and fall back to AccentColor.",
                                 "default": null,
-                                "enum": [
-                                  "Rosewater",
-                                  "Flamingo",
-                                  "Pink",
-                                  "Mauve",
-                                  "Red",
-                                  "Maroon",
-                                  "Peach",
-                                  "Yellow",
-                                  "Green",
-                                  "Teal",
-                                  "Sky",
-                                  "Sapphire",
-                                  "Blue",
-                                  "Lavender",
-                                  "Text",
-                                  "Subtext1",
-                                  "Subtext0",
-                                  "Overlay2",
-                                  "Overlay1",
-                                  "Overlay0",
-                                  "Surface2",
-                                  "Surface1",
-                                  "Surface0",
-                                  "Base",
-                                  "Mantle",
-                                  "Crust",
-                                  null
-                                ]
+                                "$ref": "#/$defs/nullableColorEnum"
                               },
                               "Icon": {
                                 "description": "The text to use as the launcher icon. Set to null to use matches in ProcessIconMap and fall back to Icon.",
@@ -873,12 +476,17 @@
                             ]
                           }
                         }
-                      }
+                      },
+                      "required": [
+                        "$module"
+                      ],
+                      "$ref": "#/$defs/Launcher module"
                     },
                     {
                       "description": "A TermBar memory monitor configuration.",
                       "properties": {
                         "$module": {
+                          "description": "The module type.",
                           "const": "Memory"
                         },
                         "Order": {
@@ -896,34 +504,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the memory icon.",
                           "default": "Maroon",
-                          "enum": [
-                            "Rosewater",
-                            "Flamingo",
-                            "Pink",
-                            "Mauve",
-                            "Red",
-                            "Maroon",
-                            "Peach",
-                            "Yellow",
-                            "Green",
-                            "Teal",
-                            "Sky",
-                            "Sapphire",
-                            "Blue",
-                            "Lavender",
-                            "Text",
-                            "Subtext1",
-                            "Subtext0",
-                            "Overlay2",
-                            "Overlay1",
-                            "Overlay0",
-                            "Surface2",
-                            "Surface1",
-                            "Surface0",
-                            "Base",
-                            "Mantle",
-                            "Crust"
-                          ]
+                          "$ref": "#/$defs/colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the memory icon.",
@@ -946,12 +527,17 @@
                           "minimum": 1,
                           "type": "integer"
                         }
-                      }
+                      },
+                      "required": [
+                        "$module"
+                      ],
+                      "$ref": "#/$defs/Memory module"
                     },
                     {
                       "description": "A TermBar static text display configuration.",
                       "properties": {
                         "$module": {
+                          "description": "The module type.",
                           "const": "StaticText"
                         },
                         "Order": {
@@ -969,34 +555,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the icon.",
                           "default": "Green",
-                          "enum": [
-                            "Rosewater",
-                            "Flamingo",
-                            "Pink",
-                            "Mauve",
-                            "Red",
-                            "Maroon",
-                            "Peach",
-                            "Yellow",
-                            "Green",
-                            "Teal",
-                            "Sky",
-                            "Sapphire",
-                            "Blue",
-                            "Lavender",
-                            "Text",
-                            "Subtext1",
-                            "Subtext0",
-                            "Overlay2",
-                            "Overlay1",
-                            "Overlay0",
-                            "Surface2",
-                            "Surface1",
-                            "Surface0",
-                            "Base",
-                            "Mantle",
-                            "Crust"
-                          ]
+                          "$ref": "#/$defs/colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the icon.",
@@ -1008,12 +567,17 @@
                           "default": "Hello, world!",
                           "type": "string"
                         }
-                      }
+                      },
+                      "required": [
+                        "$module"
+                      ],
+                      "$ref": "#/$defs/StaticText module"
                     },
                     {
                       "description": "A TermBar terminal configuration. For all objects that accept a null value, a value of null means the default TerminalControl behavior takes effect, unless otherwise noted.",
                       "properties": {
                         "$module": {
+                          "description": "The module type.",
                           "const": "Terminal"
                         },
                         "Order": {
@@ -1031,34 +595,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use as an accent.",
                           "default": "Lavender",
-                          "enum": [
-                            "Rosewater",
-                            "Flamingo",
-                            "Pink",
-                            "Mauve",
-                            "Red",
-                            "Maroon",
-                            "Peach",
-                            "Yellow",
-                            "Green",
-                            "Teal",
-                            "Sky",
-                            "Sapphire",
-                            "Blue",
-                            "Lavender",
-                            "Text",
-                            "Subtext1",
-                            "Subtext0",
-                            "Overlay2",
-                            "Overlay1",
-                            "Overlay0",
-                            "Surface2",
-                            "Surface1",
-                            "Surface0",
-                            "Base",
-                            "Mantle",
-                            "Crust"
-                          ]
+                          "$ref": "#/$defs/colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the terminal icon.",
@@ -1226,35 +763,7 @@
                         "CursorColor": {
                           "description": "The cursor color in the terminal.",
                           "default": "Text",
-                          "enum": [
-                            "Rosewater",
-                            "Flamingo",
-                            "Pink",
-                            "Mauve",
-                            "Red",
-                            "Maroon",
-                            "Peach",
-                            "Yellow",
-                            "Green",
-                            "Teal",
-                            "Sky",
-                            "Sapphire",
-                            "Blue",
-                            "Lavender",
-                            "Text",
-                            "Subtext1",
-                            "Subtext0",
-                            "Overlay2",
-                            "Overlay1",
-                            "Overlay0",
-                            "Surface2",
-                            "Surface1",
-                            "Surface0",
-                            "Base",
-                            "Mantle",
-                            "Crust",
-                            null
-                          ]
+                          "$ref": "#/$defs/nullableColorEnum"
                         },
                         "ScrollbackLines": {
                           "description": "The number of scrollback lines in the terminal.",
@@ -1335,68 +844,17 @@
                                 "DefaultBackgroundColor": {
                                   "description": "The default background color to use in the terminal.",
                                   "default": "Black",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "DefaultForegroundColor": {
                                   "description": "The default foreground color to use in the terminal.",
                                   "default": "White",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "DefaultUnderlineColor": {
                                   "description": "The default underline color to use in the terminal.",
                                   "default": "White",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 }
                               }
                             },
@@ -1407,178 +865,42 @@
                                 "Black": {
                                   "description": "Black.",
                                   "default": "Black",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "Red": {
                                   "description": "Red.",
                                   "default": "Red",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "Green": {
                                   "description": "Green.",
                                   "default": "Green",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "Yellow": {
                                   "description": "Yellow.",
                                   "default": "Yellow",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "Blue": {
                                   "description": "Blue.",
                                   "default": "Blue",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "Magenta": {
                                   "description": "Magenta.",
                                   "default": "Magenta",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "Cyan": {
                                   "description": "Cyan.",
                                   "default": "Cyan",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "White": {
                                   "description": "White.",
                                   "default": "White",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 }
                               }
                             },
@@ -1589,189 +911,58 @@
                                 "BrightBlack": {
                                   "description": "Bright black.",
                                   "default": "BrightBlack",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "BrightRed": {
                                   "description": "Bright red.",
                                   "default": "BrightRed",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "BrightGreen": {
                                   "description": "Bright green.",
                                   "default": "BrightGreen",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "BrightYellow": {
                                   "description": "Bright yellow.",
                                   "default": "BrightYellow",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "BrightBlue": {
                                   "description": "Bright blue.",
                                   "default": "BrightBlue",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "BrightMagenta": {
                                   "description": "Bright magenta.",
                                   "default": "BrightMagenta",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "BrightCyan": {
                                   "description": "Bright cyan.",
                                   "default": "BrightCyan",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 },
                                 "BrightWhite": {
                                   "description": "Bright white.",
                                   "default": "BrightWhite",
-                                  "enum": [
-                                    "Black",
-                                    "Red",
-                                    "Green",
-                                    "Yellow",
-                                    "Blue",
-                                    "Magenta",
-                                    "Cyan",
-                                    "White",
-                                    "BrightBlack",
-                                    "BrightRed",
-                                    "BrightGreen",
-                                    "BrightYellow",
-                                    "BrightBlue",
-                                    "BrightMagenta",
-                                    "BrightCyan",
-                                    "BrightWhite"
-                                  ]
+                                  "$ref": "#/$defs/ansiColorEnum"
                                 }
                               }
                             }
                           }
                         }
-                      }
+                      },
+                      "required": [
+                        "$module"
+                      ],
+                      "$ref": "#/$defs/Terminal module"
                     },
                     {
                       "description": "A TermBar volume level configuration.",
                       "properties": {
                         "$module": {
+                          "description": "The module type.",
                           "const": "Volume"
                         },
                         "Order": {
@@ -1789,34 +980,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the volume icon.",
                           "default": "Yellow",
-                          "enum": [
-                            "Rosewater",
-                            "Flamingo",
-                            "Pink",
-                            "Mauve",
-                            "Red",
-                            "Maroon",
-                            "Peach",
-                            "Yellow",
-                            "Green",
-                            "Teal",
-                            "Sky",
-                            "Sapphire",
-                            "Blue",
-                            "Lavender",
-                            "Text",
-                            "Subtext1",
-                            "Subtext0",
-                            "Overlay2",
-                            "Overlay1",
-                            "Overlay0",
-                            "Surface2",
-                            "Surface1",
-                            "Surface0",
-                            "Base",
-                            "Mantle",
-                            "Crust"
-                          ]
+                          "$ref": "#/$defs/colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the volume icon.",
@@ -1867,12 +1031,17 @@
                             }
                           }
                         }
-                      }
+                      },
+                      "required": [
+                        "$module"
+                      ],
+                      "$ref": "#/$defs/Volume module"
                     },
                     {
                       "description": "A TermBar window bar configuration.",
                       "properties": {
                         "$module": {
+                          "description": "The module type.",
                           "const": "WindowBar"
                         },
                         "Order": {
@@ -1890,34 +1059,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for window icon colors by default.",
                           "default": "Mauve",
-                          "enum": [
-                            "Rosewater",
-                            "Flamingo",
-                            "Pink",
-                            "Mauve",
-                            "Red",
-                            "Maroon",
-                            "Peach",
-                            "Yellow",
-                            "Green",
-                            "Teal",
-                            "Sky",
-                            "Sapphire",
-                            "Blue",
-                            "Lavender",
-                            "Text",
-                            "Subtext1",
-                            "Subtext0",
-                            "Overlay2",
-                            "Overlay1",
-                            "Overlay0",
-                            "Surface2",
-                            "Surface1",
-                            "Surface0",
-                            "Base",
-                            "Mantle",
-                            "Crust"
-                          ]
+                          "$ref": "#/$defs/colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as window icons by default.",
@@ -1961,12 +1103,17 @@
                             }
                           }
                         }
-                      }
+                      },
+                      "required": [
+                        "$module"
+                      ],
+                      "$ref": "#/$defs/WindowBar module"
                     },
                     {
                       "description": "A TermBar window dropdown configuration.",
                       "properties": {
                         "$module": {
+                          "description": "The module type.",
                           "const": "WindowDropdown"
                         },
                         "Order": {
@@ -1984,34 +1131,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the dropdown icon color.",
                           "default": "Mauve",
-                          "enum": [
-                            "Rosewater",
-                            "Flamingo",
-                            "Pink",
-                            "Mauve",
-                            "Red",
-                            "Maroon",
-                            "Peach",
-                            "Yellow",
-                            "Green",
-                            "Teal",
-                            "Sky",
-                            "Sapphire",
-                            "Blue",
-                            "Lavender",
-                            "Text",
-                            "Subtext1",
-                            "Subtext0",
-                            "Overlay2",
-                            "Overlay1",
-                            "Overlay0",
-                            "Surface2",
-                            "Surface1",
-                            "Surface0",
-                            "Base",
-                            "Mantle",
-                            "Crust"
-                          ]
+                          "$ref": "#/$defs/colorEnum"
                         },
                         "DropdownIcon": {
                           "description": "The text to use as the dropdown icon.",
@@ -2023,7 +1143,11 @@
                           "default": "•",
                           "type": "string"
                         }
-                      }
+                      },
+                      "required": [
+                        "$module"
+                      ],
+                      "$ref": "#/$defs/WindowDropdown module"
                     }
                   ]
                 }
@@ -2048,5 +1172,119 @@
   },
   "required": [
     "Displays"
-  ]
+  ],
+  "$defs": {
+    "colorEnum": {
+      "enum": [
+        "Rosewater",
+        "Flamingo",
+        "Pink",
+        "Mauve",
+        "Red",
+        "Maroon",
+        "Peach",
+        "Yellow",
+        "Green",
+        "Teal",
+        "Sky",
+        "Sapphire",
+        "Blue",
+        "Lavender",
+        "Text",
+        "Subtext1",
+        "Subtext0",
+        "Overlay2",
+        "Overlay1",
+        "Overlay0",
+        "Surface2",
+        "Surface1",
+        "Surface0",
+        "Base",
+        "Mantle",
+        "Crust"
+      ]
+    },
+    "nullableColorEnum": {
+      "enum": [
+        "Rosewater",
+        "Flamingo",
+        "Pink",
+        "Mauve",
+        "Red",
+        "Maroon",
+        "Peach",
+        "Yellow",
+        "Green",
+        "Teal",
+        "Sky",
+        "Sapphire",
+        "Blue",
+        "Lavender",
+        "Text",
+        "Subtext1",
+        "Subtext0",
+        "Overlay2",
+        "Overlay1",
+        "Overlay0",
+        "Surface2",
+        "Surface1",
+        "Surface0",
+        "Base",
+        "Mantle",
+        "Crust",
+        null
+      ]
+    },
+    "ansiColorEnum": {
+      "enum": [
+        "Black",
+        "Red",
+        "Green",
+        "Yellow",
+        "Blue",
+        "Magenta",
+        "Cyan",
+        "White",
+        "BrightBlack",
+        "BrightRed",
+        "BrightGreen",
+        "BrightYellow",
+        "BrightBlue",
+        "BrightMagenta",
+        "BrightCyan",
+        "BrightWhite"
+      ]
+    },
+    "nullableAnsiColorEnum": {
+      "enum": [
+        "Black",
+        "Red",
+        "Green",
+        "Yellow",
+        "Blue",
+        "Magenta",
+        "Cyan",
+        "White",
+        "BrightBlack",
+        "BrightRed",
+        "BrightGreen",
+        "BrightYellow",
+        "BrightBlue",
+        "BrightMagenta",
+        "BrightCyan",
+        "BrightWhite",
+        null
+      ]
+    },
+    "Clock module": {},
+    "Cpu module": {},
+    "Gpu module": {},
+    "Launcher module": {},
+    "Memory module": {},
+    "StaticText module": {},
+    "Terminal module": {},
+    "Volume module": {},
+    "WindowBar module": {},
+    "WindowDropdown module": {}
+  }
 }

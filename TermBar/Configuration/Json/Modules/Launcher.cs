@@ -21,7 +21,7 @@ namespace Spakov.TermBar.Configuration.Json.Modules {
     [DefaultBoolean(expandDefault)]
     public bool Expand { get; set; } = expandDefault;
 
-    [Description("The Catppuccin color to use as an accent.")]
+    [Description("The Catppuccin color to use for launcher icons by default.")]
     [DefaultString(accentColorDefaultAsString)]
     public ColorEnum AccentColor { get; set; } = accentColorDefault;
 

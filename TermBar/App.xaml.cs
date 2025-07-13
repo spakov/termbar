@@ -1,9 +1,5 @@
 ﻿#if DEBUG
 using Microsoft.Extensions.Logging;
-using Spakov.TermBar.Configuration.Json.SchemaAttributes;
-using System.Reflection;
-using System.Text.Json.Nodes;
-using System.Text.Json.Schema;
 #endif
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
@@ -81,27 +77,7 @@ namespace Spakov.TermBar {
 
 #if DEBUG
       if (Environment.CommandLine.Contains("GenerateSchema")) {
-        JsonNode schema = ConfigHelper.JsonSerializerOptions.GetJsonSchemaAsNode(
-          typeof(Config),
-          new() {
-            TreatNullObliviousAsNonNullable = true,
-            TransformSchemaNode = SchemaAttributeTransformHelper.TransformSchemaNodeSchemaAttributes
-          }
-        );
-
-        schema.AsObject().Insert(0, "$schema", "https://json-schema.org/draft/2020-12/schema");
-
-        string filename = $"TermBar-{Assembly.GetExecutingAssembly().GetName().Version!.Major}.{Assembly.GetExecutingAssembly().GetName().Version!.Minor}-schema.json";
-
-        File.WriteAllText(filename, schema.ToJsonString(ConfigHelper.JsonSerializerOptions));
-
-        PInvoke.MessageBox(
-          Windows.Win32.Foundation.HWND.Null,
-          $"Schema has been generated at {Path.Combine(Directory.GetCurrentDirectory(), filename)}.",
-          "TermBar Schema Generated",
-          Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_STYLE.MB_OK
-        );
-
+        ConfigHelper.GenerateSchema();
         Current.Exit();
       }
 #endif
