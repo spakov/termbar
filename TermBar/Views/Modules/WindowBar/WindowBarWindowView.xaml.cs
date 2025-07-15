@@ -7,7 +7,7 @@ using Windows.Win32.Foundation;
 
 namespace Spakov.TermBar.Views.Modules.WindowBar {
   /// <summary>
-  /// The TermBar clock.
+  /// A TermBar window bar window.
   /// </summary>
   internal sealed partial class WindowBarWindowView : ModuleView, IWindowListWindow {
     private WindowBarWindowViewModel? viewModel;

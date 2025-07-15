@@ -2,11 +2,10 @@
 using Microsoft.Extensions.Logging;
 #endif
 using Microsoft.UI.Dispatching;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Spakov.TermBar.Configuration.Json.Modules;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.Win32;
 using Windows.Win32.Foundation;
@@ -37,7 +36,7 @@ namespace Spakov.TermBar.Models {
 
     private readonly ObservableCollection<Window> windows;
 
-    private static Window? foregroundedWindow;
+    private static Window? _foregroundWindow;
 
     private static WindowList? instance;
 
@@ -58,20 +57,24 @@ namespace Spakov.TermBar.Models {
     /// <summary>
     /// The currently foregrounded window.
     /// </summary>
-    public static Window? ForegroundedWindow {
-      get => foregroundedWindow;
+    public static Window? ForegroundWindow {
+      get => _foregroundWindow;
 
       set {
-        if (foregroundedWindow != value) {
-          foregroundedWindow = value;
-
-          if (foregroundedWindow is not null) {
+        if (_foregroundWindow != value) {
+          if (value is not null) {
 #if DEBUG
-            WindowListHelper.Foreground(Instance!.logger, Instance!.windows, foregroundedWindow.HWnd);
+            WindowListHelper.Foreground(Instance!.logger, Instance!.windows, value.HWnd);
 #else
-            WindowListHelper.Foreground(Instance!.windows, foregroundedWindow.HWnd);
+            WindowListHelper.Foreground(Instance!.windows, value.HWnd);
 #endif
           }
+
+#if DEBUG
+          Instance?.logger.LogTrace("ForegroundWindow: {oldHWnd} \"{oldName}\" -> {newHWnd} \"{newName}\"", _foregroundWindow?.HWnd, _foregroundWindow?.Name, value?.HWnd, value?.Name);
+#endif
+
+          _foregroundWindow = value;
 
           Instance!.OnPropertyChanged();
         }
@@ -82,11 +85,11 @@ namespace Spakov.TermBar.Models {
     /// Iconifies the foregrounded window.
     /// </summary>
     public static void Iconify() {
-      if (foregroundedWindow is not null) {
+      if (_foregroundWindow is not null) {
 #if DEBUG
-        WindowListHelper.Iconify(Instance!.logger, Instance!.windows, foregroundedWindow.HWnd);
+        WindowListHelper.Iconify(Instance!.logger, Instance!.windows, _foregroundWindow.HWnd);
 #else
-        WindowListHelper.Iconify(Instance!.windows, foregroundedWindow.HWnd);
+        WindowListHelper.Iconify(Instance!.windows, _foregroundWindow.HWnd);
 #endif
       }
     }
@@ -114,6 +117,12 @@ namespace Spakov.TermBar.Models {
       windows = WindowListHelper.EnumerateWindows();
 #endif
 
+      HWND foregroundHWnd = PInvoke.GetForegroundWindow();
+
+      foreach (Window window in windows.Where(window => window.HWnd.Equals(foregroundHWnd))) {
+        _foregroundWindow = window;
+      }
+
       winSystemEventProc = new(WinSystemEventProc);
       winObjectEventProc = new(WinObjectEventProc);
 
@@ -124,7 +133,7 @@ namespace Spakov.TermBar.Models {
         winSystemEventProc,
         0,
         0,
-        PInvoke.WINEVENT_OUTOFCONTEXT | PInvoke.WINEVENT_SKIPOWNPROCESS
+        PInvoke.WINEVENT_OUTOFCONTEXT
       );
 
       _ = PInvoke.SetWinEventHook(
@@ -134,7 +143,7 @@ namespace Spakov.TermBar.Models {
         winObjectEventProc,
         0,
         0,
-        PInvoke.WINEVENT_OUTOFCONTEXT | PInvoke.WINEVENT_SKIPOWNPROCESS
+        PInvoke.WINEVENT_OUTOFCONTEXT
       );
     }
 
@@ -170,6 +179,7 @@ namespace Spakov.TermBar.Models {
     /// <param name="idEventThread"></param>
     /// <param name="dwmsEventTime">Specifies the time, in milliseconds, that
     /// the event was generated.</param>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0022:Use expression body for method", Justification = "Incompatible with #if DEBUG/#endif")]
     private void WinSystemEventProc(
       HWINEVENTHOOK hWinEventHook,
       uint @event,
@@ -180,12 +190,10 @@ namespace Spakov.TermBar.Models {
       uint dwmsEventTime
     ) {
 #if DEBUG
-      Window? window = WindowListHelper.IsForegrounded(logger, windows, @event, hWnd);
+      ForegroundWindow = WindowListHelper.IsForegrounded(logger, windows, @event, hWnd);
 #else
-      Window? window = WindowListHelper.IsForegrounded(windows, @event, hWnd);
+      ForegroundWindow = WindowListHelper.IsForegrounded(windows, @event, hWnd);
 #endif
-
-      if (window is not null) ForegroundedWindow = window;
     }
 
     /// <summary>

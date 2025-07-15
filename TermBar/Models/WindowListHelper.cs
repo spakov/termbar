@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.Graphics.Dwm;
@@ -64,15 +63,15 @@ namespace Spakov.TermBar.Models {
       PInvoke.EnumWindows(wndEnumProc, 0);
 
       foreach (HWND hWnd in hWnds) {
-        if (!WindowIsInteresting(hWnd)) continue;
+        bool isInteresting = WindowIsInteresting(hWnd);
 
         string name = new(windowName, 0, windowNameLength);
 
         _windows.Add(hWnd);
-        windows.Add(new(hWnd, windowProcessId, name));
+        windows.Add(new(hWnd, windowProcessId, name, isInteresting));
 
 #if DEBUG
-        logger.LogDebug("Tracking window {hWnd} \"{name}\"", hWnd, name);
+        logger.LogTrace("Tracking window {hWnd} \"{name}\" (interesting: {isInteresting})", hWnd, name, isInteresting);
 #endif
       }
 
@@ -91,8 +90,7 @@ namespace Spakov.TermBar.Models {
     /// <param name="windowList">The window list.</param>
     /// <param name="processId">The window's process ID.</param>
     /// <param name="name">The window's name.</param>
-    /// <returns>The index at which the window was inserted.</returns>
-    internal static int OrderAndInsert<T>(Configuration.Json.WindowList config, T window, ObservableCollection<T> windowList, uint processId, string name) where T : IWindowListWindow {
+    internal static void OrderAndInsert<T>(Configuration.Json.WindowList config, T window, ObservableCollection<T> windowList, uint processId, string? name) where T : IWindowListWindow {
       Range highPriorityWindows = new(-1, -1);
       Range normalPriorityWindows = new(-1, -1);
       Range lowPriorityWindows = new(-1, -1);
@@ -166,7 +164,7 @@ namespace Spakov.TermBar.Models {
       if (insertionRange.Low < 0 && insertionRange.High < 0) {
         windowList.Add(window);
 
-        return windowList.Count - 1;
+        return;
       }
 
       int groupLowIndex = -1;
@@ -237,12 +235,12 @@ namespace Spakov.TermBar.Models {
 
       windowList.Insert(insertionIndex, window);
 
-      return insertionIndex;
+      return;
     }
 
     /// <summary>
-    /// Determines whether a window being tracked has been foregrounded based
-    /// on <paramref name="event"/>.
+    /// Determines whether a window has been foregrounded based on <paramref
+    /// name="event"/>.
     /// </summary>
 #if DEBUG
     /// <param name="logger">An <see cref="ILogger"/>.</param>
@@ -258,18 +256,40 @@ namespace Spakov.TermBar.Models {
     internal static Window? IsForegrounded(ObservableCollection<Window> windows, uint @event, HWND hWnd) {
 #endif
       if (@event == PInvoke.EVENT_SYSTEM_FOREGROUND) {
-        if (!WindowIsInteresting(hWnd)) return null;
-
         if (_windows.Contains(hWnd)) {
           foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
 #if DEBUG
-            logger.LogDebug("Is foreground: window {hWnd}", hWnd);
+            logger.LogTrace("Foregrounded: window {hWnd} \"{name}\" (interesting: {isInteresting})", hWnd, window.Name, window.IsInteresting);
 #endif
 
             return window;
           }
+        } else {
+#if DEBUG
+          logger.LogTrace("Foregrounded: untracked window {hWnd}, will track it", hWnd);
+#endif
+
+          string name;
+          bool isInteresting = WindowIsInteresting(hWnd);
+
+          name = new(windowName, 0, windowNameLength);
+
+#if DEBUG
+          logger.LogTrace("Tracking window {hWnd} \"{name}\" (interesting: {isInteresting})", hWnd, name, isInteresting);
+#endif
+
+          Window window = new(hWnd, windowProcessId, name, isInteresting);
+
+          _windows.Add(hWnd);
+          windows.Add(window);
+
+          return window;
         }
       }
+
+#if DEBUG
+      logger.LogWarning("Foregrounded: unknown window {hWnd}", hWnd);
+#endif
 
       return null;
     }
@@ -293,22 +313,31 @@ namespace Spakov.TermBar.Models {
     internal static void UpdateWindow(ObservableCollection<Window> windows, uint @event, HWND hWnd) {
 #endif
       string name;
+      bool isInteresting = WindowIsInteresting(hWnd);
 
       switch (@event) {
         case PInvoke.EVENT_OBJECT_CREATE:
         case PInvoke.EVENT_OBJECT_SHOW:
         case PInvoke.EVENT_OBJECT_UNCLOAKED:
-          if (!WindowIsInteresting(hWnd)) return;
-
           if (!_windows.Contains(hWnd)) {
             name = new(windowName, 0, windowNameLength);
 
 #if DEBUG
-            logger.LogDebug("Tracking window {hWnd} \"{name}\"", hWnd, name);
+            logger.LogTrace("Tracking window {hWnd} \"{name}\" (interesting: {isInteresting})", hWnd, name, isInteresting);
 #endif
 
             _windows.Add(hWnd);
-            windows.Add(new(hWnd, windowProcessId, name));
+            windows.Add(new(hWnd, windowProcessId, name, isInteresting));
+          } else {
+            foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
+              if (window.IsInteresting != isInteresting) {
+#if DEBUG
+                logger.LogTrace("Window {hWnd} \"{name}\" interesting changed {oldInteresting} -> {newInteresting}", hWnd, window.Name, window.IsInteresting, isInteresting);
+#endif
+
+                window.IsInteresting = isInteresting;
+              }
+            }
           }
 
           return;
@@ -316,35 +345,43 @@ namespace Spakov.TermBar.Models {
         case PInvoke.EVENT_OBJECT_DESTROY:
         case PInvoke.EVENT_OBJECT_HIDE:
         case PInvoke.EVENT_OBJECT_CLOAKED:
-          if (WindowIsInteresting(hWnd)) return;
-
           ObservableCollection<Window> toRemove = [];
 
           if (_windows.Contains(hWnd)) {
-            foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
+            if (@event == PInvoke.EVENT_OBJECT_DESTROY) {
+              foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
 #if DEBUG
-              logger.LogDebug("No longer tracking window {hWnd}", hWnd);
+                logger.LogTrace("No longer tracking window {hWnd} \"{name}\"", hWnd, window.Name);
 #endif
 
-              toRemove.Add(window);
-            }
+                toRemove.Add(window);
+              }
 
-            _windows.Remove(hWnd);
-            foreach (Window window in toRemove) windows.Remove(window);
+              _windows.Remove(hWnd);
+              foreach (Window window in toRemove) windows.Remove(window);
+            } else {
+              foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
+                if (window.IsInteresting != isInteresting) {
+#if DEBUG
+                  logger.LogTrace("Window {hWnd} \"{name}\" interesting changed {oldInteresting} -> {newInteresting}", hWnd, window.Name, window.IsInteresting, isInteresting);
+#endif
+
+                  window.IsInteresting = isInteresting;
+                }
+              }
+            }
           }
 
           return;
 
         case PInvoke.EVENT_OBJECT_NAMECHANGE:
-          if (!WindowIsInteresting(hWnd)) return;
-
           name = new(windowName, 0, windowNameLength);
 
           if (_windows.Contains(hWnd)) {
             foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
               if (!name.Equals(window.Name)) {
 #if DEBUG
-                logger.LogDebug("Renaming window {hWnd} \"{oldName}\" -> \"{newName}\"", hWnd, window.Name, name);
+                logger.LogTrace("Renaming window {hWnd} \"{oldName}\" -> \"{newName}\"", hWnd, window.Name, name);
 #endif
 
                 window.Name = name;
@@ -373,12 +410,14 @@ namespace Spakov.TermBar.Models {
 #endif
       if (_windows.Contains(hWnd)) {
         foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
+          if (!window.IsInteresting) continue;
+
           if (PInvoke.IsIconic(hWnd)) {
             PInvoke.ShowWindow(hWnd, SHOW_WINDOW_CMD.SW_RESTORE);
           }
 
 #if DEBUG
-          logger.LogDebug("Foregrounding: window {hWnd}", hWnd);
+          logger.LogTrace("Foregrounding: window {hWnd} \"{name}\"", hWnd, window.Name);
 #endif
 
           PInvoke.SetForegroundWindow(hWnd);
@@ -403,9 +442,11 @@ namespace Spakov.TermBar.Models {
 #endif
       if (_windows.Contains(hWnd)) {
         foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
+          if (!window.IsInteresting) continue;
+
           if (!PInvoke.IsIconic(hWnd)) {
 #if DEBUG
-            logger.LogDebug("Iconifying: window {hWnd}", hWnd);
+            logger.LogTrace("Iconifying: window {hWnd} \"{name}\"", hWnd, window.Name);
 #endif
 
             PInvoke.ShowWindow(hWnd, SHOW_WINDOW_CMD.SW_MINIMIZE);
@@ -420,9 +461,11 @@ namespace Spakov.TermBar.Models {
     /// Determines whether a window should be included in the window list.
     /// </summary>
     /// <remarks>
-    /// If the window is interesting, writes its name to <see
-    /// cref="windowName"/>, the length of its name to <see
-    /// cref="windowNameLength"/>, and its owning process ID to <see
+    /// It is guaranteed, if the HWND refers to a window, that the HWND's name
+    /// is written to <see cref="windowName"/>, the length of its name to <see
+    /// cref="windowNameLength"/>, its class name to <see
+    /// cref="windowClassName"/>, the length of its class name to <see
+    /// cref="windowClassNameLength"/>, and its owning process ID to <see
     /// cref="windowProcessId"/>.
     /// </remarks>
     /// <param name="hWnd">The window's <see cref="HWND"/>.</param>
@@ -430,16 +473,27 @@ namespace Spakov.TermBar.Models {
     /// otherwise.</returns>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:Convert to conditional expression", Justification = "Impacts readability")]
     private static bool WindowIsInteresting(HWND hWnd) {
-      if (!PInvoke.IsWindow(hWnd) || !PInvoke.IsWindowVisible(hWnd)) return false;
+      // Skip ghosts
+      if (!PInvoke.IsWindow(hWnd)) return false;
 
       // Get window name and name length
       windowNameLength = PInvoke.GetWindowText(hWnd, windowName);
 
+      // Get window class and class length
+      windowClassNameLength = PInvoke.GetClassName(hWnd, windowClassName);
+
+      // Get window process ID
+      unsafe {
+        fixed (uint* windowProcessIdPtr = &windowProcessId) {
+          _ = PInvoke.GetWindowThreadProcessId(hWnd, windowProcessIdPtr);
+        }
+      }
+
+      // Skip non-visible windows
+      if (!PInvoke.IsWindowVisible(hWnd)) return false;
+
       // Skip windows with no name
       if (windowName[0] == 0) return false;
-
-      // Get window class
-      windowClassNameLength = PInvoke.GetClassName(hWnd, windowClassName);
 
       // Skip ignored window class names
       string name = new(windowClassName, 0, windowClassNameLength);
@@ -453,13 +507,6 @@ namespace Spakov.TermBar.Models {
 
       // Skip child or owned windows (unless they are explicitly top-level)
       if (PInvoke.GetWindow(hWnd, GET_WINDOW_CMD.GW_OWNER) != HWND.Null) return false;
-
-      // Get window process ID
-      unsafe {
-        fixed (uint* windowProcessIdPtr = &windowProcessId) {
-          _ = PInvoke.GetWindowThreadProcessId(hWnd, windowProcessIdPtr);
-        }
-      }
 
       // Skip tool windows (like floating palettes, popups)
       if ((exStyle & (long) WINDOW_EX_STYLE.WS_EX_TOOLWINDOW) != 0) return false;

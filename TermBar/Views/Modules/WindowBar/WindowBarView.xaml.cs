@@ -12,8 +12,6 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
 
     private readonly Configuration.Json.Modules.WindowBar config;
 
-    private int? requestedSelectedIndex;
-
     /// <summary>
     /// The viewmodel.
     /// </summary>
@@ -37,9 +35,6 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
       this.config = moduleConfig;
 
       ViewModel = new WindowBarViewModel(this, config, moduleConfig);
-
-      requestedSelectedIndex = null;
-
       InitializeComponent();
 
       ((ListView) Content).ItemClick += WindowBarView_ItemClick;
@@ -50,39 +45,17 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
     }
 
     /// <summary>
-    /// Sets the selected window index.
-    /// </summary>
-    /// <param name="index">The selected window index.</param>
-    internal void SetSelectedWindowIndex(int index) => requestedSelectedIndex = index;
-
-    /// <summary>
     /// Invoked when the user clicks a window.
     /// </summary>
-    /// <remarks>Note that foregrounding is handled separately via
-    /// <c>SelectedItem</c>.</remarks>
     /// <param name="sender"><inheritdoc cref="ItemClickEventHandler"
     /// path="/param[@name='sender']"/></param>
     /// <param name="e"><inheritdoc cref="ItemClickEventHandler"
     /// path="/param[@name='e']"/></param>
     private void WindowBarView_ItemClick(object sender, ItemClickEventArgs e) {
-      if (e.ClickedItem.Equals(ViewModel!.ForegroundedWindow)) {
+      if (!e.ClickedItem.Equals(ViewModel!.ForegroundWindow)) {
+        ViewModel!.Foreground((WindowBarWindowView) e.ClickedItem);
+      } else {
         WindowBarViewModel.Iconify();
-      }
-    }
-
-    /// <summary>
-    /// Invoked when the <see cref="ListView"/> updates its layout.
-    /// </summary>
-    /// <param name="sender"><inheritdoc cref="EventHandler"
-    /// path="/param[@name='sender']"/></param>
-    /// <param name="e"><inheritdoc cref="EventHandler"
-    /// path="/param[@name='e']"/></param>
-    private void ListView_LayoutUpdated(object sender, object e) {
-      if (requestedSelectedIndex is not null) {
-        if ((int) requestedSelectedIndex < ((ListView) Content).Items.Count) {
-          ((ListView) Content).SelectedIndex = (int) requestedSelectedIndex;
-          requestedSelectedIndex = null;
-        }
       }
     }
 

@@ -1,16 +1,27 @@
-﻿using Spakov.TermBar.Models;
+﻿#if DEBUG
+using Microsoft.Extensions.Logging;
+#endif
+using Spakov.TermBar.Models;
 using Spakov.TermBar.Views.Modules.WindowBar;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
+using Windows.Win32.Foundation;
 
 namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
   /// <summary>
   /// The window bar viewmodel.
   /// </summary>
   internal partial class WindowBarViewModel : INotifyPropertyChanged {
+#if DEBUG
+    internal readonly ILogger logger;
+    internal static readonly LogLevel logLevel = App.logLevel;
+#endif
+
     public event PropertyChangedEventHandler? PropertyChanged;
 
     private readonly WindowBarView windowBarView;
@@ -18,7 +29,10 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
     private readonly Configuration.Json.Modules.WindowBar moduleConfig;
 
     private readonly ObservableCollection<Window> models = WindowList.Windows;
-    private readonly ObservableCollection<WindowBarWindowView> views = [];
+    private readonly ObservableCollection<WindowBarWindowView> views;
+    private readonly Dictionary<HWND, CancellationTokenSource> pendingRemovals;
+
+    private WindowBarWindowView? _foregroundWindow;
 
     /// <summary>
     /// The list of <see cref="WindowBarWindowView"/>s to be presented to the
@@ -29,19 +43,40 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
     /// <summary>
     /// The currently foregrounded window.
     /// </summary>
-    internal WindowBarWindowView? ForegroundedWindow {
-      get => WindowList.ForegroundedWindow is null ? null : FindView(WindowList.ForegroundedWindow)!;
+    internal WindowBarWindowView? ForegroundWindow {
+      get => _foregroundWindow;
 
       set {
-        WindowList.ForegroundedWindow = value is null ? null : FindModel(value);
-        OnPropertyChanged();
+        if (ForegroundWindow?.HWnd != value?.HWnd) {
+#if DEBUG
+          logger.LogDebug(
+            "WindowList foreground window: {hWnd} \"{name}\"",
+            WindowList.ForegroundWindow?.HWnd,
+            WindowList.ForegroundWindow?.Name
+          );
+
+          logger.LogDebug(
+            "ForegroundWindow: {oldHWnd} \"{oldName}\" -> {newHWnd} \"{newName}\"",
+            ForegroundWindow?.HWnd,
+            ForegroundWindow?.WindowName,
+            value?.HWnd,
+            value?.WindowName
+          );
+#endif
+
+          _foregroundWindow = value;
+          OnPropertyChanged();
+
+#if DEBUG
+          logger.LogDebug(
+            "WindowBarView foreground window: {hWnd} \"{name}\"",
+            ((WindowBarWindowView?) ((Microsoft.UI.Xaml.Controls.ListView?) windowBarView.Content)?.SelectedItem)?.HWnd,
+            ((WindowBarWindowView?) ((Microsoft.UI.Xaml.Controls.ListView?) windowBarView.Content)?.SelectedItem)?.WindowName
+          );
+#endif
+        }
       }
     }
-
-    /// <summary>
-    /// Iconifies the foregrounded window.
-    /// </summary>
-    internal static void Iconify() => WindowList.Iconify();
 
     /// <summary>
     /// Initializes a <see cref="WindowBarViewModel"/>.
@@ -51,28 +86,62 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
     /// <param name="moduleConfig"><inheritdoc cref="WindowBarView.WindowBarView"
     /// path="/param[@name='moduleConfig']"/></param>
     internal WindowBarViewModel(WindowBarView windowBarView, Configuration.Json.TermBar config, Configuration.Json.Modules.WindowBar moduleConfig) {
+#if DEBUG
+      using ILoggerFactory factory = LoggerFactory.Create(
+        builder => {
+          builder.AddDebug();
+          builder.SetMinimumLevel(logLevel);
+        }
+      );
+
+      logger = factory.CreateLogger<WindowBarViewModel>();
+#endif
+
       this.windowBarView = windowBarView;
       this.config = config;
       this.moduleConfig = moduleConfig;
 
+      views = [];
+      pendingRemovals = [];
+
       WindowBarWindowView? view;
 
       foreach (Window model in models) {
-        do {
-          view = FindView(model);
-          if (view is not null) views.Remove(view);
-        } while (view is not null);
+        model.PropertyChanged += WindowChanged;
+
+        if (!model.IsInteresting) continue;
 
         view = new(config, moduleConfig, model.HWnd, model.ProcessId, model.Name);
-        WindowListHelper.OrderAndInsert(config.WindowList, view, views, view.WindowProcessId, view.WindowName!);
 
-        model.PropertyChanged += (sender, e) => FindView((Window) sender!)!.WindowName = ((Window) sender!).Name;
+        WindowListHelper.OrderAndInsert(
+          config.WindowList,
+          view,
+          views,
+          view.WindowProcessId,
+          view.WindowName
+        );
+
+#if DEBUG
+        logger.LogDebug("Visually tracking window {hWnd} \"{name}\"", view.HWnd, view.WindowName);
+#endif
       }
 
       models.CollectionChanged += Models_CollectionChanged;
 
-      WindowList.Instance!.PropertyChanged += (sender, e) => ForegroundedWindow = WindowList.ForegroundedWindow is null ? null : FindView(WindowList.ForegroundedWindow);
+      ForegroundWindowChanged(this, new(nameof(WindowBarViewModel)));
+      WindowList.Instance!.PropertyChanged += ForegroundWindowChanged;
     }
+
+    /// <summary>
+    /// Foregrounds the window represented by <paramref name="view"/>.
+    /// </summary>
+    /// <param name="view">A <see cref="WindowBarWindowView"/>.</param>
+    internal void Foreground(WindowBarWindowView view) => WindowList.ForegroundWindow = FindModel(view);
+
+    /// <summary>
+    /// Iconifies the foregrounded window.
+    /// </summary>
+    internal static void Iconify() => WindowList.Iconify();
 
     /// <summary>
     /// Handles changes to the window list model.
@@ -85,42 +154,134 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
     /// path="/param[@name='e']"/></param>
     private void Models_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) {
       if (e.Action.Equals(NotifyCollectionChangedAction.Add)) {
+        if (e.NewItems is null) return;
+
         WindowBarWindowView? view;
 
-        // Remove any duplicates that were added prior to event handler registration
-        foreach (Window model in e.NewItems!) {
-          do {
-            view = FindView(model);
-            if (view is not null) views.Remove(view);
-          } while (view is not null);
-        }
+        foreach (Window model in e.NewItems) {
+          model.PropertyChanged += WindowChanged;
 
-        foreach (Window model in e.NewItems!) {
-          view = new(config, moduleConfig, model.HWnd, model.ProcessId, model.Name);
+          if (!model.IsInteresting) continue;
 
-          windowBarView.SetSelectedWindowIndex(
+          if (pendingRemovals.TryGetValue(model.HWnd, out CancellationTokenSource? cts)) {
+            if (cts is not null) {
+              cts.Cancel();
+              pendingRemovals.Remove(model.HWnd);
+            }
+          } else {
+            view = new(config, moduleConfig, model.HWnd, model.ProcessId, model.Name);
+
             WindowListHelper.OrderAndInsert(
               config.WindowList,
               view,
               views,
               view.WindowProcessId,
-              view.WindowName!
-            )
-          );
+              view.WindowName
+            );
 
-          model.PropertyChanged += (sender, e) => FindView((Window) sender!)!.WindowName = ((Window) sender!).Name;
+#if DEBUG
+            logger.LogDebug("Visually tracking window {hWnd} \"{name}\"", view.HWnd, view.WindowName);
+#endif
+          }
         }
       } else if (e.Action.Equals(NotifyCollectionChangedAction.Remove)) {
+        if (e.OldItems is null) return;
+
         List<WindowBarWindowView> toRemove = [];
 
-        foreach (Window model in e.OldItems!) {
-          toRemove.Add(FindView(model)!);
+        foreach (Window model in e.OldItems) {
+          WindowBarWindowView? view = FindView(model);
+
+          if (view is not null) toRemove.Add(view);
         }
 
         foreach (WindowBarWindowView view in toRemove) {
-          views.Remove(view);
+          ScheduleRemoval(view);
         }
       }
+
+      ForegroundWindowChanged(this, new(nameof(WindowBarViewModel)));
+    }
+
+    /// <summary>
+    /// Invoked when a <see cref="Window"/> changes.
+    /// </summary>
+    /// <param name="sender"><inheritdoc cref="PropertyChangedEventHandler"
+    /// path="/param[@name='sender']"/></param>
+    /// <param name="e"><inheritdoc cref="PropertyChangedEventHandler"
+    /// path="/param[@name='e']"/></param>
+    private void WindowChanged(object? sender, PropertyChangedEventArgs e) {
+      if (sender is null) return;
+
+      Window model = (Window) sender;
+      WindowBarWindowView? view = FindView(model);
+
+      if (view is not null && e.PropertyName == nameof(Window.Name)) {
+        view.WindowName = model.Name;
+      } else if (e.PropertyName == nameof(Window.IsInteresting)) {
+        if (view is null) {
+          if (model.IsInteresting) {
+            if (pendingRemovals.TryGetValue(model.HWnd, out CancellationTokenSource? cts)) {
+              if (cts is not null) {
+                cts.Cancel();
+                pendingRemovals.Remove(model.HWnd);
+              }
+            } else {
+              view = new(config, moduleConfig, model.HWnd, model.ProcessId, model.Name);
+
+              WindowListHelper.OrderAndInsert(
+                config.WindowList,
+                view,
+                views,
+                view.WindowProcessId,
+                view.WindowName
+              );
+
+#if DEBUG
+              logger.LogDebug("Visually tracking window {hWnd} \"{name}\"", view.HWnd, view.WindowName);
+#endif
+            }
+          }
+        } else {
+          if (!model.IsInteresting) {
+            ScheduleRemoval(view);
+          }
+        }
+      }
+
+      ForegroundWindowChanged(this, new(nameof(WindowBarViewModel)));
+    }
+
+    /// <summary>
+    /// Sets <see cref="ForegroundWindow"/> to <see
+    /// cref="WindowList.ForegroundWindow"/>.
+    /// </summary>
+    /// <remarks>Effectively does nothing if the new window is the same as
+    /// the old window.</remarks>
+    /// <param name="sender"><inheritdoc cref="PropertyChangedEventHandler"
+    /// path="/param[@name='sender']"/></param>
+    /// <param name="e"><inheritdoc cref="PropertyChangedEventHandler"
+    /// path="/param[@name='e']"/></param>
+    private void ForegroundWindowChanged(object? sender, PropertyChangedEventArgs e) => ForegroundWindow = WindowList.ForegroundWindow is null ? null : FindView(WindowList.ForegroundWindow);
+
+    /// <summary>
+    /// Schedules removal of <paramref name="view"/> from the window bar.
+    /// </summary>
+    /// <param name="view">A <see cref="WindowBarWindowView"/>.</param>
+    private async void ScheduleRemoval(WindowBarWindowView view) {
+      CancellationTokenSource cts = new();
+
+      pendingRemovals[view.HWnd] = cts;
+
+      try {
+        await Task.Delay(100, cts.Token);
+        views.Remove(view);
+        pendingRemovals.Remove(view.HWnd);
+
+#if DEBUG
+        logger.LogDebug("No longer visually tracking window {hWnd} \"{name}\"", view.HWnd, view.WindowName);
+#endif
+      } catch (TaskCanceledException) { }
     }
 
     /// <summary>
@@ -129,7 +290,9 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
     /// <param name="model">The <see cref="Window"/> to look up.</param>
     /// <returns>The view corresponding to <paramref name="model"/>, or
     /// <c>null</c> if there isn't one.</returns>
-    private WindowBarWindowView? FindView(Window model) {
+    private WindowBarWindowView? FindView(Window? model) {
+      if (model is null) return null;
+
       foreach (WindowBarWindowView view in views) {
         if (view.HWnd == model.HWnd) return view;
       }
@@ -144,7 +307,9 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
     /// up.</param>
     /// <returns>The model corresponding to <paramref name="view"/>, or
     /// <c>null</c> if there isn't one.</returns>
-    private Window? FindModel(WindowBarWindowView view) {
+    private Window? FindModel(WindowBarWindowView? view) {
+      if (view is null) return null;
+
       foreach (Window model in models) {
         if (model.HWnd == view.HWnd) return model;
       }

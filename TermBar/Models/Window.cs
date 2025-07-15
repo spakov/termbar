@@ -13,6 +13,7 @@ namespace Spakov.TermBar.Models {
     public event PropertyChangedEventHandler? PropertyChanged;
 
     private string _name;
+    private bool _isInteresting;
 
     /// <summary>
     /// The window's <see cref="HWND"/>.
@@ -39,16 +40,33 @@ namespace Spakov.TermBar.Models {
     }
 
     /// <summary>
+    /// Whether the window is interesting.
+    /// </summary>
+    public bool IsInteresting {
+      get => _isInteresting;
+
+      internal set {
+        if (_isInteresting != value) {
+          _isInteresting = value;
+          OnPropertyChanged();
+        }
+      }
+    }
+
+    /// <summary>
     /// Initializes a <see cref="Window"/>.
     /// </summary>
     /// <param name="hWnd"><inheritdoc cref="HWnd" path="/summary"/></param>
     /// <param name="processId"><inheritdoc cref="ProcessId"
     /// path="/summary"/></param>
     /// <param name="name"><inheritdoc cref="Name" path="/summary"/></param>
-    internal Window(HWND hWnd, uint processId, string name) {
+    /// <param name="isInteresting"><inheritdoc cref="IsInteresting"
+    /// path="/summary"/></param>
+    internal Window(HWND hWnd, uint processId, string name, bool isInteresting = false) {
       HWnd = hWnd;
       ProcessId = processId;
       _name = name;
+      IsInteresting = isInteresting;
     }
 
     private void OnPropertyChanged([CallerMemberName] string? callerMemberName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerMemberName));

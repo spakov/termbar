@@ -6,17 +6,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace Spakov.TermBar.ViewModels.Modules.WindowDropdown {
-  internal partial class WindowDropdownViewModel : INotifyPropertyChanged {
-    public event PropertyChangedEventHandler? PropertyChanged;
-
+  internal class WindowDropdownViewModel {
     private readonly Configuration.Json.TermBar config;
     private readonly Configuration.Json.Modules.WindowDropdown moduleConfig;
 
     private readonly ObservableCollection<Window> models = WindowList.Windows;
-    private readonly ObservableCollection<WindowDropdownMenuFlyoutItemView> views = [];
+    private readonly ObservableCollection<WindowDropdownMenuFlyoutItemView> views;
 
     /// <summary>
     /// The dropdown icon.
@@ -35,17 +32,6 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowDropdown {
     internal ObservableCollection<WindowDropdownMenuFlyoutItemView> Windows => views;
 
     /// <summary>
-    /// The currently foregrounded window.
-    /// </summary>
-    internal WindowDropdownMenuFlyoutItemView? ForegroundedWindow {
-      get => WindowList.ForegroundedWindow is null ? null : FindView(WindowList.ForegroundedWindow)!;
-      set {
-        WindowList.ForegroundedWindow = value is null ? null : FindModel(value);
-        OnPropertyChanged();
-      }
-    }
-
-    /// <summary>
     /// Initializes a <see cref="WindowDropdownViewModel"/>.
     /// </summary>
     /// <param name="config"><inheritdoc
@@ -58,24 +44,33 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowDropdown {
       this.config = config;
       this.moduleConfig = moduleConfig;
 
+      views = [];
+
       WindowDropdownMenuFlyoutItemView? view;
 
       foreach (Window model in models) {
-        do {
-          view = FindView(model);
-          if (view is not null) views.Remove(view);
-        } while (view is not null);
+        if (!model.IsInteresting) continue;
 
         view = new(config, moduleConfig, model.HWnd, model.ProcessId, model.Name);
-        WindowListHelper.OrderAndInsert(config.WindowList, view, views, view.WindowProcessId, view.WindowName!);
 
-        model.PropertyChanged += (sender, e) => FindView((Window) sender!)!.WindowName = ((Window) sender!).Name;
+        WindowListHelper.OrderAndInsert(
+          config.WindowList,
+          view,
+          views,
+          view.WindowProcessId,
+          view.WindowName
+        );
       }
 
       models.CollectionChanged += Models_CollectionChanged;
-
-      WindowList.Instance!.PropertyChanged += (sender, e) => ForegroundedWindow = WindowList.ForegroundedWindow is null ? null : FindView(WindowList.ForegroundedWindow);
     }
+
+    /// <summary>
+    /// Foregrounds the window represented by <paramref name="view"/>.
+    /// </summary>
+    /// <param name="view">A <see
+    /// cref="WindowDropdownMenuFlyoutItemView"/>.</param>
+    internal void Foreground(WindowDropdownMenuFlyoutItemView view) => WindowList.ForegroundWindow = FindModel(view);
 
     /// <summary>
     /// Handles changes to the window list model.
@@ -88,31 +83,74 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowDropdown {
     /// path="/param[@name='e']"/></param>
     private void Models_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) {
       if (e.Action.Equals(NotifyCollectionChangedAction.Add)) {
+        if (e.NewItems is null) return;
+
         WindowDropdownMenuFlyoutItemView? view;
 
-        // Remove any duplicates that were added prior to event handler registration
-        foreach (Window model in e.NewItems!) {
-          do {
-            view = FindView(model);
-            if (view is not null) views.Remove(view);
-          } while (view is not null);
-        }
+        foreach (Window model in e.NewItems) {
+          model.PropertyChanged += WindowChanged;
 
-        foreach (Window model in e.NewItems!) {
+          if (!model.IsInteresting) continue;
+
           view = new(config, moduleConfig, model.HWnd, model.ProcessId, model.Name);
-          WindowListHelper.OrderAndInsert(config.WindowList, view, views, view.WindowProcessId, view.WindowName!);
 
-          model.PropertyChanged += (sender, e) => FindView((Window) sender!)!.WindowName = ((Window) sender!).Name;
+          WindowListHelper.OrderAndInsert(
+            config.WindowList,
+            view,
+            views,
+            view.WindowProcessId,
+            view.WindowName
+          );
         }
       } else if (e.Action.Equals(NotifyCollectionChangedAction.Remove)) {
+        if (e.OldItems is null) return;
+
         List<WindowDropdownMenuFlyoutItemView> toRemove = [];
 
-        foreach (Window model in e.OldItems!) {
-          toRemove.Add(FindView(model)!);
+        foreach (Window model in e.OldItems) {
+          WindowDropdownMenuFlyoutItemView? view = FindView(model);
+
+          if (view is not null) toRemove.Add(view);
         }
 
         foreach (WindowDropdownMenuFlyoutItemView view in toRemove) {
           views.Remove(view);
+        }
+      }
+    }
+
+    /// <summary>
+    /// Invoked when a <see cref="Window"/> changes.
+    /// </summary>
+    /// <param name="sender"><inheritdoc cref="PropertyChangedEventHandler"
+    /// path="/param[@name='sender']"/></param>
+    /// <param name="e"><inheritdoc cref="PropertyChangedEventHandler"
+    /// path="/param[@name='e']"/></param>
+    private void WindowChanged(object? sender, PropertyChangedEventArgs e) {
+      if (sender is null) return;
+
+      Window model = (Window) sender;
+      WindowDropdownMenuFlyoutItemView? view = FindView(model);
+
+      if (view is not null && e.PropertyName == nameof(Window.Name)) {
+        view.WindowName = model.Name;
+      } else if (e.PropertyName == nameof(Window.IsInteresting)) {
+        if (view is null) {
+          if (model.IsInteresting) {
+            view = new(config, moduleConfig, model.HWnd, model.ProcessId, model.Name);
+
+            WindowListHelper.OrderAndInsert(
+              config.WindowList,
+              view,
+              views,
+              view.WindowProcessId,
+              view.WindowName
+            );
+          }
+        } else {
+          if (!model.IsInteresting) {
+            views.Remove(view);
+          }
         }
       }
     }
@@ -123,7 +161,9 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowDropdown {
     /// <param name="model">The <see cref="Window"/> to look up.</param>
     /// <returns>The view corresponding to <paramref name="model"/>, or
     /// <c>null</c> if there isn't one.</returns>
-    private WindowDropdownMenuFlyoutItemView? FindView(Window model) {
+    private WindowDropdownMenuFlyoutItemView? FindView(Window? model) {
+      if (model is null) return null;
+
       foreach (WindowDropdownMenuFlyoutItemView view in views) {
         if (view.HWnd == model.HWnd) return view;
       }
@@ -138,14 +178,14 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowDropdown {
     /// to look up.</param>
     /// <returns>The model corresponding to <paramref name="view"/>, or
     /// <c>null</c> if there isn't one.</returns>
-    private Window? FindModel(WindowDropdownMenuFlyoutItemView view) {
+    private Window? FindModel(WindowDropdownMenuFlyoutItemView? view) {
+      if (view is null) return null;
+
       foreach (Window model in models) {
         if (model.HWnd == view.HWnd) return model;
       }
 
       return null;
     }
-
-    private void OnPropertyChanged([CallerMemberName] string? callerMemberName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerMemberName));
   }
 }

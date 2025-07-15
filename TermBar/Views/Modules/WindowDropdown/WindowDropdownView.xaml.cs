@@ -1,4 +1,5 @@
 using Spakov.TermBar.ViewModels.Modules.WindowDropdown;
+using Spakov.TermBar.Views.Modules.WindowBar;
 using System;
 
 namespace Spakov.TermBar.Views.Modules.WindowDropdown {
@@ -48,11 +49,9 @@ namespace Spakov.TermBar.Views.Modules.WindowDropdown {
     }
 
     /// <summary>
-    /// Invoked when the user clicks a menu item.
+    /// Invoked when the user clicks a window.
     /// </summary>
     /// <param name="window">The window that was clicked.</param>
-    private void ItemClicked(WindowDropdownMenuFlyoutItemView window) {
-      if (ViewModel is not null) ViewModel.ForegroundedWindow = window;
-    }
+    private void ItemClicked(WindowDropdownMenuFlyoutItemView window) => ViewModel!.Foreground(window);
   }
 }

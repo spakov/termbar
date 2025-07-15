@@ -11,14 +11,13 @@
   mc:Ignorable="d">
   <ListView
     ItemsSource="{x:Bind ViewModel.Windows}"
-    SelectedItem="{x:Bind ViewModel.ForegroundedWindow, Mode=TwoWay}"
+    SelectedItem="{x:Bind ViewModel.ForegroundWindow, Mode=OneWay}"
     ScrollViewer.HorizontalScrollMode="Enabled"
     ScrollViewer.HorizontalScrollBarVisibility="Hidden"
     ScrollViewer.VerticalScrollMode="Disabled"
     ScrollViewer.VerticalScrollBarVisibility="Hidden"
     SelectionMode="Single"
-    IsItemClickEnabled="True"
-    LayoutUpdated="ListView_LayoutUpdated">
+    IsItemClickEnabled="True">
     <ListView.ItemsPanel>
       <ItemsPanelTemplate>
         <ItemsStackPanel Orientation="Horizontal"/>
