@@ -2,6 +2,7 @@
 using Spakov.TermBar.Configuration.Json;
 using Spakov.TermBar.Configuration.Json.Modules;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Spakov.TermBar.ViewModels.Modules.Launcher {
   /// <summary>
@@ -30,7 +31,7 @@ namespace Spakov.TermBar.ViewModels.Modules.Launcher {
 
         if (launcherEntry.Icon is null) {
           if (config.WindowList.ProcessIconMap is not null && launcherEntry.Command is not null) {
-            if (config.WindowList.ProcessIconMap.TryGetValue(launcherEntry.Command, out ProcessIconMapping? processIconMapping)) {
+            if (config.WindowList.ProcessIconMap.TryGetValue(Path.GetFileNameWithoutExtension(launcherEntry.Command), out ProcessIconMapping? processIconMapping)) {
               launcherLauncherEntryViewModel.Icon = processIconMapping.Icon;
             }
           }
@@ -42,7 +43,7 @@ namespace Spakov.TermBar.ViewModels.Modules.Launcher {
 
         if (launcherEntry.IconColor is null) {
           if (config.WindowList.ProcessIconMap is not null && launcherEntry.Command is not null) {
-            if (config.WindowList.ProcessIconMap.TryGetValue(launcherEntry.Command, out ProcessIconMapping? processIconMapping)) {
+            if (config.WindowList.ProcessIconMap.TryGetValue(Path.GetFileNameWithoutExtension(launcherEntry.Command), out ProcessIconMapping? processIconMapping)) {
               if (processIconMapping.IconColor is not null) {
                 launcherLauncherEntryViewModel.IconColor = Palette.Instance[config.Flavor].Colors[(ColorEnum) processIconMapping.IconColor].SolidColorBrush;
               }
