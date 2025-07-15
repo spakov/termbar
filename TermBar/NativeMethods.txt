@@ -11,7 +11,7 @@ GetCursorPos
 GetDpiForMonitor
 GetModuleHandle
 GetWindow
-GetWindowLong
+GetWindowLongPtr
 GetWindowRect
 GetWindowThreadProcessId
 GetWindowText

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.Graphics.Dwm;
@@ -445,13 +446,13 @@ namespace Spakov.TermBar.Models {
       if (ignoredClassNames.Contains(name)) return false;
 
       // Extended styles
-      int exStyle = PInvoke.GetWindowLong(hWnd, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
+      long exStyle = PInvoke.GetWindowLongPtr(hWnd, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE).ToInt64();
+
+      // Keep windows with WS_EX_APPWINDOW
+      if ((exStyle & (int) WINDOW_EX_STYLE.WS_EX_APPWINDOW) != 0) return true;
 
       // Skip child or owned windows (unless they are explicitly top-level)
-      if (PInvoke.GetWindow(hWnd, GET_WINDOW_CMD.GW_OWNER) != HWND.Null) {
-        // But keep windows that explicitly ask to be on the taskbar
-        if ((exStyle & (int) WINDOW_EX_STYLE.WS_EX_APPWINDOW) == 0) return true;
-      }
+      if (PInvoke.GetWindow(hWnd, GET_WINDOW_CMD.GW_OWNER) != HWND.Null) return false;
 
       // Get window process ID
       unsafe {
@@ -461,19 +462,19 @@ namespace Spakov.TermBar.Models {
       }
 
       // Skip tool windows (like floating palettes, popups)
-      if ((exStyle & (int) WINDOW_EX_STYLE.WS_EX_TOOLWINDOW) != 0) return false;
+      if ((exStyle & (long) WINDOW_EX_STYLE.WS_EX_TOOLWINDOW) != 0) return false;
 
       // Skip non-activatable windows
-      if ((exStyle & (int) WINDOW_EX_STYLE.WS_EX_NOACTIVATE) != 0) {
-        // But keep windows that explicitly ask to be on the taskbar
-        if ((exStyle & (int) WINDOW_EX_STYLE.WS_EX_APPWINDOW) == 0) return true;
-      }
+      if ((exStyle & (long) WINDOW_EX_STYLE.WS_EX_NOACTIVATE) != 0) return false;
 
       // Get window styles
-      int style = PInvoke.GetWindowLong(hWnd, WINDOW_LONG_PTR_INDEX.GWL_STYLE);
+      long style = PInvoke.GetWindowLongPtr(hWnd, WINDOW_LONG_PTR_INDEX.GWL_STYLE).ToInt64();
+
+      // Skip popup windows
+      if ((style & (long) WINDOW_STYLE.WS_POPUP) != 0) return false;
 
       // Must be a top-level overlapped window
-      if ((style & (int) WINDOW_STYLE.WS_CHILD) != 0) return false;
+      if ((style & (long) WINDOW_STYLE.WS_CHILD) != 0) return false;
 
       // Skip zero-size windows (invisible or dummy handles)
       if (!PInvoke.GetWindowRect(hWnd, out RECT rect)) return false;
