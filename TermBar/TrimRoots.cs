@@ -23,6 +23,9 @@ namespace Spakov.TermBar {
   /// <summary>
   /// Prevents trimming of classes that are never instantiated with new().
   /// </summary>
+#pragma warning disable IDE0079 // Remove unnecessary suppression
+  [SuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "Types are preserved")]
+#pragma warning restore IDE0079 // Remove unnecessary suppression
   internal static class TrimRoots {
     /// <summary>
     /// This method, which does nothing at runtime, must be invoked to ensure

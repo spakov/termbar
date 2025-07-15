@@ -81,12 +81,9 @@ namespace Spakov.TermBar.Views.Modules.Launcher {
 
       ProcessStartInfo processStartInfo = new() {
         FileName = command,
-        UseShellExecute = true
+        UseShellExecute = true,
+        Arguments = string.Join(' ', commandArguments)
       };
-
-      foreach (string commandArgument in commandArguments) {
-        processStartInfo.ArgumentList.Add(Environment.ExpandEnvironmentVariables(commandArgument));
-      }
 
       Process.Start(processStartInfo);
     }
