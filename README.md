@@ -47,7 +47,7 @@ In the [schema](schema/) directory, the TermBar configuration schema is availabl
 ### The WindowList
 The WindowList configures three important things: window prioritization, group sorting, and the ProcessIconMap.
 
-Window prioritization can be configured using HighPriorityWindows and LowPriorityWindows, each of which is an array of process names. Note that these process names cannot end with `.exe`. Windows with process names in HighPriorityWindows will be pinned to the beginning of any modules that list windows in the order they are listed. The same applies to LowPriorityWindows, but at the end of the list. Windows with process names in neither list are displayed after the high-priority section and before the low-priority section in the order that Windows tracks them.
+Window prioritization can be configured using HighPriorityWindows and LowPriorityWindows, each of which is an array of process names. Note that these process names cannot end with an extension. Windows with process names in HighPriorityWindows will be pinned to the beginning of any modules that list windows in the order they are listed. The same applies to LowPriorityWindows, but at the end of the list. Windows with process names in neither list are displayed after the high-priority section and before the low-priority section in the order that Windows tracks them.
 
 Within each group of windows associated with the same process, SortGroupsAlphabetically can be used to sort them alphabetically; otherwise, they appear in the same order that Windows tracks them.
 
@@ -64,12 +64,12 @@ The Clock module displays the current time in a configurable format and optional
 ![A screenshot of the TermBar Clock module's calendar.](screenshots/Clock-Calendar.png)
 
 ### Cpu Module
-The Cpu module displays the current CPU load, refreshing at a configurable interval. The percentage can be formatted. This number is obtained via the Windows performance monitoring API and is the same as the `_Total` instance of `perfmon`'s `Processor` `% Processor Time` counter.
+The Cpu module displays the current CPU load, refreshing at a configurable interval. The percentage can be formatted. This value is obtained via [LibreHardwareMonitorLib](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor/).
 
 ![A screenshot of the TermBar Cpu module.](screenshots/Cpu.png)
 
 ### Gpu Module
-The Gpu module displays the current GPU 3D rendering load, refreshing at a configurable interval. The percentage can be formatted. Obtaining a value to represent this is not trivial; the number is obtained via the Windows performance monitoring API and is the maximum of all instances ending with `3D` of `perfmon`'s `GPU Engine` `Utilization Percentage` counter. I am unsure whether this approach works for non-NVIDIA graphics cards, since I have nothing else to test on.
+The Cpu module displays the current CPU load, refreshing at a configurable interval. The percentage can be formatted. This value is obtained via [LibreHardwareMonitorLib](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor/). This currently only works for NVIDIA graphics cards, though LibreHardwareMonitorLib supports AMD and Intel graphics cards as well; I simply have neither to test against.
 
 ![A screenshot of the TermBar Gpu module.](screenshots/Gpu.png)
 
@@ -81,7 +81,7 @@ Launcher entry icons can be defined specifically in the Launcher module configur
 ![A screenshot of the TermBar Launcher module.](screenshots/Launcher.png)
 
 ### Memory Module
-The Memory module displays the current memory load, refreshing at a configurable interval. The percentage can be formatted. This number is obtained via the Windows performance monitoring API and is the same as `perfmon`'s `Memory` `% Committed Bytes In Use` counter.
+The Cpu module displays the current memory load, refreshing at a configurable interval. The percentage can be formatted. This value is obtained via [LibreHardwareMonitorLib](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor/).
 
 ![A screenshot of the TermBar Memory module.](screenshots/Memory.png)
 
