@@ -71,7 +71,7 @@ namespace Spakov.TermBar.ViewModels.Modules.Memory {
     /// path="/param[@name='sender']"/></param>
     /// <param name="e"><inheritdoc cref="EventHandler"
     /// path="/param[@name='e']"/></param>
-    private void Tick(object? sender, object e) => Memory = string.Format(config.Format, config.Round ? Math.Round(Performance.MemoryPercent, 0, MidpointRounding.AwayFromZero) : Performance.MemoryPercent);
+    private void Tick(object? sender, object e) => Memory = string.Format(config.Format, config.Round ? Math.Round(Performance.MemoryPercent is not null ? (float) Performance.MemoryPercent : -1.0f, 0, MidpointRounding.AwayFromZero) : Performance.MemoryPercent);
 
     private void OnPropertyChanged([CallerMemberName] string? callerMemberName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerMemberName));
   }

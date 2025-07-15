@@ -71,7 +71,7 @@ namespace Spakov.TermBar.ViewModels.Modules.Gpu {
     /// path="/param[@name='sender']"/></param>
     /// <param name="e"><inheritdoc cref="EventHandler"
     /// path="/param[@name='e']"/></param>
-    private void Tick(object? sender, object e) => Gpu = string.Format(config.Format, config.Round ? Math.Round(Performance.GpuPercent, 0, MidpointRounding.AwayFromZero) : Performance.GpuPercent);
+    private void Tick(object? sender, object e) => Gpu = string.Format(config.Format, config.Round ? Math.Round(Performance.GpuPercent is not null ? (float) Performance.GpuPercent : -1.0f, 0, MidpointRounding.AwayFromZero) : Performance.GpuPercent);
 
     private void OnPropertyChanged([CallerMemberName] string? callerMemberName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerMemberName));
   }

@@ -71,7 +71,7 @@ namespace Spakov.TermBar.ViewModels.Modules.Cpu {
     /// path="/param[@name='sender']"/></param>
     /// <param name="e"><inheritdoc cref="EventHandler"
     /// path="/param[@name='e']"/></param>
-    private void Tick(object? sender, object e) => Cpu = string.Format(config.Format, config.Round ? Math.Round(Performance.CpuPercent, 0, MidpointRounding.AwayFromZero) : Performance.CpuPercent);
+    private void Tick(object? sender, object e) => Cpu = string.Format(config.Format, config.Round ? Math.Round(Performance.CpuPercent is not null ? (float) Performance.CpuPercent : -1.0f, 0, MidpointRounding.AwayFromZero) : Performance.CpuPercent);
 
     private void OnPropertyChanged([CallerMemberName] string? callerMemberName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerMemberName));
   }
