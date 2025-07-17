@@ -124,7 +124,7 @@ namespace Spakov.TermBar.WindowManagement.Windows {
           - Margin;
       }
 
-      throw new ArgumentException("Invalid Location", "Location");
+      throw new ArgumentException(App.ResourceLoader.GetString("InvalidLocation"), "Location");
     }
 
     /// <summary>

@@ -10,15 +10,21 @@
   <Border>
     <Border.ContextFlyout>
       <MenuFlyout>
-        <MenuFlyoutItem Text="Task Manager" Click="TaskManagerMenuFlyoutItem_Click">
+        <MenuFlyoutItem
+          x:Uid="TaskManager"
+          Click="TaskManagerMenuFlyoutItem_Click">
           <MenuFlyoutItem.Icon>
-            <FontIcon Glyph="&#xf120;"/>
+            <FontIcon
+              Glyph="&#xf120;"/>
           </MenuFlyoutItem.Icon>
         </MenuFlyoutItem>
         <MenuFlyoutSeparator/>
-        <MenuFlyoutItem Text="TermBar Settings" Click="TermBarSettingsMenuFlyoutItem_Click">
+        <MenuFlyoutItem
+          x:Uid="TermBarSettings"
+          Click="TermBarSettingsMenuFlyoutItem_Click">
           <MenuFlyoutItem.Icon>
-            <FontIcon Glyph="&#xe713;"/>
+            <FontIcon
+              Glyph="&#xe713;"/>
           </MenuFlyoutItem.Icon>
         </MenuFlyoutItem>
       </MenuFlyout>

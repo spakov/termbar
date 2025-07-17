@@ -24,7 +24,7 @@
     </Grid.ColumnDefinitions>
 
     <TextBlock
-      Text="A problem has occurred and TermBar must exit. Likely cause:"
+      x:Uid="AProblemHasOccurred"
       Style="{StaticResource Prose}"
       Grid.Row="0"
       Grid.Column="0"/>
@@ -58,13 +58,14 @@
         Style="{StaticResource AccentedButton}"
         Click="Exit_Click">
         <TextBlock
-          Style="{StaticResource AccentedTextBlock}"
-          Text="Exit TermBar"/>
+          x:Uid="ExitTermBar"
+          Style="{StaticResource AccentedTextBlock}"/>
       </Button>
       <Button
         x:Name="Restart"
         Click="Restart_Click">
-        <TextBlock Text="Restart TermBar"/>
+        <TextBlock
+          x:Uid="RestartTermBar"/>
       </Button>
     </StackPanel>
 

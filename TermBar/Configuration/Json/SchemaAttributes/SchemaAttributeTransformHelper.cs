@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using System.Text.Json.Nodes;
 using System.Text.Json.Schema;
@@ -15,7 +13,7 @@ namespace Spakov.TermBar.Configuration.Json.SchemaAttributes {
     /// it in the form of corresponding JSON Schema annotations or validation
     /// keywords.
     /// </summary>
-    /// <remarks>This is based on the example provide by Microsoft at <see
+    /// <remarks>This is based on the example provided by Microsoft at <see
     /// href="https://devblogs.microsoft.com/dotnet/system-text-json-in-dotnet-9/#json-schema-exporter"
     /// />.</remarks>
     /// <param name="context">A <see

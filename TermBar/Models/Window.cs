@@ -4,7 +4,7 @@ using Windows.Win32.Foundation;
 
 namespace Spakov.TermBar.Models {
   /// <summary>
-  /// A window.
+  /// Represents a window.
   /// </summary>
 #pragma warning disable IDE0079 // Remove unnecessary suppression
   [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CsWinRT1028:Class is not marked partial", Justification = "Is a model")]

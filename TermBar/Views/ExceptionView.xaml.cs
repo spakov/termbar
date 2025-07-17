@@ -12,7 +12,7 @@ namespace Spakov.TermBar.Views {
   /// The TermBar exception view.
   /// </summary>
   internal sealed partial class ExceptionView : ModuleView {
-    private const string termBar = "TermBar.exe";
+    private const string termBar = "TermBar";
 
     private readonly Configuration.Json.TermBar config;
 
@@ -69,9 +69,9 @@ namespace Spakov.TermBar.Views {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:Convert to conditional expression", Justification = "Maximize readability")]
     private static string GetLikelyCause(Exception e) {
       if (e is JsonException) {
-        return "There's an error in your configuration file.";
+        return App.ResourceLoader.GetString("ConfigurationFileError");
       } else {
-        return "You've found a bug.";
+        return App.ResourceLoader.GetString("FoundABug");
       }
     }
 

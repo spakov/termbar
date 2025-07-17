@@ -19,6 +19,7 @@ namespace Spakov.TermBar.Configuration {
   /// </summary>
   internal static partial class ConfigHelper {
     private const string configFile = "config.json";
+    private const string metaschema = "https://json-schema.org/draft/2020-12/schema";
 
     private static readonly JsonSerializerOptions jsonSerializerOptions = new(ConfigContext.Default.Options);
 
@@ -102,8 +103,8 @@ namespace Spakov.TermBar.Configuration {
 
       PInvoke.MessageBox(
         Windows.Win32.Foundation.HWND.Null,
-        $"Schema has been generated at {Path.Combine(Directory.GetCurrentDirectory(), filename)}.",
-        "TermBar Schema Generated",
+        string.Format(App.ResourceLoader.GetString("SchemaHasBeenGenerated"), Path.Combine(Directory.GetCurrentDirectory(), filename)),
+        App.ResourceLoader.GetString("TermBarSchemaGenerated"),
         Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_STYLE.MB_OK
       );
     }
@@ -161,8 +162,8 @@ namespace Spakov.TermBar.Configuration {
       if (jsonNode is JsonObject jsonObject) {
         if (jsonObject.Parent is null) {
           // Add title and metaschema to root object
-          jsonObject.Insert(0, "title", "config.json");
-          jsonObject.Insert(0, "$schema", "https://json-schema.org/draft/2020-12/schema");
+          jsonObject.Insert(0, "title", configFile);
+          jsonObject.Insert(0, "$schema", metaschema);
 
           // Add $defs to root object
           jsonObject.Add(

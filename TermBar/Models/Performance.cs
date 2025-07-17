@@ -11,6 +11,10 @@ namespace Spakov.TermBar.Models {
   [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CsWinRT1028:Class is not marked partial", Justification = "Not a view")]
 #pragma warning restore IDE0079 // Remove unnecessary suppression
   internal class Performance : IDisposable {
+    private const string cpuTotal = "CPU Total";
+    private const string gpuCore = "GPU Core";
+    private const string memory = "Memory";
+
     private readonly UpdateVisitor updateVisitor;
     private readonly Computer computer;
 
@@ -54,19 +58,19 @@ namespace Spakov.TermBar.Models {
       foreach (IHardware hardware in computer.Hardware) {
         if (hardware.HardwareType == HardwareType.Cpu) {
           foreach (ISensor sensor in hardware.Sensors) {
-            if (sensor.SensorType == SensorType.Load && sensor.Name == "CPU Total") {
+            if (sensor.SensorType == SensorType.Load && sensor.Name == cpuTotal) {
               cpuPercent = sensor;
             }
           }
         } else if (hardware.HardwareType == HardwareType.GpuNvidia) {
           foreach (ISensor sensor in hardware.Sensors) {
-            if (sensor.SensorType == SensorType.Load && sensor.Name == "GPU Core") {
+            if (sensor.SensorType == SensorType.Load && sensor.Name == gpuCore) {
               gpuPercent = sensor;
             }
           }
         } else if (hardware.HardwareType == HardwareType.Memory) {
           foreach (ISensor sensor in hardware.Sensors) {
-            if (sensor.SensorType == SensorType.Load && sensor.Name == "Memory") {
+            if (sensor.SensorType == SensorType.Load && sensor.Name == memory) {
               memoryPercent = sensor;
             }
           }

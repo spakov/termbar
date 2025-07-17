@@ -12,6 +12,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using Windows.ApplicationModel.Resources;
 using Windows.Win32;
 
 namespace Spakov.TermBar {
@@ -24,8 +25,9 @@ namespace Spakov.TermBar {
     internal static readonly LogLevel logLevel = LogLevel.None;
 #endif
 
-    private Exception? criticalFailure;
+    private static ResourceLoader? resourceLoader;
 
+    private Exception? criticalFailure;
     private ExceptionView? exceptionView;
     private WindowManagement.Windows.DialogWindow? exceptionDialogWindow;
 
@@ -45,12 +47,19 @@ namespace Spakov.TermBar {
     internal static DispatcherQueue? DispatcherQueue { get; private set; }
 
     /// <summary>
+    /// App resources.
+    /// </summary>
+    internal static ResourceLoader ResourceLoader => resourceLoader!;
+
+    /// <summary>
     /// Initializes the singleton application object.  This is the first line
     /// of authored code executed, and as such is the logical equivalent of
     /// main() or WinMain().
     /// </summary>
     public App() {
       TrimRoots.PreserveTrimmableClasses();
+
+      resourceLoader = ResourceLoader.GetForViewIndependentUse();
 
       criticalFailure = null;
       InitializeComponent();
@@ -103,6 +112,8 @@ namespace Spakov.TermBar {
       if (criticalFailure is null) {
         WindowManager!.Display();
         UnhandledException += App_UnhandledException;
+
+        Startup.SyncStartupTask(Config!);
       } else {
         UnhandledExceptionHandler(criticalFailure);
       }
@@ -129,8 +140,6 @@ namespace Spakov.TermBar {
     /// </summary>
     /// <param name="e">An <see cref="Exception"/>.</param>
     private void UnhandledExceptionHandler(Exception e) {
-      System.Diagnostics.Debug.WriteLine("Exception handler");
-
       if (WindowManager is null) {
         FallbackUnhandledExceptionHandler(e);
 
@@ -175,8 +184,8 @@ namespace Spakov.TermBar {
     private static void FallbackUnhandledExceptionHandler(Exception e) {
       PInvoke.MessageBox(
         Windows.Win32.Foundation.HWND.Null,
-        $"Unhandled exception: {e}",
-        "Unhandled Exception",
+        string.Format(App.ResourceLoader.GetString("UnhandledExceptionMessage"), e),
+        App.ResourceLoader.GetString("UnhandledException"),
         Windows.Win32.UI.WindowsAndMessaging.MESSAGEBOX_STYLE.MB_OK
       );
     }

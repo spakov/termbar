@@ -29,8 +29,8 @@
       Grid.Column="0">
 
       <TextBlock
+        x:Uid="ConfigFileIsLocated"
         Style="{StaticResource Prose}"
-        Text="The TermBar configuration file is located here:"
         Grid.Row="1"
         Grid.Column="0"/>
       
@@ -42,8 +42,8 @@
         Grid.Column="0"/>
 
       <TextBlock
+        x:Uid="EditAndRestart"
         Style="{StaticResource Prose}"
-        Text="Edit it in your favorite editor and restart TermBar to see the changes."
         Grid.Row="3"
         Grid.Column="0"/>
 
@@ -67,7 +67,7 @@
       </Grid.ColumnDefinitions>
 
       <TextBlock
-        Text="Runtime configuration:"
+        x:Uid="RuntimeConfiguration"
         Grid.Row="0"
         Grid.Column="0"/>
 
@@ -78,7 +78,7 @@
         Grid.Column="0"/>
 
       <TextBlock
-        Text="Detected displays:"
+        x:Uid="DetectedDisplays"
         Grid.Row="2"
         Grid.Column="0"/>
 
@@ -101,28 +101,32 @@
         Style="{StaticResource AccentedButton}"
         Click="Exit_Click">
         <TextBlock
-          Style="{StaticResource AccentedTextBlock}"
-          Text="Exit TermBar"/>
+          x:Uid="ExitTermBar"
+          Style="{StaticResource AccentedTextBlock}"/>
       </Button>
       <Button
         x:Name="Restart"
         Click="Restart_Click">
-        <TextBlock Text="Restart TermBar"/>
+        <TextBlock
+          x:Uid="RestartTermBar"/>
       </Button>
       <Button
         x:Name="CopyPath"
         Click="CopyPath_Click">
-        <TextBlock Text="Copy Config File Path"/>
+        <TextBlock
+          x:Uid="CopyConfigFilePath"/>
       </Button>
       <Button
         x:Name="ShowInExplorer"
         Click="ShowInExplorer_Click">
-        <TextBlock Text="Show Config File in Explorer"/>
+        <TextBlock
+          x:Uid="ShowConfigFileInExplorer"/>
       </Button>
       <Button
         x:Name="Close"
         Click="Close_Click">
-        <TextBlock Text="Close"/>
+        <TextBlock
+          x:Uid="Close"/>
       </Button>
     </StackPanel>
 

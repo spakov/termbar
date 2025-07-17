@@ -19,8 +19,9 @@ namespace Spakov.TermBar.Views {
   /// The TermBar settings view.
   /// </summary>
   internal sealed partial class SettingsView : ModuleView {
-    private const string termBar = "TermBar.exe";
-    private const string explorer = "explorer.exe";
+    private const string termBar = "TermBar";
+    private const string explorer = "explorer";
+    private const string explorerSelect = "/select,\"{0}\"";
 
     private readonly Configuration.Json.TermBar config;
 
@@ -243,8 +244,8 @@ namespace Spakov.TermBar.Views {
 
       AppNotificationManager.Default.Show(
         new AppNotificationBuilder()
-          .AddText("Path copied")
-          .AddText("The configuration file path has been copied to the clipboard.")
+          .AddText(App.ResourceLoader.GetString("PathCopied"))
+          .AddText(App.ResourceLoader.GetString("ConfigurationFilePathCopied"))
           .BuildNotification()
       );
     }
@@ -256,7 +257,7 @@ namespace Spakov.TermBar.Views {
     /// path="/param[@name='sender']"/></param>
     /// <param name="e"><inheritdoc cref="RoutedEventHandler"
     /// path="/param[@name='e']"/></param>
-    private void ShowInExplorer_Click(object sender, RoutedEventArgs e) => Process.Start(explorer, $"/select,\"{ConfigPath}\"");
+    private void ShowInExplorer_Click(object sender, RoutedEventArgs e) => Process.Start(explorer, string.Format(explorerSelect, ConfigPath));
 
     /// <summary>
     /// Invoked when the user clicks the Close button.

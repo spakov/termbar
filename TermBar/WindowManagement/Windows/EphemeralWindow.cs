@@ -2,9 +2,7 @@
 using Microsoft.Extensions.Logging;
 #endif
 using Microsoft.UI.Xaml;
-using Spakov.TermBar.Models;
 using System;
-using System.Diagnostics;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.Accessibility;
@@ -221,7 +219,7 @@ namespace Spakov.TermBar.WindowManagement.Windows {
           : requestedTop;
       }
 
-      throw new ArgumentException("Invalid Location", "Location");
+      throw new ArgumentException(App.ResourceLoader.GetString("InvalidLocation"), "Location");
     }
 
     /// <summary>

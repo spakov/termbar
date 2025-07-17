@@ -2,7 +2,7 @@ using Microsoft.UI.Xaml;
 
 namespace Spakov.TermBar.Views.Windows {
   /// <summary>
-  /// An dialog "window".
+  /// A dialog "window".
   /// </summary>
   internal sealed partial class DialogWindow : Window {
     /// <summary>

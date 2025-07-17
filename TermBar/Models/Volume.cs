@@ -53,25 +53,25 @@ namespace Spakov.TermBar.Models {
     internal float VolumePercent {
       get {
         if (!isInitialized) {
-          throw new InvalidOperationException("Must call InitializeAudioMonitor() first.");
+          throw new InvalidOperationException(App.ResourceLoader.GetString("MustCallInitializeAudioMonitor"));
         }
 
         int hr = GetMasterVolume(out float level);
 
         return hr == 0
           ? level * 100
-          : throw new COMException("Failed to get volume level.", Marshal.GetHRForLastWin32Error());
+          : throw new COMException(App.ResourceLoader.GetString("FailedToGetVolumeLevel"), Marshal.GetHRForLastWin32Error());
       }
 
       set {
         if (!isInitialized) {
-          throw new InvalidOperationException("Must call InitializeAudioMonitor() first.");
+          throw new InvalidOperationException(App.ResourceLoader.GetString("MustCallInitializeAudioMonitor"));
         }
 
         int hr = SetMasterVolume(value / 100);
 
         if (hr != 0) {
-          throw new COMException("Failed to set volume level.", hr);
+          throw new COMException(App.ResourceLoader.GetString("FailedToSetVolumeLevel"), hr);
         }
       }
     }
@@ -83,25 +83,25 @@ namespace Spakov.TermBar.Models {
     internal bool VolumeMuted {
       get {
         if (!isInitialized) {
-          throw new InvalidOperationException("Must call InitializeAudioMonitor() first.");
+          throw new InvalidOperationException(App.ResourceLoader.GetString("MustCallInitializeAudioMonitor"));
         }
 
         int hr = GetMute(out bool mute);
 
         return hr == 0
           ? mute
-          : throw new COMException("Failed to get volume level.", Marshal.GetHRForLastWin32Error());
+          : throw new COMException(App.ResourceLoader.GetString("FailedToGetMuteState"), Marshal.GetHRForLastWin32Error());
       }
 
       set {
         if (!isInitialized) {
-          throw new InvalidOperationException("Must call InitializeAudioMonitor() first.");
+          throw new InvalidOperationException(App.ResourceLoader.GetString("MustCallInitializeAudioMonitor"));
         }
 
         int hr = SetMute(value);
 
         if (hr != 0) {
-          throw new COMException("Failed to set mute state.", hr);
+          throw new COMException(App.ResourceLoader.GetString("FailedToSetMuteState"), hr);
         }
       }
     }
@@ -122,7 +122,7 @@ namespace Spakov.TermBar.Models {
       int hr = InitializeAudioMonitor();
 
       if (hr != 0) {
-        throw new COMException("Failed to initialize audio monitor.", hr);
+        throw new COMException(App.ResourceLoader.GetString("FailedToInitializeAudioMonitor"), hr);
       }
 
       volumeChangedCallback = OnVolumeChanged;

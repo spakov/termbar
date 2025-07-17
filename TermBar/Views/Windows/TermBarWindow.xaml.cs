@@ -19,7 +19,7 @@ namespace Spakov.TermBar.Views.Windows {
     internal new static readonly LogLevel logLevel = App.logLevel;
 #endif
 
-    private const string taskManager = "taskmgr.exe";
+    private const string taskManager = "taskmgr";
 
     private const string viewsModulesNamespace = "Spakov.TermBar.Views.Modules";
 
@@ -86,7 +86,7 @@ namespace Spakov.TermBar.Views.Windows {
           logger.LogDebug("GetType() returned null");
 #endif
 
-          throw new InvalidOperationException($"Unable to create instance of module {moduleConfig.GetType().Name}.");
+          throw new InvalidOperationException(string.Format(App.ResourceLoader.GetString("UnableToCreateInstance"), moduleConfig.GetType().Name));
         }
 
         ModuleView moduleView;

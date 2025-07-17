@@ -475,7 +475,7 @@ namespace Spakov.TermBar.ViewModels.Modules.Terminal {
       try {
         await Task.Run(pseudoconsole.Start);
       } catch (Win32Exception e) {
-        PseudoconsoleDied?.Invoke(new ArgumentException($"Failed to start pseudoconsole with command \"{pseudoconsole.Command}\".", e));
+        PseudoconsoleDied?.Invoke(new ArgumentException(string.Format(App.ResourceLoader.GetString("FailedToStartPseudoconsole"), pseudoconsole.Command), e));
       }
     }
 
@@ -496,7 +496,7 @@ namespace Spakov.TermBar.ViewModels.Modules.Terminal {
       bool printMessage = !RestartOnExit || exitCode != 0;
 
       if (printMessage) {
-        terminalView.Write($"{pseudoconsole.Command} exited with {exitCode}");
+        terminalView.Write(string.Format(App.ResourceLoader.GetString("PseudoconsoleExitedWith"), pseudoconsole.Command, exitCode));
       }
     }
 

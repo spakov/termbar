@@ -1,5 +1,4 @@
 using Spakov.TermBar.ViewModels.Modules.Memory;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Spakov.TermBar.Views.Modules.Memory {
   /// <summary>
