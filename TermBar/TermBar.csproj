@@ -155,6 +155,11 @@
     <Page Update="Views\Modules\StaticText\StaticTextView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+
+    <Folder Include="Views\Modules\SystemDropdown\" />
+    <Page Update="Views\Modules\SystemDropdown\SystemDropdownView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     
     <Folder Include="Views\Modules\Terminal\" />
     <Page Update="Views\Modules\Terminal\TerminalView.xaml">
@@ -189,8 +194,6 @@
     <Page Update="Views\Windows\TermBarWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-
-    <Folder Include="Views\" />
     <Page Update="Views\ExceptionView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,10 +214,6 @@
   <ItemGroup>
     <PRIResource Include="..\..\w6t\Terminal\Strings\**\*.resw" />
   </ItemGroup>
-  
-  <PropertyGroup Label="Globals">
-    <WebView2DispatchAdapterNamespace>Spakov.TermBar</WebView2DispatchAdapterNamespace>
-  </PropertyGroup>
 
   <!--
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution

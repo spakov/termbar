@@ -13,6 +13,7 @@ namespace Spakov.TermBar.Configuration.Json {
   [JsonDerivedType(typeof(Launcher), "Launcher")]
   [JsonDerivedType(typeof(Memory), "Memory")]
   [JsonDerivedType(typeof(StaticText), "StaticText")]
+  [JsonDerivedType(typeof(SystemDropdown), "SystemDropdown")]
   [JsonDerivedType(typeof(Modules.Terminal), "Terminal")]
   [JsonDerivedType(typeof(Volume), "Volume")]
   [JsonDerivedType(typeof(WindowBar), "WindowBar")]

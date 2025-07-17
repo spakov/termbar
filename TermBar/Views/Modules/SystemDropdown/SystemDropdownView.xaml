@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<local:ModuleView
+  d:DataContext="{x:Bind vm:SystemDropdownViewModel}"
+  x:Class="Spakov.TermBar.Views.Modules.SystemDropdown.SystemDropdownView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="using:Spakov.TermBar.Views"
+  xmlns:localmodules="using:Spakov.TermBar.Views.Modules.SystemDropdown"
+  xmlns:vm="using:Spakov.TermBar.ViewModels.Modules.SystemDropdown"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d">
+  <DropDownButton>
+    <DropDownButton.Content>
+      <TextBlock Text="{x:Bind ViewModel.Icon}" Foreground="{x:Bind ViewModel.IconColor}"/>
+    </DropDownButton.Content>
+    <DropDownButton.Flyout>
+      <localmodules:SystemDropdownBindableMenuFlyoutView
+        Config="{x:Bind Config}"
+        ItemsSource="{x:Bind ViewModel.Items}"
+        ClickAction="{x:Bind ClickAction}"
+        TextPath="Name"
+        IconPath="Icon"/>
+    </DropDownButton.Flyout>
+  </DropDownButton>
+</local:ModuleView>

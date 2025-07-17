@@ -21,6 +21,7 @@ Each of these modules is described in its own section below.
 | Launcher        | A set of launcher buttons, a lot like items pinned to the Windows 11 taskbar. |
 | Memory          | A memory usage monitor.                                                       |
 | StaticText      | A simple static text display.                                                 |
+| SystemDropdown  | A drop-down menu providing access to system commands.                         |
 | Terminal        | A fully functional terminal emulator.                                         |
 | Volume          | A system volume level monitor that can adjust volume and mute.                |
 | WindowBar       | A taskbar-like list of all open windows.                                      |
@@ -89,6 +90,11 @@ The Cpu module displays the current memory load, refreshing at a configurable in
 The StaticText module displays a static text string, with an optional icon.
 
 ![A screenshot of the TermBar StaticText module.](screenshots/StaticText.png)
+
+### SystemDropdown Module
+The SystemDropdown module provides a menu providing system commands, like shutting down, rebooting, and opening the Window settings. It can be configured to customize which options are displayed.
+
+TODO: screenshots
 
 ### Terminal Module
 The Terminal module embeds an instance of w6t (link), a fully functional terminal emulator, in TermBar. The Terminal module is presented with three rows and 60 columns by default, but can be configured to any size you like. w6t is extensively customizable; see its GitHub page for details.

@@ -4,7 +4,7 @@ using Spakov.TermBar.Configuration.Json.SchemaAttributes;
 namespace Spakov.TermBar.Configuration.Json.Modules {
   [Description("A TermBar static text display configuration.")]
   internal class StaticText : IModule {
-    private const int orderDefault = int.MinValue;
+    private const int orderDefault = -1;
     private const bool expandDefault = false;
     private const ColorEnum accentColorDefault = ColorEnum.Green;
     private const string accentColorDefaultAsString = "Green";

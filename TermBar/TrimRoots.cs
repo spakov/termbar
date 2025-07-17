@@ -3,6 +3,7 @@ using Spakov.TermBar.ViewModels.Modules.Cpu;
 using Spakov.TermBar.ViewModels.Modules.Gpu;
 using Spakov.TermBar.ViewModels.Modules.Launcher;
 using Spakov.TermBar.ViewModels.Modules.Memory;
+using Spakov.TermBar.ViewModels.Modules.SystemDropdown;
 using Spakov.TermBar.ViewModels.Modules.Terminal;
 using Spakov.TermBar.ViewModels.Modules.Volume;
 using Spakov.TermBar.ViewModels.Modules.WindowBar;
@@ -13,6 +14,7 @@ using Spakov.TermBar.Views.Modules.Gpu;
 using Spakov.TermBar.Views.Modules.Launcher;
 using Spakov.TermBar.Views.Modules.Memory;
 using Spakov.TermBar.Views.Modules.StaticText;
+using Spakov.TermBar.Views.Modules.SystemDropdown;
 using Spakov.TermBar.Views.Modules.Terminal;
 using Spakov.TermBar.Views.Modules.Volume;
 using Spakov.TermBar.Views.Modules.WindowBar;
@@ -45,6 +47,9 @@ namespace Spakov.TermBar {
     [DynamicDependency(DynamicallyAccessedMemberTypes.NonPublicConstructors, typeof(MemoryView))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(MemoryViewModel))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.NonPublicConstructors, typeof(StaticTextView))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.NonPublicConstructors, typeof(SystemDropdownView))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(SystemDropdownViewModel))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(SystemDropdownItemViewModel))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.NonPublicConstructors, typeof(TerminalView))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(TerminalViewModel))]
     [DynamicDependency(DynamicallyAccessedMemberTypes.NonPublicConstructors, typeof(VolumeView))]

@@ -136,6 +136,7 @@ namespace Spakov.TermBar.Configuration.Json {
 
     [Description("TermBar modules.")]
     public List<IModule>? Modules { get; set; } = [
+      new Modules.SystemDropdown(),
       new Modules.Launcher(),
       new Modules.Terminal(),
       new Modules.WindowBar(),
