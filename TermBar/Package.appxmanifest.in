@@ -3,6 +3,7 @@
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
   xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:uap4="http://schemas.microsoft.com/appx/manifest/uap/windows10/4"
@@ -48,6 +49,9 @@
             <uap5:ExecutionAlias Alias="TermBar.exe"/>
           </uap5:AppExecutionAlias>
         </uap5:Extension>
+        <desktop:Extension Category="windows.startupTask">
+          <desktop:StartupTask TaskId="TermBarStartup" Enabled="false" DisplayName="TermBar"/>
+        </desktop:Extension>
         <uap4:Extension Category="windows.sharedFonts">
           <uap4:SharedFonts>
             <uap4:Font File="Assets\Fonts\0xProtoNerdFontPropo-Bold.ttf"/>

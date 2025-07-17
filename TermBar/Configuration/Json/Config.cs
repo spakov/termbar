@@ -12,5 +12,9 @@ namespace Spakov.TermBar.Configuration.Json {
     [Description("The directory to change to when starting. Set to null to keep the directory inherited from the parent process.")]
     [DefaultString(startDirectoryDefault)]
     public string? StartDirectory { get; set; } = startDirectoryDefault;
+
+    [Description("Whether TermBar should start up at boot time.")]
+    [DefaultBoolean(false)]
+    public bool? StartupAtBoot { get; set; } = false;
   }
 }
