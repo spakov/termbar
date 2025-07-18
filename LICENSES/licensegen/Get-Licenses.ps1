@@ -1,0 +1,100 @@
+# Configuration
+$NGLF = "\opt\NuGetLicenseFramework-3.1.6\NuGetLicenseFramework.exe"
+$LicenseGenDirectory = "licensegen"
+$JsonInput = "$LicenseGenDirectory\json-input.json"
+$OutputType = "Json"
+$TemporaryOutputFile = "..\THIRD-PARTY-NOTICES.json"
+$LicenseOutputDirectory = ".\"
+$Ignored = "$LicenseGenDirectory\ignored-packages.json"
+$Override = "$LicenseGenDirectory\override-package-information.json"
+$OutputFile = "..\THIRD-PARTY-NOTICES.md"
+
+# Check for invocation directory
+if (-not (Test-Path -Path $LicenseGenDirectory)) {
+  Write-Error "Error: Invoke me from LICENSES, please."
+  exit 1
+}
+
+# Check for NGLF
+if (-not (Test-Path -Path $NGLF)) {
+  Write-Error "Error: '$NGLF' not found. Obtain NuGetLicenseFramework.exe from https://github.com/sensslen/nuget-license and point me to it."
+  exit 1
+}
+
+# Check for jq
+if (-not (Get-Command "jq" -ErrorAction SilentlyContinue)) {
+  Write-Error "Error: 'jq' not found in PATH. Install it via 'winget install jqlang.jq'."
+  exit 1
+}
+
+# Clear output
+Get-ChildItem -Path $LicenseOutputDirectory -Exclude $LicenseGenDirectory | Remove-Item
+
+# Run NGLF
+& $NGLF -ji $JsonInput -t -o $OutputType -fo $TemporaryOutputFile -d $LicenseOutputDirectory -ignore $Ignored -override $Override
+
+# Confirm temporary output file exists
+if (-not (Test-Path -Path $TemporaryOutputFile)) {
+  Write-Error "Error: Expected output '$TemporaryOutputFile' not found."
+  exit 1
+}
+
+# Read and delete temporary output
+$out = Get-Content -Path $TemporaryOutputFile -Raw
+Remove-Item -Path $TemporaryOutputFile
+
+# Rename RTFs
+$wronglyNamedRtfs = "Microsoft.Windows.SDK.BuildTools*", "Microsoft.Windows.SDK.Win32Docs*"
+foreach ($wronglyNamedRtf in Get-ChildItem -Path $LicenseOutputDirectory* -Include $wronglyNamedRtfs) {
+  $correctlyNamedRtf = [System.IO.Path]::ChangeExtension($wronglyNamedRtf.FullName, ".rtf")
+  Rename-Item -Path $wronglyNamedRtf.FullName -NewName $correctlyNamedRtf
+}
+
+# Remove errors and only keep properties we care about
+$out = ($out | & jq '[ .[] | { PackageId, PackageVersion, PackageProjectUrl, License, LicenseUrl } ]')
+
+# Add Microsoft.Web.WebView2
+$name = "Microsoft.Web.WebView2"
+$version = "1.0.2903.40"
+$licenseUrl = "https://www.nuget.org/packages/Microsoft.Web.WebView2/$version/License"
+$rawLicensePath = "$Env:USERPROFILE\.nuget\packages\microsoft.web.webview2\$version\LICENSE.txt"
+$out = ($out | & jq ". += [{ `"PackageId`": `"${name}`", `"PackageVersion`": `"${version}`", `"PackageProjectUrl`": `"https://aka.ms/webview`", `"License`": `"WebView2`", `"LicenseUrl`": `"${licenseUrl}`" }]")
+Copy-Item -Path $rawLicensePath -Destination ${name}__${version}.txt
+
+# Add Mono.Posix.NETStandard
+$name = "Mono.Posix.NETStandard"
+$version = "1.0.0"
+$licenseUrl = "https://raw.githubusercontent.com/mono/mono/refs/heads/main/LICENSE"
+$out = ($out | & jq ". += [{ `"PackageId`": `"${name}`", `"PackageVersion`": `"${version}`", `"PackageProjectUrl`": `"https://go.microsoft.com/fwlink/?linkid=869051`", `"License`": `"Mono`", `"LicenseUrl`": `"${licenseUrl}`" }]")
+Invoke-WebRequest -Uri $licenseUrl -OutFile ${name}__${version}.txt
+
+# Add utf8proc
+$name = "utf8proc"
+$version = (git -C ..\..\w6t\utf8proc log -n 1 --pretty=format:"%H")
+$licenseUrl = "https://github.com/JuliaStrings/utf8proc/raw/refs/heads/master/LICENSE.md"
+$out = ($out | & jq ". += [{ `"PackageId`": `"${name}`", `"PackageVersion`": `"${version}`", `"PackageProjectUrl`": `"https://github.com/JuliaStrings/utf8proc/`", `"License`": `"MIT`", `"LicenseUrl`": `"${licenseUrl}`" }]")
+Invoke-WebRequest -Uri $licenseUrl -OutFile ${name}__${version}.txt
+
+# Convert to Markdown
+$markdown = [System.Collections.Generic.List[string]]::new()
+$json = ($out | ConvertFrom-Json | Sort-Object PackageId)
+
+foreach ($package in $json) {
+  $name = $package.PackageId
+  $url = $package.PackageProjectUrl
+  $version = $package.PackageVersion
+  $license = $package.License
+  $licenseUrl = $package.LicenseUrl
+
+  $markdown.Add("- **[$name]($url)** ${version}: [$license]($licenseUrl)")
+}
+
+$markdown.Insert(0, "# Third Party Notices")
+$markdown.Insert(1, "TermBar uses licensed components from third parties. These are summarized below and license text is present in [LICENSES](LICENSES/).")
+$markdown.Insert(2, "")
+
+# Write file
+Set-Content -Path $OutputFile -Value ($markdown | Join-String -Separator "`r`n")
+Write-Host "→ $OutputFile"
+
+Write-Host "`nLicense download and enumeration complete." -ForegroundColor Green
