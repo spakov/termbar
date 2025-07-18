@@ -1,4 +1,5 @@
 ﻿#if DEBUG
+using CommunityToolkit.WinUI;
 using Microsoft.Extensions.Logging;
 #endif
 using Spakov.TermBar.Models;
@@ -65,7 +66,16 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
 #endif
 
           _foregroundWindow = value;
-          OnPropertyChanged();
+
+          // This bears some explanation: normally we'd just invoke
+          // OnPropertyChanged() here, but we can end up in a scenario in which
+          // we're trying to update the selected item (this property is bound
+          // to SelectedItem in WindowBarView.xaml) but it hasn't actually
+          // been added to the list yet, due to the "lazy" way the ListView's
+          // ItemsSource works. So, instead, we use the ListView's
+          // LayoutUpdated event to generate a PropertyChanged on
+          // WindowBarViewModel's behalf. This allows things to settle before
+          // trying to update the selected item.
 
 #if DEBUG
           logger.LogDebug(
@@ -317,6 +327,6 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
       return null;
     }
 
-    private void OnPropertyChanged([CallerMemberName] string? callerMemberName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerMemberName));
+    internal void OnPropertyChanged([CallerMemberName] string? callerMemberName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerMemberName));
   }
 }

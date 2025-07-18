@@ -63,9 +63,9 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
     /// Invoked when the <see cref="ListView"/>'s selection has finished
     /// changing.
     /// </summary>
-    /// <param name="sender"><inheritdoc cref="EventHandler"
+    /// <param name="sender"><inheritdoc cref="SelectionChangedEventHandler"
     /// path="/param[@name='sender']"/></param>
-    /// <param name="e"><inheritdoc cref="EventHandler"
+    /// <param name="e"><inheritdoc cref="SelectionChangedEventHandler"
     /// path="/param[@name='e']"/></param>
     private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
       if (config.Windows is not null && config.Windows.ScrollIntoView) {
@@ -74,6 +74,22 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
             ((ListView) Content).ScrollIntoView(((ListView) Content).Items[((ListView) Content).SelectedIndex]);
           }
         }
+      }
+    }
+
+    /// <summary>
+    /// Invoked when the <see cref="ListView"/> has finished updating.
+    /// </summary>
+    /// <remarks>Please be sure to see the comment attached to <see
+    /// cref="WindowBarViewModel.ForegroundWindow"/>'s setter for an
+    /// explanation of what's happening here.</remarks>
+    /// <param name="sender"><inheritdoc cref="EventHandler"
+    /// path="/param[@name='sender']"/></param>
+    /// <param name="e"><inheritdoc cref="EventHandler"
+    /// path="/param[@name='e']"/></param>
+    private void ListView_LayoutUpdated(object sender, object e) {
+      if (!ReferenceEquals(((ListView) Content).SelectedItem, ViewModel!.ForegroundWindow)) {
+        ViewModel!.OnPropertyChanged("ForegroundWindow");
       }
     }
   }
