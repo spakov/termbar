@@ -52,10 +52,10 @@ namespace Spakov.TermBar.Views.Modules.WindowBar {
     /// <param name="e"><inheritdoc cref="ItemClickEventHandler"
     /// path="/param[@name='e']"/></param>
     private void WindowBarView_ItemClick(object sender, ItemClickEventArgs e) {
-      if (!e.ClickedItem.Equals(ViewModel!.ForegroundWindow)) {
+      if (ReferenceEquals(e.ClickedItem, ViewModel!.LastForegroundWindow)) {
+        ViewModel!.Iconify();
+      } else if (!ReferenceEquals(e.ClickedItem, ViewModel!.ForegroundWindow)) {
         ViewModel!.Foreground((WindowBarWindowView) e.ClickedItem);
-      } else {
-        WindowBarViewModel.Iconify();
       }
     }
 

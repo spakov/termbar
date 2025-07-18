@@ -34,6 +34,7 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
     private readonly Dictionary<HWND, CancellationTokenSource> pendingRemovals;
 
     private WindowBarWindowView? _foregroundWindow;
+    private WindowBarWindowView? _lastForegroundWindow;
 
     /// <summary>
     /// The list of <see cref="WindowBarWindowView"/>s to be presented to the
@@ -65,6 +66,7 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
           );
 #endif
 
+          _lastForegroundWindow = _foregroundWindow;
           _foregroundWindow = value;
 
           // This bears some explanation: normally we'd just invoke
@@ -75,7 +77,12 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
           // ItemsSource works. So, instead, we use the ListView's
           // LayoutUpdated event to generate a PropertyChanged on
           // WindowBarViewModel's behalf. This allows things to settle before
-          // trying to update the selected item.
+          // trying to update the selected item. For the sake of completeness,
+          // it's worth mentioning that it is not always necessary to invoke
+          // UpdateLayout()--a layout update is automatically invoked after
+          // adding or removing a ListView item. However, it doesn't hurt to
+          // have it be invoked multiple times.
+          App.DispatcherQueue!.TryEnqueue(windowBarView.UpdateLayout);
 
 #if DEBUG
           logger.LogDebug(
@@ -87,6 +94,11 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
         }
       }
     }
+
+    /// <summary>
+    /// The last foregrounded window.
+    /// </summary>
+    internal WindowBarWindowView? LastForegroundWindow => _lastForegroundWindow;
 
     /// <summary>
     /// Initializes a <see cref="WindowBarViewModel"/>.
@@ -149,9 +161,14 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
     internal void Foreground(WindowBarWindowView view) => WindowList.ForegroundWindow = FindModel(view);
 
     /// <summary>
-    /// Iconifies the foregrounded window.
+    /// Iconifies the last foregrounded window.
     /// </summary>
-    internal static void Iconify() => WindowList.Iconify();
+    /// <remarks>We iconify the last foregrounded window because the currently
+    /// foregrounded window is always TermBar.</remarks>
+    internal void Iconify() {
+      WindowList.ForegroundWindow = FindModel(_lastForegroundWindow);
+      WindowList.Iconify();
+    }
 
     /// <summary>
     /// Handles changes to the window list model.
