@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Spakov.TermBar.Views;
+using Spakov.TermBar.WindowManagement.Windows;
+using System;
 using Windows.ApplicationModel;
 
 namespace Spakov.TermBar.Models {
@@ -28,8 +30,16 @@ namespace Spakov.TermBar.Models {
           break;
 
         case StartupTaskState.DisabledByUser:
-          // TODO: something graceful that involves explaining the scenario and
-          // a shell execute of "explorer ms-settings:startupapps"
+          StartupTaskDisabledByUserView startupTaskDisabledByUserView = new(App.Config!.Displays[0].TermBar);
+
+          DialogWindow startupTaskDisabledByUserDialogWindow = new(
+            App.Config!.Displays[0].TermBar,
+            startupTaskDisabledByUserView
+          );
+
+          startupTaskDisabledByUserView.Owner = startupTaskDisabledByUserDialogWindow;
+          startupTaskDisabledByUserDialogWindow.Display();
+
           break;
 
         case StartupTaskState.Enabled:

@@ -184,7 +184,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     
-    <Folder Include="Views\Windows\" />
     <Page Update="Views\Windows\DialogWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -198,6 +197,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Views\SettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\StartupTaskDisabledByUserView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<local:ModuleView
+  x:Class="Spakov.TermBar.Views.StartupTaskDisabledByUserView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="using:Spakov.TermBar.Views"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d">
+  <Grid
+    Style="{StaticResource LayoutGrid}"
+    Background="Transparent">
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="480"/>
+    </Grid.ColumnDefinitions>
+
+    <TextBlock
+      x:Uid="StartupTaskDisabledByUser"
+      Style="{StaticResource Prose}"
+      Grid.Row="0"
+      Grid.Column="0"/>
+
+    <StackPanel
+      x:Name="Buttons"
+      HorizontalAlignment="Right"
+      Grid.Row="1"
+      Grid.Column="0">
+      <Button
+        x:Name="OpenSettings"
+        Style="{StaticResource AccentedButton}"
+        Click="OpenSettings_Click">
+        <TextBlock
+          x:Uid="OpenWindowsStartupSettings"
+          Style="{StaticResource AccentedTextBlock}"/>
+      </Button>
+      <Button
+        x:Name="Close"
+        Click="Close_Click">
+        <TextBlock
+          x:Uid="Close"/>
+      </Button>
+    </StackPanel>
+
+  </Grid>
+</local:ModuleView>
