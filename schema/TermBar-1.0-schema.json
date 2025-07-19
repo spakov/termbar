@@ -542,7 +542,7 @@
                         },
                         "Order": {
                           "description": "The order in which the module should be displayed on the TermBar.",
-                          "default": -2147483648,
+                          "default": -1,
                           "minimum": -2147483648,
                           "maximum": 2147483647,
                           "type": "integer"
@@ -572,6 +572,55 @@
                         "$module"
                       ],
                       "$ref": "#/$defs/StaticText module"
+                    },
+                    {
+                      "description": "A TermBar system dropdown configuration.",
+                      "properties": {
+                        "$module": {
+                          "description": "The module type.",
+                          "const": "SystemDropdown"
+                        },
+                        "Order": {
+                          "description": "The order in which the module should be displayed on the TermBar.",
+                          "default": -2147483648,
+                          "minimum": -2147483648,
+                          "maximum": 2147483647,
+                          "type": "integer"
+                        },
+                        "Expand": {
+                          "description": "Whether the module should expand to take up as much space as possible.",
+                          "default": false,
+                          "type": "boolean"
+                        },
+                        "AccentColor": {
+                          "description": "The Catppuccin color to use for the dropdown icon color.",
+                          "default": "Overlay1",
+                          "$ref": "#/$defs/colorEnum"
+                        },
+                        "Icon": {
+                          "description": "The text to use as the dropdown icon.",
+                          "default": "",
+                          "type": "string"
+                        },
+                        "Features": {
+                          "description": "System menu features to display in the dropdown.",
+                          "type": "array",
+                          "items": {
+                            "enum": [
+                              "SystemSettings",
+                              "SignOut",
+                              "Lock",
+                              "Sleep",
+                              "ShutDown",
+                              "Restart"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "$module"
+                      ],
+                      "$ref": "#/$defs/SystemDropdown module"
                     },
                     {
                       "description": "A TermBar terminal configuration. For all objects that accept a null value, a value of null means the default TerminalControl behavior takes effect, unless otherwise noted.",
@@ -1168,6 +1217,14 @@
         "string",
         "null"
       ]
+    },
+    "StartupAtBoot": {
+      "description": "Whether TermBar should start up at boot time.",
+      "default": false,
+      "type": [
+        "boolean",
+        "null"
+      ]
     }
   },
   "required": [
@@ -1282,6 +1339,7 @@
     "Launcher module": {},
     "Memory module": {},
     "StaticText module": {},
+    "SystemDropdown module": {},
     "Terminal module": {},
     "Volume module": {},
     "WindowBar module": {},

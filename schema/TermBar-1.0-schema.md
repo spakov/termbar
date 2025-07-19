@@ -100,98 +100,107 @@
             - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > StaticText module > AccentColor`](#Displays_items_TermBar_Modules_items_anyOf_i5_AccentColor)
             - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > StaticText module > Icon`](#Displays_items_TermBar_Modules_items_anyOf_i5_Icon)
             - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > StaticText module > Text`](#Displays_items_TermBar_Modules_items_anyOf_i5_Text)
-          - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module`](#Displays_items_TermBar_Modules_items_anyOf_i6)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > $module`](#Displays_items_TermBar_Modules_items_anyOf_i6_module)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Order`](#Displays_items_TermBar_Modules_items_anyOf_i6_Order)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Expand`](#Displays_items_TermBar_Modules_items_anyOf_i6_Expand)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > AccentColor`](#Displays_items_TermBar_Modules_items_anyOf_i6_AccentColor)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Icon`](#Displays_items_TermBar_Modules_items_anyOf_i6_Icon)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > VisualBellIcon`](#Displays_items_TermBar_Modules_items_anyOf_i6_VisualBellIcon)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Command`](#Displays_items_TermBar_Modules_items_anyOf_i6_Command)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > RestartOnExit`](#Displays_items_TermBar_Modules_items_anyOf_i6_RestartOnExit)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > DefaultWindowTitle`](#Displays_items_TermBar_Modules_items_anyOf_i6_DefaultWindowTitle)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Rows`](#Displays_items_TermBar_Modules_items_anyOf_i6_Rows)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Columns`](#Displays_items_TermBar_Modules_items_anyOf_i6_Columns)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > FontFamily`](#Displays_items_TermBar_Modules_items_anyOf_i6_FontFamily)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > FontSize`](#Displays_items_TermBar_Modules_items_anyOf_i6_FontSize)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > TabWidth`](#Displays_items_TermBar_Modules_items_anyOf_i6_TabWidth)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > TextAntialiasing`](#Displays_items_TermBar_Modules_items_anyOf_i6_TextAntialiasing)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > FullColorEmoji`](#Displays_items_TermBar_Modules_items_anyOf_i6_FullColorEmoji)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseBackgroundColorErase`](#Displays_items_TermBar_Modules_items_anyOf_i6_UseBackgroundColorErase)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > BackgroundIsInvisible`](#Displays_items_TermBar_Modules_items_anyOf_i6_BackgroundIsInvisible)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseVisualBell`](#Displays_items_TermBar_Modules_items_anyOf_i6_UseVisualBell)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > VisualBellDisplayTime`](#Displays_items_TermBar_Modules_items_anyOf_i6_VisualBellDisplayTime)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseContextMenu`](#Displays_items_TermBar_Modules_items_anyOf_i6_UseContextMenu)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseExtendedContextMenu`](#Displays_items_TermBar_Modules_items_anyOf_i6_UseExtendedContextMenu)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorStyle`](#Displays_items_TermBar_Modules_items_anyOf_i6_CursorStyle)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorThickness`](#Displays_items_TermBar_Modules_items_anyOf_i6_CursorThickness)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorBlink`](#Displays_items_TermBar_Modules_items_anyOf_i6_CursorBlink)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorBlinkRate`](#Displays_items_TermBar_Modules_items_anyOf_i6_CursorBlinkRate)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorColor`](#Displays_items_TermBar_Modules_items_anyOf_i6_CursorColor)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > ScrollbackLines`](#Displays_items_TermBar_Modules_items_anyOf_i6_ScrollbackLines)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > LinesPerScrollback`](#Displays_items_TermBar_Modules_items_anyOf_i6_LinesPerScrollback)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > LinesPerSmallScrollback`](#Displays_items_TermBar_Modules_items_anyOf_i6_LinesPerSmallScrollback)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > LinesPerWheelScrollback`](#Displays_items_TermBar_Modules_items_anyOf_i6_LinesPerWheelScrollback)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CopyOnMouseUp`](#Displays_items_TermBar_Modules_items_anyOf_i6_CopyOnMouseUp)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > PasteOnMiddleClick`](#Displays_items_TermBar_Modules_items_anyOf_i6_PasteOnMiddleClick)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > PasteOnRightClick`](#Displays_items_TermBar_Modules_items_anyOf_i6_PasteOnRightClick)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CopyNewline`](#Displays_items_TermBar_Modules_items_anyOf_i6_CopyNewline)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors)
-              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_DefaultColors)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors > DefaultBackgroundColor`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_DefaultColors_DefaultBackgroundColor)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors > DefaultForegroundColor`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_DefaultColors_DefaultForegroundColor)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors > DefaultUnderlineColor`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_DefaultColors_DefaultUnderlineColor)
-              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Black`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Black)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Red`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Red)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Green`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Green)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Yellow`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Yellow)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Blue`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Blue)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Magenta`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Magenta)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Cyan`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Cyan)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > White`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_White)
-              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightBlack`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightBlack)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightRed`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightRed)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightGreen`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightGreen)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightYellow`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightYellow)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightBlue`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightBlue)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightMagenta`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightMagenta)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightCyan`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightCyan)
-                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightWhite`](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightWhite)
-          - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module`](#Displays_items_TermBar_Modules_items_anyOf_i7)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > $module`](#Displays_items_TermBar_Modules_items_anyOf_i7_module)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Order`](#Displays_items_TermBar_Modules_items_anyOf_i7_Order)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Expand`](#Displays_items_TermBar_Modules_items_anyOf_i7_Expand)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > AccentColor`](#Displays_items_TermBar_Modules_items_anyOf_i7_AccentColor)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Icon`](#Displays_items_TermBar_Modules_items_anyOf_i7_Icon)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > MutedIcon`](#Displays_items_TermBar_Modules_items_anyOf_i7_MutedIcon)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Format`](#Displays_items_TermBar_Modules_items_anyOf_i7_Format)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Muted`](#Displays_items_TermBar_Modules_items_anyOf_i7_Muted)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction`](#Displays_items_TermBar_Modules_items_anyOf_i7_VolumeInteraction)
-              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction > ClickToToggleMute`](#Displays_items_TermBar_Modules_items_anyOf_i7_VolumeInteraction_ClickToToggleMute)
-              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction > ScrollToAdjust`](#Displays_items_TermBar_Modules_items_anyOf_i7_VolumeInteraction_ScrollToAdjust)
-              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction > PercentPerScroll`](#Displays_items_TermBar_Modules_items_anyOf_i7_VolumeInteraction_PercentPerScroll)
-          - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module`](#Displays_items_TermBar_Modules_items_anyOf_i8)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > $module`](#Displays_items_TermBar_Modules_items_anyOf_i8_module)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Order`](#Displays_items_TermBar_Modules_items_anyOf_i8_Order)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Expand`](#Displays_items_TermBar_Modules_items_anyOf_i8_Expand)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > AccentColor`](#Displays_items_TermBar_Modules_items_anyOf_i8_AccentColor)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Icon`](#Displays_items_TermBar_Modules_items_anyOf_i8_Icon)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows`](#Displays_items_TermBar_Modules_items_anyOf_i8_Windows)
-              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > FixedLength`](#Displays_items_TermBar_Modules_items_anyOf_i8_Windows_FixedLength)
-              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > MaxLength`](#Displays_items_TermBar_Modules_items_anyOf_i8_Windows_MaxLength)
-              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > NiceTruncation`](#Displays_items_TermBar_Modules_items_anyOf_i8_Windows_NiceTruncation)
-              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > ScrollIntoView`](#Displays_items_TermBar_Modules_items_anyOf_i8_Windows_ScrollIntoView)
-          - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module`](#Displays_items_TermBar_Modules_items_anyOf_i9)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > $module`](#Displays_items_TermBar_Modules_items_anyOf_i9_module)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > Order`](#Displays_items_TermBar_Modules_items_anyOf_i9_Order)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > Expand`](#Displays_items_TermBar_Modules_items_anyOf_i9_Expand)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > AccentColor`](#Displays_items_TermBar_Modules_items_anyOf_i9_AccentColor)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > DropdownIcon`](#Displays_items_TermBar_Modules_items_anyOf_i9_DropdownIcon)
-            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > Icon`](#Displays_items_TermBar_Modules_items_anyOf_i9_Icon)
+          - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module`](#Displays_items_TermBar_Modules_items_anyOf_i6)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module > $module`](#Displays_items_TermBar_Modules_items_anyOf_i6_module)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module > Order`](#Displays_items_TermBar_Modules_items_anyOf_i6_Order)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module > Expand`](#Displays_items_TermBar_Modules_items_anyOf_i6_Expand)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module > AccentColor`](#Displays_items_TermBar_Modules_items_anyOf_i6_AccentColor)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module > Icon`](#Displays_items_TermBar_Modules_items_anyOf_i6_Icon)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module > Features`](#Displays_items_TermBar_Modules_items_anyOf_i6_Features)
+              - [config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module > Features > Features items](#Displays_items_TermBar_Modules_items_anyOf_i6_Features_items)
+          - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module`](#Displays_items_TermBar_Modules_items_anyOf_i7)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > $module`](#Displays_items_TermBar_Modules_items_anyOf_i7_module)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Order`](#Displays_items_TermBar_Modules_items_anyOf_i7_Order)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Expand`](#Displays_items_TermBar_Modules_items_anyOf_i7_Expand)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > AccentColor`](#Displays_items_TermBar_Modules_items_anyOf_i7_AccentColor)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Icon`](#Displays_items_TermBar_Modules_items_anyOf_i7_Icon)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > VisualBellIcon`](#Displays_items_TermBar_Modules_items_anyOf_i7_VisualBellIcon)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Command`](#Displays_items_TermBar_Modules_items_anyOf_i7_Command)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > RestartOnExit`](#Displays_items_TermBar_Modules_items_anyOf_i7_RestartOnExit)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > DefaultWindowTitle`](#Displays_items_TermBar_Modules_items_anyOf_i7_DefaultWindowTitle)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Rows`](#Displays_items_TermBar_Modules_items_anyOf_i7_Rows)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Columns`](#Displays_items_TermBar_Modules_items_anyOf_i7_Columns)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > FontFamily`](#Displays_items_TermBar_Modules_items_anyOf_i7_FontFamily)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > FontSize`](#Displays_items_TermBar_Modules_items_anyOf_i7_FontSize)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > TabWidth`](#Displays_items_TermBar_Modules_items_anyOf_i7_TabWidth)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > TextAntialiasing`](#Displays_items_TermBar_Modules_items_anyOf_i7_TextAntialiasing)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > FullColorEmoji`](#Displays_items_TermBar_Modules_items_anyOf_i7_FullColorEmoji)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseBackgroundColorErase`](#Displays_items_TermBar_Modules_items_anyOf_i7_UseBackgroundColorErase)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > BackgroundIsInvisible`](#Displays_items_TermBar_Modules_items_anyOf_i7_BackgroundIsInvisible)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseVisualBell`](#Displays_items_TermBar_Modules_items_anyOf_i7_UseVisualBell)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > VisualBellDisplayTime`](#Displays_items_TermBar_Modules_items_anyOf_i7_VisualBellDisplayTime)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseContextMenu`](#Displays_items_TermBar_Modules_items_anyOf_i7_UseContextMenu)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseExtendedContextMenu`](#Displays_items_TermBar_Modules_items_anyOf_i7_UseExtendedContextMenu)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorStyle`](#Displays_items_TermBar_Modules_items_anyOf_i7_CursorStyle)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorThickness`](#Displays_items_TermBar_Modules_items_anyOf_i7_CursorThickness)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorBlink`](#Displays_items_TermBar_Modules_items_anyOf_i7_CursorBlink)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorBlinkRate`](#Displays_items_TermBar_Modules_items_anyOf_i7_CursorBlinkRate)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorColor`](#Displays_items_TermBar_Modules_items_anyOf_i7_CursorColor)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > ScrollbackLines`](#Displays_items_TermBar_Modules_items_anyOf_i7_ScrollbackLines)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > LinesPerScrollback`](#Displays_items_TermBar_Modules_items_anyOf_i7_LinesPerScrollback)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > LinesPerSmallScrollback`](#Displays_items_TermBar_Modules_items_anyOf_i7_LinesPerSmallScrollback)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > LinesPerWheelScrollback`](#Displays_items_TermBar_Modules_items_anyOf_i7_LinesPerWheelScrollback)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CopyOnMouseUp`](#Displays_items_TermBar_Modules_items_anyOf_i7_CopyOnMouseUp)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > PasteOnMiddleClick`](#Displays_items_TermBar_Modules_items_anyOf_i7_PasteOnMiddleClick)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > PasteOnRightClick`](#Displays_items_TermBar_Modules_items_anyOf_i7_PasteOnRightClick)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CopyNewline`](#Displays_items_TermBar_Modules_items_anyOf_i7_CopyNewline)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors)
+              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_DefaultColors)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors > DefaultBackgroundColor`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_DefaultColors_DefaultBackgroundColor)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors > DefaultForegroundColor`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_DefaultColors_DefaultForegroundColor)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors > DefaultUnderlineColor`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_DefaultColors_DefaultUnderlineColor)
+              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Black`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Black)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Red`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Red)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Green`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Green)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Yellow`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Yellow)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Blue`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Blue)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Magenta`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Magenta)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Cyan`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Cyan)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > White`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_White)
+              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightBlack`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightBlack)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightRed`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightRed)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightGreen`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightGreen)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightYellow`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightYellow)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightBlue`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightBlue)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightMagenta`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightMagenta)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightCyan`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightCyan)
+                - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightWhite`](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightWhite)
+          - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module`](#Displays_items_TermBar_Modules_items_anyOf_i8)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > $module`](#Displays_items_TermBar_Modules_items_anyOf_i8_module)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Order`](#Displays_items_TermBar_Modules_items_anyOf_i8_Order)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Expand`](#Displays_items_TermBar_Modules_items_anyOf_i8_Expand)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > AccentColor`](#Displays_items_TermBar_Modules_items_anyOf_i8_AccentColor)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Icon`](#Displays_items_TermBar_Modules_items_anyOf_i8_Icon)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > MutedIcon`](#Displays_items_TermBar_Modules_items_anyOf_i8_MutedIcon)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Format`](#Displays_items_TermBar_Modules_items_anyOf_i8_Format)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Muted`](#Displays_items_TermBar_Modules_items_anyOf_i8_Muted)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction`](#Displays_items_TermBar_Modules_items_anyOf_i8_VolumeInteraction)
+              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction > ClickToToggleMute`](#Displays_items_TermBar_Modules_items_anyOf_i8_VolumeInteraction_ClickToToggleMute)
+              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction > ScrollToAdjust`](#Displays_items_TermBar_Modules_items_anyOf_i8_VolumeInteraction_ScrollToAdjust)
+              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction > PercentPerScroll`](#Displays_items_TermBar_Modules_items_anyOf_i8_VolumeInteraction_PercentPerScroll)
+          - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module`](#Displays_items_TermBar_Modules_items_anyOf_i9)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > $module`](#Displays_items_TermBar_Modules_items_anyOf_i9_module)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Order`](#Displays_items_TermBar_Modules_items_anyOf_i9_Order)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Expand`](#Displays_items_TermBar_Modules_items_anyOf_i9_Expand)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > AccentColor`](#Displays_items_TermBar_Modules_items_anyOf_i9_AccentColor)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Icon`](#Displays_items_TermBar_Modules_items_anyOf_i9_Icon)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows`](#Displays_items_TermBar_Modules_items_anyOf_i9_Windows)
+              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > FixedLength`](#Displays_items_TermBar_Modules_items_anyOf_i9_Windows_FixedLength)
+              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > MaxLength`](#Displays_items_TermBar_Modules_items_anyOf_i9_Windows_MaxLength)
+              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > NiceTruncation`](#Displays_items_TermBar_Modules_items_anyOf_i9_Windows_NiceTruncation)
+              - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > ScrollIntoView`](#Displays_items_TermBar_Modules_items_anyOf_i9_Windows_ScrollIntoView)
+          - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module`](#Displays_items_TermBar_Modules_items_anyOf_i10)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > $module`](#Displays_items_TermBar_Modules_items_anyOf_i10_module)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > Order`](#Displays_items_TermBar_Modules_items_anyOf_i10_Order)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > Expand`](#Displays_items_TermBar_Modules_items_anyOf_i10_Expand)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > AccentColor`](#Displays_items_TermBar_Modules_items_anyOf_i10_AccentColor)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > DropdownIcon`](#Displays_items_TermBar_Modules_items_anyOf_i10_DropdownIcon)
+            - [Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > Icon`](#Displays_items_TermBar_Modules_items_anyOf_i10_Icon)
           - [The following properties are required](#autogenerated_heading_2)
 - [Property `config.json > StartDirectory`](#StartDirectory)
+- [Property `config.json > StartupAtBoot`](#StartupAtBoot)
 
 **Version:** 1.0
 
@@ -207,6 +216,7 @@
 | ------------------------------------ | --------------- | -------------------------------------------------------------------------------------------------------------- |
 | + [Displays](#Displays )             | array of object | A list of displays.                                                                                            |
 | - [StartDirectory](#StartDirectory ) | string or null  | The directory to change to when starting. Set to null to keep the directory inherited from the parent process. |
+| - [StartupAtBoot](#StartupAtBoot )   | boolean or null | Whether TermBar should start up at boot time.                                                                  |
 
 ## <a name="Displays"></a>Property `config.json > Displays`
 
@@ -976,18 +986,19 @@ Must be one of:
 | **Required**              | No               |
 | **Additional properties** | Any type allowed |
 
-| Any of(Option)                                                          |
-| ----------------------------------------------------------------------- |
-| [Clock module](#Displays_items_TermBar_Modules_items_anyOf_i0)          |
-| [Cpu module](#Displays_items_TermBar_Modules_items_anyOf_i1)            |
-| [Gpu module](#Displays_items_TermBar_Modules_items_anyOf_i2)            |
-| [Launcher module](#Displays_items_TermBar_Modules_items_anyOf_i3)       |
-| [Memory module](#Displays_items_TermBar_Modules_items_anyOf_i4)         |
-| [StaticText module](#Displays_items_TermBar_Modules_items_anyOf_i5)     |
-| [Terminal module](#Displays_items_TermBar_Modules_items_anyOf_i6)       |
-| [Volume module](#Displays_items_TermBar_Modules_items_anyOf_i7)         |
-| [WindowBar module](#Displays_items_TermBar_Modules_items_anyOf_i8)      |
-| [WindowDropdown module](#Displays_items_TermBar_Modules_items_anyOf_i9) |
+| Any of(Option)                                                           |
+| ------------------------------------------------------------------------ |
+| [Clock module](#Displays_items_TermBar_Modules_items_anyOf_i0)           |
+| [Cpu module](#Displays_items_TermBar_Modules_items_anyOf_i1)             |
+| [Gpu module](#Displays_items_TermBar_Modules_items_anyOf_i2)             |
+| [Launcher module](#Displays_items_TermBar_Modules_items_anyOf_i3)        |
+| [Memory module](#Displays_items_TermBar_Modules_items_anyOf_i4)          |
+| [StaticText module](#Displays_items_TermBar_Modules_items_anyOf_i5)      |
+| [SystemDropdown module](#Displays_items_TermBar_Modules_items_anyOf_i6)  |
+| [Terminal module](#Displays_items_TermBar_Modules_items_anyOf_i7)        |
+| [Volume module](#Displays_items_TermBar_Modules_items_anyOf_i8)          |
+| [WindowBar module](#Displays_items_TermBar_Modules_items_anyOf_i9)       |
+| [WindowDropdown module](#Displays_items_TermBar_Modules_items_anyOf_i10) |
 
 ###### <a name="Displays_items_TermBar_Modules_items_anyOf_i0"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Clock module`
 
@@ -1868,11 +1879,11 @@ Specific value: `"StaticText"`
 
 ###### <a name="Displays_items_TermBar_Modules_items_anyOf_i5_Order"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > StaticText module > Order`
 
-|              |               |
-| ------------ | ------------- |
-| **Type**     | `integer`     |
-| **Required** | No            |
-| **Default**  | `-2147483648` |
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+| **Default**  | `-1`      |
 
 **Description:** The order in which the module should be displayed on the TermBar.
 
@@ -1950,7 +1961,140 @@ Must be one of:
 
 **Description:** The static text to display.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module`
+
+|                           |                               |
+| ------------------------- | ----------------------------- |
+| **Type**                  | `object`                      |
+| **Required**              | No                            |
+| **Additional properties** | Any type allowed              |
+| **Defined in**            | #/$defs/SystemDropdown module |
+
+**Description:** A TermBar system dropdown configuration.
+
+| Property                                                                     | Type                      | Description                                                      |
+| ---------------------------------------------------------------------------- | ------------------------- | ---------------------------------------------------------------------- |
+| + [$module](#Displays_items_TermBar_Modules_items_anyOf_i6_module )          | const                     | The module type.                                                       |
+| - [Order](#Displays_items_TermBar_Modules_items_anyOf_i6_Order )             | integer                   | The order in which the module should be displayed on the TermBar.      |
+| - [Expand](#Displays_items_TermBar_Modules_items_anyOf_i6_Expand )           | boolean                   | Whether the module should expand to take up as much space as possible. |
+| - [AccentColor](#Displays_items_TermBar_Modules_items_anyOf_i6_AccentColor ) | enum (of string)          | The Catppuccin color to use for the dropdown icon color.               |
+| - [Icon](#Displays_items_TermBar_Modules_items_anyOf_i6_Icon )               | string                    | The text to use as the dropdown icon.                                  |
+| - [Features](#Displays_items_TermBar_Modules_items_anyOf_i6_Features )       | array of enum (of string) | System menu features to display in the dropdown.                       |
+
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_module"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module > $module`
+
+|              |         |
+| ------------ | ------- |
+| **Type**     | `const` |
+| **Required** | Yes     |
+
+**Description:** The module type.
+
+Specific value: `"SystemDropdown"`
+
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Order"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module > Order`
+
+|              |               |
+| ------------ | ------------- |
+| **Type**     | `integer`     |
+| **Required** | No            |
+| **Default**  | `-2147483648` |
+
+**Description:** The order in which the module should be displayed on the TermBar.
+
+| Restrictions |                  |
+| ------------ | ---------------- |
+| **Minimum**  | &ge; -2147483648 |
+| **Maximum**  | &le; 2147483647  |
+
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Expand"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module > Expand`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+| **Default**  | `false`   |
+
+**Description:** Whether the module should expand to take up as much space as possible.
+
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_AccentColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module > AccentColor`
+
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | No                 |
+| **Default**    | `"Overlay1"`       |
+| **Defined in** | #/$defs/colorEnum  |
+
+**Description:** The Catppuccin color to use for the dropdown icon color.
+
+Must be one of:
+* "Rosewater"
+* "Flamingo"
+* "Pink"
+* "Mauve"
+* "Red"
+* "Maroon"
+* "Peach"
+* "Yellow"
+* "Green"
+* "Teal"
+* "Sky"
+* "Sapphire"
+* "Blue"
+* "Lavender"
+* "Text"
+* "Subtext1"
+* "Subtext0"
+* "Overlay2"
+* "Overlay1"
+* "Overlay0"
+* "Surface2"
+* "Surface1"
+* "Surface0"
+* "Base"
+* "Mantle"
+* "Crust"
+
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Icon"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module > Icon`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Default**  | `""`    |
+
+**Description:** The text to use as the dropdown icon.
+
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Features"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module > Features`
+
+|              |                             |
+| ------------ | --------------------------- |
+| **Type**     | `array of enum (of string)` |
+| **Required** | No                          |
+
+**Description:** System menu features to display in the dropdown.
+
+| Each item of this array must be                                                 | Description |
+| ------------------------------------------------------------------------------- | ----------- |
+| [Features items](#Displays_items_TermBar_Modules_items_anyOf_i6_Features_items) | -           |
+
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Features_items"></a>config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > SystemDropdown module > Features > Features items
+
+|              |                    |
+| ------------ | ------------------ |
+| **Type**     | `enum (of string)` |
+| **Required** | No                 |
+
+Must be one of:
+* "SystemSettings"
+* "SignOut"
+* "Lock"
+* "Sleep"
+* "ShutDown"
+* "Restart"
+
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module`
 
 |                           |                         |
 | ------------------------- | ----------------------- |
@@ -1963,44 +2107,44 @@ Must be one of:
 
 | Property                                                                                             | Type                     | Description                                                                                                                                                                                                                                             |
 | ---------------------------------------------------------------------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| + [$module](#Displays_items_TermBar_Modules_items_anyOf_i6_module )                                  | const                    | The module type.                                                                                                                                                                                                                                              |
-| - [Order](#Displays_items_TermBar_Modules_items_anyOf_i6_Order )                                     | integer                  | The order in which the module should be displayed on the TermBar.                                                                                                                                                                                             |
-| - [Expand](#Displays_items_TermBar_Modules_items_anyOf_i6_Expand )                                   | boolean                  | Whether the module should expand to take up as much space as possible.                                                                                                                                                                                        |
-| - [AccentColor](#Displays_items_TermBar_Modules_items_anyOf_i6_AccentColor )                         | enum (of string)         | The Catppuccin color to use as an accent.                                                                                                                                                                                                                     |
-| - [Icon](#Displays_items_TermBar_Modules_items_anyOf_i6_Icon )                                       | string                   | The text to use as the terminal icon.                                                                                                                                                                                                                         |
-| - [VisualBellIcon](#Displays_items_TermBar_Modules_items_anyOf_i6_VisualBellIcon )                   | string                   | The text to use as the terminal visual bell icon when the visual bell is ringing. Has no effect if UseVisualBell is false.                                                                                                                                    |
-| - [Command](#Displays_items_TermBar_Modules_items_anyOf_i6_Command )                                 | string                   | The command to run in the terminal. This is typically a shell.                                                                                                                                                                                                |
-| - [RestartOnExit](#Displays_items_TermBar_Modules_items_anyOf_i6_RestartOnExit )                     | boolean                  | Whether to restart Command when it exits normally.                                                                                                                                                                                                            |
-| - [DefaultWindowTitle](#Displays_items_TermBar_Modules_items_anyOf_i6_DefaultWindowTitle )           | string                   | The default terminal window title. The terminal window title can be viewed as a tooltip of the terminal icon.                                                                                                                                                 |
-| - [Rows](#Displays_items_TermBar_Modules_items_anyOf_i6_Rows )                                       | integer                  | The number of rows in the terminal.                                                                                                                                                                                                                           |
-| - [Columns](#Displays_items_TermBar_Modules_items_anyOf_i6_Columns )                                 | integer                  | The number of columns in the terminal.                                                                                                                                                                                                                        |
-| - [FontFamily](#Displays_items_TermBar_Modules_items_anyOf_i6_FontFamily )                           | string or null           | The font family to use in the terminal. Set to null to use the TermBar font family.                                                                                                                                                                           |
-| - [FontSize](#Displays_items_TermBar_Modules_items_anyOf_i6_FontSize )                               | number or null           | The font size to use in the terminal. Set to null to use the TermBar font size.                                                                                                                                                                               |
-| - [TabWidth](#Displays_items_TermBar_Modules_items_anyOf_i6_TabWidth )                               | integer or null          | The default tab width in the terminal. (Practically speaking, this is virtually irrelevant today.)                                                                                                                                                            |
-| - [TextAntialiasing](#Displays_items_TermBar_Modules_items_anyOf_i6_TextAntialiasing )               | enum (of null or string) | The text antialiasing style to apply in the terminal. Unicode box-drawing characters are always drawn without antialiasing.                                                                                                                                   |
-| - [FullColorEmoji](#Displays_items_TermBar_Modules_items_anyOf_i6_FullColorEmoji )                   | boolean or null          | Whether to draw emoji in full color in the terminal using the Segoe UI Emoji font.                                                                                                                                                                            |
-| - [UseBackgroundColorErase](#Displays_items_TermBar_Modules_items_anyOf_i6_UseBackgroundColorErase ) | boolean or null          | Whether to use background color erase in the terminal. See https://sunaku.github.io/vim-256color-bce.html for a description of what this does.                                                                                                                |
-| - [BackgroundIsInvisible](#Displays_items_TermBar_Modules_items_anyOf_i6_BackgroundIsInvisible )     | boolean or null          | Whether to render the default background color as invisible in the terminal.                                                                                                                                                                                  |
-| - [UseVisualBell](#Displays_items_TermBar_Modules_items_anyOf_i6_UseVisualBell )                     | boolean or null          | Whether to use the visual bell in the terminal. If this is true, VisualBellIcon is displayed for VisualBellDisplayTime milliseconds when the terminal bell rings. If this is false, a sound plays instead.                                                    |
-| - [VisualBellDisplayTime](#Displays_items_TermBar_Modules_items_anyOf_i6_VisualBellDisplayTime )     | integer                  | The number of milliseconds to display the visual bell in the terminal. Does nothing if UseVisualBell is false.                                                                                                                                                |
-| - [UseContextMenu](#Displays_items_TermBar_Modules_items_anyOf_i6_UseContextMenu )                   | boolean or null          | Whether to show the context menu when right clicking the terminal.                                                                                                                                                                                            |
-| - [UseExtendedContextMenu](#Displays_items_TermBar_Modules_items_anyOf_i6_UseExtendedContextMenu )   | boolean or null          | Whether to show the extended context menu when right clicking the terminal. Does nothing if UseContextMenu is false.                                                                                                                                          |
-| - [CursorStyle](#Displays_items_TermBar_Modules_items_anyOf_i6_CursorStyle )                         | enum (of null or string) | The default cursor style to use in the terminal.                                                                                                                                                                                                              |
-| - [CursorThickness](#Displays_items_TermBar_Modules_items_anyOf_i6_CursorThickness )                 | number or null           | The cursor thickness in the terminal, as a fraction of the font size, between 0.0 and 1.0. Does not affect the block cursor.                                                                                                                                  |
-| - [CursorBlink](#Displays_items_TermBar_Modules_items_anyOf_i6_CursorBlink )                         | boolean or null          | Whether the cursor should blink by default in the terminal.                                                                                                                                                                                                   |
-| - [CursorBlinkRate](#Displays_items_TermBar_Modules_items_anyOf_i6_CursorBlinkRate )                 | integer or null          | The number of milliseconds that pass between the blinking cursor being displayed in the terminal and hidden. Has no effect if CursorBlink is false.                                                                                                           |
-| - [CursorColor](#Displays_items_TermBar_Modules_items_anyOf_i6_CursorColor )                         | enum (of null or string) | The cursor color in the terminal.                                                                                                                                                                                                                             |
-| - [ScrollbackLines](#Displays_items_TermBar_Modules_items_anyOf_i6_ScrollbackLines )                 | integer or null          | The number of scrollback lines in the terminal.                                                                                                                                                                                                               |
-| - [LinesPerScrollback](#Displays_items_TermBar_Modules_items_anyOf_i6_LinesPerScrollback )           | integer or null          | The number of scrollback lines per large scrollback in the terminal. A large scrollback is invoked with Shift-Page Up and reversed with Shift-Page Down.                                                                                                      |
-| - [LinesPerSmallScrollback](#Displays_items_TermBar_Modules_items_anyOf_i6_LinesPerSmallScrollback ) | integer or null          | The number of scrollback lines per small scrollback in the terminal. A small scrollback is invoked with Shift-Up and reversed with Shift-Down.                                                                                                                |
-| - [LinesPerWheelScrollback](#Displays_items_TermBar_Modules_items_anyOf_i6_LinesPerWheelScrollback ) | integer or null          | The number of scrollback lines per mouse wheel scroll in the terminal. A mouse wheel scroll is invoked with mouse wheel up and reversed with mouse wheel down.                                                                                                |
-| - [CopyOnMouseUp](#Displays_items_TermBar_Modules_items_anyOf_i6_CopyOnMouseUp )                     | boolean or null          | Whether to copy selected text in the terminal when the left mouse button is released. If this is false, the selection can be copied with Ctrl-Shift-C.                                                                                                        |
-| - [PasteOnMiddleClick](#Displays_items_TermBar_Modules_items_anyOf_i6_PasteOnMiddleClick )           | boolean or null          | Whether to paste text in the terminal when the terminal is middle clicked. Text can also be pasted with Ctrl-Shift-V.                                                                                                                                         |
-| - [PasteOnRightClick](#Displays_items_TermBar_Modules_items_anyOf_i6_PasteOnRightClick )             | boolean or null          | Whether to paste text in the terminal when the terminal is right clicked. Text can also be pasted with Ctrl-Shift-V. If this is true, the context menu can be displayed by right clicking the terminal while pressing Ctrl (assuming UseContextMenu is true). |
-| - [CopyNewline](#Displays_items_TermBar_Modules_items_anyOf_i6_CopyNewline )                         | string or null           | The line ending to use when copying text in the terminal.                                                                                                                                                                                                     |
-| - [Colors](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors )                                   | object                   | The ANSI colors to use in the terminal.                                                                                                                                                                                                                       |
+| + [$module](#Displays_items_TermBar_Modules_items_anyOf_i7_module )                                  | const                    | The module type.                                                                                                                                                                                                                                              |
+| - [Order](#Displays_items_TermBar_Modules_items_anyOf_i7_Order )                                     | integer                  | The order in which the module should be displayed on the TermBar.                                                                                                                                                                                             |
+| - [Expand](#Displays_items_TermBar_Modules_items_anyOf_i7_Expand )                                   | boolean                  | Whether the module should expand to take up as much space as possible.                                                                                                                                                                                        |
+| - [AccentColor](#Displays_items_TermBar_Modules_items_anyOf_i7_AccentColor )                         | enum (of string)         | The Catppuccin color to use as an accent.                                                                                                                                                                                                                     |
+| - [Icon](#Displays_items_TermBar_Modules_items_anyOf_i7_Icon )                                       | string                   | The text to use as the terminal icon.                                                                                                                                                                                                                         |
+| - [VisualBellIcon](#Displays_items_TermBar_Modules_items_anyOf_i7_VisualBellIcon )                   | string                   | The text to use as the terminal visual bell icon when the visual bell is ringing. Has no effect if UseVisualBell is false.                                                                                                                                    |
+| - [Command](#Displays_items_TermBar_Modules_items_anyOf_i7_Command )                                 | string                   | The command to run in the terminal. This is typically a shell.                                                                                                                                                                                                |
+| - [RestartOnExit](#Displays_items_TermBar_Modules_items_anyOf_i7_RestartOnExit )                     | boolean                  | Whether to restart Command when it exits normally.                                                                                                                                                                                                            |
+| - [DefaultWindowTitle](#Displays_items_TermBar_Modules_items_anyOf_i7_DefaultWindowTitle )           | string                   | The default terminal window title. The terminal window title can be viewed as a tooltip of the terminal icon.                                                                                                                                                 |
+| - [Rows](#Displays_items_TermBar_Modules_items_anyOf_i7_Rows )                                       | integer                  | The number of rows in the terminal.                                                                                                                                                                                                                           |
+| - [Columns](#Displays_items_TermBar_Modules_items_anyOf_i7_Columns )                                 | integer                  | The number of columns in the terminal.                                                                                                                                                                                                                        |
+| - [FontFamily](#Displays_items_TermBar_Modules_items_anyOf_i7_FontFamily )                           | string or null           | The font family to use in the terminal. Set to null to use the TermBar font family.                                                                                                                                                                           |
+| - [FontSize](#Displays_items_TermBar_Modules_items_anyOf_i7_FontSize )                               | number or null           | The font size to use in the terminal. Set to null to use the TermBar font size.                                                                                                                                                                               |
+| - [TabWidth](#Displays_items_TermBar_Modules_items_anyOf_i7_TabWidth )                               | integer or null          | The default tab width in the terminal. (Practically speaking, this is virtually irrelevant today.)                                                                                                                                                            |
+| - [TextAntialiasing](#Displays_items_TermBar_Modules_items_anyOf_i7_TextAntialiasing )               | enum (of null or string) | The text antialiasing style to apply in the terminal. Unicode box-drawing characters are always drawn without antialiasing.                                                                                                                                   |
+| - [FullColorEmoji](#Displays_items_TermBar_Modules_items_anyOf_i7_FullColorEmoji )                   | boolean or null          | Whether to draw emoji in full color in the terminal using the Segoe UI Emoji font.                                                                                                                                                                            |
+| - [UseBackgroundColorErase](#Displays_items_TermBar_Modules_items_anyOf_i7_UseBackgroundColorErase ) | boolean or null          | Whether to use background color erase in the terminal. See https://sunaku.github.io/vim-256color-bce.html for a description of what this does.                                                                                                                |
+| - [BackgroundIsInvisible](#Displays_items_TermBar_Modules_items_anyOf_i7_BackgroundIsInvisible )     | boolean or null          | Whether to render the default background color as invisible in the terminal.                                                                                                                                                                                  |
+| - [UseVisualBell](#Displays_items_TermBar_Modules_items_anyOf_i7_UseVisualBell )                     | boolean or null          | Whether to use the visual bell in the terminal. If this is true, VisualBellIcon is displayed for VisualBellDisplayTime milliseconds when the terminal bell rings. If this is false, a sound plays instead.                                                    |
+| - [VisualBellDisplayTime](#Displays_items_TermBar_Modules_items_anyOf_i7_VisualBellDisplayTime )     | integer                  | The number of milliseconds to display the visual bell in the terminal. Does nothing if UseVisualBell is false.                                                                                                                                                |
+| - [UseContextMenu](#Displays_items_TermBar_Modules_items_anyOf_i7_UseContextMenu )                   | boolean or null          | Whether to show the context menu when right clicking the terminal.                                                                                                                                                                                            |
+| - [UseExtendedContextMenu](#Displays_items_TermBar_Modules_items_anyOf_i7_UseExtendedContextMenu )   | boolean or null          | Whether to show the extended context menu when right clicking the terminal. Does nothing if UseContextMenu is false.                                                                                                                                          |
+| - [CursorStyle](#Displays_items_TermBar_Modules_items_anyOf_i7_CursorStyle )                         | enum (of null or string) | The default cursor style to use in the terminal.                                                                                                                                                                                                              |
+| - [CursorThickness](#Displays_items_TermBar_Modules_items_anyOf_i7_CursorThickness )                 | number or null           | The cursor thickness in the terminal, as a fraction of the font size, between 0.0 and 1.0. Does not affect the block cursor.                                                                                                                                  |
+| - [CursorBlink](#Displays_items_TermBar_Modules_items_anyOf_i7_CursorBlink )                         | boolean or null          | Whether the cursor should blink by default in the terminal.                                                                                                                                                                                                   |
+| - [CursorBlinkRate](#Displays_items_TermBar_Modules_items_anyOf_i7_CursorBlinkRate )                 | integer or null          | The number of milliseconds that pass between the blinking cursor being displayed in the terminal and hidden. Has no effect if CursorBlink is false.                                                                                                           |
+| - [CursorColor](#Displays_items_TermBar_Modules_items_anyOf_i7_CursorColor )                         | enum (of null or string) | The cursor color in the terminal.                                                                                                                                                                                                                             |
+| - [ScrollbackLines](#Displays_items_TermBar_Modules_items_anyOf_i7_ScrollbackLines )                 | integer or null          | The number of scrollback lines in the terminal.                                                                                                                                                                                                               |
+| - [LinesPerScrollback](#Displays_items_TermBar_Modules_items_anyOf_i7_LinesPerScrollback )           | integer or null          | The number of scrollback lines per large scrollback in the terminal. A large scrollback is invoked with Shift-Page Up and reversed with Shift-Page Down.                                                                                                      |
+| - [LinesPerSmallScrollback](#Displays_items_TermBar_Modules_items_anyOf_i7_LinesPerSmallScrollback ) | integer or null          | The number of scrollback lines per small scrollback in the terminal. A small scrollback is invoked with Shift-Up and reversed with Shift-Down.                                                                                                                |
+| - [LinesPerWheelScrollback](#Displays_items_TermBar_Modules_items_anyOf_i7_LinesPerWheelScrollback ) | integer or null          | The number of scrollback lines per mouse wheel scroll in the terminal. A mouse wheel scroll is invoked with mouse wheel up and reversed with mouse wheel down.                                                                                                |
+| - [CopyOnMouseUp](#Displays_items_TermBar_Modules_items_anyOf_i7_CopyOnMouseUp )                     | boolean or null          | Whether to copy selected text in the terminal when the left mouse button is released. If this is false, the selection can be copied with Ctrl-Shift-C.                                                                                                        |
+| - [PasteOnMiddleClick](#Displays_items_TermBar_Modules_items_anyOf_i7_PasteOnMiddleClick )           | boolean or null          | Whether to paste text in the terminal when the terminal is middle clicked. Text can also be pasted with Ctrl-Shift-V.                                                                                                                                         |
+| - [PasteOnRightClick](#Displays_items_TermBar_Modules_items_anyOf_i7_PasteOnRightClick )             | boolean or null          | Whether to paste text in the terminal when the terminal is right clicked. Text can also be pasted with Ctrl-Shift-V. If this is true, the context menu can be displayed by right clicking the terminal while pressing Ctrl (assuming UseContextMenu is true). |
+| - [CopyNewline](#Displays_items_TermBar_Modules_items_anyOf_i7_CopyNewline )                         | string or null           | The line ending to use when copying text in the terminal.                                                                                                                                                                                                     |
+| - [Colors](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors )                                   | object                   | The ANSI colors to use in the terminal.                                                                                                                                                                                                                       |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_module"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > $module`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_module"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > $module`
 
 |              |         |
 | ------------ | ------- |
@@ -2011,7 +2155,7 @@ Must be one of:
 
 Specific value: `"Terminal"`
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Order"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Order`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Order"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Order`
 
 |              |           |
 | ------------ | --------- |
@@ -2026,7 +2170,7 @@ Specific value: `"Terminal"`
 | **Minimum**  | &ge; -2147483648 |
 | **Maximum**  | &le; 2147483647  |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Expand"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Expand`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Expand"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Expand`
 
 |              |           |
 | ------------ | --------- |
@@ -2036,7 +2180,7 @@ Specific value: `"Terminal"`
 
 **Description:** Whether the module should expand to take up as much space as possible.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_AccentColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > AccentColor`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_AccentColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > AccentColor`
 
 |                |                    |
 | -------------- | ------------------ |
@@ -2075,7 +2219,7 @@ Must be one of:
 * "Mantle"
 * "Crust"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Icon"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Icon`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Icon"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Icon`
 
 |              |          |
 | ------------ | -------- |
@@ -2085,7 +2229,7 @@ Must be one of:
 
 **Description:** The text to use as the terminal icon.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_VisualBellIcon"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > VisualBellIcon`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_VisualBellIcon"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > VisualBellIcon`
 
 |              |          |
 | ------------ | -------- |
@@ -2095,7 +2239,7 @@ Must be one of:
 
 **Description:** The text to use as the terminal visual bell icon when the visual bell is ringing. Has no effect if UseVisualBell is false.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Command"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Command`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Command"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Command`
 
 |              |                |
 | ------------ | -------------- |
@@ -2105,7 +2249,7 @@ Must be one of:
 
 **Description:** The command to run in the terminal. This is typically a shell.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_RestartOnExit"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > RestartOnExit`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_RestartOnExit"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > RestartOnExit`
 
 |              |           |
 | ------------ | --------- |
@@ -2115,7 +2259,7 @@ Must be one of:
 
 **Description:** Whether to restart Command when it exits normally.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_DefaultWindowTitle"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > DefaultWindowTitle`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_DefaultWindowTitle"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > DefaultWindowTitle`
 
 |              |             |
 | ------------ | ----------- |
@@ -2125,7 +2269,7 @@ Must be one of:
 
 **Description:** The default terminal window title. The terminal window title can be viewed as a tooltip of the terminal icon.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Rows"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Rows`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Rows"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Rows`
 
 |              |           |
 | ------------ | --------- |
@@ -2139,7 +2283,7 @@ Must be one of:
 | ------------ | ------ |
 | **Minimum**  | &ge; 1 |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Columns"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Columns`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Columns"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Columns`
 
 |              |           |
 | ------------ | --------- |
@@ -2153,7 +2297,7 @@ Must be one of:
 | ------------ | ------ |
 | **Minimum**  | &ge; 1 |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_FontFamily"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > FontFamily`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_FontFamily"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > FontFamily`
 
 |              |                  |
 | ------------ | ---------------- |
@@ -2163,7 +2307,7 @@ Must be one of:
 
 **Description:** The font family to use in the terminal. Set to null to use the TermBar font family.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_FontSize"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > FontSize`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_FontSize"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > FontSize`
 
 |              |                  |
 | ------------ | ---------------- |
@@ -2173,7 +2317,7 @@ Must be one of:
 
 **Description:** The font size to use in the terminal. Set to null to use the TermBar font size.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_TabWidth"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > TabWidth`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_TabWidth"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > TabWidth`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2187,7 +2331,7 @@ Must be one of:
 | ------------ | ------ |
 | **Minimum**  | &ge; 1 |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_TextAntialiasing"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > TextAntialiasing`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_TextAntialiasing"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > TextAntialiasing`
 
 |              |                            |
 | ------------ | -------------------------- |
@@ -2203,7 +2347,7 @@ Must be one of:
 * "ClearType"
 * null
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_FullColorEmoji"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > FullColorEmoji`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_FullColorEmoji"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > FullColorEmoji`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2213,7 +2357,7 @@ Must be one of:
 
 **Description:** Whether to draw emoji in full color in the terminal using the Segoe UI Emoji font.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_UseBackgroundColorErase"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseBackgroundColorErase`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_UseBackgroundColorErase"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseBackgroundColorErase`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2223,7 +2367,7 @@ Must be one of:
 
 **Description:** Whether to use background color erase in the terminal. See https://sunaku.github.io/vim-256color-bce.html for a description of what this does.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_BackgroundIsInvisible"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > BackgroundIsInvisible`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_BackgroundIsInvisible"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > BackgroundIsInvisible`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2233,7 +2377,7 @@ Must be one of:
 
 **Description:** Whether to render the default background color as invisible in the terminal.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_UseVisualBell"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseVisualBell`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_UseVisualBell"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseVisualBell`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2243,7 +2387,7 @@ Must be one of:
 
 **Description:** Whether to use the visual bell in the terminal. If this is true, VisualBellIcon is displayed for VisualBellDisplayTime milliseconds when the terminal bell rings. If this is false, a sound plays instead.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_VisualBellDisplayTime"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > VisualBellDisplayTime`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_VisualBellDisplayTime"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > VisualBellDisplayTime`
 
 |              |           |
 | ------------ | --------- |
@@ -2257,7 +2401,7 @@ Must be one of:
 | ------------ | ------ |
 | **Minimum**  | &ge; 1 |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_UseContextMenu"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseContextMenu`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_UseContextMenu"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseContextMenu`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2267,7 +2411,7 @@ Must be one of:
 
 **Description:** Whether to show the context menu when right clicking the terminal.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_UseExtendedContextMenu"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseExtendedContextMenu`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_UseExtendedContextMenu"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > UseExtendedContextMenu`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2277,7 +2421,7 @@ Must be one of:
 
 **Description:** Whether to show the extended context menu when right clicking the terminal. Does nothing if UseContextMenu is false.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_CursorStyle"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorStyle`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_CursorStyle"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorStyle`
 
 |              |                            |
 | ------------ | -------------------------- |
@@ -2293,7 +2437,7 @@ Must be one of:
 * "Bar"
 * null
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_CursorThickness"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorThickness`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_CursorThickness"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorThickness`
 
 |              |                  |
 | ------------ | ---------------- |
@@ -2308,7 +2452,7 @@ Must be one of:
 | **Minimum**  | &ge; 0 |
 | **Maximum**  | &le; 1 |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_CursorBlink"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorBlink`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_CursorBlink"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorBlink`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2318,7 +2462,7 @@ Must be one of:
 
 **Description:** Whether the cursor should blink by default in the terminal.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_CursorBlinkRate"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorBlinkRate`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_CursorBlinkRate"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorBlinkRate`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2332,7 +2476,7 @@ Must be one of:
 | ------------ | ------ |
 | **Minimum**  | &ge; 1 |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_CursorColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorColor`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_CursorColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CursorColor`
 
 |                |                            |
 | -------------- | -------------------------- |
@@ -2372,7 +2516,7 @@ Must be one of:
 * "Crust"
 * null
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_ScrollbackLines"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > ScrollbackLines`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_ScrollbackLines"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > ScrollbackLines`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2386,7 +2530,7 @@ Must be one of:
 | ------------ | ------ |
 | **Minimum**  | &ge; 0 |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_LinesPerScrollback"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > LinesPerScrollback`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_LinesPerScrollback"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > LinesPerScrollback`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2400,7 +2544,7 @@ Must be one of:
 | ------------ | ------ |
 | **Minimum**  | &ge; 1 |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_LinesPerSmallScrollback"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > LinesPerSmallScrollback`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_LinesPerSmallScrollback"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > LinesPerSmallScrollback`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2414,7 +2558,7 @@ Must be one of:
 | ------------ | ------ |
 | **Minimum**  | &ge; 1 |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_LinesPerWheelScrollback"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > LinesPerWheelScrollback`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_LinesPerWheelScrollback"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > LinesPerWheelScrollback`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2428,7 +2572,7 @@ Must be one of:
 | ------------ | ------ |
 | **Minimum**  | &ge; 1 |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_CopyOnMouseUp"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CopyOnMouseUp`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_CopyOnMouseUp"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CopyOnMouseUp`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2438,7 +2582,7 @@ Must be one of:
 
 **Description:** Whether to copy selected text in the terminal when the left mouse button is released. If this is false, the selection can be copied with Ctrl-Shift-C.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_PasteOnMiddleClick"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > PasteOnMiddleClick`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_PasteOnMiddleClick"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > PasteOnMiddleClick`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2448,7 +2592,7 @@ Must be one of:
 
 **Description:** Whether to paste text in the terminal when the terminal is middle clicked. Text can also be pasted with Ctrl-Shift-V.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_PasteOnRightClick"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > PasteOnRightClick`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_PasteOnRightClick"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > PasteOnRightClick`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -2458,7 +2602,7 @@ Must be one of:
 
 **Description:** Whether to paste text in the terminal when the terminal is right clicked. Text can also be pasted with Ctrl-Shift-V. If this is true, the context menu can be displayed by right clicking the terminal while pressing Ctrl (assuming UseContextMenu is true).
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_CopyNewline"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CopyNewline`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_CopyNewline"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > CopyNewline`
 
 |              |                  |
 | ------------ | ---------------- |
@@ -2468,7 +2612,7 @@ Must be one of:
 
 **Description:** The line ending to use when copying text in the terminal.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors`
 
 |                           |                  |
 | ------------------------- | ---------------- |
@@ -2480,11 +2624,11 @@ Must be one of:
 
 | Property                                                                                  | Type   | Description                                             |
 | ----------------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------- |
-| - [DefaultColors](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_DefaultColors )   | object | The default ANSI colors to use in the terminal.               |
-| - [StandardColors](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors ) | object | The standard (non-bright) ANSI colors to use in the terminal. |
-| - [BrightColors](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors )     | object | The bright ANSI colors to use in the terminal.                |
+| - [DefaultColors](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_DefaultColors )   | object | The default ANSI colors to use in the terminal.               |
+| - [StandardColors](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors ) | object | The standard (non-bright) ANSI colors to use in the terminal. |
+| - [BrightColors](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors )     | object | The bright ANSI colors to use in the terminal.                |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_DefaultColors"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_DefaultColors"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors`
 
 |                           |                  |
 | ------------------------- | ---------------- |
@@ -2496,11 +2640,11 @@ Must be one of:
 
 | Property                                                                                                                | Type             | Description                                    |
 | ----------------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------------------------------------------- |
-| - [DefaultBackgroundColor](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_DefaultColors_DefaultBackgroundColor ) | enum (of string) | The default background color to use in the terminal. |
-| - [DefaultForegroundColor](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_DefaultColors_DefaultForegroundColor ) | enum (of string) | The default foreground color to use in the terminal. |
-| - [DefaultUnderlineColor](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_DefaultColors_DefaultUnderlineColor )   | enum (of string) | The default underline color to use in the terminal.  |
+| - [DefaultBackgroundColor](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_DefaultColors_DefaultBackgroundColor ) | enum (of string) | The default background color to use in the terminal. |
+| - [DefaultForegroundColor](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_DefaultColors_DefaultForegroundColor ) | enum (of string) | The default foreground color to use in the terminal. |
+| - [DefaultUnderlineColor](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_DefaultColors_DefaultUnderlineColor )   | enum (of string) | The default underline color to use in the terminal.  |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_DefaultColors_DefaultBackgroundColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors > DefaultBackgroundColor`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_DefaultColors_DefaultBackgroundColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors > DefaultBackgroundColor`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -2529,7 +2673,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_DefaultColors_DefaultForegroundColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors > DefaultForegroundColor`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_DefaultColors_DefaultForegroundColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors > DefaultForegroundColor`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -2558,7 +2702,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_DefaultColors_DefaultUnderlineColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors > DefaultUnderlineColor`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_DefaultColors_DefaultUnderlineColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > DefaultColors > DefaultUnderlineColor`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -2587,7 +2731,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors`
 
 |                           |                  |
 | ------------------------- | ---------------- |
@@ -2599,16 +2743,16 @@ Must be one of:
 
 | Property                                                                                   | Type             | Description |
 | ------------------------------------------------------------------------------------------ | ---------------- | ----------------- |
-| - [Black](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Black )     | enum (of string) | Black.            |
-| - [Red](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Red )         | enum (of string) | Red.              |
-| - [Green](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Green )     | enum (of string) | Green.            |
-| - [Yellow](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Yellow )   | enum (of string) | Yellow.           |
-| - [Blue](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Blue )       | enum (of string) | Blue.             |
-| - [Magenta](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Magenta ) | enum (of string) | Magenta.          |
-| - [Cyan](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Cyan )       | enum (of string) | Cyan.             |
-| - [White](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_White )     | enum (of string) | White.            |
+| - [Black](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Black )     | enum (of string) | Black.            |
+| - [Red](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Red )         | enum (of string) | Red.              |
+| - [Green](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Green )     | enum (of string) | Green.            |
+| - [Yellow](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Yellow )   | enum (of string) | Yellow.           |
+| - [Blue](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Blue )       | enum (of string) | Blue.             |
+| - [Magenta](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Magenta ) | enum (of string) | Magenta.          |
+| - [Cyan](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Cyan )       | enum (of string) | Cyan.             |
+| - [White](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_White )     | enum (of string) | White.            |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Black"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Black`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Black"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Black`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -2637,7 +2781,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Red"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Red`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Red"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Red`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -2666,7 +2810,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Green"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Green`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Green"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Green`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -2695,7 +2839,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Yellow"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Yellow`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Yellow"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Yellow`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -2724,7 +2868,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Blue"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Blue`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Blue"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Blue`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -2753,7 +2897,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Magenta"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Magenta`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Magenta"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Magenta`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -2782,7 +2926,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_Cyan"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Cyan`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_Cyan"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > Cyan`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -2811,7 +2955,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_StandardColors_White"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > White`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_StandardColors_White"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > StandardColors > White`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -2840,7 +2984,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors`
 
 |                           |                  |
 | ------------------------- | ---------------- |
@@ -2852,16 +2996,16 @@ Must be one of:
 
 | Property                                                                                             | Type             | Description |
 | ---------------------------------------------------------------------------------------------------- | ---------------- | ----------------- |
-| - [BrightBlack](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightBlack )     | enum (of string) | Bright black.     |
-| - [BrightRed](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightRed )         | enum (of string) | Bright red.       |
-| - [BrightGreen](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightGreen )     | enum (of string) | Bright green.     |
-| - [BrightYellow](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightYellow )   | enum (of string) | Bright yellow.    |
-| - [BrightBlue](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightBlue )       | enum (of string) | Bright blue.      |
-| - [BrightMagenta](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightMagenta ) | enum (of string) | Bright magenta.   |
-| - [BrightCyan](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightCyan )       | enum (of string) | Bright cyan.      |
-| - [BrightWhite](#Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightWhite )     | enum (of string) | Bright white.     |
+| - [BrightBlack](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightBlack )     | enum (of string) | Bright black.     |
+| - [BrightRed](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightRed )         | enum (of string) | Bright red.       |
+| - [BrightGreen](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightGreen )     | enum (of string) | Bright green.     |
+| - [BrightYellow](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightYellow )   | enum (of string) | Bright yellow.    |
+| - [BrightBlue](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightBlue )       | enum (of string) | Bright blue.      |
+| - [BrightMagenta](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightMagenta ) | enum (of string) | Bright magenta.   |
+| - [BrightCyan](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightCyan )       | enum (of string) | Bright cyan.      |
+| - [BrightWhite](#Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightWhite )     | enum (of string) | Bright white.     |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightBlack"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightBlack`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightBlack"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightBlack`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -2890,7 +3034,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightRed"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightRed`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightRed"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightRed`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -2919,7 +3063,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightGreen"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightGreen`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightGreen"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightGreen`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -2948,7 +3092,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightYellow"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightYellow`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightYellow"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightYellow`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -2977,7 +3121,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightBlue"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightBlue`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightBlue"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightBlue`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -3006,7 +3150,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightMagenta"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightMagenta`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightMagenta"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightMagenta`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -3035,7 +3179,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightCyan"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightCyan`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightCyan"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightCyan`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -3064,7 +3208,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i6_Colors_BrightColors_BrightWhite"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightWhite`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Colors_BrightColors_BrightWhite"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Terminal module > Colors > BrightColors > BrightWhite`
 
 |                |                       |
 | -------------- | --------------------- |
@@ -3093,7 +3237,7 @@ Must be one of:
 * "BrightCyan"
 * "BrightWhite"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module`
 
 |                           |                       |
 | ------------------------- | --------------------- |
@@ -3106,17 +3250,17 @@ Must be one of:
 
 | Property                                                                                 | Type             | Description                                                                                                                                                          |
 | ---------------------------------------------------------------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| + [$module](#Displays_items_TermBar_Modules_items_anyOf_i7_module )                      | const            | The module type.                                                                                                                                                           |
-| - [Order](#Displays_items_TermBar_Modules_items_anyOf_i7_Order )                         | integer          | The order in which the module should be displayed on the TermBar.                                                                                                          |
-| - [Expand](#Displays_items_TermBar_Modules_items_anyOf_i7_Expand )                       | boolean          | Whether the module should expand to take up as much space as possible.                                                                                                     |
-| - [AccentColor](#Displays_items_TermBar_Modules_items_anyOf_i7_AccentColor )             | enum (of string) | The Catppuccin color to use for the volume icon.                                                                                                                           |
-| - [Icon](#Displays_items_TermBar_Modules_items_anyOf_i7_Icon )                           | string           | The text to use as the volume icon.                                                                                                                                        |
-| - [MutedIcon](#Displays_items_TermBar_Modules_items_anyOf_i7_MutedIcon )                 | string           | The text to use as the muted volume icon.                                                                                                                                  |
-| - [Format](#Displays_items_TermBar_Modules_items_anyOf_i7_Format )                       | string           | The numeric format to use for the volume percentage. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings. |
-| - [Muted](#Displays_items_TermBar_Modules_items_anyOf_i7_Muted )                         | string or null   | Text to be displayed in place of the volume level when muted. Set to null to always display the volume level.                                                              |
-| - [VolumeInteraction](#Displays_items_TermBar_Modules_items_anyOf_i7_VolumeInteraction ) | object or null   | Volume module interaction configuration. Set to null to disable interaction.                                                                                               |
+| + [$module](#Displays_items_TermBar_Modules_items_anyOf_i8_module )                      | const            | The module type.                                                                                                                                                           |
+| - [Order](#Displays_items_TermBar_Modules_items_anyOf_i8_Order )                         | integer          | The order in which the module should be displayed on the TermBar.                                                                                                          |
+| - [Expand](#Displays_items_TermBar_Modules_items_anyOf_i8_Expand )                       | boolean          | Whether the module should expand to take up as much space as possible.                                                                                                     |
+| - [AccentColor](#Displays_items_TermBar_Modules_items_anyOf_i8_AccentColor )             | enum (of string) | The Catppuccin color to use for the volume icon.                                                                                                                           |
+| - [Icon](#Displays_items_TermBar_Modules_items_anyOf_i8_Icon )                           | string           | The text to use as the volume icon.                                                                                                                                        |
+| - [MutedIcon](#Displays_items_TermBar_Modules_items_anyOf_i8_MutedIcon )                 | string           | The text to use as the muted volume icon.                                                                                                                                  |
+| - [Format](#Displays_items_TermBar_Modules_items_anyOf_i8_Format )                       | string           | The numeric format to use for the volume percentage. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings. |
+| - [Muted](#Displays_items_TermBar_Modules_items_anyOf_i8_Muted )                         | string or null   | Text to be displayed in place of the volume level when muted. Set to null to always display the volume level.                                                              |
+| - [VolumeInteraction](#Displays_items_TermBar_Modules_items_anyOf_i8_VolumeInteraction ) | object or null   | Volume module interaction configuration. Set to null to disable interaction.                                                                                               |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_module"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > $module`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_module"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > $module`
 
 |              |         |
 | ------------ | ------- |
@@ -3127,7 +3271,7 @@ Must be one of:
 
 Specific value: `"Volume"`
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Order"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Order`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_Order"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Order`
 
 |              |              |
 | ------------ | ------------ |
@@ -3142,7 +3286,7 @@ Specific value: `"Volume"`
 | **Minimum**  | &ge; -2147483648 |
 | **Maximum**  | &le; 2147483647  |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Expand"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Expand`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_Expand"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Expand`
 
 |              |           |
 | ------------ | --------- |
@@ -3152,7 +3296,7 @@ Specific value: `"Volume"`
 
 **Description:** Whether the module should expand to take up as much space as possible.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_AccentColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > AccentColor`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_AccentColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > AccentColor`
 
 |                |                    |
 | -------------- | ------------------ |
@@ -3191,7 +3335,7 @@ Must be one of:
 * "Mantle"
 * "Crust"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Icon"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Icon`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_Icon"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Icon`
 
 |              |          |
 | ------------ | -------- |
@@ -3201,7 +3345,7 @@ Must be one of:
 
 **Description:** The text to use as the volume icon.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_MutedIcon"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > MutedIcon`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_MutedIcon"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > MutedIcon`
 
 |              |          |
 | ------------ | -------- |
@@ -3211,7 +3355,7 @@ Must be one of:
 
 **Description:** The text to use as the muted volume icon.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Format"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Format`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_Format"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Format`
 
 |              |             |
 | ------------ | ----------- |
@@ -3221,7 +3365,7 @@ Must be one of:
 
 **Description:** The numeric format to use for the volume percentage. These are documented in https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_Muted"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Muted`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_Muted"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > Muted`
 
 |              |                  |
 | ------------ | ---------------- |
@@ -3231,7 +3375,7 @@ Must be one of:
 
 **Description:** Text to be displayed in place of the volume level when muted. Set to null to always display the volume level.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_VolumeInteraction"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_VolumeInteraction"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction`
 
 |              |                  |
 | ------------ | ---------------- |
@@ -3242,11 +3386,11 @@ Must be one of:
 
 | Property                                                                                                   | Type    | Description                                                            |
 | ---------------------------------------------------------------------------------------------------------- | ------- | ---------------------------------------------------------------------------- |
-| - [ClickToToggleMute](#Displays_items_TermBar_Modules_items_anyOf_i7_VolumeInteraction_ClickToToggleMute ) | boolean | Whether clicking the volume module toggles the mute state.                   |
-| - [ScrollToAdjust](#Displays_items_TermBar_Modules_items_anyOf_i7_VolumeInteraction_ScrollToAdjust )       | boolean | Whether scrolling over the volume module adjusts the volume level.           |
-| - [PercentPerScroll](#Displays_items_TermBar_Modules_items_anyOf_i7_VolumeInteraction_PercentPerScroll )   | integer | The volume level change per scroll. Does nothing if ScrollToAdjust is false. |
+| - [ClickToToggleMute](#Displays_items_TermBar_Modules_items_anyOf_i8_VolumeInteraction_ClickToToggleMute ) | boolean | Whether clicking the volume module toggles the mute state.                   |
+| - [ScrollToAdjust](#Displays_items_TermBar_Modules_items_anyOf_i8_VolumeInteraction_ScrollToAdjust )       | boolean | Whether scrolling over the volume module adjusts the volume level.           |
+| - [PercentPerScroll](#Displays_items_TermBar_Modules_items_anyOf_i8_VolumeInteraction_PercentPerScroll )   | integer | The volume level change per scroll. Does nothing if ScrollToAdjust is false. |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_VolumeInteraction_ClickToToggleMute"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction > ClickToToggleMute`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_VolumeInteraction_ClickToToggleMute"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction > ClickToToggleMute`
 
 |              |           |
 | ------------ | --------- |
@@ -3256,7 +3400,7 @@ Must be one of:
 
 **Description:** Whether clicking the volume module toggles the mute state.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_VolumeInteraction_ScrollToAdjust"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction > ScrollToAdjust`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_VolumeInteraction_ScrollToAdjust"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction > ScrollToAdjust`
 
 |              |           |
 | ------------ | --------- |
@@ -3266,7 +3410,7 @@ Must be one of:
 
 **Description:** Whether scrolling over the volume module adjusts the volume level.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i7_VolumeInteraction_PercentPerScroll"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction > PercentPerScroll`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_VolumeInteraction_PercentPerScroll"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > Volume module > VolumeInteraction > PercentPerScroll`
 
 |              |           |
 | ------------ | --------- |
@@ -3281,7 +3425,7 @@ Must be one of:
 | **Minimum**  | &ge; 0   |
 | **Maximum**  | &le; 100 |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module`
 
 |                           |                          |
 | ------------------------- | ------------------------ |
@@ -3294,14 +3438,14 @@ Must be one of:
 
 | Property                                                                     | Type             | Description                                                                                              |
 | ---------------------------------------------------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------- |
-| + [$module](#Displays_items_TermBar_Modules_items_anyOf_i8_module )          | const            | The module type.                                                                                               |
-| - [Order](#Displays_items_TermBar_Modules_items_anyOf_i8_Order )             | integer          | The order in which the module should be displayed on the TermBar.                                              |
-| - [Expand](#Displays_items_TermBar_Modules_items_anyOf_i8_Expand )           | boolean          | Whether the module should expand to take up as much space as possible.                                         |
-| - [AccentColor](#Displays_items_TermBar_Modules_items_anyOf_i8_AccentColor ) | enum (of string) | The Catppuccin color to use for window icon colors by default.                                                 |
-| - [Icon](#Displays_items_TermBar_Modules_items_anyOf_i8_Icon )               | string           | The text to use as window icons by default.                                                                    |
-| - [Windows](#Displays_items_TermBar_Modules_items_anyOf_i8_Windows )         | object or null   | Windows configuration. Set to null to disable these features and allow system default behaviors to take place. |
+| + [$module](#Displays_items_TermBar_Modules_items_anyOf_i9_module )          | const            | The module type.                                                                                               |
+| - [Order](#Displays_items_TermBar_Modules_items_anyOf_i9_Order )             | integer          | The order in which the module should be displayed on the TermBar.                                              |
+| - [Expand](#Displays_items_TermBar_Modules_items_anyOf_i9_Expand )           | boolean          | Whether the module should expand to take up as much space as possible.                                         |
+| - [AccentColor](#Displays_items_TermBar_Modules_items_anyOf_i9_AccentColor ) | enum (of string) | The Catppuccin color to use for window icon colors by default.                                                 |
+| - [Icon](#Displays_items_TermBar_Modules_items_anyOf_i9_Icon )               | string           | The text to use as window icons by default.                                                                    |
+| - [Windows](#Displays_items_TermBar_Modules_items_anyOf_i9_Windows )         | object or null   | Windows configuration. Set to null to disable these features and allow system default behaviors to take place. |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_module"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > $module`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_module"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > $module`
 
 |              |         |
 | ------------ | ------- |
@@ -3312,7 +3456,7 @@ Must be one of:
 
 Specific value: `"WindowBar"`
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_Order"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Order`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_Order"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Order`
 
 |              |           |
 | ------------ | --------- |
@@ -3327,7 +3471,7 @@ Specific value: `"WindowBar"`
 | **Minimum**  | &ge; -2147483648 |
 | **Maximum**  | &le; 2147483647  |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_Expand"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Expand`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_Expand"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Expand`
 
 |              |           |
 | ------------ | --------- |
@@ -3337,7 +3481,7 @@ Specific value: `"WindowBar"`
 
 **Description:** Whether the module should expand to take up as much space as possible.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_AccentColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > AccentColor`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_AccentColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > AccentColor`
 
 |                |                    |
 | -------------- | ------------------ |
@@ -3376,7 +3520,7 @@ Must be one of:
 * "Mantle"
 * "Crust"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_Icon"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Icon`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_Icon"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Icon`
 
 |              |          |
 | ------------ | -------- |
@@ -3386,7 +3530,7 @@ Must be one of:
 
 **Description:** The text to use as window icons by default.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_Windows"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_Windows"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows`
 
 |              |                  |
 | ------------ | ---------------- |
@@ -3397,12 +3541,12 @@ Must be one of:
 
 | Property                                                                                   | Type            | Description                                                             |
 | ------------------------------------------------------------------------------------------ | --------------- | ----------------------------------------------------------------------------- |
-| - [FixedLength](#Displays_items_TermBar_Modules_items_anyOf_i8_Windows_FixedLength )       | integer or null | The fixed length of windows, in pixels. Set to null for variable size.        |
-| - [MaxLength](#Displays_items_TermBar_Modules_items_anyOf_i8_Windows_MaxLength )           | integer or null | The maximum length of a window, in pixels. Set to null for no maximum length. |
-| - [NiceTruncation](#Displays_items_TermBar_Modules_items_anyOf_i8_Windows_NiceTruncation ) | boolean         | Whether the window name should be truncated with … if it’s too long.          |
-| - [ScrollIntoView](#Displays_items_TermBar_Modules_items_anyOf_i8_Windows_ScrollIntoView ) | boolean         | Whether to scroll the window list to show the selected window.                |
+| - [FixedLength](#Displays_items_TermBar_Modules_items_anyOf_i9_Windows_FixedLength )       | integer or null | The fixed length of windows, in pixels. Set to null for variable size.        |
+| - [MaxLength](#Displays_items_TermBar_Modules_items_anyOf_i9_Windows_MaxLength )           | integer or null | The maximum length of a window, in pixels. Set to null for no maximum length. |
+| - [NiceTruncation](#Displays_items_TermBar_Modules_items_anyOf_i9_Windows_NiceTruncation ) | boolean         | Whether the window name should be truncated with … if it’s too long.          |
+| - [ScrollIntoView](#Displays_items_TermBar_Modules_items_anyOf_i9_Windows_ScrollIntoView ) | boolean         | Whether to scroll the window list to show the selected window.                |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_Windows_FixedLength"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > FixedLength`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_Windows_FixedLength"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > FixedLength`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -3416,7 +3560,7 @@ Must be one of:
 | ------------ | ------ |
 | **Minimum**  | &ge; 1 |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_Windows_MaxLength"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > MaxLength`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_Windows_MaxLength"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > MaxLength`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -3430,7 +3574,7 @@ Must be one of:
 | ------------ | ------ |
 | **Minimum**  | &ge; 1 |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_Windows_NiceTruncation"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > NiceTruncation`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_Windows_NiceTruncation"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > NiceTruncation`
 
 |              |           |
 | ------------ | --------- |
@@ -3440,7 +3584,7 @@ Must be one of:
 
 **Description:** Whether the window name should be truncated with … if it’s too long.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i8_Windows_ScrollIntoView"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > ScrollIntoView`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_Windows_ScrollIntoView"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowBar module > Windows > ScrollIntoView`
 
 |              |           |
 | ------------ | --------- |
@@ -3450,7 +3594,7 @@ Must be one of:
 
 **Description:** Whether to scroll the window list to show the selected window.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i10"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module`
 
 |                           |                               |
 | ------------------------- | ----------------------------- |
@@ -3461,16 +3605,16 @@ Must be one of:
 
 **Description:** A TermBar window dropdown configuration.
 
-| Property                                                                       | Type             | Description                                                      |
-| ------------------------------------------------------------------------------ | ---------------- | ---------------------------------------------------------------------- |
-| + [$module](#Displays_items_TermBar_Modules_items_anyOf_i9_module )            | const            | The module type.                                                       |
-| - [Order](#Displays_items_TermBar_Modules_items_anyOf_i9_Order )               | integer          | The order in which the module should be displayed on the TermBar.      |
-| - [Expand](#Displays_items_TermBar_Modules_items_anyOf_i9_Expand )             | boolean          | Whether the module should expand to take up as much space as possible. |
-| - [AccentColor](#Displays_items_TermBar_Modules_items_anyOf_i9_AccentColor )   | enum (of string) | The Catppuccin color to use for the dropdown icon color.               |
-| - [DropdownIcon](#Displays_items_TermBar_Modules_items_anyOf_i9_DropdownIcon ) | string           | The text to use as the dropdown icon.                                  |
-| - [Icon](#Displays_items_TermBar_Modules_items_anyOf_i9_Icon )                 | string           | The text to use as window icons by default.                            |
+| Property                                                                        | Type             | Description                                                      |
+| ------------------------------------------------------------------------------- | ---------------- | ---------------------------------------------------------------------- |
+| + [$module](#Displays_items_TermBar_Modules_items_anyOf_i10_module )            | const            | The module type.                                                       |
+| - [Order](#Displays_items_TermBar_Modules_items_anyOf_i10_Order )               | integer          | The order in which the module should be displayed on the TermBar.      |
+| - [Expand](#Displays_items_TermBar_Modules_items_anyOf_i10_Expand )             | boolean          | Whether the module should expand to take up as much space as possible. |
+| - [AccentColor](#Displays_items_TermBar_Modules_items_anyOf_i10_AccentColor )   | enum (of string) | The Catppuccin color to use for the dropdown icon color.               |
+| - [DropdownIcon](#Displays_items_TermBar_Modules_items_anyOf_i10_DropdownIcon ) | string           | The text to use as the dropdown icon.                                  |
+| - [Icon](#Displays_items_TermBar_Modules_items_anyOf_i10_Icon )                 | string           | The text to use as window icons by default.                            |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_module"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > $module`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i10_module"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > $module`
 
 |              |         |
 | ------------ | ------- |
@@ -3481,7 +3625,7 @@ Must be one of:
 
 Specific value: `"WindowDropdown"`
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_Order"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > Order`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i10_Order"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > Order`
 
 |              |           |
 | ------------ | --------- |
@@ -3496,7 +3640,7 @@ Specific value: `"WindowDropdown"`
 | **Minimum**  | &ge; -2147483648 |
 | **Maximum**  | &le; 2147483647  |
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_Expand"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > Expand`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i10_Expand"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > Expand`
 
 |              |           |
 | ------------ | --------- |
@@ -3506,7 +3650,7 @@ Specific value: `"WindowDropdown"`
 
 **Description:** Whether the module should expand to take up as much space as possible.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_AccentColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > AccentColor`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i10_AccentColor"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > AccentColor`
 
 |                |                    |
 | -------------- | ------------------ |
@@ -3545,7 +3689,7 @@ Must be one of:
 * "Mantle"
 * "Crust"
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_DropdownIcon"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > DropdownIcon`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i10_DropdownIcon"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > DropdownIcon`
 
 |              |          |
 | ------------ | -------- |
@@ -3555,7 +3699,7 @@ Must be one of:
 
 **Description:** The text to use as the dropdown icon.
 
-###### <a name="Displays_items_TermBar_Modules_items_anyOf_i9_Icon"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > Icon`
+###### <a name="Displays_items_TermBar_Modules_items_anyOf_i10_Icon"></a>Property `config.json > Displays > Displays items > TermBar > Modules > Modules items > anyOf > WindowDropdown module > Icon`
 
 |              |          |
 | ------------ | -------- |
@@ -3577,6 +3721,16 @@ Must be one of:
 | **Default**  | `"%USERPROFILE%"` |
 
 **Description:** The directory to change to when starting. Set to null to keep the directory inherited from the parent process.
+
+## <a name="StartupAtBoot"></a>Property `config.json > StartupAtBoot`
+
+|              |                   |
+| ------------ | ----------------- |
+| **Type**     | `boolean or null` |
+| **Required** | No                |
+| **Default**  | `false`           |
+
+**Description:** Whether TermBar should start up at boot time.
 
 ----------------------------------------------------------------------------------------------------------------------------
 Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans)

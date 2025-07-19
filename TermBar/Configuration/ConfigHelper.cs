@@ -199,6 +199,7 @@ namespace Spakov.TermBar.Configuration {
               { "Launcher module", new JsonObject() },
               { "Memory module", new JsonObject() },
               { "StaticText module", new JsonObject() },
+              { "SystemDropdown module", new JsonObject() },
               { "Terminal module", new JsonObject() },
               { "Volume module", new JsonObject() },
               { "WindowBar module", new JsonObject() },

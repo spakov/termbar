@@ -5,7 +5,7 @@ $JsonInput = "$LicenseGenDirectory\json-input.json"
 $OutputType = "Json"
 $TemporaryOutputFile = "..\THIRD-PARTY-NOTICES.json"
 $LicenseOutputDirectory = ".\"
-$Ignored = "$LicenseGenDirectory\ignored-packages.json"
+$Ignore = "$LicenseGenDirectory\ignored-packages.json"
 $Override = "$LicenseGenDirectory\override-package-information.json"
 $OutputFile = "..\THIRD-PARTY-NOTICES.md"
 
@@ -17,7 +17,7 @@ if (-not (Test-Path -Path $LicenseGenDirectory)) {
 
 # Check for NGLF
 if (-not (Test-Path -Path $NGLF)) {
-  Write-Error "Error: '$NGLF' not found. Obtain NuGetLicenseFramework.exe from https://github.com/sensslen/nuget-license and point me to it."
+  Write-Error "Error: '$NGLF' not found. Obtain NuGetLicenseFramework.exe from https://github.com/sensslen/nuget-license and point me to it via $$NGLF."
   exit 1
 }
 
@@ -31,7 +31,7 @@ if (-not (Get-Command "jq" -ErrorAction SilentlyContinue)) {
 Get-ChildItem -Path $LicenseOutputDirectory -Exclude $LicenseGenDirectory | Remove-Item
 
 # Run NGLF
-& $NGLF -ji $JsonInput -t -o $OutputType -fo $TemporaryOutputFile -d $LicenseOutputDirectory -ignore $Ignored -override $Override
+& $NGLF -ji $JsonInput -t -o $OutputType -fo $TemporaryOutputFile -d $LicenseOutputDirectory -ignore $Ignore -override $Override
 
 # Confirm temporary output file exists
 if (-not (Test-Path -Path $TemporaryOutputFile)) {
@@ -54,39 +54,54 @@ foreach ($wronglyNamedRtf in Get-ChildItem -Path $LicenseOutputDirectory* -Inclu
 $out = ($out | & jq '[ .[] | { PackageId, PackageVersion, PackageProjectUrl, License, LicenseUrl } ]')
 
 # Add Microsoft.Web.WebView2
-$name = "Microsoft.Web.WebView2"
+$id = "Microsoft.Web.WebView2"
 $version = "1.0.2903.40"
+$projectUrl = "https://aka.ms/webview"
+$license = "WebView2"
 $licenseUrl = "https://www.nuget.org/packages/Microsoft.Web.WebView2/$version/License"
 $rawLicensePath = "$Env:USERPROFILE\.nuget\packages\microsoft.web.webview2\$version\LICENSE.txt"
-$out = ($out | & jq ". += [{ `"PackageId`": `"${name}`", `"PackageVersion`": `"${version}`", `"PackageProjectUrl`": `"https://aka.ms/webview`", `"License`": `"WebView2`", `"LicenseUrl`": `"${licenseUrl}`" }]")
-Copy-Item -Path $rawLicensePath -Destination ${name}__${version}.txt
+$out = ($out | & jq ". += [{ `"PackageId`": `"${id}`", `"PackageVersion`": `"${version}`", `"PackageProjectUrl`": `"${projectUrl}`", `"License`": `"${license}`", `"LicenseUrl`": `"${licenseUrl}`" }]")
+Copy-Item -Path $rawLicensePath -Destination ${id}__${version}.txt
 
 # Add Mono.Posix.NETStandard
-$name = "Mono.Posix.NETStandard"
+$id = "Mono.Posix.NETStandard"
 $version = "1.0.0"
+$projectUrl = "https://go.microsoft.com/fwlink/?linkid=869051"
+$license = "Mono"
 $licenseUrl = "https://raw.githubusercontent.com/mono/mono/refs/heads/main/LICENSE"
-$out = ($out | & jq ". += [{ `"PackageId`": `"${name}`", `"PackageVersion`": `"${version}`", `"PackageProjectUrl`": `"https://go.microsoft.com/fwlink/?linkid=869051`", `"License`": `"Mono`", `"LicenseUrl`": `"${licenseUrl}`" }]")
-Invoke-WebRequest -Uri $licenseUrl -OutFile ${name}__${version}.txt
+$out = ($out | & jq ". += [{ `"PackageId`": `"${id}`", `"PackageVersion`": `"${version}`", `"PackageProjectUrl`": `"${projectUrl}`", `"License`": `"$license`", `"LicenseUrl`": `"${licenseUrl}`" }]")
+Invoke-WebRequest -Uri $licenseUrl -OutFile ${id}__${version}.txt
 
 # Add utf8proc
-$name = "utf8proc"
+$id = "utf8proc"
 $version = (git -C ..\..\w6t\utf8proc log -n 1 --pretty=format:"%H")
+$projectUrl = "https://github.com/JuliaStrings/utf8proc/"
+$license = "MIT"
 $licenseUrl = "https://github.com/JuliaStrings/utf8proc/raw/refs/heads/master/LICENSE.md"
-$out = ($out | & jq ". += [{ `"PackageId`": `"${name}`", `"PackageVersion`": `"${version}`", `"PackageProjectUrl`": `"https://github.com/JuliaStrings/utf8proc/`", `"License`": `"MIT`", `"LicenseUrl`": `"${licenseUrl}`" }]")
-Invoke-WebRequest -Uri $licenseUrl -OutFile ${name}__${version}.txt
+$out = ($out | & jq ". += [{ `"PackageId`": `"${id}`", `"PackageVersion`": `"${version}`", `"PackageProjectUrl`": `"${projectUrl}`", `"License`": `"${license}`", `"LicenseUrl`": `"${licenseUrl}`" }]")
+Invoke-WebRequest -Uri $licenseUrl -OutFile ${id}__${version}.txt
+
+# Add Nerd Fonts
+$id = "Nerd Fonts"
+$version = "3.4.0"
+$projectUrl = "https://github.com/ryanoasis/nerd-fonts/"
+$license = "Nerd Fonts"
+$licenseUrl = "https://github.com/ryanoasis/nerd-fonts/raw/refs/heads/master/LICENSE"
+$out = ($out | & jq ". += [{ `"PackageId`": `"${id}`", `"PackageVersion`": `"${version}`", `"PackageProjectUrl`": `"${projectUrl}`", `"License`": `"${license}`", `"LicenseUrl`": `"${licenseUrl}`" }]")
+Invoke-WebRequest -Uri $licenseUrl -OutFile ${id}__${version}.txt
 
 # Convert to Markdown
 $markdown = [System.Collections.Generic.List[string]]::new()
 $json = ($out | ConvertFrom-Json | Sort-Object PackageId)
 
 foreach ($package in $json) {
-  $name = $package.PackageId
-  $url = $package.PackageProjectUrl
+  $id = $package.PackageId
+  $projectUrl = $package.PackageProjectUrl
   $version = $package.PackageVersion
   $license = $package.License
   $licenseUrl = $package.LicenseUrl
 
-  $markdown.Add("- **[$name]($url)** ${version}: [$license]($licenseUrl)")
+  $markdown.Add("- **[$id]($projectUrl)** ${version}: [$license]($licenseUrl)")
 }
 
 $markdown.Insert(0, "# Third Party Notices")
