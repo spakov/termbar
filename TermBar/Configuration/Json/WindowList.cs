@@ -21,10 +21,45 @@ namespace Spakov.TermBar.Configuration.Json {
     [Description("The map of window process names to ProcessIconMappings to apply to windows. Set to null to disable this behavior.")]
     public Dictionary<string, ProcessIconMapping>? ProcessIconMap { get; set; } = new() {
       {
+        "ApplicationFrameHost",
+        new() {
+          WindowNameIconMap = new() {
+            {
+              "Calculator",
+              new() {
+                IconColor = ColorEnum.Sky,
+                Icon = "󱗅"
+              }
+            }
+          }
+        }
+      },
+      {
+        "chrome",
+        new() {
+          IconColor = ColorEnum.Yellow,
+          Icon = ""
+        }
+      },
+      {
+        "Code",
+        new() {
+          IconColor = ColorEnum.Sapphire,
+          Icon = ""
+        }
+      },
+      {
         "devenv",
         new() {
           IconColor = ColorEnum.Mauve,
           Icon = ""
+        }
+      },
+      {
+        "EXCEL",
+        new() {
+          IconColor = ColorEnum.Green,
+          Icon = "󱎏"
         }
       },
       {
@@ -35,11 +70,25 @@ namespace Spakov.TermBar.Configuration.Json {
         }
       },
       {
+        "firefox",
+        new() {
+          IconColor = ColorEnum.Peach,
+          Icon = ""
+        }
+      },
+      {
         "librewolf",
         new() {
           IconColor = ColorEnum.Sky,
           Icon = "",
           WindowNameIconMap = new() {
+            {
+              " · GitHub",
+              new() {
+                IconColor = ColorEnum.Surface2,
+                Icon = ""
+              }
+            },
             {
               "Microsoft Learn",
               new() {
@@ -58,10 +107,31 @@ namespace Spakov.TermBar.Configuration.Json {
         }
       },
       {
+        "msedge",
+        new() {
+          IconColor = ColorEnum.Teal,
+          Icon = ""
+        }
+      },
+      {
+        "Notepad",
+        new() {
+          IconColor = ColorEnum.Sapphire,
+          Icon = ""
+        }
+      },
+      {
         "olk",
         new() {
           IconColor = ColorEnum.Sapphire,
           Icon = ""
+        }
+      },
+      {
+        "POWERPNT",
+        new() {
+          IconColor = ColorEnum.Peach,
+          Icon = "󱎐"
         }
       },
       {
@@ -76,6 +146,13 @@ namespace Spakov.TermBar.Configuration.Json {
         new() {
           IconColor = ColorEnum.Overlay0,
           Icon = ""
+        }
+      },
+      {
+        "WINWORD",
+        new() {
+          IconColor = ColorEnum.Blue,
+          Icon = "󱎒"
         }
       }
     };
