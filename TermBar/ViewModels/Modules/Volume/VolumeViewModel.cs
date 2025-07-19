@@ -33,7 +33,7 @@ namespace Spakov.TermBar.ViewModels.Modules.Volume {
           _icon = value;
 
 #if DEBUG
-          logger.LogDebug("Icon changed => {icon}", _icon);
+          logger.LogTrace("Icon changed => {icon}", _icon);
 #endif
 
           OnPropertyChanged();
@@ -52,7 +52,7 @@ namespace Spakov.TermBar.ViewModels.Modules.Volume {
           _volume = value;
 
 #if DEBUG
-          logger.LogDebug("Volume changed => {volume}", _volume);
+          logger.LogTrace("Volume changed => {volume}", _volume);
 #endif
 
           OnPropertyChanged();

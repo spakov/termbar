@@ -71,7 +71,7 @@ namespace Spakov.TermBar.Models {
           }
 
 #if DEBUG
-          Instance?.logger.LogTrace("ForegroundWindow: {oldHWnd} \"{oldName}\" -> {newHWnd} \"{newName}\"", _foregroundWindow?.HWnd, _foregroundWindow?.Name, value?.HWnd, value?.Name);
+          Instance?.logger.LogDebug("ForegroundWindow: {oldHWnd} \"{oldName}\" -> {newHWnd} \"{newName}\"", _foregroundWindow?.HWnd, _foregroundWindow?.Name, value?.HWnd, value?.Name);
 #endif
 
           _foregroundWindow = value;

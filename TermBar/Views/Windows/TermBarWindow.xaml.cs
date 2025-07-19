@@ -67,7 +67,7 @@ namespace Spakov.TermBar.Views.Windows {
         Type? targetType;
 
 #if DEBUG
-        logger.LogDebug("Attempting to instantiate {view}", $"{viewsModulesNamespace}.{moduleConfig.GetType().Name}.{moduleConfig.GetType().Name}View");
+        logger.LogTrace("Attempting to instantiate {view}", $"{viewsModulesNamespace}.{moduleConfig.GetType().Name}.{moduleConfig.GetType().Name}View");
 
         try {
 #endif
@@ -75,7 +75,7 @@ namespace Spakov.TermBar.Views.Windows {
 #if DEBUG
         } catch (Exception) {
 
-          logger.LogDebug("Could not GetType()");
+          logger.LogError("Could not GetType()");
 
           continue;
         }
@@ -83,7 +83,7 @@ namespace Spakov.TermBar.Views.Windows {
 
         if (targetType is null) {
 #if DEBUG
-          logger.LogDebug("GetType() returned null");
+          logger.LogError("GetType() returned null");
 #endif
 
           throw new InvalidOperationException(string.Format(App.ResourceLoader.GetString("UnableToCreateInstance"), moduleConfig.GetType().Name));
@@ -104,7 +104,7 @@ namespace Spakov.TermBar.Views.Windows {
         )!;
 #if DEBUG
         } catch (Exception) {
-          logger.LogDebug("Could not CreateInstance()");
+          logger.LogError("Could not CreateInstance()");
 
           continue;
         }

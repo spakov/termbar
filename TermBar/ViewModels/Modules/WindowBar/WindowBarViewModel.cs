@@ -85,7 +85,7 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
           App.DispatcherQueue!.TryEnqueue(windowBarView.UpdateLayout);
 
 #if DEBUG
-          logger.LogDebug(
+          logger.LogInformation(
             "WindowBarView foreground window: {hWnd} \"{name}\"",
             ((WindowBarWindowView?) ((Microsoft.UI.Xaml.Controls.ListView?) windowBarView.Content)?.SelectedItem)?.HWnd,
             ((WindowBarWindowView?) ((Microsoft.UI.Xaml.Controls.ListView?) windowBarView.Content)?.SelectedItem)?.WindowName
@@ -144,7 +144,7 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
         );
 
 #if DEBUG
-        logger.LogDebug("Visually tracking window {hWnd} \"{name}\"", view.HWnd, view.WindowName);
+        logger.LogInformation("Visually tracking window {hWnd} \"{name}\"", view.HWnd, view.WindowName);
 #endif
       }
 
@@ -207,7 +207,7 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
             );
 
 #if DEBUG
-            logger.LogDebug("Visually tracking window {hWnd} \"{name}\"", view.HWnd, view.WindowName);
+            logger.LogInformation("Visually tracking window {hWnd} \"{name}\"", view.HWnd, view.WindowName);
 #endif
           }
         }
@@ -265,7 +265,7 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
               );
 
 #if DEBUG
-              logger.LogDebug("Visually tracking window {hWnd} \"{name}\"", view.HWnd, view.WindowName);
+              logger.LogInformation("Visually tracking window {hWnd} \"{name}\"", view.HWnd, view.WindowName);
 #endif
             }
           }
@@ -306,7 +306,7 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
         pendingRemovals.Remove(view.HWnd);
 
 #if DEBUG
-        logger.LogDebug("No longer visually tracking window {hWnd} \"{name}\"", view.HWnd, view.WindowName);
+        logger.LogInformation("No longer visually tracking window {hWnd} \"{name}\"", view.HWnd, view.WindowName);
 #endif
       } catch (TaskCanceledException) { }
     }

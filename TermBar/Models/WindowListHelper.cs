@@ -63,7 +63,11 @@ namespace Spakov.TermBar.Models {
       PInvoke.EnumWindows(wndEnumProc, 0);
 
       foreach (HWND hWnd in hWnds) {
+#if DEBUG
+        bool isInteresting = WindowIsInteresting(logger, hWnd);
+#else
         bool isInteresting = WindowIsInteresting(hWnd);
+#endif
 
         string name = new(windowName, 0, windowNameLength);
 
@@ -71,7 +75,7 @@ namespace Spakov.TermBar.Models {
         windows.Add(new(hWnd, windowProcessId, name, isInteresting));
 
 #if DEBUG
-        logger.LogTrace("Tracking window {hWnd} \"{name}\" (interesting: {isInteresting})", hWnd, name, isInteresting);
+        logger.LogDebug("Tracking window {hWnd} \"{name}\" (interesting: {isInteresting})", hWnd, name, isInteresting);
 #endif
       }
 
@@ -259,23 +263,28 @@ namespace Spakov.TermBar.Models {
         if (_windows.Contains(hWnd)) {
           foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
 #if DEBUG
-            logger.LogTrace("Foregrounded: window {hWnd} \"{name}\" (interesting: {isInteresting})", hWnd, window.Name, window.IsInteresting);
+            logger.LogDebug("Foregrounded: window {hWnd} \"{name}\" (interesting: {isInteresting})", hWnd, window.Name, window.IsInteresting);
 #endif
 
             return window;
           }
         } else {
 #if DEBUG
-          logger.LogTrace("Foregrounded: untracked window {hWnd}, will track it", hWnd);
+          logger.LogDebug("Foregrounded: untracked window {hWnd}, will track it", hWnd);
 #endif
 
           string name;
+
+#if DEBUG
+          bool isInteresting = WindowIsInteresting(logger, hWnd);
+#else
           bool isInteresting = WindowIsInteresting(hWnd);
+#endif
 
           name = new(windowName, 0, windowNameLength);
 
 #if DEBUG
-          logger.LogTrace("Tracking window {hWnd} \"{name}\" (interesting: {isInteresting})", hWnd, name, isInteresting);
+          logger.LogDebug("Tracking window {hWnd} \"{name}\" (interesting: {isInteresting})", hWnd, name, isInteresting);
 #endif
 
           Window window = new(hWnd, windowProcessId, name, isInteresting);
@@ -313,7 +322,12 @@ namespace Spakov.TermBar.Models {
     internal static void UpdateWindow(ObservableCollection<Window> windows, uint @event, HWND hWnd) {
 #endif
       string name;
+
+#if DEBUG
+      bool isInteresting = WindowIsInteresting(logger, hWnd);
+#else
       bool isInteresting = WindowIsInteresting(hWnd);
+#endif
 
       switch (@event) {
         case PInvoke.EVENT_OBJECT_CREATE:
@@ -323,7 +337,7 @@ namespace Spakov.TermBar.Models {
             name = new(windowName, 0, windowNameLength);
 
 #if DEBUG
-            logger.LogTrace("Tracking window {hWnd} \"{name}\" (interesting: {isInteresting})", hWnd, name, isInteresting);
+            logger.LogDebug("Tracking window {hWnd} \"{name}\" (interesting: {isInteresting})", hWnd, name, isInteresting);
 #endif
 
             _windows.Add(hWnd);
@@ -332,7 +346,7 @@ namespace Spakov.TermBar.Models {
             foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
               if (window.IsInteresting != isInteresting) {
 #if DEBUG
-                logger.LogTrace("Window {hWnd} \"{name}\" interesting changed {oldInteresting} -> {newInteresting}", hWnd, window.Name, window.IsInteresting, isInteresting);
+                logger.LogDebug("Window {hWnd} \"{name}\" interesting changed {oldInteresting} -> {newInteresting}", hWnd, window.Name, window.IsInteresting, isInteresting);
 #endif
 
                 window.IsInteresting = isInteresting;
@@ -351,7 +365,7 @@ namespace Spakov.TermBar.Models {
             if (@event == PInvoke.EVENT_OBJECT_DESTROY) {
               foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
 #if DEBUG
-                logger.LogTrace("No longer tracking window {hWnd} \"{name}\"", hWnd, window.Name);
+                logger.LogDebug("No longer tracking window {hWnd} \"{name}\"", hWnd, window.Name);
 #endif
 
                 toRemove.Add(window);
@@ -363,7 +377,7 @@ namespace Spakov.TermBar.Models {
               foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
                 if (window.IsInteresting != isInteresting) {
 #if DEBUG
-                  logger.LogTrace("Window {hWnd} \"{name}\" interesting changed {oldInteresting} -> {newInteresting}", hWnd, window.Name, window.IsInteresting, isInteresting);
+                  logger.LogDebug("Window {hWnd} \"{name}\" interesting changed {oldInteresting} -> {newInteresting}", hWnd, window.Name, window.IsInteresting, isInteresting);
 #endif
 
                   window.IsInteresting = isInteresting;
@@ -381,7 +395,7 @@ namespace Spakov.TermBar.Models {
             foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
               if (!name.Equals(window.Name)) {
 #if DEBUG
-                logger.LogTrace("Renaming window {hWnd} \"{oldName}\" -> \"{newName}\"", hWnd, window.Name, name);
+                logger.LogDebug("Renaming window {hWnd} \"{oldName}\" -> \"{newName}\"", hWnd, window.Name, name);
 #endif
 
                 window.Name = name;
@@ -417,7 +431,7 @@ namespace Spakov.TermBar.Models {
           }
 
 #if DEBUG
-          logger.LogTrace("Foregrounding: window {hWnd} \"{name}\"", hWnd, window.Name);
+          logger.LogDebug("Foregrounding: window {hWnd} \"{name}\"", hWnd, window.Name);
 #endif
 
           PInvoke.SetForegroundWindow(hWnd);
@@ -446,7 +460,7 @@ namespace Spakov.TermBar.Models {
 
           if (!PInvoke.IsIconic(hWnd)) {
 #if DEBUG
-            logger.LogTrace("Iconifying: window {hWnd} \"{name}\"", hWnd, window.Name);
+            logger.LogDebug("Iconifying: window {hWnd} \"{name}\"", hWnd, window.Name);
 #endif
 
             PInvoke.ShowWindow(hWnd, SHOW_WINDOW_CMD.SW_MINIMIZE);
@@ -468,13 +482,25 @@ namespace Spakov.TermBar.Models {
     /// cref="windowClassNameLength"/>, and its owning process ID to <see
     /// cref="windowProcessId"/>.
     /// </remarks>
+#if DEBUG
+    /// <param name="logger">An <see cref="ILogger"/>.</param>
+#endif
     /// <param name="hWnd">The window's <see cref="HWND"/>.</param>
     /// <returns><c>true</c> if the window is interesting or <c>false</c>
     /// otherwise.</returns>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:Convert to conditional expression", Justification = "Impacts readability")]
+#if DEBUG
+    private static bool WindowIsInteresting(ILogger logger, HWND hWnd) {
+#else
     private static bool WindowIsInteresting(HWND hWnd) {
+#endif
       // Skip ghosts
-      if (!PInvoke.IsWindow(hWnd)) return false;
+      if (!PInvoke.IsWindow(hWnd)) {
+#if DEBUG
+        logger.LogTrace("Window {hWnd} not interesting: not a window", hWnd);
+#endif
+
+        return false;
+      }
 
       // Get window name and name length
       windowNameLength = PInvoke.GetWindowText(hWnd, windowName);
@@ -490,48 +516,116 @@ namespace Spakov.TermBar.Models {
       }
 
       // Skip non-visible windows
-      if (!PInvoke.IsWindowVisible(hWnd)) return false;
+      if (!PInvoke.IsWindowVisible(hWnd)) {
+#if DEBUG
+        logger.LogTrace("Window {hWnd} not interesting: not visible", hWnd);
+#endif
+
+        return false;
+      }
 
       // Skip windows with no name
-      if (windowName[0] == 0) return false;
+      if (windowName[0] == 0) {
+#if DEBUG
+        logger.LogTrace("Window {hWnd} not interesting: no name", hWnd);
+#endif
+
+        return false;
+      }
 
       // Skip ignored window class names
       string name = new(windowClassName, 0, windowClassNameLength);
-      if (ignoredClassNames.Contains(name)) return false;
+      if (ignoredClassNames.Contains(name)) {
+#if DEBUG
+        logger.LogTrace("Window {hWnd} not interesting: ignored window class", hWnd);
+#endif
+
+        return false;
+      }
 
       // Extended styles
       long exStyle = PInvoke.GetWindowLongPtr(hWnd, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE).ToInt64();
 
       // Keep windows with WS_EX_APPWINDOW
-      if ((exStyle & (int) WINDOW_EX_STYLE.WS_EX_APPWINDOW) != 0) return true;
+      if ((exStyle & (int) WINDOW_EX_STYLE.WS_EX_APPWINDOW) != 0) {
+#if DEBUG
+        logger.LogTrace("Window {hWnd} interesting: app window", hWnd);
+#endif
 
-      // Skip child or owned windows (unless they are explicitly top-level)
-      if (PInvoke.GetWindow(hWnd, GET_WINDOW_CMD.GW_OWNER) != HWND.Null) return false;
+        return true;
+      }
 
       // Skip tool windows (like floating palettes, popups)
-      if ((exStyle & (long) WINDOW_EX_STYLE.WS_EX_TOOLWINDOW) != 0) return false;
+      if ((exStyle & (long) WINDOW_EX_STYLE.WS_EX_TOOLWINDOW) != 0) {
+#if DEBUG
+        logger.LogTrace("Window {hWnd} not interesting: tool window", hWnd);
+#endif
+
+        return false;
+      }
 
       // Skip non-activatable windows
-      if ((exStyle & (long) WINDOW_EX_STYLE.WS_EX_NOACTIVATE) != 0) return false;
+      if ((exStyle & (long) WINDOW_EX_STYLE.WS_EX_NOACTIVATE) != 0) {
+#if DEBUG
+        logger.LogTrace("Window {hWnd} not interesting: not activatable", hWnd);
+#endif
+
+        return false;
+      }
 
       // Get window styles
       long style = PInvoke.GetWindowLongPtr(hWnd, WINDOW_LONG_PTR_INDEX.GWL_STYLE).ToInt64();
 
-      // Skip popup windows
-      if ((style & (long) WINDOW_STYLE.WS_POPUP) != 0) return false;
+      // Skip frameless popup windows
+      if (
+        (style & (long) WINDOW_STYLE.WS_POPUP) != 0
+        && (style & (long) WINDOW_STYLE.WS_THICKFRAME) == 0
+      ) {
+#if DEBUG
+        logger.LogTrace("Window {hWnd} not interesting: frameless popup", hWnd);
+#endif
 
-      // Must be a top-level overlapped window
-      if ((style & (long) WINDOW_STYLE.WS_CHILD) != 0) return false;
+        return false;
+      }
 
       // Skip zero-size windows (invisible or dummy handles)
-      if (!PInvoke.GetWindowRect(hWnd, out RECT rect)) return false;
-      if (rect.right - rect.left == 0 || rect.bottom - rect.top == 0) return false;
+      if (!PInvoke.GetWindowRect(hWnd, out RECT rect)) {
+#if DEBUG
+        logger.LogTrace("Window {hWnd} not interesting: GetWindowRect() failed", hWnd);
+#endif
+
+        return false;
+      }
+
+      if (rect.right - rect.left == 0 || rect.bottom - rect.top == 0) {
+#if DEBUG
+        logger.LogTrace("Window {hWnd} not interesting: zero-size rect", hWnd);
+#endif
+
+        return false;
+      }
 
       // Skip cloaked windows
-      if (IsCloaked(hWnd)) return false;
+      if (IsCloaked(hWnd)) {
+#if DEBUG
+        logger.LogTrace("Window {hWnd} not interesting: cloaked", hWnd);
+#endif
+
+        return false;
+      }
 
       // Watch out for Chromium!
-      if (PInvoke.GetAncestor(hWnd, GET_ANCESTOR_FLAGS.GA_ROOT) != hWnd) return false;
+      if (PInvoke.GetAncestor(hWnd, GET_ANCESTOR_FLAGS.GA_ROOT) != hWnd) {
+#if DEBUG
+        logger.LogTrace("Window {hWnd} not interesting: not self-rooted", hWnd);
+#endif
+
+        return false;
+      }
+
+#if DEBUG
+      logger.LogTrace("{hWnd} interesting: not uninteresting", hWnd);
+#endif
 
       return true;
     }
