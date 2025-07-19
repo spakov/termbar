@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AProblemHasOccurred.Text" xml:space="preserve">
+  <data name="AProblemHasOccurred" xml:space="preserve">
     <value>A problem has occurred and TermBar must exit. Likely cause:</value>
+  </data>
+  <data name="AProblemHasOccurredNonFatal" xml:space="preserve">
+    <value>A problem has occurred:</value>
+  </data>
+  <data name="BadLauncherEntry" xml:space="preserve">
+    <value>You have a launcher entry that tries to run a command that does not exist.</value>
   </data>
   <data name="Close.Text" xml:space="preserve">
     <value>Close</value>

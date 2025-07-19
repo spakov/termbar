@@ -4,7 +4,9 @@ using Microsoft.UI.Xaml.Media;
 using Spakov.Catppuccin;
 using Spakov.TermBar.Styles;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Text;
 using System.Text.Json;
 
 namespace Spakov.TermBar.Views {
@@ -25,19 +27,14 @@ namespace Spakov.TermBar.Views {
 #pragma warning disable CA1822 // Mark members as static
 
     /// <summary>
-    /// The exception message.
-    /// </summary>
-    private string? Message { get; set; }
-
-    /// <summary>
     /// The likely cause of the exception.
     /// </summary>
     private string LikelyCause { get; set; }
 
     /// <summary>
-    /// The exception stack trace.
+    /// The exception message and stack trace.
     /// </summary>
-    private string? StackTrace { get; set; }
+    private string? Exception { get; set; }
 
 #pragma warning restore CA1822 // Mark members as static
 #pragma warning restore IDE0079 // Remove unnecessary suppression
@@ -52,27 +49,60 @@ namespace Spakov.TermBar.Views {
     internal ExceptionView(Configuration.Json.TermBar config, Exception e) : base(config) {
       this.config = config;
 
-      Message = e.Message;
       LikelyCause = GetLikelyCause(e);
-      StackTrace = e.StackTrace;
+
+      StringBuilder exception = new();
+      exception.Append(e.Message);
+      exception.Append("\r\n\r\n");
+      exception.Append(e.GetType());
+      exception.Append("\r\n");
+      exception.Append(e.StackTrace);
+
+      Exception = exception.ToString();
 
       ApplyComputedStyles();
       InitializeComponent();
+
+      if (IsFatal(e)) {
+        AProblemHasOccurred.Text = App.ResourceLoader.GetString("AProblemHasOccurred");
+
+        Close.Visibility = Visibility.Collapsed;
+      } else {
+        AProblemHasOccurred.Text = App.ResourceLoader.GetString("AProblemHasOccurredNonFatal");
+
+        Exit.Visibility = Visibility.Collapsed;
+        Restart.Visibility = Visibility.Collapsed;
+      }
     }
 
     /// <summary>
     /// Returns the likely cause of <paramref name="e"/> in human-readable
     /// text.
     /// </summary>
-    /// <param name="e">An <see cref="Exception"/>.</param>
-    /// <returns></returns>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:Convert to conditional expression", Justification = "Maximize readability")]
+    /// <param name="e">An <see cref="System.Exception"/>.</param>
+    /// <returns>The likely cause of <paramref name="e"/>.</returns>
     private static string GetLikelyCause(Exception e) {
       if (e is JsonException) {
         return App.ResourceLoader.GetString("ConfigurationFileError");
-      } else {
-        return App.ResourceLoader.GetString("FoundABug");
+      } else if (e is Win32Exception && e.StackTrace is not null && e.StackTrace.Contains("Launcher.LauncherView")) {
+        return App.ResourceLoader.GetString("BadLauncherEntry");
       }
+
+      return App.ResourceLoader.GetString("FoundABug");
+    }
+
+    /// <summary>
+    /// Determines whether or not <paramref name="e"/> is fatal.
+    /// </summary>
+    /// <param name="e">An <see cref="System.Exception"/>.</param>
+    /// <returns>Whether <paramref name="e"/> is fatal.</returns>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:Convert to conditional expression", Justification = "Maximize readability")]
+    private static bool IsFatal(Exception e) {
+      if (e is Win32Exception && e.StackTrace is not null && e.StackTrace.Contains("Launcher.LauncherView")) {
+        return false;
+      }
+
+      return true;
     }
 
     /// <summary>
@@ -215,5 +245,14 @@ namespace Spakov.TermBar.Views {
       Process.Start(termBar);
       Application.Current.Exit();
     }
+
+    /// <summary>
+    /// Invoked when the user clicks the Close button.
+    /// </summary>
+    /// <param name="sender"><inheritdoc cref="RoutedEventHandler"
+    /// path="/param[@name='sender']"/></param>
+    /// <param name="e"><inheritdoc cref="RoutedEventHandler"
+    /// path="/param[@name='e']"/></param>
+    private void Close_Click(object sender, RoutedEventArgs e) => Owner?.Close();
   }
 }

@@ -16,7 +16,6 @@
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
 
     <Grid.ColumnDefinitions>
@@ -24,7 +23,7 @@
     </Grid.ColumnDefinitions>
 
     <TextBlock
-      x:Uid="AProblemHasOccurred"
+      x:Name="AProblemHasOccurred"
       Style="{StaticResource Prose}"
       Grid.Row="0"
       Grid.Column="0"/>
@@ -35,22 +34,16 @@
       Grid.Row="1"
       Grid.Column="0"/>
 
-    <TextBlock
-      Text="{x:Bind Message}"
-      Style="{StaticResource Prose}"
-      Grid.Row="2"
-      Grid.Column="0"/>
-
     <TextBox
-      Text="{x:Bind StackTrace}"
+      Text="{x:Bind Exception}"
       Height="200"
-      Grid.Row="3"
+      Grid.Row="2"
       Grid.Column="0"/>
 
     <StackPanel
       x:Name="Buttons"
       HorizontalAlignment="Right"
-      Grid.Row="4"
+      Grid.Row="3"
       Grid.Column="0"
       Grid.ColumnSpan="2">
       <Button
@@ -66,6 +59,12 @@
         Click="Restart_Click">
         <TextBlock
           x:Uid="RestartTermBar"/>
+      </Button>
+      <Button
+        x:Name="Close"
+        Click="Close_Click">
+        <TextBlock
+          x:Uid="Close"/>
       </Button>
     </StackPanel>
 
