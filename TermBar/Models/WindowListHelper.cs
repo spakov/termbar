@@ -1,11 +1,15 @@
 ﻿#if DEBUG
 using Microsoft.Extensions.Logging;
+using Spakov.TermBar.Views.Modules.WindowBar;
+
 #endif
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.Graphics.Dwm;
@@ -28,6 +32,7 @@ namespace Spakov.TermBar.Models {
     private static WNDENUMPROC? wndEnumProc;
 
     private static readonly List<HWND> hWnds = [];
+    private static readonly Dictionary<HWND, CancellationTokenSource> pendingRemovals = [];
 
     private static int windowNameLength;
     private static readonly char[] windowName = new char[256];
@@ -321,10 +326,27 @@ namespace Spakov.TermBar.Models {
 #else
     internal static void UpdateWindow(ObservableCollection<Window> windows, uint @event, HWND hWnd) {
 #endif
+      if (
+        hWnd == HWND.Null
+        || (
+          @event != PInvoke.EVENT_OBJECT_CREATE
+          && @event != PInvoke.EVENT_OBJECT_SHOW
+          && @event != PInvoke.EVENT_OBJECT_UNCLOAKED
+          && @event != PInvoke.EVENT_OBJECT_DESTROY
+          && @event != PInvoke.EVENT_OBJECT_HIDE
+          && @event != PInvoke.EVENT_OBJECT_CLOAKED
+          && @event != PInvoke.EVENT_OBJECT_NAMECHANGE
+        )
+      ) {
+        return;
+      }
+
       string name;
 
 #if DEBUG
       bool isInteresting = WindowIsInteresting(logger, hWnd);
+
+      logger.LogTrace("WinObjectEventProc for window {hWnd}: event 0x{event:x}", hWnd, @event);
 #else
       bool isInteresting = WindowIsInteresting(hWnd);
 #endif
@@ -343,13 +365,24 @@ namespace Spakov.TermBar.Models {
             _windows.Add(hWnd);
             windows.Add(new(hWnd, windowProcessId, name, isInteresting));
           } else {
-            foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
-              if (window.IsInteresting != isInteresting) {
+            if (pendingRemovals.TryGetValue(hWnd, out CancellationTokenSource? cts)) {
+              if (cts is not null) {
+                cts.Cancel();
+                pendingRemovals.Remove(hWnd);
+
 #if DEBUG
-                logger.LogDebug("Window {hWnd} \"{name}\" interesting changed {oldInteresting} -> {newInteresting}", hWnd, window.Name, window.IsInteresting, isInteresting);
+                logger.LogTrace("Canceled removal of {hWnd}", hWnd);
+#endif
+              }
+            } else {
+              foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
+                if (window.IsInteresting != isInteresting) {
+#if DEBUG
+                  logger.LogDebug("Window {hWnd} \"{name}\" interesting changed {oldInteresting} -> {newInteresting}", hWnd, window.Name, window.IsInteresting, isInteresting);
 #endif
 
-                window.IsInteresting = isInteresting;
+                  window.IsInteresting = isInteresting;
+                }
               }
             }
           }
@@ -365,14 +398,19 @@ namespace Spakov.TermBar.Models {
             if (@event == PInvoke.EVENT_OBJECT_DESTROY) {
               foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
 #if DEBUG
-                logger.LogDebug("No longer tracking window {hWnd} \"{name}\"", hWnd, window.Name);
+                logger.LogTrace("Pending teardown check of {hWnd} \"{name}\"", hWnd, window.Name);
 #endif
 
                 toRemove.Add(window);
               }
 
-              _windows.Remove(hWnd);
-              foreach (Window window in toRemove) windows.Remove(window);
+              foreach (Window window in toRemove) {
+#if DEBUG
+                ScheduleTeardownCheck(logger, windows, window);
+#else
+                ScheduleTeardownCheck(windows, window);
+#endif
+              }
             } else {
               foreach (Window window in windows.Where(window => window.HWnd.Equals(hWnd))) {
                 if (window.IsInteresting != isInteresting) {
@@ -657,6 +695,75 @@ namespace Spakov.TermBar.Models {
     private static BOOL WndEnumProc(HWND hWnd, LPARAM lParam) {
       hWnds.Add(hWnd);
       return true;
+    }
+
+    /// <summary>
+    /// Schedules a teardown check of <paramref name="window"/> from the window
+    /// list.
+    /// </summary>
+    /// <remarks>If the teardown check passes, we schedule removal of the
+    /// window.</remarks>
+#if DEBUG
+    /// <param name="logger">An <see cref="ILogger"/>.</param>
+#endif
+    /// <param name="window">A <see cref="Window"/>.</param>
+#if DEBUG
+    private static async void ScheduleTeardownCheck(ILogger logger, ObservableCollection<Window> windows, Window window) {
+#else
+    private static async void ScheduleTeardownCheck(ObservableCollection<Window> windows, Window window) {
+#endif
+      CancellationTokenSource cts = new();
+
+      pendingRemovals[window.HWnd] = cts;
+
+      try {
+        await Task.Delay(50, cts.Token);
+
+        pendingRemovals.Remove(window.HWnd);
+
+        if (!PInvoke.IsWindow(window.HWnd)) {
+#if DEBUG
+          logger.LogTrace("Pending removal of {hWnd} \"{name}\"", window.HWnd, window.Name);
+
+          ScheduleRemoval(logger, windows, window);
+#else
+          ScheduleRemoval(windows, window);
+#endif
+        } else {
+#if DEBUG
+          logger.LogTrace("Teardown check failed, keeping {hWnd} \"{name}\"", window.HWnd, window.Name);
+#endif
+        }
+      } catch (TaskCanceledException) { }
+    }
+
+    /// <summary>
+    /// Schedules removal of <paramref name="window"/> from the window list.
+    /// </summary>
+#if DEBUG
+    /// <param name="logger">An <see cref="ILogger"/>.</param>
+#endif
+    /// <param name="window">A <see cref="Window"/>.</param>
+#if DEBUG
+    private static async void ScheduleRemoval(ILogger logger, ObservableCollection<Window> windows, Window window) {
+#else
+    private static async void ScheduleRemoval(ObservableCollection<Window> windows, Window window) {
+#endif
+      CancellationTokenSource cts = new();
+
+      pendingRemovals[window.HWnd] = cts;
+
+      try {
+        await Task.Delay(50, cts.Token);
+
+        _windows.Remove(window.HWnd);
+        windows.Remove(window);
+        pendingRemovals.Remove(window.HWnd);
+
+#if DEBUG
+        logger.LogDebug("No longer tracking window {hWnd} \"{name}\"", window.HWnd, window.Name);
+#endif
+      } catch (TaskCanceledException) { }
     }
   }
 }
