@@ -34,9 +34,16 @@ namespace Spakov.TermBar.Views.Windows {
     /// <param name="config">A <see cref="Configuration.Json.TermBar"/>.</param>
     internal TermBarWindow(Configuration.Json.TermBar config) : base(config) {
 #if DEBUG
-      using ILoggerFactory factory = LoggerFactory.Create(
+      ILoggerFactory factory = LoggerFactory.Create(
         builder => {
-          builder.AddDebug();
+          builder.AddFile(options => {
+            options.RootPath = AppContext.BaseDirectory;
+            options.BasePath = "Logs";
+            options.FileAccessMode = Karambolo.Extensions.Logging.File.LogFileAccessMode.KeepOpenAndAutoFlush;
+            options.Files = [
+              new Karambolo.Extensions.Logging.File.LogFileOptions() { Path = $"{nameof(TermBarWindow)}.log" }
+            ];
+          });
           builder.SetMinimumLevel(logLevel);
         }
       );

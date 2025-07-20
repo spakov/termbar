@@ -81,9 +81,16 @@ namespace Spakov.TermBar.ViewModels.Modules.Volume {
     /// </summary>
     public VolumeViewModel(Configuration.Json.Modules.Volume config) {
 #if DEBUG
-      using ILoggerFactory factory = LoggerFactory.Create(
+      ILoggerFactory factory = LoggerFactory.Create(
         builder => {
-          builder.AddDebug();
+          builder.AddFile(options => {
+            options.RootPath = AppContext.BaseDirectory;
+            options.BasePath = "Logs";
+            options.FileAccessMode = Karambolo.Extensions.Logging.File.LogFileAccessMode.KeepOpenAndAutoFlush;
+            options.Files = [
+              new Karambolo.Extensions.Logging.File.LogFileOptions() { Path = $"{nameof(VolumeViewModel)}.log" }
+            ];
+          });
           builder.SetMinimumLevel(logLevel);
         }
       );

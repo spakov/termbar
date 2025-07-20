@@ -22,7 +22,7 @@ namespace Spakov.TermBar {
   /// </summary>
   public partial class App : Application {
 #if DEBUG
-    internal static readonly LogLevel logLevel = LogLevel.Debug;
+    internal static readonly LogLevel logLevel = LogLevel.Trace;
 #endif
 
     private static ResourceLoader? resourceLoader;

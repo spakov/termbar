@@ -1,8 +1,10 @@
 ﻿#if DEBUG
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 #endif
 using Microsoft.UI.Dispatching;
 using Spakov.TermBar.Configuration.Json.Modules;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -99,9 +101,16 @@ namespace Spakov.TermBar.Models {
     /// </summary>
     internal WindowList(DispatcherQueue dispatcherQueue) {
 #if DEBUG
-      using ILoggerFactory factory = LoggerFactory.Create(
+      ILoggerFactory factory = LoggerFactory.Create(
         builder => {
-          builder.AddDebug();
+          builder.AddFile(options => {
+            options.RootPath = AppContext.BaseDirectory;
+            options.BasePath = "Logs";
+            options.FileAccessMode = Karambolo.Extensions.Logging.File.LogFileAccessMode.KeepOpenAndAutoFlush;
+            options.Files = [
+              new Karambolo.Extensions.Logging.File.LogFileOptions() { Path = $"{nameof(WindowList)}.log" }
+            ];
+          });
           builder.SetMinimumLevel(logLevel);
         }
       );

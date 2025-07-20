@@ -1,9 +1,9 @@
 ﻿#if DEBUG
-using CommunityToolkit.WinUI;
 using Microsoft.Extensions.Logging;
 #endif
 using Spakov.TermBar.Models;
 using Spakov.TermBar.Views.Modules.WindowBar;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -109,9 +109,16 @@ namespace Spakov.TermBar.ViewModels.Modules.WindowBar {
     /// path="/param[@name='moduleConfig']"/></param>
     internal WindowBarViewModel(WindowBarView windowBarView, Configuration.Json.TermBar config, Configuration.Json.Modules.WindowBar moduleConfig) {
 #if DEBUG
-      using ILoggerFactory factory = LoggerFactory.Create(
+      ILoggerFactory factory = LoggerFactory.Create(
         builder => {
-          builder.AddDebug();
+          builder.AddFile(options => {
+            options.RootPath = AppContext.BaseDirectory;
+            options.BasePath = "Logs";
+            options.FileAccessMode = Karambolo.Extensions.Logging.File.LogFileAccessMode.KeepOpenAndAutoFlush;
+            options.Files = [
+              new Karambolo.Extensions.Logging.File.LogFileOptions() { Path = $"{nameof(WindowBarViewModel)}.log" }
+            ];
+          });
           builder.SetMinimumLevel(logLevel);
         }
       );

@@ -87,9 +87,16 @@ namespace Spakov.TermBar.Views.Windows {
     /// <param name="child">A child element to present in the window.</param>
     protected Window(Configuration.Json.TermBar? config, UIElement? child = null) {
 #if DEBUG
-      using ILoggerFactory factory = LoggerFactory.Create(
+      ILoggerFactory factory = LoggerFactory.Create(
         builder => {
-          builder.AddDebug();
+          builder.AddFile(options => {
+            options.RootPath = AppContext.BaseDirectory;
+            options.BasePath = "Logs";
+            options.FileAccessMode = Karambolo.Extensions.Logging.File.LogFileAccessMode.KeepOpenAndAutoFlush;
+            options.Files = [
+              new Karambolo.Extensions.Logging.File.LogFileOptions() { Path = $"{nameof(Window)}.log" }
+            ];
+          });
           builder.SetMinimumLevel(logLevel);
         }
       );

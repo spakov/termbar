@@ -126,9 +126,16 @@ namespace Spakov.TermBar.WindowManagement.Windows {
     /// <param name="content">The content to present in the window.</param>
     internal EphemeralWindow(Configuration.Json.TermBar config, int requestedLeft, int requestedTop, UIElement content) : base(config.Display!, config) {
 #if DEBUG
-      using ILoggerFactory factory = LoggerFactory.Create(
+      ILoggerFactory factory = LoggerFactory.Create(
         builder => {
-          builder.AddDebug();
+          builder.AddFile(options => {
+            options.RootPath = AppContext.BaseDirectory;
+            options.BasePath = "Logs";
+            options.FileAccessMode = Karambolo.Extensions.Logging.File.LogFileAccessMode.KeepOpenAndAutoFlush;
+            options.Files = [
+              new Karambolo.Extensions.Logging.File.LogFileOptions() { Path = $"{nameof(EphemeralWindow)}.log" }
+            ];
+          });
           builder.SetMinimumLevel(logLevel);
         }
       );
