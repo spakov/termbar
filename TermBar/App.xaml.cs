@@ -194,6 +194,12 @@ namespace Spakov.TermBar {
     /// Invoked when the exception window is closing.
     /// </summary>
     private void ExceptionDialogWindow_Closing() {
+      bool isFatal = true;
+
+      if (exceptionView is not null) {
+        isFatal = exceptionView.IsFatal;
+      }
+
       if (exceptionDialogWindow is not null) {
         exceptionDialogWindow.Closing -= ExceptionDialogWindow_Closing;
       }
@@ -201,7 +207,9 @@ namespace Spakov.TermBar {
       exceptionDialogWindow = null;
       exceptionView = null;
 
-      Current.Exit();
+      if (isFatal) {
+        Current.Exit();
+      }
     }
   }
 }

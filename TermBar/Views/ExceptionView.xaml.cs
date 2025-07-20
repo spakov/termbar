@@ -27,6 +27,11 @@ namespace Spakov.TermBar.Views {
 #pragma warning disable CA1822 // Mark members as static
 
     /// <summary>
+    /// Whether the exception is fatal.
+    /// </summary>
+    internal bool IsFatal { get; }
+
+    /// <summary>
     /// The likely cause of the exception.
     /// </summary>
     private string LikelyCause { get; set; }
@@ -49,6 +54,7 @@ namespace Spakov.TermBar.Views {
     internal ExceptionView(Configuration.Json.TermBar config, Exception e) : base(config) {
       this.config = config;
 
+      IsFatal = GetIsFatal(e);
       LikelyCause = GetLikelyCause(e);
 
       StringBuilder exception = new();
@@ -63,7 +69,7 @@ namespace Spakov.TermBar.Views {
       ApplyComputedStyles();
       InitializeComponent();
 
-      if (IsFatal(e)) {
+      if (IsFatal) {
         AProblemHasOccurred.Text = App.ResourceLoader.GetString("AProblemHasOccurred");
 
         Close.Visibility = Visibility.Collapsed;
@@ -97,7 +103,7 @@ namespace Spakov.TermBar.Views {
     /// <param name="e">An <see cref="System.Exception"/>.</param>
     /// <returns>Whether <paramref name="e"/> is fatal.</returns>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:Convert to conditional expression", Justification = "Maximize readability")]
-    private static bool IsFatal(Exception e) {
+    private static bool GetIsFatal(Exception e) {
       if (e is Win32Exception && e.StackTrace is not null && e.StackTrace.Contains("Launcher.LauncherView")) {
         return false;
       }
