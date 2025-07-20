@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spakov.TermBar.Models;
+using System;
 
 namespace Spakov.TermBar.WindowManagement.Windows {
   /// <summary>
@@ -94,7 +95,11 @@ namespace Spakov.TermBar.WindowManagement.Windows {
     /// <param name="e"><inheritdoc
     /// cref="System.ComponentModel.PropertyChangedEventHandler"
     /// path="/param[@name='e']"/></param>
-    private void TermBarWindow_RequestResize(object? sender, System.ComponentModel.PropertyChangedEventArgs e) => Width = (int) termBarWindow!.DesiredWidth;
+    private void TermBarWindow_RequestResize(object? sender, System.ComponentModel.PropertyChangedEventArgs e) {
+      if (!WindowList.IsPopupOpen) {
+        Width = (int) termBarWindow!.DesiredWidth;
+      }
+    }
 
     /// <summary>
     /// Determines the left location of the TermBar window.

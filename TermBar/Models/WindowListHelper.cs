@@ -20,8 +20,10 @@ namespace Spakov.TermBar.Models {
   /// Helper methods abstracting Win32 for <see cref="WindowList"/>.
   /// </summary>
   internal static class WindowListHelper {
+    private const string popupClass = "Microsoft.UI.Content.PopupWindowSiteBridge";
+
     private static readonly List<string> ignoredClassNames = [
-      "Microsoft.UI.Content.PopupWindowSiteBridge",
+      popupClass,
       "Progman",
       "PseudoConsoleWindow",
       "Tooltips_Class32",
@@ -31,8 +33,11 @@ namespace Spakov.TermBar.Models {
 
     private static WNDENUMPROC? wndEnumProc;
 
-    private static readonly List<HWND> hWnds = [];
+    private static readonly HashSet<HWND> hWnds = [];
     private static readonly Dictionary<HWND, CancellationTokenSource> pendingRemovals = [];
+
+    private static readonly int termBarProcessId = Environment.ProcessId;
+    private static readonly HashSet<HWND> popupHWnds = [];
 
     private static int windowNameLength;
     private static readonly char[] windowName = new char[256];
@@ -45,6 +50,11 @@ namespace Spakov.TermBar.Models {
 #pragma warning restore IDE0044 // Add readonly modifier
 
     private static readonly HashSet<HWND> _windows = [];
+
+    /// <summary>
+    /// Whether a TermBar popup is currently displayed.
+    /// </summary>
+    internal static bool IsPopupOpen => popupHWnds.Count != 0;
 
     /// <summary>
     /// Returns the windows to be managed.
@@ -350,6 +360,16 @@ namespace Spakov.TermBar.Models {
 #else
       bool isInteresting = WindowIsInteresting(hWnd);
 #endif
+
+      if (@event is PInvoke.EVENT_OBJECT_CREATE or PInvoke.EVENT_OBJECT_SHOW) {
+        name = new(windowClassName, 0, windowClassNameLength);
+
+        if (name == popupClass && windowProcessId == termBarProcessId) {
+          popupHWnds.Add(hWnd);
+        }
+      } else if (@event is PInvoke.EVENT_OBJECT_DESTROY or PInvoke.EVENT_OBJECT_HIDE) {
+        popupHWnds.Remove(hWnd);
+      }
 
       switch (@event) {
         case PInvoke.EVENT_OBJECT_CREATE:

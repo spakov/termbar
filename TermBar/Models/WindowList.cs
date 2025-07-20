@@ -56,6 +56,9 @@ namespace Spakov.TermBar.Models {
     /// </summary>
     public static ObservableCollection<Window> Windows => Instance!.windows;
 
+    /// <inheritdoc cref="WindowListHelper.IsPopupOpen"/>
+    public static bool IsPopupOpen => WindowListHelper.IsPopupOpen;
+
     /// <summary>
     /// The currently foregrounded window.
     /// </summary>
