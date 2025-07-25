@@ -3,105 +3,120 @@ using Spakov.TermBar.ViewModels.Modules.SystemDropdown;
 using System;
 using System.Diagnostics;
 
-namespace Spakov.TermBar.Views.Modules.SystemDropdown {
-  /// <summary>
-  /// The TermBar window dropdown.
-  /// </summary>
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1812:Class is apparently never instantiated", Justification = "Instantiated with Activator.CreateInstance()")]
-  internal sealed partial class SystemDropdownView : ModuleView {
-    private const string explorer = "explorer";
-    private const string msSettings = "ms-settings:";
-
-    private SystemDropdownViewModel? viewModel;
-
+namespace Spakov.TermBar.Views.Modules.SystemDropdown
+{
     /// <summary>
-    /// The viewmodel.
+    /// The TermBar system dropdown view.
     /// </summary>
-    private SystemDropdownViewModel? ViewModel {
-      get => viewModel;
-      set {
-        viewModel = value;
-        DataContext = viewModel;
-      }
-    }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1812:Class is apparently never instantiated", Justification = "Instantiated with Activator.CreateInstance()")]
+    internal sealed partial class SystemDropdownView : ModuleView
+    {
+        private const string Explorer = "explorer";
+        private const string MsSettings = "ms-settings:";
 
-    /// <summary>
-    /// <inheritdoc cref="ModuleView.ModuleView"
-    /// path="/param[@name='config']"/>
-    /// </summary>
-    private Configuration.Json.TermBar? Config { get; init; }
+        private SystemDropdownViewModel? _viewModel;
 
-    /// <summary>
-    /// The <see cref="Action{T}"/> to invoke when the user clicks a menu item.
-    /// </summary>
-    private Action<SystemDropdownMenuFlyoutItemView>? ClickAction { get; init; }
+        /// <summary>
+        /// The viewmodel.
+        /// </summary>
+        private SystemDropdownViewModel? ViewModel
+        {
+            get => _viewModel;
 
-    /// <summary>
-    /// Initializes a <see cref="SystemDropdownView"/>.
-    /// </summary>
-    /// <param name="config"><inheritdoc cref="Config"
-    /// path="/summary"/></param>
-    /// <param name="moduleConfig">The <see
-    /// cref="Configuration.Json.Modules.WindowBar"/> for this <see
-    /// cref="WindowBarView"/>.</param>
-    internal SystemDropdownView(Configuration.Json.TermBar config, Configuration.Json.Modules.SystemDropdown moduleConfig) : base(config, moduleConfig, skipColor: true) {
-      Config = config;
-      ClickAction = ItemClicked;
-      ViewModel = new SystemDropdownViewModel(config, moduleConfig);
-
-      InitializeComponent();
-    }
-
-    /// <summary>
-    /// Invoked when the user clicks a system dropdown menu item.
-    /// </summary>
-    /// <param name="item">The menu item that was clicked.</param>
-    private void ItemClicked(SystemDropdownMenuFlyoutItemView item) {
-      switch (item.Feature) {
-        case Configuration.Json.Modules.SystemDropdown.SystemDropdownFeatures.SystemSettings:
-          Process.Start(
-            new ProcessStartInfo() {
-              FileName = explorer,
-              Arguments = msSettings,
-              UseShellExecute = true
+            set
+            {
+                _viewModel = value;
+                DataContext = _viewModel;
             }
-          );
+        }
 
-          break;
+        /// <summary>
+        /// <inheritdoc cref="ModuleView.ModuleView"
+        /// path="/param[@name='config']"/>
+        /// </summary>
+        private Configuration.Json.TermBar? Config { get; init; }
 
-        case Configuration.Json.Modules.SystemDropdown.SystemDropdownFeatures.SignOut:
-          if (Shutdown.Initiate(Shutdown.ShutdownTypes.Logoff)) {
-            App.Current.Exit();
-          }
+        /// <summary>
+        /// The <see cref="Action{T}"/> to invoke when the user clicks a menu
+        /// item.
+        /// </summary>
+        private Action<SystemDropdownMenuFlyoutItemView>? ClickAction { get; init; }
 
-          break;
+        /// <summary>
+        /// Initializes a <see cref="SystemDropdownView"/>.
+        /// </summary>
+        /// <param name="config"><inheritdoc cref="Config"
+        /// path="/summary"/></param>
+        /// <param name="moduleConfig">The <see
+        /// cref="Configuration.Json.Modules.SystemDropdown"/> configuration
+        /// for this <see cref="SystemDropdownView"/>.</param>
+        internal SystemDropdownView(Configuration.Json.TermBar config, Configuration.Json.Modules.SystemDropdown moduleConfig) : base(config, moduleConfig, skipColor: true)
+        {
+            Config = config;
+            ClickAction = ItemClicked;
+            ViewModel = new SystemDropdownViewModel(config, moduleConfig);
 
-        case Configuration.Json.Modules.SystemDropdown.SystemDropdownFeatures.Lock:
-          Shutdown.Initiate(Shutdown.ShutdownTypes.Lock);
+            InitializeComponent();
+        }
 
-          break;
+        /// <summary>
+        /// Invoked when the user clicks a system dropdown menu item.
+        /// </summary>
+        /// <param name="item">The menu item that was clicked.</param>
+        private void ItemClicked(SystemDropdownMenuFlyoutItemView item)
+        {
+            switch (item.Feature)
+            {
+                case Configuration.Json.Modules.SystemDropdown.SystemDropdownFeature.SystemSettings:
+                    Process.Start(
+                        new ProcessStartInfo()
+                        {
+                            FileName = Explorer,
+                            Arguments = MsSettings,
+                            UseShellExecute = true
+                        }
+                    );
 
-        case Configuration.Json.Modules.SystemDropdown.SystemDropdownFeatures.Sleep:
-          Shutdown.Initiate(Shutdown.ShutdownTypes.Suspend);
+                    break;
 
-          break;
+                case Configuration.Json.Modules.SystemDropdown.SystemDropdownFeature.SignOut:
+                    if (Shutdown.Initiate(Shutdown.ShutdownType.Logoff))
+                    {
+                        App.Current.Exit();
+                    }
 
-        case Configuration.Json.Modules.SystemDropdown.SystemDropdownFeatures.ShutDown:
-          if (Shutdown.Initiate(Shutdown.ShutdownTypes.PowerOff)) {
-            App.Current.Exit();
-          } else {
-            throw new System.ComponentModel.Win32Exception(System.Runtime.InteropServices.Marshal.GetLastWin32Error());
-          }
+                    break;
 
-          break;
+                case Configuration.Json.Modules.SystemDropdown.SystemDropdownFeature.Lock:
+                    Shutdown.Initiate(Shutdown.ShutdownType.Lock);
 
-        case Configuration.Json.Modules.SystemDropdown.SystemDropdownFeatures.Restart:
-          if (Shutdown.Initiate(Shutdown.ShutdownTypes.Reboot)) {
-            App.Current.Exit();
-          }
+                    break;
 
-          break;
-      }
+                case Configuration.Json.Modules.SystemDropdown.SystemDropdownFeature.Sleep:
+                    Shutdown.Initiate(Shutdown.ShutdownType.Suspend);
+
+                    break;
+
+                case Configuration.Json.Modules.SystemDropdown.SystemDropdownFeature.ShutDown:
+                    if (Shutdown.Initiate(Shutdown.ShutdownType.PowerOff))
+                    {
+                        App.Current.Exit();
+                    }
+                    else
+                    {
+                        throw new System.ComponentModel.Win32Exception(System.Runtime.InteropServices.Marshal.GetLastWin32Error());
+                    }
+
+                    break;
+
+                case Configuration.Json.Modules.SystemDropdown.SystemDropdownFeature.Restart:
+                    if (Shutdown.Initiate(Shutdown.ShutdownType.Reboot))
+                    {
+                        App.Current.Exit();
+                    }
+
+                    break;
+            }
+        }
     }
-  }
 }

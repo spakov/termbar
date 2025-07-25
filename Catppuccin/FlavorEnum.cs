@@ -7,14 +7,16 @@
 /* </auto-generated>                                                         */
 /*****************************************************************************/
 
-namespace Spakov.Catppuccin {
-  /// <summary>
-  /// Catppuccin flavors.
-  /// </summary>
-  public enum FlavorEnum {
-    Latte,
-    Frappe,
-    Macchiato,
-    Mocha
-  }
+namespace Spakov.Catppuccin
+{
+    /// <summary>
+    /// Catppuccin flavors.
+    /// </summary>
+    public enum FlavorEnum
+    {
+        Latte,
+        Frappe,
+        Macchiato,
+        Mocha
+    }
 }

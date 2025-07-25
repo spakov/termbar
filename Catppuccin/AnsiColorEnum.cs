@@ -7,26 +7,28 @@
 /* </auto-generated>                                                         */
 /*****************************************************************************/
 
-namespace Spakov.Catppuccin {
-  /// <summary>
-  /// Catppuccin ANSI colors.
-  /// </summary>
-  public enum AnsiColorEnum {
-    Black,
-    Red,
-    Green,
-    Yellow,
-    Blue,
-    Magenta,
-    Cyan,
-    White,
-    BrightBlack,
-    BrightRed,
-    BrightGreen,
-    BrightYellow,
-    BrightBlue,
-    BrightMagenta,
-    BrightCyan,
-    BrightWhite
-  }
+namespace Spakov.Catppuccin
+{
+    /// <summary>
+    /// Catppuccin ANSI colors.
+    /// </summary>
+    public enum AnsiColorEnum
+    {
+        Black,
+        Red,
+        Green,
+        Yellow,
+        Blue,
+        Magenta,
+        Cyan,
+        White,
+        BrightBlack,
+        BrightRed,
+        BrightGreen,
+        BrightYellow,
+        BrightBlue,
+        BrightMagenta,
+        BrightCyan,
+        BrightWhite
+    }
 }

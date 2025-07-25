@@ -7,19 +7,21 @@
 /* </auto-generated>                                                         */
 /*****************************************************************************/
 
-namespace Spakov.Catppuccin {
-  /// <summary>
-  /// A Catppuccin palette.json flavor.
-  /// </summary>
-  public class Flavor {
+namespace Spakov.Catppuccin
+{
     /// <summary>
-    /// Flavor colors.
+    /// A Catppuccin palette.json flavor.
     /// </summary>
-    public required Colors Colors { get; set; }
+    public class Flavor
+    {
+        /// <summary>
+        /// Flavor colors.
+        /// </summary>
+        public required Colors Colors { get; set; }
 
-    /// <summary>
-    /// Flavor ANSI colors.
-    /// </summary>
-    public required AnsiColors AnsiColors { get; set; }
-  }
+        /// <summary>
+        /// Flavor ANSI colors.
+        /// </summary>
+        public required AnsiColors AnsiColors { get; set; }
+    }
 }

@@ -9,202 +9,211 @@ using System;
 /* </auto-generated>                                                         */
 /*****************************************************************************/
 
-namespace Spakov.Catppuccin {
-  /// <summary>
-  /// Catppuccin flavor colors in palette.json.
-  /// </summary>
-  public class Colors {
+namespace Spakov.Catppuccin
+{
     /// <summary>
-    /// Rosewater.
+    /// Catppuccin flavor colors in palette.json.
     /// </summary>
-    public required Color Rosewater { get; set; }
+    public class Colors
+    {
+        /// <summary>
+        /// Rosewater.
+        /// </summary>
+        public required Color Rosewater { get; set; }
 
-    /// <summary>
-    /// Flamingo.
-    /// </summary>
-    public required Color Flamingo { get; set; }
+        /// <summary>
+        /// Flamingo.
+        /// </summary>
+        public required Color Flamingo { get; set; }
 
-    /// <summary>
-    /// Pink.
-    /// </summary>
-    public required Color Pink { get; set; }
+        /// <summary>
+        /// Pink.
+        /// </summary>
+        public required Color Pink { get; set; }
 
-    /// <summary>
-    /// Mauve.
-    /// </summary>
-    public required Color Mauve { get; set; }
+        /// <summary>
+        /// Mauve.
+        /// </summary>
+        public required Color Mauve { get; set; }
 
-    /// <summary>
-    /// Red.
-    /// </summary>
-    public required Color Red { get; set; }
+        /// <summary>
+        /// Red.
+        /// </summary>
+        public required Color Red { get; set; }
 
-    /// <summary>
-    /// Maroon.
-    /// </summary>
-    public required Color Maroon { get; set; }
+        /// <summary>
+        /// Maroon.
+        /// </summary>
+        public required Color Maroon { get; set; }
 
-    /// <summary>
-    /// Peach.
-    /// </summary>
-    public required Color Peach { get; set; }
+        /// <summary>
+        /// Peach.
+        /// </summary>
+        public required Color Peach { get; set; }
 
-    /// <summary>
-    /// Yellow.
-    /// </summary>
-    public required Color Yellow { get; set; }
+        /// <summary>
+        /// Yellow.
+        /// </summary>
+        public required Color Yellow { get; set; }
 
-    /// <summary>
-    /// Green.
-    /// </summary>
-    public required Color Green { get; set; }
+        /// <summary>
+        /// Green.
+        /// </summary>
+        public required Color Green { get; set; }
 
-    /// <summary>
-    /// Teal.
-    /// </summary>
-    public required Color Teal { get; set; }
+        /// <summary>
+        /// Teal.
+        /// </summary>
+        public required Color Teal { get; set; }
 
-    /// <summary>
-    /// Sky.
-    /// </summary>
-    public required Color Sky { get; set; }
+        /// <summary>
+        /// Sky.
+        /// </summary>
+        public required Color Sky { get; set; }
 
-    /// <summary>
-    /// Sapphire.
-    /// </summary>
-    public required Color Sapphire { get; set; }
+        /// <summary>
+        /// Sapphire.
+        /// </summary>
+        public required Color Sapphire { get; set; }
 
-    /// <summary>
-    /// Blue.
-    /// </summary>
-    public required Color Blue { get; set; }
+        /// <summary>
+        /// Blue.
+        /// </summary>
+        public required Color Blue { get; set; }
 
-    /// <summary>
-    /// Lavender.
-    /// </summary>
-    public required Color Lavender { get; set; }
+        /// <summary>
+        /// Lavender.
+        /// </summary>
+        public required Color Lavender { get; set; }
 
-    /// <summary>
-    /// Text.
-    /// </summary>
-    public required Color Text { get; set; }
+        /// <summary>
+        /// Text.
+        /// </summary>
+        public required Color Text { get; set; }
 
-    /// <summary>
-    /// Subtext 1.
-    /// </summary>
-    public required Color Subtext1 { get; set; }
+        /// <summary>
+        /// Subtext 1.
+        /// </summary>
+        public required Color Subtext1 { get; set; }
 
-    /// <summary>
-    /// Subtext 0.
-    /// </summary>
-    public required Color Subtext0 { get; set; }
+        /// <summary>
+        /// Subtext 0.
+        /// </summary>
+        public required Color Subtext0 { get; set; }
 
-    /// <summary>
-    /// Overlay 2.
-    /// </summary>
-    public required Color Overlay2 { get; set; }
+        /// <summary>
+        /// Overlay 2.
+        /// </summary>
+        public required Color Overlay2 { get; set; }
 
-    /// <summary>
-    /// Overlay 1.
-    /// </summary>
-    public required Color Overlay1 { get; set; }
+        /// <summary>
+        /// Overlay 1.
+        /// </summary>
+        public required Color Overlay1 { get; set; }
 
-    /// <summary>
-    /// Overlay 0.
-    /// </summary>
-    public required Color Overlay0 { get; set; }
+        /// <summary>
+        /// Overlay 0.
+        /// </summary>
+        public required Color Overlay0 { get; set; }
 
-    /// <summary>
-    /// Surface 2.
-    /// </summary>
-    public required Color Surface2 { get; set; }
+        /// <summary>
+        /// Surface 2.
+        /// </summary>
+        public required Color Surface2 { get; set; }
 
-    /// <summary>
-    /// Surface 1.
-    /// </summary>
-    public required Color Surface1 { get; set; }
+        /// <summary>
+        /// Surface 1.
+        /// </summary>
+        public required Color Surface1 { get; set; }
 
-    /// <summary>
-    /// Surface 0.
-    /// </summary>
-    public required Color Surface0 { get; set; }
+        /// <summary>
+        /// Surface 0.
+        /// </summary>
+        public required Color Surface0 { get; set; }
 
-    /// <summary>
-    /// Base.
-    /// </summary>
-    public required Color Base { get; set; }
+        /// <summary>
+        /// Base.
+        /// </summary>
+        public required Color Base { get; set; }
 
-    /// <summary>
-    /// Mantle.
-    /// </summary>
-    public required Color Mantle { get; set; }
+        /// <summary>
+        /// Mantle.
+        /// </summary>
+        public required Color Mantle { get; set; }
 
-    /// <summary>
-    /// Crust.
-    /// </summary>
-    public required Color Crust { get; set; }
+        /// <summary>
+        /// Crust.
+        /// </summary>
+        public required Color Crust { get; set; }
 
-    /// <summary>
-    /// Allows looking up a <see cref="ColorEnum"/> by <paramref name="red"/>,
-    /// <paramref name="green"/>, and <paramref name="blue"/>.
-    /// </summary>
-    /// <param name="red">The color's red component.</param>
-    /// <param name="green">The color's green component.</param>
-    /// <param name="blue">The color's blue component.</param>
-    /// <returns>A <see cref="ColorEnum"/>, or <see langword="null"/> if there
-    /// is no match.</returns>
-    public ColorEnum? FromRGB(int red, int green, int blue) {
-      foreach (int colorEnumIndex in Enum.GetValues(typeof(ColorEnum))) {
-        if (
-          this[(ColorEnum) colorEnumIndex].Rgb.Red == red
-          && this[(ColorEnum) colorEnumIndex].Rgb.Green == green
-          && this[(ColorEnum) colorEnumIndex].Rgb.Blue == blue
-        ) {
-          return (ColorEnum) colorEnumIndex;
+        /// <summary>
+        /// Allows looking up a <see cref="ColorEnum"/> by <paramref
+        /// name="red"/>, <paramref name="green"/>, and <paramref
+        /// name="blue"/>.
+        /// </summary>
+        /// <param name="red">The color's red component.</param>
+        /// <param name="green">The color's green component.</param>
+        /// <param name="blue">The color's blue component.</param>
+        /// <returns>A <see cref="ColorEnum"/>, or <see langword="null"/> if
+        /// there is no match.</returns>
+        public ColorEnum? FromRGB(int red, int green, int blue)
+        {
+            foreach (int colorEnumIndex in Enum.GetValues(typeof(ColorEnum)))
+            {
+                if (
+                    this[(ColorEnum)colorEnumIndex].Rgb.Red == red
+                    && this[(ColorEnum)colorEnumIndex].Rgb.Green == green
+                    && this[(ColorEnum)colorEnumIndex].Rgb.Blue == blue
+                )
+                {
+                    return (ColorEnum)colorEnumIndex;
+                }
+            }
+
+            return null;
         }
-      }
 
-      return null;
+        /// <summary>
+        /// Allows indexing of the color using <paramref name="color"/>.
+        /// </summary>
+        /// <param name="color">The color.</param>
+        /// <returns>A <see cref="Color"/>.</returns>
+        /// <exception cref="IndexOutOfRangeException"></exception>
+        public Color this[ColorEnum color]
+        {
+            get
+            {
+                return color switch
+                {
+                    ColorEnum.Rosewater => Rosewater,
+                    ColorEnum.Flamingo => Flamingo,
+                    ColorEnum.Pink => Pink,
+                    ColorEnum.Mauve => Mauve,
+                    ColorEnum.Red => Red,
+                    ColorEnum.Maroon => Maroon,
+                    ColorEnum.Peach => Peach,
+                    ColorEnum.Yellow => Yellow,
+                    ColorEnum.Green => Green,
+                    ColorEnum.Teal => Teal,
+                    ColorEnum.Sky => Sky,
+                    ColorEnum.Sapphire => Sapphire,
+                    ColorEnum.Blue => Blue,
+                    ColorEnum.Lavender => Lavender,
+                    ColorEnum.Text => Text,
+                    ColorEnum.Subtext1 => Subtext1,
+                    ColorEnum.Subtext0 => Subtext0,
+                    ColorEnum.Overlay2 => Overlay2,
+                    ColorEnum.Overlay1 => Overlay1,
+                    ColorEnum.Overlay0 => Overlay0,
+                    ColorEnum.Surface2 => Surface2,
+                    ColorEnum.Surface1 => Surface1,
+                    ColorEnum.Surface0 => Surface0,
+                    ColorEnum.Base => Base,
+                    ColorEnum.Mantle => Mantle,
+                    ColorEnum.Crust => Crust,
+                    _ => throw new IndexOutOfRangeException()
+                };
+            }
+        }
     }
-
-    /// <summary>
-    /// Allows indexing of the color using <paramref name="color"/>.
-    /// </summary>
-    /// <param name="color">The color.</param>
-    /// <returns>A <see cref="Color"/>.</returns>
-    /// <exception cref="IndexOutOfRangeException"></exception>
-    public Color this[ColorEnum color] {
-      get {
-        return color switch {
-          ColorEnum.Rosewater => Rosewater,
-          ColorEnum.Flamingo => Flamingo,
-          ColorEnum.Pink => Pink,
-          ColorEnum.Mauve => Mauve,
-          ColorEnum.Red => Red,
-          ColorEnum.Maroon => Maroon,
-          ColorEnum.Peach => Peach,
-          ColorEnum.Yellow => Yellow,
-          ColorEnum.Green => Green,
-          ColorEnum.Teal => Teal,
-          ColorEnum.Sky => Sky,
-          ColorEnum.Sapphire => Sapphire,
-          ColorEnum.Blue => Blue,
-          ColorEnum.Lavender => Lavender,
-          ColorEnum.Text => Text,
-          ColorEnum.Subtext1 => Subtext1,
-          ColorEnum.Subtext0 => Subtext0,
-          ColorEnum.Overlay2 => Overlay2,
-          ColorEnum.Overlay1 => Overlay1,
-          ColorEnum.Overlay0 => Overlay0,
-          ColorEnum.Surface2 => Surface2,
-          ColorEnum.Surface1 => Surface1,
-          ColorEnum.Surface0 => Surface0,
-          ColorEnum.Base => Base,
-          ColorEnum.Mantle => Mantle,
-          ColorEnum.Crust => Crust,
-          _ => throw new IndexOutOfRangeException()
-        };
-      }
-    }
-  }
 }

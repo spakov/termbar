@@ -9,81 +9,87 @@ using System.Collections.Generic;
 /* </auto-generated>                                                         */
 /*****************************************************************************/
 
-namespace Spakov.Catppuccin {
-  /// <summary>
-  /// A Catppuccin flavor color in palette.json.
-  /// </summary>
-  public class Color {
+namespace Spakov.Catppuccin
+{
     /// <summary>
-    /// The color name.
+    /// A Catppuccin flavor color in palette.json.
     /// </summary>
-    public required string Name { get; set; }
+    public class Color
+    {
+        /// <summary>
+        /// The color name.
+        /// </summary>
+        public required string Name { get; set; }
 
-    /// <summary>
-    /// The color's RGB triplet.
-    /// </summary>
-    public required Rgb Rgb { get; set; }
+        /// <summary>
+        /// The color's RGB triplet.
+        /// </summary>
+        public required Rgb Rgb { get; set; }
 
-    private static readonly Dictionary<Rgb, System.Drawing.Color> sdColorCache = [];
+        private static readonly Dictionary<Rgb, System.Drawing.Color> s_sdColorCache = [];
 
-    /// <summary>
-    /// A <see cref="System.Drawing.Color"/> for the color.
-    /// </summary>
-    public System.Drawing.Color SDColor => SDColorCache(Rgb);
+        /// <summary>
+        /// A <see cref="System.Drawing.Color"/> for the color.
+        /// </summary>
+        public System.Drawing.Color SDColor => SDColorCache(Rgb);
 
-    /// <summary>
-    /// Caches and returns a <see cref="System.Drawing.Color"/> based on
-    /// <paramref name="rgb"/>.
-    /// </summary>
-    /// <param name="rgb">The color for which to return a <see
-    /// cref="System.Drawing.Color"/>.</param>
-    /// <returns>A <see cref="System.Drawing.Color"/>.</returns>
-    private static System.Drawing.Color SDColorCache(Rgb rgb) {
-      return sdColorCache.TryGetValue(rgb, out System.Drawing.Color value)
-        ? value
-        : (sdColorCache[rgb] = System.Drawing.Color.FromArgb(0xff, rgb.Red, rgb.Green, rgb.Blue));
+        /// <summary>
+        /// Caches and returns a <see cref="System.Drawing.Color"/> based on
+        /// <paramref name="rgb"/>.
+        /// </summary>
+        /// <param name="rgb">The color for which to return a <see
+        /// cref="System.Drawing.Color"/>.</param>
+        /// <returns>A <see cref="System.Drawing.Color"/>.</returns>
+        private static System.Drawing.Color SDColorCache(Rgb rgb)
+        {
+            return s_sdColorCache.TryGetValue(rgb, out System.Drawing.Color value)
+                ? value
+                : (s_sdColorCache[rgb] = System.Drawing.Color.FromArgb(0xff, rgb.Red, rgb.Green, rgb.Blue));
+        }
+
+        private static readonly Dictionary<Rgb, Windows.UI.Color> s_wuiColorCache = [];
+
+        /// <summary>
+        /// A <see cref="Windows.UI.Color"/> for the color.
+        /// </summary>
+        public Windows.UI.Color WUIColor => WUIColorCache(Rgb);
+
+        /// <summary>
+        /// Caches and returns a <see cref="Windows.UI.Color"/> based on
+        /// <paramref name="rgb"/>.
+        /// </summary>
+        /// <param name="rgb">The color for which to return a <see
+        /// cref="Windows.UI.Color"/>.</param>
+        /// <returns>A <see cref="Windows.UI.Color"/>.</returns>
+        private static Windows.UI.Color WUIColorCache(Rgb rgb)
+        {
+            return s_wuiColorCache.TryGetValue(rgb, out Windows.UI.Color value)
+                ? value
+                : (s_wuiColorCache[rgb] = new Windows.UI.Color() { A = 0xff, R = (byte)rgb.Red, G = (byte)rgb.Green, B = (byte)rgb.Blue });
+        }
+
+        private static readonly Dictionary<Rgb, Microsoft.UI.Xaml.Media.SolidColorBrush> s_solidColorBrushCache = [];
+
+        /// <summary>
+        /// A <see cref="Microsoft.UI.Xaml.Media.SolidColorBrush"/> for the
+        /// color.
+        /// </summary>
+        public Microsoft.UI.Xaml.Media.SolidColorBrush SolidColorBrush => SolidColorBrushCache(Rgb);
+
+        /// <summary>
+        /// Caches and returns a <see
+        /// cref="Microsoft.UI.Xaml.Media.SolidColorBrush"/> based on <paramref
+        /// name="rgb"/>.
+        /// </summary>
+        /// <param name="rgb">The color for which to return a <see
+        /// cref="Microsoft.UI.Xaml.Media.SolidColorBrush"/>.</param>
+        /// <returns>A <see
+        /// cref="Microsoft.UI.Xaml.Media.SolidColorBrush"/>.</returns>
+        private static Microsoft.UI.Xaml.Media.SolidColorBrush SolidColorBrushCache(Rgb rgb)
+        {
+            return s_solidColorBrushCache.TryGetValue(rgb, out Microsoft.UI.Xaml.Media.SolidColorBrush? value)
+                ? value
+                : (s_solidColorBrushCache[rgb] = new Microsoft.UI.Xaml.Media.SolidColorBrush(WUIColorCache(rgb)));
+        }
     }
-
-    private static readonly Dictionary<Rgb, Windows.UI.Color> wuiColorCache = [];
-
-    /// <summary>
-    /// A <see cref="Windows.UI.Color"/> for the color.
-    /// </summary>
-    public Windows.UI.Color WUIColor => WUIColorCache(Rgb);
-
-    /// <summary>
-    /// Caches and returns a <see cref="Windows.UI.Color"/> based on <paramref
-    /// name="rgb"/>.
-    /// </summary>
-    /// <param name="rgb">The color for which to return a <see
-    /// cref="Windows.UI.Color"/>.</param>
-    /// <returns>A <see cref="Windows.UI.Color"/>.</returns>
-    private static Windows.UI.Color WUIColorCache(Rgb rgb) {
-      return wuiColorCache.TryGetValue(rgb, out Windows.UI.Color value)
-        ? value
-        : (wuiColorCache[rgb] = new Windows.UI.Color() { A = 0xff, R = (byte) rgb.Red, G = (byte) rgb.Green, B = (byte) rgb.Blue });
-    }
-
-    private static readonly Dictionary<Rgb, Microsoft.UI.Xaml.Media.SolidColorBrush> solidColorBrushCache = [];
-
-    /// <summary>
-    /// A <see cref="Microsoft.UI.Xaml.Media.SolidColorBrush"/> for the color.
-    /// </summary>
-    public Microsoft.UI.Xaml.Media.SolidColorBrush SolidColorBrush => SolidColorBrushCache(Rgb);
-
-    /// <summary>
-    /// Caches and returns a <see
-    /// cref="Microsoft.UI.Xaml.Media.SolidColorBrush"/> based on <paramref
-    /// name="rgb"/>.
-    /// </summary>
-    /// <param name="rgb">The color for which to return a <see
-    /// cref="Microsoft.UI.Xaml.Media.SolidColorBrush"/>.</param>
-    /// <returns>A <see
-    /// cref="Microsoft.UI.Xaml.Media.SolidColorBrush"/>.</returns>
-    private static Microsoft.UI.Xaml.Media.SolidColorBrush SolidColorBrushCache(Rgb rgb) {
-      return solidColorBrushCache.TryGetValue(rgb, out Microsoft.UI.Xaml.Media.SolidColorBrush? value)
-        ? value
-        : (solidColorBrushCache[rgb] = new Microsoft.UI.Xaml.Media.SolidColorBrush(WUIColorCache(rgb)));
-    }
-  }
 }

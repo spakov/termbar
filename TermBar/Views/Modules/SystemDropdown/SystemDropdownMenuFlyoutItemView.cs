@@ -1,40 +1,46 @@
 using Microsoft.UI.Xaml.Controls;
 using Spakov.TermBar.ViewModels.Modules.SystemDropdown;
 
-namespace Spakov.TermBar.Views.Modules.SystemDropdown {
-  internal sealed partial class SystemDropdownMenuFlyoutItemView : MenuFlyoutItem {
-    private SystemDropdownItemViewModel? viewModel;
-
-    private SystemDropdownItemViewModel? ViewModel {
-      get => viewModel;
-
-      set {
-        viewModel = value;
-        DataContext = viewModel;
-      }
-    }
-
+namespace Spakov.TermBar.Views.Modules.SystemDropdown
+{
     /// <summary>
-    /// The item's <see
-    /// cref="Configuration.Json.Modules.SystemDropdown.SystemDropdownFeatures"
-    /// />.
+    /// A system dropdown menu item view.
     /// </summary>
-    internal Configuration.Json.Modules.SystemDropdown.SystemDropdownFeatures Feature { get; private set; }
+    internal sealed partial class SystemDropdownMenuFlyoutItemView : MenuFlyoutItem
+    {
+        private SystemDropdownItemViewModel? _viewModel;
 
-    /// <summary>
-    /// Initializes a <see cref="SystemDropdownMenuFlyoutItemView"/>.
-    /// </summary>
-    /// <param name="config"><inheritdoc cref="ModuleView.ModuleView"
-    /// path="/param[@name='config']"/></param>
-    /// <param name="moduleConfig">The <see
-    /// cref="Configuration.Json.Modules.SystemDropdown"/> for this
-    /// <see cref="SystemDropdownMenuFlyoutItemView"/>.</param>
-    /// <param name="feature"><inheritdoc cref="Feature"
-    /// path="/summary"/></param>
-    internal SystemDropdownMenuFlyoutItemView(Configuration.Json.TermBar config, Configuration.Json.Modules.SystemDropdown moduleConfig, Configuration.Json.Modules.SystemDropdown.SystemDropdownFeatures feature) {
-      Feature = feature;
+        /// <summary>
+        /// The viewmodel.
+        /// </summary>
+        private SystemDropdownItemViewModel? ViewModel
+        {
+            get => _viewModel;
 
-      ViewModel = new SystemDropdownItemViewModel(config, moduleConfig, feature);
+            set
+            {
+                _viewModel = value;
+                DataContext = _viewModel;
+            }
+        }
+
+        /// <summary>
+        /// The item's <see
+        /// cref="Configuration.Json.Modules.SystemDropdown.SystemDropdownFeature"
+        /// />.
+        /// </summary>
+        internal Configuration.Json.Modules.SystemDropdown.SystemDropdownFeature Feature { get; private set; }
+
+        /// <summary>
+        /// Initializes a <see cref="SystemDropdownMenuFlyoutItemView"/>.
+        /// </summary>
+        /// <param name="feature"><inheritdoc cref="Feature"
+        /// path="/summary"/></param>
+        internal SystemDropdownMenuFlyoutItemView(Configuration.Json.Modules.SystemDropdown.SystemDropdownFeature feature)
+        {
+            Feature = feature;
+
+            ViewModel = new SystemDropdownItemViewModel(feature);
+        }
     }
-  }
 }

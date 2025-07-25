@@ -32,7 +32,7 @@
               "Background": {
                 "description": "The Catppuccin color to use for the background.",
                 "default": "Crust",
-                "$ref": "#/$defs/colorEnum"
+                "$ref": "#/$defs/s_colorEnum"
               },
               "CornerRadius": {
                 "description": "The corner radius to apply to windows.",
@@ -54,37 +54,37 @@
               "TextColor": {
                 "description": "The Catppuccin color to use for text.",
                 "default": "Text",
-                "$ref": "#/$defs/colorEnum"
+                "$ref": "#/$defs/s_colorEnum"
               },
               "AccentBackground": {
                 "description": "The Catppuccin color to use for the background of accent items. Set to null to use the default system behavior.",
                 "default": "Mantle",
-                "$ref": "#/$defs/nullableColorEnum"
+                "$ref": "#/$defs/s_nullableColorEnum"
               },
               "AccentColor": {
                 "description": "The Catppuccin color to use as an accent. Set to null to use the default system behavior.",
                 "default": "Mauve",
-                "$ref": "#/$defs/nullableColorEnum"
+                "$ref": "#/$defs/s_nullableColorEnum"
               },
               "SelectedBackground": {
                 "description": "The Catppuccin color to use for the background of selected items. Set to null to use the default system behavior.",
                 "default": "Surface0",
-                "$ref": "#/$defs/nullableColorEnum"
+                "$ref": "#/$defs/s_nullableColorEnum"
               },
               "SelectedColor": {
                 "description": "The Catppuccin color to use for selected items. Set to null to use the default system behavior.",
                 "default": "Mauve",
-                "$ref": "#/$defs/nullableColorEnum"
+                "$ref": "#/$defs/s_nullableColorEnum"
               },
               "ClickedBackground": {
                 "description": "The Catppuccin color to use for the background of clicked items. Set to null to use the default system behavior.",
                 "default": "Surface1",
-                "$ref": "#/$defs/nullableColorEnum"
+                "$ref": "#/$defs/s_nullableColorEnum"
               },
               "ClickedColor": {
                 "description": "The Catppuccin color to use for clicked items. Set to null to use the default system behavior.",
                 "default": "Subtext1",
-                "$ref": "#/$defs/nullableColorEnum"
+                "$ref": "#/$defs/s_nullableColorEnum"
               },
               "WindowList": {
                 "description": "The window list configuration.",
@@ -127,7 +127,7 @@
                         "IconColor": {
                           "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module’s AccentColor.",
                           "default": null,
-                          "$ref": "#/$defs/nullableColorEnum"
+                          "$ref": "#/$defs/s_nullableColorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the window icon. Set to null to fall back to the window list module’s Icon.",
@@ -151,7 +151,7 @@
                               "IconColor": {
                                 "description": "The Catppuccin color to use for the window icon. Set to null to fall back to the window list module’s AccentColor.",
                                 "default": null,
-                                "$ref": "#/$defs/nullableColorEnum"
+                                "$ref": "#/$defs/s_nullableColorEnum"
                               },
                               "Icon": {
                                 "description": "The text to use as the window icon. Set to null to fall back to the window list module’s Icon.",
@@ -241,7 +241,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the clock icon.",
                           "default": "Sapphire",
-                          "$ref": "#/$defs/colorEnum"
+                          "$ref": "#/$defs/s_colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the clock icon.",
@@ -316,7 +316,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the CPU icon.",
                           "default": "Pink",
-                          "$ref": "#/$defs/colorEnum"
+                          "$ref": "#/$defs/s_colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the CPU icon.",
@@ -367,7 +367,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the GPU icon.",
                           "default": "Teal",
-                          "$ref": "#/$defs/colorEnum"
+                          "$ref": "#/$defs/s_colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the GPU icon.",
@@ -418,7 +418,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for launcher icons by default.",
                           "default": "Rosewater",
-                          "$ref": "#/$defs/colorEnum"
+                          "$ref": "#/$defs/s_colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as launcher icons by default.",
@@ -459,7 +459,7 @@
                               "IconColor": {
                                 "description": "The Catppuccin color to use for the launcher icon. Set to null to use matches in ProcessIconMap and fall back to AccentColor.",
                                 "default": null,
-                                "$ref": "#/$defs/nullableColorEnum"
+                                "$ref": "#/$defs/s_nullableColorEnum"
                               },
                               "Icon": {
                                 "description": "The text to use as the launcher icon. Set to null to use matches in ProcessIconMap and fall back to Icon.",
@@ -504,7 +504,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the memory icon.",
                           "default": "Maroon",
-                          "$ref": "#/$defs/colorEnum"
+                          "$ref": "#/$defs/s_colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the memory icon.",
@@ -555,7 +555,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the icon.",
                           "default": "Green",
-                          "$ref": "#/$defs/colorEnum"
+                          "$ref": "#/$defs/s_colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the icon.",
@@ -595,7 +595,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the dropdown icon color.",
                           "default": "Overlay1",
-                          "$ref": "#/$defs/colorEnum"
+                          "$ref": "#/$defs/s_colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the dropdown icon.",
@@ -644,7 +644,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use as an accent.",
                           "default": "Lavender",
-                          "$ref": "#/$defs/colorEnum"
+                          "$ref": "#/$defs/s_colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the terminal icon.",
@@ -812,7 +812,7 @@
                         "CursorColor": {
                           "description": "The cursor color in the terminal.",
                           "default": "Text",
-                          "$ref": "#/$defs/nullableColorEnum"
+                          "$ref": "#/$defs/s_nullableColorEnum"
                         },
                         "ScrollbackLines": {
                           "description": "The number of scrollback lines in the terminal.",
@@ -893,17 +893,17 @@
                                 "DefaultBackgroundColor": {
                                   "description": "The default background color to use in the terminal.",
                                   "default": "Black",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "DefaultForegroundColor": {
                                   "description": "The default foreground color to use in the terminal.",
                                   "default": "White",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "DefaultUnderlineColor": {
                                   "description": "The default underline color to use in the terminal.",
                                   "default": "White",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 }
                               }
                             },
@@ -914,42 +914,42 @@
                                 "Black": {
                                   "description": "Black.",
                                   "default": "Black",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "Red": {
                                   "description": "Red.",
                                   "default": "Red",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "Green": {
                                   "description": "Green.",
                                   "default": "Green",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "Yellow": {
                                   "description": "Yellow.",
                                   "default": "Yellow",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "Blue": {
                                   "description": "Blue.",
                                   "default": "Blue",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "Magenta": {
                                   "description": "Magenta.",
                                   "default": "Magenta",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "Cyan": {
                                   "description": "Cyan.",
                                   "default": "Cyan",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "White": {
                                   "description": "White.",
                                   "default": "White",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 }
                               }
                             },
@@ -960,42 +960,42 @@
                                 "BrightBlack": {
                                   "description": "Bright black.",
                                   "default": "BrightBlack",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "BrightRed": {
                                   "description": "Bright red.",
                                   "default": "BrightRed",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "BrightGreen": {
                                   "description": "Bright green.",
                                   "default": "BrightGreen",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "BrightYellow": {
                                   "description": "Bright yellow.",
                                   "default": "BrightYellow",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "BrightBlue": {
                                   "description": "Bright blue.",
                                   "default": "BrightBlue",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "BrightMagenta": {
                                   "description": "Bright magenta.",
                                   "default": "BrightMagenta",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "BrightCyan": {
                                   "description": "Bright cyan.",
                                   "default": "BrightCyan",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 },
                                 "BrightWhite": {
                                   "description": "Bright white.",
                                   "default": "BrightWhite",
-                                  "$ref": "#/$defs/ansiColorEnum"
+                                  "$ref": "#/$defs/s_ansiColorEnum"
                                 }
                               }
                             }
@@ -1029,7 +1029,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the volume icon.",
                           "default": "Yellow",
-                          "$ref": "#/$defs/colorEnum"
+                          "$ref": "#/$defs/s_colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as the volume icon.",
@@ -1108,7 +1108,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for window icon colors by default.",
                           "default": "Mauve",
-                          "$ref": "#/$defs/colorEnum"
+                          "$ref": "#/$defs/s_colorEnum"
                         },
                         "Icon": {
                           "description": "The text to use as window icons by default.",
@@ -1180,7 +1180,7 @@
                         "AccentColor": {
                           "description": "The Catppuccin color to use for the dropdown icon color.",
                           "default": "Mauve",
-                          "$ref": "#/$defs/colorEnum"
+                          "$ref": "#/$defs/s_colorEnum"
                         },
                         "DropdownIcon": {
                           "description": "The text to use as the dropdown icon.",
@@ -1231,7 +1231,7 @@
     "Displays"
   ],
   "$defs": {
-    "colorEnum": {
+    "s_colorEnum": {
       "enum": [
         "Rosewater",
         "Flamingo",
@@ -1261,7 +1261,7 @@
         "Crust"
       ]
     },
-    "nullableColorEnum": {
+    "s_nullableColorEnum": {
       "enum": [
         "Rosewater",
         "Flamingo",
@@ -1292,7 +1292,7 @@
         null
       ]
     },
-    "ansiColorEnum": {
+    "s_ansiColorEnum": {
       "enum": [
         "Black",
         "Red",
@@ -1312,7 +1312,7 @@
         "BrightWhite"
       ]
     },
-    "nullableAnsiColorEnum": {
+    "s_nullableAnsiColorEnum": {
       "enum": [
         "Black",
         "Red",

@@ -1,10 +1,5 @@
-﻿#if DEBUG
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-#endif
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.UI.Dispatching;
-using Spakov.TermBar.Configuration.Json.Modules;
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -13,251 +8,230 @@ using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.Accessibility;
 
-namespace Spakov.TermBar.Models {
-  /// <summary>
-  /// The window list.
-  /// </summary>
-  /// <remarks>Intended to be interfaced with via <see
-  /// cref="System.Collections.Specialized.INotifyCollectionChanged"/> and <see
-  /// cref="INotifyPropertyChanged"/>.</remarks>
+namespace Spakov.TermBar.Models
+{
+    /// <summary>
+    /// The window list.
+    /// </summary>
+    /// <remarks>
+    /// <para>This is the object that is managed by <see
+    /// cref="WindowListHelper"/>. It is responsible for bridging the gap
+    /// between Win32 interfaces and the presentation layer. This class is
+    /// responsible for handling callbacks that provide window-related
+    /// notifications.</para>
+    /// <para>Intended to be interfaced with via <see cref="Windows"/>'s <see
+    /// cref="System.Collections.Specialized.INotifyCollectionChanged"/> and
+    /// <see cref="INotifyPropertyChanged"/>, for <see
+    /// cref="ForegroundWindow"/>.</para>
+    /// </remarks>
 #pragma warning disable IDE0079 // Remove unnecessary suppression
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CsWinRT1028:Class is not marked partial", Justification = "Is a model")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CsWinRT1028:Class is not marked partial", Justification = "Is a model")]
 #pragma warning restore IDE0079 // Remove unnecessary suppression
-  public class WindowList : INotifyPropertyChanged {
-#if DEBUG
-    internal readonly ILogger logger;
-    internal static readonly LogLevel logLevel = App.logLevel;
-#endif
+    public class WindowList : INotifyPropertyChanged
+    {
+        internal ILogger? logger;
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-    private readonly DispatcherQueue dispatcherQueue;
+        private readonly DispatcherQueue _dispatcherQueue;
 
-    private readonly WINEVENTPROC winSystemEventProc;
-    private readonly WINEVENTPROC winObjectEventProc;
+        private readonly WINEVENTPROC _winSystemEventProc;
+        private readonly WINEVENTPROC _winObjectEventProc;
 
-    private readonly ObservableCollection<Window> windows;
+        private readonly ObservableCollection<Window> _windows;
 
-    private static Window? _foregroundWindow;
+        private static Window? s_foregroundWindow;
 
-    private static WindowList? instance;
+        private static WindowList? s_instance;
 
-    /// <summary>
-    /// The singleton instance.
-    /// </summary>
-    public static WindowList? Instance {
-      get => instance;
-      internal set => instance = value;
-    }
-
-    /// <summary>
-    /// The list of <see cref="Window"/>s to be presented to the
-    /// user.
-    /// </summary>
-    public static ObservableCollection<Window> Windows => Instance!.windows;
-
-    /// <inheritdoc cref="WindowListHelper.IsPopupOpen"/>
-    public static bool IsPopupOpen => WindowListHelper.IsPopupOpen;
-
-    /// <summary>
-    /// The currently foregrounded window.
-    /// </summary>
-    public static Window? ForegroundWindow {
-      get => _foregroundWindow;
-
-      set {
-        if (_foregroundWindow != value) {
-          if (value is not null) {
-#if DEBUG
-            WindowListHelper.Foreground(Instance!.logger, Instance!.windows, value.HWnd);
-#else
-            WindowListHelper.Foreground(Instance!.windows, value.HWnd);
-#endif
-          }
-
-#if DEBUG
-          Instance?.logger.LogDebug("ForegroundWindow: {oldHWnd} \"{oldName}\" -> {newHWnd} \"{newName}\"", _foregroundWindow?.HWnd, _foregroundWindow?.Name, value?.HWnd, value?.Name);
-#endif
-
-          _foregroundWindow = value;
-
-          Instance!.OnPropertyChanged();
+        /// <summary>
+        /// The singleton instance.
+        /// </summary>
+        public static WindowList? Instance
+        {
+            get => s_instance;
+            internal set => s_instance = value;
         }
-      }
-    }
 
-    /// <summary>
-    /// Iconifies the foregrounded window.
-    /// </summary>
-    public static void Iconify() {
-      if (_foregroundWindow is not null) {
-#if DEBUG
-        WindowListHelper.Iconify(Instance!.logger, Instance!.windows, _foregroundWindow.HWnd);
-#else
-        WindowListHelper.Iconify(Instance!.windows, _foregroundWindow.HWnd);
-#endif
-      }
-    }
+        /// <summary>
+        /// The list of <see cref="Window"/>s to be presented to the
+        /// user.
+        /// </summary>
+        public static ObservableCollection<Window> Windows => Instance!._windows;
 
-    /// <summary>
-    /// Initializes a <see cref="WindowList"/>.
-    /// </summary>
-    internal WindowList(DispatcherQueue dispatcherQueue) {
-#if DEBUG
-      ILoggerFactory factory = LoggerFactory.Create(
-        builder => {
-          builder.AddFile(options => {
-            options.RootPath = AppContext.BaseDirectory;
-            options.BasePath = "Logs";
-            options.FileAccessMode = Karambolo.Extensions.Logging.File.LogFileAccessMode.KeepOpenAndAutoFlush;
-            options.Files = [
-              new Karambolo.Extensions.Logging.File.LogFileOptions() { Path = $"{nameof(WindowList)}.log" }
-            ];
-          });
-          builder.SetMinimumLevel(logLevel);
+        /// <inheritdoc cref="WindowListHelper.IsPopupOpen"/>
+        public static bool IsPopupOpen => WindowListHelper.IsPopupOpen;
+
+        /// <summary>
+        /// The currently foregrounded window.
+        /// </summary>
+        public static Window? ForegroundWindow
+        {
+            get => s_foregroundWindow;
+
+            set
+            {
+                if (s_foregroundWindow != value)
+                {
+                    if (value is not null)
+                    {
+                        WindowListHelper.Foreground(Instance!._windows, value.HWnd, Instance!.logger);
+                    }
+
+                    Instance?.logger?.LogDebug("ForegroundWindow: {oldHWnd} \"{oldName}\" -> {newHWnd} \"{newName}\"", s_foregroundWindow?.HWnd, s_foregroundWindow?.Name, value?.HWnd, value?.Name);
+                    s_foregroundWindow = value;
+
+                    Instance!.OnPropertyChanged();
+                }
+            }
         }
-      );
 
-      logger = factory.CreateLogger<WindowList>();
-#endif
+        /// <summary>
+        /// Iconifies the foregrounded window.
+        /// </summary>
+        public static void Iconify()
+        {
+            if (s_foregroundWindow is not null)
+            {
+                WindowListHelper.Iconify(Instance!._windows, s_foregroundWindow.HWnd, Instance!.logger);
+            }
+        }
 
-      this.dispatcherQueue = dispatcherQueue;
+        /// <summary>
+        /// Initializes a <see cref="WindowList"/>.
+        /// </summary>
+        internal WindowList(DispatcherQueue dispatcherQueue)
+        {
+            logger = LoggerHelper.CreateLogger<WindowList>();
 
-#if DEBUG
-      windows = WindowListHelper.EnumerateWindows(logger);
-#else
-      windows = WindowListHelper.EnumerateWindows();
-#endif
+            _dispatcherQueue = dispatcherQueue;
+            _windows = WindowListHelper.EnumerateWindows(logger);
 
-      HWND foregroundHWnd = PInvoke.GetForegroundWindow();
+            HWND foregroundHWnd = PInvoke.GetForegroundWindow();
 
-      foreach (Window window in windows.Where(window => window.HWnd.Equals(foregroundHWnd))) {
-        _foregroundWindow = window;
-      }
+            foreach (Window window in _windows.Where(window => window.HWnd.Equals(foregroundHWnd)))
+            {
+                s_foregroundWindow = window;
+            }
 
-      winSystemEventProc = new(WinSystemEventProc);
-      winObjectEventProc = new(WinObjectEventProc);
+            _winSystemEventProc = new(WinSystemEventProc);
+            _winObjectEventProc = new(WinObjectEventProc);
 
-      _ = PInvoke.SetWinEventHook(
-        PInvoke.EVENT_SYSTEM_FOREGROUND,
-        PInvoke.EVENT_SYSTEM_FOREGROUND,
-        (HMODULE) (nint) 0,
-        winSystemEventProc,
-        0,
-        0,
-        PInvoke.WINEVENT_OUTOFCONTEXT
-      );
+            _ = PInvoke.SetWinEventHook(
+                PInvoke.EVENT_SYSTEM_FOREGROUND,
+                PInvoke.EVENT_SYSTEM_FOREGROUND,
+                (HMODULE)(nint)0,
+                _winSystemEventProc,
+                0,
+                0,
+                PInvoke.WINEVENT_OUTOFCONTEXT
+            );
 
-      _ = PInvoke.SetWinEventHook(
-        PInvoke.EVENT_OBJECT_CREATE,
-        PInvoke.EVENT_OBJECT_UNCLOAKED,
-        (HMODULE) (nint) 0,
-        winObjectEventProc,
-        0,
-        0,
-        PInvoke.WINEVENT_OUTOFCONTEXT
-      );
+            _ = PInvoke.SetWinEventHook(
+                PInvoke.EVENT_OBJECT_CREATE,
+                PInvoke.EVENT_OBJECT_UNCLOAKED,
+                (HMODULE)(nint)0,
+                _winObjectEventProc,
+                0,
+                0,
+                PInvoke.WINEVENT_OUTOFCONTEXT
+            );
+        }
+
+        /// <summary>
+        /// Handles event <c>EVENT_SYSTEM_FOREGROUND</c>.
+        /// </summary>
+        /// <remarks>
+        /// <para>An application-defined callback (or hook) function that the
+        /// system calls in response to events generated by an accessible
+        /// object. The hook function processes the event notifications as
+        /// required. Clients install the hook function and request specific
+        /// types of event notifications by calling <see
+        /// cref="PInvoke.SetWinEventHook"/>.</para>
+        /// <para>The <see cref="WINEVENTPROC"/> type defines a pointer to this
+        /// callback function. <c>WinEventProc</c> is a placeholder for the
+        /// application-defined function name.</para>
+        /// </remarks>
+        /// <param name="hWinEventHook">Handle to an event hook function. This
+        /// value is returned by <see cref="PInvoke.SetWinEventHook"/> when the
+        /// hook function is installed and is specific to each instance of the
+        /// hook function.</param>
+        /// <param name="event">Specifies the event that occurred. This value
+        /// is one of the event constants.</param>
+        /// <param name="hWnd">Handle to the window that generates the event,
+        /// or <c>null</c> if no window is associated with the event. For
+        /// example, the mouse pointer is not associated with a window.</param>
+        /// <param name="idObject">Identifies the object associated with the
+        /// event. This is one of the object identifiers or a custom object
+        /// ID.</param>
+        /// <param name="idChild">Identifies whether the event was triggered by
+        /// an object or a child element of the object. If this value is
+        /// <c>CHILDID_SELF</c>, the event was triggered by the object;
+        /// otherwise, this value is the child ID of the element that triggered
+        /// the event.</param>
+        /// <param name="idEventThread"></param>
+        /// <param name="dwmsEventTime">Specifies the time, in milliseconds,
+        /// that the event was generated.</param>
+        private void WinSystemEventProc(
+            HWINEVENTHOOK hWinEventHook,
+            uint @event,
+            HWND hWnd,
+            int idObject,
+            int idChild,
+            uint idEventThread,
+            uint dwmsEventTime
+        ) => ForegroundWindow = WindowListHelper.IsForegrounded(_windows, @event, hWnd, logger);
+
+        /// <summary>
+        /// Handles events <c>EVENT_OBJECT_CREATE</c> through
+        /// <c>EVENT_OBJECT_NAMECHANGE</c>.
+        /// </summary>
+        /// <remarks>
+        /// <para>An application-defined callback (or hook) function that the
+        /// system calls in response to events generated by an accessible
+        /// object. The hook function processes the event notifications as
+        /// required. Clients install the hook function and request specific
+        /// types of event notifications by calling <see
+        /// cref="PInvoke.SetWinEventHook"/>.</para>
+        /// <para>The <see cref="WINEVENTPROC"/> type defines a pointer to this
+        /// callback function. <c>WinEventProc</c> is a placeholder for the
+        /// application-defined function name.</para>
+        /// </remarks>
+        /// <param name="hWinEventHook">Handle to an event hook function. This
+        /// value is returned by <see cref="PInvoke.SetWinEventHook"/> when the
+        /// hook function is installed and is specific to each instance of the
+        /// hook function.</param>
+        /// <param name="event">Specifies the event that occurred. This value
+        /// is one of the event constants.</param>
+        /// <param name="hWnd">Handle to the window that generates the event,
+        /// or <c>null</c> if no window is associated with the event. For
+        /// example, the mouse pointer is not associated with a window.</param>
+        /// <param name="idObject">Identifies the object associated with the
+        /// event. This is one of the object identifiers or a custom object
+        /// ID.</param>
+        /// <param name="idChild">Identifies whether the event was triggered by
+        /// an object or a child element of the object. If this value is
+        /// <c>CHILDID_SELF</c>, the event was triggered by the object;
+        /// otherwise, this value is the child ID of the element that triggered
+        /// the event.</param>
+        /// <param name="idEventThread"></param>
+        /// <param name="dwmsEventTime">Specifies the time, in milliseconds,
+        /// that the event was generated.</param>
+        private void WinObjectEventProc(
+            HWINEVENTHOOK hWinEventHook,
+            uint @event,
+            HWND hWnd,
+            int idObject,
+            int idChild,
+            uint idEventThread,
+            uint dwmsEventTime
+        ) => _dispatcherQueue.TryEnqueue(() => WindowListHelper.UpdateWindow(
+            _windows,
+            @event,
+            hWnd,
+            logger
+        ));
+
+        private void OnPropertyChanged([CallerMemberName] string? callerMemberName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerMemberName));
     }
-
-    /// <summary>
-    /// Handles event <c>EVENT_SYSTEM_FOREGROUND</c>.
-    /// </summary>
-    /// <remarks>
-    /// <para>An application-defined callback (or hook) function that the
-    /// system calls in response to events generated by an accessible object.
-    /// The hook function processes the event notifications as required.
-    /// Clients install the hook function and request specific types of event
-    /// notifications by calling <see cref="PInvoke.SetWinEventHook"/>.</para>
-    /// <para>The <see cref="WINEVENTPROC"/> type defines a pointer to this
-    /// callback function. <c>WinEventProc</c> is a placeholder for the
-    /// application-defined function name.</para>
-    /// </remarks>
-    /// <param name="hWinEventHook">Handle to an event hook function. This
-    /// value is returned by <see cref="PInvoke.SetWinEventHook"/> when the
-    /// hook function is installed and is specific to each instance of the hook
-    /// function.</param>
-    /// <param name="event">Specifies the event that occurred. This value is
-    /// one of the event constants.</param>
-    /// <param name="hWnd">Handle to the window that generates the event, or
-    /// <c>null</c> if no window is associated with the event. For example, the
-    /// mouse pointer is not associated with a window.</param>
-    /// <param name="idObject">Identifies the object associated with the event.
-    /// This is one of the object identifiers or a custom object ID.</param>
-    /// <param name="idChild">Identifies whether the event was triggered by an
-    /// object or a child element of the object. If this value is
-    /// <c>CHILDID_SELF</c>, the event was triggered by the object; otherwise,
-    /// this value is the child ID of the element that triggered the
-    /// event.</param>
-    /// <param name="idEventThread"></param>
-    /// <param name="dwmsEventTime">Specifies the time, in milliseconds, that
-    /// the event was generated.</param>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0022:Use expression body for method", Justification = "Incompatible with #if DEBUG/#endif")]
-    private void WinSystemEventProc(
-      HWINEVENTHOOK hWinEventHook,
-      uint @event,
-      HWND hWnd,
-      int idObject,
-      int idChild,
-      uint idEventThread,
-      uint dwmsEventTime
-    ) {
-#if DEBUG
-      ForegroundWindow = WindowListHelper.IsForegrounded(logger, windows, @event, hWnd);
-#else
-      ForegroundWindow = WindowListHelper.IsForegrounded(windows, @event, hWnd);
-#endif
-    }
-
-    /// <summary>
-    /// Handles events <c>EVENT_OBJECT_CREATE</c> through
-    /// <c>EVENT_OBJECT_NAMECHANGE</c>.
-    /// </summary>
-    /// <remarks>
-    /// <para>An application-defined callback (or hook) function that the
-    /// system calls in response to events generated by an accessible object.
-    /// The hook function processes the event notifications as required.
-    /// Clients install the hook function and request specific types of event
-    /// notifications by calling <see cref="PInvoke.SetWinEventHook"/>.</para>
-    /// <para>The <see cref="WINEVENTPROC"/> type defines a pointer to this
-    /// callback function. <c>WinEventProc</c> is a placeholder for the
-    /// application-defined function name.</para>
-    /// </remarks>
-    /// <param name="hWinEventHook">Handle to an event hook function. This
-    /// value is returned by <see cref="PInvoke.SetWinEventHook"/> when the
-    /// hook function is installed and is specific to each instance of the hook
-    /// function.</param>
-    /// <param name="event">Specifies the event that occurred. This value is
-    /// one of the event constants.</param>
-    /// <param name="hWnd">Handle to the window that generates the event, or
-    /// <c>null</c> if no window is associated with the event. For example, the
-    /// mouse pointer is not associated with a window.</param>
-    /// <param name="idObject">Identifies the object associated with the event.
-    /// This is one of the object identifiers or a custom object ID.</param>
-    /// <param name="idChild">Identifies whether the event was triggered by an
-    /// object or a child element of the object. If this value is
-    /// <c>CHILDID_SELF</c>, the event was triggered by the object; otherwise,
-    /// this value is the child ID of the element that triggered the
-    /// event.</param>
-    /// <param name="idEventThread"></param>
-    /// <param name="dwmsEventTime">Specifies the time, in milliseconds, that
-    /// the event was generated.</param>
-    private void WinObjectEventProc(
-      HWINEVENTHOOK hWinEventHook,
-      uint @event,
-      HWND hWnd,
-      int idObject,
-      int idChild,
-      uint idEventThread,
-      uint dwmsEventTime
-    ) => dispatcherQueue.TryEnqueue(() => WindowListHelper.UpdateWindow(
-#if DEBUG
-      logger,
-#endif
-      windows,
-      @event,
-      hWnd
-    ));
-
-    private void OnPropertyChanged([CallerMemberName] string? callerMemberName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerMemberName));
-  }
 }

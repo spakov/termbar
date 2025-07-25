@@ -9,102 +9,112 @@ using System;
 /* </auto-generated>                                                         */
 /*****************************************************************************/
 
-namespace Spakov.Catppuccin {
-  /// <summary>
-  /// Catppuccin flavor ANSI colors in palette.json.
-  /// </summary>
-  public class AnsiColors {
+namespace Spakov.Catppuccin
+{
     /// <summary>
-    /// Black.
+    /// Catppuccin flavor ANSI colors in palette.json.
     /// </summary>
-    public required AnsiColorPair Black { get; set; }
+    public class AnsiColors
+    {
+        /// <summary>
+        /// Black.
+        /// </summary>
+        public required AnsiColorPair Black { get; set; }
 
-    /// <summary>
-    /// Red.
-    /// </summary>
-    public required AnsiColorPair Red { get; set; }
+        /// <summary>
+        /// Red.
+        /// </summary>
+        public required AnsiColorPair Red { get; set; }
 
-    /// <summary>
-    /// Green.
-    /// </summary>
-    public required AnsiColorPair Green { get; set; }
+        /// <summary>
+        /// Green.
+        /// </summary>
+        public required AnsiColorPair Green { get; set; }
 
-    /// <summary>
-    /// Yellow.
-    /// </summary>
-    public required AnsiColorPair Yellow { get; set; }
+        /// <summary>
+        /// Yellow.
+        /// </summary>
+        public required AnsiColorPair Yellow { get; set; }
 
-    /// <summary>
-    /// Blue.
-    /// </summary>
-    public required AnsiColorPair Blue { get; set; }
+        /// <summary>
+        /// Blue.
+        /// </summary>
+        public required AnsiColorPair Blue { get; set; }
 
-    /// <summary>
-    /// Magenta.
-    /// </summary>
-    public required AnsiColorPair Magenta { get; set; }
+        /// <summary>
+        /// Magenta.
+        /// </summary>
+        public required AnsiColorPair Magenta { get; set; }
 
-    /// <summary>
-    /// Cyan.
-    /// </summary>
-    public required AnsiColorPair Cyan { get; set; }
+        /// <summary>
+        /// Cyan.
+        /// </summary>
+        public required AnsiColorPair Cyan { get; set; }
 
-    /// <summary>
-    /// White.
-    /// </summary>
-    public required AnsiColorPair White { get; set; }
+        /// <summary>
+        /// White.
+        /// </summary>
+        public required AnsiColorPair White { get; set; }
 
-    /// <summary>
-    /// Allows looking up an <see cref="AnsiColorEnum"/> by <paramref
-    /// name="red"/>, <paramref name="green"/>, and <paramref name="blue"/>.
-    /// </summary>
-    /// <param name="red">The color's red component.</param>
-    /// <param name="green">The color's green component.</param>
-    /// <param name="blue">The color's blue component.</param>
-    /// <returns>An <see cref="AnsiColorEnum"/>, or <see langword="null"/> if
-    /// there is no match.</returns>
-    public AnsiColorEnum? FromRGB(int red, int green, int blue) {
-      foreach (int ansiColorEnumIndex in Enum.GetValues(typeof(AnsiColorEnum))) {
-        if (
-          this[(AnsiColorEnum) ansiColorEnumIndex].Rgb.Red == red
-          && this[(AnsiColorEnum) ansiColorEnumIndex].Rgb.Green == green
-          && this[(AnsiColorEnum) ansiColorEnumIndex].Rgb.Blue == blue
-        ) {
-          return (AnsiColorEnum) ansiColorEnumIndex;
+        /// <summary>
+        /// Allows looking up an <see cref="AnsiColorEnum"/> by <paramref
+        /// name="red"/>, <paramref name="green"/>, and <paramref
+        /// name="blue"/>.
+        /// </summary>
+        /// <param name="red">The color's red component.</param>
+        /// <param name="green">The color's green component.</param>
+        /// <param name="blue">The color's blue component.</param>
+        /// <returns>An <see cref="AnsiColorEnum"/>, or <see langword="null"/>
+        /// if there is no match.</returns>
+        public AnsiColorEnum? FromRGB(int red, int green, int blue)
+        {
+            foreach (int ansiColorEnumIndex in Enum.GetValues(typeof(AnsiColorEnum)))
+            {
+                if (
+                    this[(AnsiColorEnum)ansiColorEnumIndex].Rgb.Red == red
+                    && this[(AnsiColorEnum)ansiColorEnumIndex].Rgb.Green == green
+                    && this[(AnsiColorEnum)ansiColorEnumIndex].Rgb.Blue == blue
+                )
+                {
+                    return (AnsiColorEnum)ansiColorEnumIndex;
+                }
+            }
+
+            return null;
         }
-      }
 
-      return null;
+        /// <summary>
+        /// Allows indexing of the ANSI color using <paramref
+        /// name="ansiColor"/>.
+        /// </summary>
+        /// <param name="ansiColor">The ANSI color.</param>
+        /// <returns>An <see cref="AnsiColorPair"/>.</returns>
+        /// <exception cref="IndexOutOfRangeException"></exception>
+        public Color this[AnsiColorEnum ansiColor]
+        {
+            get
+            {
+                return ansiColor switch
+                {
+                    AnsiColorEnum.Black => Black.Normal,
+                    AnsiColorEnum.Red => Red.Normal,
+                    AnsiColorEnum.Green => Green.Normal,
+                    AnsiColorEnum.Yellow => Yellow.Normal,
+                    AnsiColorEnum.Blue => Blue.Normal,
+                    AnsiColorEnum.Magenta => Magenta.Normal,
+                    AnsiColorEnum.Cyan => Cyan.Normal,
+                    AnsiColorEnum.White => White.Normal,
+                    AnsiColorEnum.BrightBlack => Black.Bright,
+                    AnsiColorEnum.BrightRed => Red.Bright,
+                    AnsiColorEnum.BrightGreen => Green.Bright,
+                    AnsiColorEnum.BrightYellow => Yellow.Bright,
+                    AnsiColorEnum.BrightBlue => Blue.Bright,
+                    AnsiColorEnum.BrightMagenta => Magenta.Bright,
+                    AnsiColorEnum.BrightCyan => Cyan.Bright,
+                    AnsiColorEnum.BrightWhite => White.Bright,
+                    _ => throw new IndexOutOfRangeException()
+                };
+            }
+        }
     }
-
-    /// <summary>
-    /// Allows indexing of the ANSI color using <paramref name="ansiColor"/>.
-    /// </summary>
-    /// <param name="ansiColor">The ANSI color.</param>
-    /// <returns>An <see cref="AnsiColorPair"/>.</returns>
-    /// <exception cref="IndexOutOfRangeException"></exception>
-    public Color this[AnsiColorEnum ansiColor] {
-      get {
-        return ansiColor switch {
-          AnsiColorEnum.Black => Black.Normal,
-          AnsiColorEnum.Red => Red.Normal,
-          AnsiColorEnum.Green => Green.Normal,
-          AnsiColorEnum.Yellow => Yellow.Normal,
-          AnsiColorEnum.Blue => Blue.Normal,
-          AnsiColorEnum.Magenta => Magenta.Normal,
-          AnsiColorEnum.Cyan => Cyan.Normal,
-          AnsiColorEnum.White => White.Normal,
-          AnsiColorEnum.BrightBlack => Black.Bright,
-          AnsiColorEnum.BrightRed => Red.Bright,
-          AnsiColorEnum.BrightGreen => Green.Bright,
-          AnsiColorEnum.BrightYellow => Yellow.Bright,
-          AnsiColorEnum.BrightBlue => Blue.Bright,
-          AnsiColorEnum.BrightMagenta => Magenta.Bright,
-          AnsiColorEnum.BrightCyan => Cyan.Bright,
-          AnsiColorEnum.BrightWhite => White.Bright,
-          _ => throw new IndexOutOfRangeException()
-        };
-      }
-    }
-  }
 }

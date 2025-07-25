@@ -9,1487 +9,1875 @@ using System;
 /* </auto-generated>                                                         */
 /*****************************************************************************/
 
-namespace Spakov.Catppuccin {
-  /// <summary>
-  /// The Catppuccin palette.json file.
-  /// </summary>
-  public class Palette {
-    private static readonly Palette instance = new();
-
+namespace Spakov.Catppuccin
+{
     /// <summary>
-    /// A singleton instance of the <see cref="Palette"/>.
+    /// The Catppuccin palette.json file.
     /// </summary>
-    public static Palette Instance => instance;
+    public class Palette
+    {
+        private static readonly Palette s_instance = new();
 
-    /// <summary>
-    /// The Latte flavor.
-    /// </summary>
-    public Flavor Latte { get; } = new() {
-      Colors = new() {
-        Rosewater = new() {
-          Name = "Rosewater",
-          Rgb = new() {
-            Red = 220,
-            Green = 138,
-            Blue = 120
-          }
-        },
-        Flamingo = new() {
-          Name = "Flamingo",
-          Rgb = new() {
-            Red = 221,
-            Green = 120,
-            Blue = 120
-          }
-        },
-        Pink = new() {
-          Name = "Pink",
-          Rgb = new() {
-            Red = 234,
-            Green = 118,
-            Blue = 203
-          }
-        },
-        Mauve = new() {
-          Name = "Mauve",
-          Rgb = new() {
-            Red = 136,
-            Green = 57,
-            Blue = 239
-          }
-        },
-        Red = new() {
-          Name = "Red",
-          Rgb = new() {
-            Red = 210,
-            Green = 15,
-            Blue = 57
-          }
-        },
-        Maroon = new() {
-          Name = "Maroon",
-          Rgb = new() {
-            Red = 230,
-            Green = 69,
-            Blue = 83
-          }
-        },
-        Peach = new() {
-          Name = "Peach",
-          Rgb = new() {
-            Red = 254,
-            Green = 100,
-            Blue = 11
-          }
-        },
-        Yellow = new() {
-          Name = "Yellow",
-          Rgb = new() {
-            Red = 223,
-            Green = 142,
-            Blue = 29
-          }
-        },
-        Green = new() {
-          Name = "Green",
-          Rgb = new() {
-            Red = 64,
-            Green = 160,
-            Blue = 43
-          }
-        },
-        Teal = new() {
-          Name = "Teal",
-          Rgb = new() {
-            Red = 23,
-            Green = 146,
-            Blue = 153
-          }
-        },
-        Sky = new() {
-          Name = "Sky",
-          Rgb = new() {
-            Red = 4,
-            Green = 165,
-            Blue = 229
-          }
-        },
-        Sapphire = new() {
-          Name = "Sapphire",
-          Rgb = new() {
-            Red = 32,
-            Green = 159,
-            Blue = 181
-          }
-        },
-        Blue = new() {
-          Name = "Blue",
-          Rgb = new() {
-            Red = 30,
-            Green = 102,
-            Blue = 245
-          }
-        },
-        Lavender = new() {
-          Name = "Lavender",
-          Rgb = new() {
-            Red = 114,
-            Green = 135,
-            Blue = 253
-          }
-        },
-        Text = new() {
-          Name = "Text",
-          Rgb = new() {
-            Red = 76,
-            Green = 79,
-            Blue = 105
-          }
-        },
-        Subtext1 = new() {
-          Name = "Subtext 1",
-          Rgb = new() {
-            Red = 92,
-            Green = 95,
-            Blue = 119
-          }
-        },
-        Subtext0 = new() {
-          Name = "Subtext 0",
-          Rgb = new() {
-            Red = 108,
-            Green = 111,
-            Blue = 133
-          }
-        },
-        Overlay2 = new() {
-          Name = "Overlay 2",
-          Rgb = new() {
-            Red = 124,
-            Green = 127,
-            Blue = 147
-          }
-        },
-        Overlay1 = new() {
-          Name = "Overlay 1",
-          Rgb = new() {
-            Red = 140,
-            Green = 143,
-            Blue = 161
-          }
-        },
-        Overlay0 = new() {
-          Name = "Overlay 0",
-          Rgb = new() {
-            Red = 156,
-            Green = 160,
-            Blue = 176
-          }
-        },
-        Surface2 = new() {
-          Name = "Surface 2",
-          Rgb = new() {
-            Red = 172,
-            Green = 176,
-            Blue = 190
-          }
-        },
-        Surface1 = new() {
-          Name = "Surface 1",
-          Rgb = new() {
-            Red = 188,
-            Green = 192,
-            Blue = 204
-          }
-        },
-        Surface0 = new() {
-          Name = "Surface 0",
-          Rgb = new() {
-            Red = 204,
-            Green = 208,
-            Blue = 218
-          }
-        },
-        Base = new() {
-          Name = "Base",
-          Rgb = new() {
-            Red = 239,
-            Green = 241,
-            Blue = 245
-          }
-        },
-        Mantle = new() {
-          Name = "Mantle",
-          Rgb = new() {
-            Red = 230,
-            Green = 233,
-            Blue = 239
-          }
-        },
-        Crust = new() {
-          Name = "Crust",
-          Rgb = new() {
-            Red = 220,
-            Green = 224,
-            Blue = 232
-          }
-        }
-      },
-      AnsiColors = new() {
-        Black = new() {
-          Normal = new() {
-            Name = "Black",
-            Rgb = new() {
-              Red = 92,
-              Green = 95,
-              Blue = 119
-            }
-          },
-          Bright = new() {
-            Name = "Bright Black",
-            Rgb = new() {
-              Red = 108,
-              Green = 111,
-              Blue = 133
-            }
-          }
-        },
-        Red = new() {
-          Normal = new() {
-            Name = "Red",
-            Rgb = new() {
-              Red = 210,
-              Green = 15,
-              Blue = 57
-            }
-          },
-          Bright = new() {
-            Name = "Bright Red",
-            Rgb = new() {
-              Red = 222,
-              Green = 41,
-              Blue = 62
-            }
-          }
-        },
-        Green = new() {
-          Normal = new() {
-            Name = "Green",
-            Rgb = new() {
-              Red = 64,
-              Green = 160,
-              Blue = 43
-            }
-          },
-          Bright = new() {
-            Name = "Bright Green",
-            Rgb = new() {
-              Red = 73,
-              Green = 175,
-              Blue = 61
-            }
-          }
-        },
-        Yellow = new() {
-          Normal = new() {
-            Name = "Yellow",
-            Rgb = new() {
-              Red = 223,
-              Green = 142,
-              Blue = 29
-            }
-          },
-          Bright = new() {
-            Name = "Bright Yellow",
-            Rgb = new() {
-              Red = 238,
-              Green = 160,
-              Blue = 45
-            }
-          }
-        },
-        Blue = new() {
-          Normal = new() {
-            Name = "Blue",
-            Rgb = new() {
-              Red = 30,
-              Green = 102,
-              Blue = 245
-            }
-          },
-          Bright = new() {
-            Name = "Bright Blue",
-            Rgb = new() {
-              Red = 69,
-              Green = 110,
-              Blue = 255
-            }
-          }
-        },
-        Magenta = new() {
-          Normal = new() {
-            Name = "Magenta",
-            Rgb = new() {
-              Red = 234,
-              Green = 118,
-              Blue = 203
-            }
-          },
-          Bright = new() {
-            Name = "Bright Magenta",
-            Rgb = new() {
-              Red = 254,
-              Green = 133,
-              Blue = 216
-            }
-          }
-        },
-        Cyan = new() {
-          Normal = new() {
-            Name = "Cyan",
-            Rgb = new() {
-              Red = 23,
-              Green = 146,
-              Blue = 153
-            }
-          },
-          Bright = new() {
-            Name = "Bright Cyan",
-            Rgb = new() {
-              Red = 45,
-              Green = 159,
-              Blue = 168
-            }
-          }
-        },
-        White = new() {
-          Normal = new() {
-            Name = "White",
-            Rgb = new() {
-              Red = 172,
-              Green = 176,
-              Blue = 190
-            }
-          },
-          Bright = new() {
-            Name = "Bright White",
-            Rgb = new() {
-              Red = 188,
-              Green = 192,
-              Blue = 204
-            }
-          }
-        }
-      }
-    };
+        /// <summary>
+        /// A singleton instance of the <see cref="Palette"/>.
+        /// </summary>
+        public static Palette Instance => s_instance;
 
-    /// <summary>
-    /// The Frappé flavor.
-    /// </summary>
-    public Flavor Frappe { get; } = new() {
-      Colors = new() {
-        Rosewater = new() {
-          Name = "Rosewater",
-          Rgb = new() {
-            Red = 242,
-            Green = 213,
-            Blue = 207
-          }
-        },
-        Flamingo = new() {
-          Name = "Flamingo",
-          Rgb = new() {
-            Red = 238,
-            Green = 190,
-            Blue = 190
-          }
-        },
-        Pink = new() {
-          Name = "Pink",
-          Rgb = new() {
-            Red = 244,
-            Green = 184,
-            Blue = 228
-          }
-        },
-        Mauve = new() {
-          Name = "Mauve",
-          Rgb = new() {
-            Red = 202,
-            Green = 158,
-            Blue = 230
-          }
-        },
-        Red = new() {
-          Name = "Red",
-          Rgb = new() {
-            Red = 231,
-            Green = 130,
-            Blue = 132
-          }
-        },
-        Maroon = new() {
-          Name = "Maroon",
-          Rgb = new() {
-            Red = 234,
-            Green = 153,
-            Blue = 156
-          }
-        },
-        Peach = new() {
-          Name = "Peach",
-          Rgb = new() {
-            Red = 239,
-            Green = 159,
-            Blue = 118
-          }
-        },
-        Yellow = new() {
-          Name = "Yellow",
-          Rgb = new() {
-            Red = 229,
-            Green = 200,
-            Blue = 144
-          }
-        },
-        Green = new() {
-          Name = "Green",
-          Rgb = new() {
-            Red = 166,
-            Green = 209,
-            Blue = 137
-          }
-        },
-        Teal = new() {
-          Name = "Teal",
-          Rgb = new() {
-            Red = 129,
-            Green = 200,
-            Blue = 190
-          }
-        },
-        Sky = new() {
-          Name = "Sky",
-          Rgb = new() {
-            Red = 153,
-            Green = 209,
-            Blue = 219
-          }
-        },
-        Sapphire = new() {
-          Name = "Sapphire",
-          Rgb = new() {
-            Red = 133,
-            Green = 193,
-            Blue = 220
-          }
-        },
-        Blue = new() {
-          Name = "Blue",
-          Rgb = new() {
-            Red = 140,
-            Green = 170,
-            Blue = 238
-          }
-        },
-        Lavender = new() {
-          Name = "Lavender",
-          Rgb = new() {
-            Red = 186,
-            Green = 187,
-            Blue = 241
-          }
-        },
-        Text = new() {
-          Name = "Text",
-          Rgb = new() {
-            Red = 198,
-            Green = 208,
-            Blue = 245
-          }
-        },
-        Subtext1 = new() {
-          Name = "Subtext 1",
-          Rgb = new() {
-            Red = 181,
-            Green = 191,
-            Blue = 226
-          }
-        },
-        Subtext0 = new() {
-          Name = "Subtext 0",
-          Rgb = new() {
-            Red = 165,
-            Green = 173,
-            Blue = 206
-          }
-        },
-        Overlay2 = new() {
-          Name = "Overlay 2",
-          Rgb = new() {
-            Red = 148,
-            Green = 156,
-            Blue = 187
-          }
-        },
-        Overlay1 = new() {
-          Name = "Overlay 1",
-          Rgb = new() {
-            Red = 131,
-            Green = 139,
-            Blue = 167
-          }
-        },
-        Overlay0 = new() {
-          Name = "Overlay 0",
-          Rgb = new() {
-            Red = 115,
-            Green = 121,
-            Blue = 148
-          }
-        },
-        Surface2 = new() {
-          Name = "Surface 2",
-          Rgb = new() {
-            Red = 98,
-            Green = 104,
-            Blue = 128
-          }
-        },
-        Surface1 = new() {
-          Name = "Surface 1",
-          Rgb = new() {
-            Red = 81,
-            Green = 87,
-            Blue = 109
-          }
-        },
-        Surface0 = new() {
-          Name = "Surface 0",
-          Rgb = new() {
-            Red = 65,
-            Green = 69,
-            Blue = 89
-          }
-        },
-        Base = new() {
-          Name = "Base",
-          Rgb = new() {
-            Red = 48,
-            Green = 52,
-            Blue = 70
-          }
-        },
-        Mantle = new() {
-          Name = "Mantle",
-          Rgb = new() {
-            Red = 41,
-            Green = 44,
-            Blue = 60
-          }
-        },
-        Crust = new() {
-          Name = "Crust",
-          Rgb = new() {
-            Red = 35,
-            Green = 38,
-            Blue = 52
-          }
-        }
-      },
-      AnsiColors = new() {
-        Black = new() {
-          Normal = new() {
-            Name = "Black",
-            Rgb = new() {
-              Red = 81,
-              Green = 87,
-              Blue = 109
+        /// <summary>
+        /// The Latte flavor.
+        /// </summary>
+        public Flavor Latte { get; } = new()
+        {
+            Colors = new()
+            {
+                Rosewater = new()
+                {
+                    Name = "Rosewater",
+                    Rgb = new()
+                    {
+                        Red = 220,
+                        Green = 138,
+                        Blue = 120
+                    }
+                },
+                Flamingo = new()
+                {
+                    Name = "Flamingo",
+                    Rgb = new()
+                    {
+                        Red = 221,
+                        Green = 120,
+                        Blue = 120
+                    }
+                },
+                Pink = new()
+                {
+                    Name = "Pink",
+                    Rgb = new()
+                    {
+                        Red = 234,
+                        Green = 118,
+                        Blue = 203
+                    }
+                },
+                Mauve = new()
+                {
+                    Name = "Mauve",
+                    Rgb = new()
+                    {
+                        Red = 136,
+                        Green = 57,
+                        Blue = 239
+                    }
+                },
+                Red = new()
+                {
+                    Name = "Red",
+                    Rgb = new()
+                    {
+                        Red = 210,
+                        Green = 15,
+                        Blue = 57
+                    }
+                },
+                Maroon = new()
+                {
+                    Name = "Maroon",
+                    Rgb = new()
+                    {
+                        Red = 230,
+                        Green = 69,
+                        Blue = 83
+                    }
+                },
+                Peach = new()
+                {
+                    Name = "Peach",
+                    Rgb = new()
+                    {
+                        Red = 254,
+                        Green = 100,
+                        Blue = 11
+                    }
+                },
+                Yellow = new()
+                {
+                    Name = "Yellow",
+                    Rgb = new()
+                    {
+                        Red = 223,
+                        Green = 142,
+                        Blue = 29
+                    }
+                },
+                Green = new()
+                {
+                    Name = "Green",
+                    Rgb = new()
+                    {
+                        Red = 64,
+                        Green = 160,
+                        Blue = 43
+                    }
+                },
+                Teal = new()
+                {
+                    Name = "Teal",
+                    Rgb = new()
+                    {
+                        Red = 23,
+                        Green = 146,
+                        Blue = 153
+                    }
+                },
+                Sky = new()
+                {
+                    Name = "Sky",
+                    Rgb = new()
+                    {
+                        Red = 4,
+                        Green = 165,
+                        Blue = 229
+                    }
+                },
+                Sapphire = new()
+                {
+                    Name = "Sapphire",
+                    Rgb = new()
+                    {
+                        Red = 32,
+                        Green = 159,
+                        Blue = 181
+                    }
+                },
+                Blue = new()
+                {
+                    Name = "Blue",
+                    Rgb = new()
+                    {
+                        Red = 30,
+                        Green = 102,
+                        Blue = 245
+                    }
+                },
+                Lavender = new()
+                {
+                    Name = "Lavender",
+                    Rgb = new()
+                    {
+                        Red = 114,
+                        Green = 135,
+                        Blue = 253
+                    }
+                },
+                Text = new()
+                {
+                    Name = "Text",
+                    Rgb = new()
+                    {
+                        Red = 76,
+                        Green = 79,
+                        Blue = 105
+                    }
+                },
+                Subtext1 = new()
+                {
+                    Name = "Subtext 1",
+                    Rgb = new()
+                    {
+                        Red = 92,
+                        Green = 95,
+                        Blue = 119
+                    }
+                },
+                Subtext0 = new()
+                {
+                    Name = "Subtext 0",
+                    Rgb = new()
+                    {
+                        Red = 108,
+                        Green = 111,
+                        Blue = 133
+                    }
+                },
+                Overlay2 = new()
+                {
+                    Name = "Overlay 2",
+                    Rgb = new()
+                    {
+                        Red = 124,
+                        Green = 127,
+                        Blue = 147
+                    }
+                },
+                Overlay1 = new()
+                {
+                    Name = "Overlay 1",
+                    Rgb = new()
+                    {
+                        Red = 140,
+                        Green = 143,
+                        Blue = 161
+                    }
+                },
+                Overlay0 = new()
+                {
+                    Name = "Overlay 0",
+                    Rgb = new()
+                    {
+                        Red = 156,
+                        Green = 160,
+                        Blue = 176
+                    }
+                },
+                Surface2 = new()
+                {
+                    Name = "Surface 2",
+                    Rgb = new()
+                    {
+                        Red = 172,
+                        Green = 176,
+                        Blue = 190
+                    }
+                },
+                Surface1 = new()
+                {
+                    Name = "Surface 1",
+                    Rgb = new()
+                    {
+                        Red = 188,
+                        Green = 192,
+                        Blue = 204
+                    }
+                },
+                Surface0 = new()
+                {
+                    Name = "Surface 0",
+                    Rgb = new()
+                    {
+                        Red = 204,
+                        Green = 208,
+                        Blue = 218
+                    }
+                },
+                Base = new()
+                {
+                    Name = "Base",
+                    Rgb = new()
+                    {
+                        Red = 239,
+                        Green = 241,
+                        Blue = 245
+                    }
+                },
+                Mantle = new()
+                {
+                    Name = "Mantle",
+                    Rgb = new()
+                    {
+                        Red = 230,
+                        Green = 233,
+                        Blue = 239
+                    }
+                },
+                Crust = new()
+                {
+                    Name = "Crust",
+                    Rgb = new()
+                    {
+                        Red = 220,
+                        Green = 224,
+                        Blue = 232
+                    }
+                }
+            },
+            AnsiColors = new()
+            {
+                Black = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Black",
+                        Rgb = new()
+                        {
+                            Red = 92,
+                            Green = 95,
+                            Blue = 119
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Black",
+                        Rgb = new()
+                        {
+                            Red = 108,
+                            Green = 111,
+                            Blue = 133
+                        }
+                    }
+                },
+                Red = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Red",
+                        Rgb = new()
+                        {
+                            Red = 210,
+                            Green = 15,
+                            Blue = 57
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Red",
+                        Rgb = new()
+                        {
+                            Red = 222,
+                            Green = 41,
+                            Blue = 62
+                        }
+                    }
+                },
+                Green = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Green",
+                        Rgb = new()
+                        {
+                            Red = 64,
+                            Green = 160,
+                            Blue = 43
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Green",
+                        Rgb = new()
+                        {
+                            Red = 73,
+                            Green = 175,
+                            Blue = 61
+                        }
+                    }
+                },
+                Yellow = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Yellow",
+                        Rgb = new()
+                        {
+                            Red = 223,
+                            Green = 142,
+                            Blue = 29
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Yellow",
+                        Rgb = new()
+                        {
+                            Red = 238,
+                            Green = 160,
+                            Blue = 45
+                        }
+                    }
+                },
+                Blue = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Blue",
+                        Rgb = new()
+                        {
+                            Red = 30,
+                            Green = 102,
+                            Blue = 245
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Blue",
+                        Rgb = new()
+                        {
+                            Red = 69,
+                            Green = 110,
+                            Blue = 255
+                        }
+                    }
+                },
+                Magenta = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Magenta",
+                        Rgb = new()
+                        {
+                            Red = 234,
+                            Green = 118,
+                            Blue = 203
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Magenta",
+                        Rgb = new()
+                        {
+                            Red = 254,
+                            Green = 133,
+                            Blue = 216
+                        }
+                    }
+                },
+                Cyan = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Cyan",
+                        Rgb = new()
+                        {
+                            Red = 23,
+                            Green = 146,
+                            Blue = 153
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Cyan",
+                        Rgb = new()
+                        {
+                            Red = 45,
+                            Green = 159,
+                            Blue = 168
+                        }
+                    }
+                },
+                White = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "White",
+                        Rgb = new()
+                        {
+                            Red = 172,
+                            Green = 176,
+                            Blue = 190
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright White",
+                        Rgb = new()
+                        {
+                            Red = 188,
+                            Green = 192,
+                            Blue = 204
+                        }
+                    }
+                }
             }
-          },
-          Bright = new() {
-            Name = "Bright Black",
-            Rgb = new() {
-              Red = 98,
-              Green = 104,
-              Blue = 128
-            }
-          }
-        },
-        Red = new() {
-          Normal = new() {
-            Name = "Red",
-            Rgb = new() {
-              Red = 231,
-              Green = 130,
-              Blue = 132
-            }
-          },
-          Bright = new() {
-            Name = "Bright Red",
-            Rgb = new() {
-              Red = 230,
-              Green = 113,
-              Blue = 114
-            }
-          }
-        },
-        Green = new() {
-          Normal = new() {
-            Name = "Green",
-            Rgb = new() {
-              Red = 166,
-              Green = 209,
-              Blue = 137
-            }
-          },
-          Bright = new() {
-            Name = "Bright Green",
-            Rgb = new() {
-              Red = 142,
-              Green = 199,
-              Blue = 114
-            }
-          }
-        },
-        Yellow = new() {
-          Normal = new() {
-            Name = "Yellow",
-            Rgb = new() {
-              Red = 229,
-              Green = 200,
-              Blue = 144
-            }
-          },
-          Bright = new() {
-            Name = "Bright Yellow",
-            Rgb = new() {
-              Red = 217,
-              Green = 186,
-              Blue = 115
-            }
-          }
-        },
-        Blue = new() {
-          Normal = new() {
-            Name = "Blue",
-            Rgb = new() {
-              Red = 140,
-              Green = 170,
-              Blue = 238
-            }
-          },
-          Bright = new() {
-            Name = "Bright Blue",
-            Rgb = new() {
-              Red = 123,
-              Green = 158,
-              Blue = 240
-            }
-          }
-        },
-        Magenta = new() {
-          Normal = new() {
-            Name = "Magenta",
-            Rgb = new() {
-              Red = 244,
-              Green = 184,
-              Blue = 228
-            }
-          },
-          Bright = new() {
-            Name = "Bright Magenta",
-            Rgb = new() {
-              Red = 242,
-              Green = 164,
-              Blue = 219
-            }
-          }
-        },
-        Cyan = new() {
-          Normal = new() {
-            Name = "Cyan",
-            Rgb = new() {
-              Red = 129,
-              Green = 200,
-              Blue = 190
-            }
-          },
-          Bright = new() {
-            Name = "Bright Cyan",
-            Rgb = new() {
-              Red = 90,
-              Green = 191,
-              Blue = 181
-            }
-          }
-        },
-        White = new() {
-          Normal = new() {
-            Name = "White",
-            Rgb = new() {
-              Red = 165,
-              Green = 173,
-              Blue = 206
-            }
-          },
-          Bright = new() {
-            Name = "Bright White",
-            Rgb = new() {
-              Red = 181,
-              Green = 191,
-              Blue = 226
-            }
-          }
-        }
-      }
-    };
-
-    /// <summary>
-    /// The Macchiato flavor.
-    /// </summary>
-    public Flavor Macchiato { get; } = new() {
-      Colors = new() {
-        Rosewater = new() {
-          Name = "Rosewater",
-          Rgb = new() {
-            Red = 244,
-            Green = 219,
-            Blue = 214
-          }
-        },
-        Flamingo = new() {
-          Name = "Flamingo",
-          Rgb = new() {
-            Red = 240,
-            Green = 198,
-            Blue = 198
-          }
-        },
-        Pink = new() {
-          Name = "Pink",
-          Rgb = new() {
-            Red = 245,
-            Green = 189,
-            Blue = 230
-          }
-        },
-        Mauve = new() {
-          Name = "Mauve",
-          Rgb = new() {
-            Red = 198,
-            Green = 160,
-            Blue = 246
-          }
-        },
-        Red = new() {
-          Name = "Red",
-          Rgb = new() {
-            Red = 237,
-            Green = 135,
-            Blue = 150
-          }
-        },
-        Maroon = new() {
-          Name = "Maroon",
-          Rgb = new() {
-            Red = 238,
-            Green = 153,
-            Blue = 160
-          }
-        },
-        Peach = new() {
-          Name = "Peach",
-          Rgb = new() {
-            Red = 245,
-            Green = 169,
-            Blue = 127
-          }
-        },
-        Yellow = new() {
-          Name = "Yellow",
-          Rgb = new() {
-            Red = 238,
-            Green = 212,
-            Blue = 159
-          }
-        },
-        Green = new() {
-          Name = "Green",
-          Rgb = new() {
-            Red = 166,
-            Green = 218,
-            Blue = 149
-          }
-        },
-        Teal = new() {
-          Name = "Teal",
-          Rgb = new() {
-            Red = 139,
-            Green = 213,
-            Blue = 202
-          }
-        },
-        Sky = new() {
-          Name = "Sky",
-          Rgb = new() {
-            Red = 145,
-            Green = 215,
-            Blue = 227
-          }
-        },
-        Sapphire = new() {
-          Name = "Sapphire",
-          Rgb = new() {
-            Red = 125,
-            Green = 196,
-            Blue = 228
-          }
-        },
-        Blue = new() {
-          Name = "Blue",
-          Rgb = new() {
-            Red = 138,
-            Green = 173,
-            Blue = 244
-          }
-        },
-        Lavender = new() {
-          Name = "Lavender",
-          Rgb = new() {
-            Red = 183,
-            Green = 189,
-            Blue = 248
-          }
-        },
-        Text = new() {
-          Name = "Text",
-          Rgb = new() {
-            Red = 202,
-            Green = 211,
-            Blue = 245
-          }
-        },
-        Subtext1 = new() {
-          Name = "Subtext 1",
-          Rgb = new() {
-            Red = 184,
-            Green = 192,
-            Blue = 224
-          }
-        },
-        Subtext0 = new() {
-          Name = "Subtext 0",
-          Rgb = new() {
-            Red = 165,
-            Green = 173,
-            Blue = 203
-          }
-        },
-        Overlay2 = new() {
-          Name = "Overlay 2",
-          Rgb = new() {
-            Red = 147,
-            Green = 154,
-            Blue = 183
-          }
-        },
-        Overlay1 = new() {
-          Name = "Overlay 1",
-          Rgb = new() {
-            Red = 128,
-            Green = 135,
-            Blue = 162
-          }
-        },
-        Overlay0 = new() {
-          Name = "Overlay 0",
-          Rgb = new() {
-            Red = 110,
-            Green = 115,
-            Blue = 141
-          }
-        },
-        Surface2 = new() {
-          Name = "Surface 2",
-          Rgb = new() {
-            Red = 91,
-            Green = 96,
-            Blue = 120
-          }
-        },
-        Surface1 = new() {
-          Name = "Surface 1",
-          Rgb = new() {
-            Red = 73,
-            Green = 77,
-            Blue = 100
-          }
-        },
-        Surface0 = new() {
-          Name = "Surface 0",
-          Rgb = new() {
-            Red = 54,
-            Green = 58,
-            Blue = 79
-          }
-        },
-        Base = new() {
-          Name = "Base",
-          Rgb = new() {
-            Red = 36,
-            Green = 39,
-            Blue = 58
-          }
-        },
-        Mantle = new() {
-          Name = "Mantle",
-          Rgb = new() {
-            Red = 30,
-            Green = 32,
-            Blue = 48
-          }
-        },
-        Crust = new() {
-          Name = "Crust",
-          Rgb = new() {
-            Red = 24,
-            Green = 25,
-            Blue = 38
-          }
-        }
-      },
-      AnsiColors = new() {
-        Black = new() {
-          Normal = new() {
-            Name = "Black",
-            Rgb = new() {
-              Red = 73,
-              Green = 77,
-              Blue = 100
-            }
-          },
-          Bright = new() {
-            Name = "Bright Black",
-            Rgb = new() {
-              Red = 91,
-              Green = 96,
-              Blue = 120
-            }
-          }
-        },
-        Red = new() {
-          Normal = new() {
-            Name = "Red",
-            Rgb = new() {
-              Red = 237,
-              Green = 135,
-              Blue = 150
-            }
-          },
-          Bright = new() {
-            Name = "Bright Red",
-            Rgb = new() {
-              Red = 236,
-              Green = 116,
-              Blue = 134
-            }
-          }
-        },
-        Green = new() {
-          Normal = new() {
-            Name = "Green",
-            Rgb = new() {
-              Red = 166,
-              Green = 218,
-              Blue = 149
-            }
-          },
-          Bright = new() {
-            Name = "Bright Green",
-            Rgb = new() {
-              Red = 140,
-              Green = 207,
-              Blue = 127
-            }
-          }
-        },
-        Yellow = new() {
-          Normal = new() {
-            Name = "Yellow",
-            Rgb = new() {
-              Red = 238,
-              Green = 212,
-              Blue = 159
-            }
-          },
-          Bright = new() {
-            Name = "Bright Yellow",
-            Rgb = new() {
-              Red = 225,
-              Green = 198,
-              Blue = 130
-            }
-          }
-        },
-        Blue = new() {
-          Normal = new() {
-            Name = "Blue",
-            Rgb = new() {
-              Red = 138,
-              Green = 173,
-              Blue = 244
-            }
-          },
-          Bright = new() {
-            Name = "Bright Blue",
-            Rgb = new() {
-              Red = 120,
-              Green = 161,
-              Blue = 246
-            }
-          }
-        },
-        Magenta = new() {
-          Normal = new() {
-            Name = "Magenta",
-            Rgb = new() {
-              Red = 245,
-              Green = 189,
-              Blue = 230
-            }
-          },
-          Bright = new() {
-            Name = "Bright Magenta",
-            Rgb = new() {
-              Red = 242,
-              Green = 169,
-              Blue = 221
-            }
-          }
-        },
-        Cyan = new() {
-          Normal = new() {
-            Name = "Cyan",
-            Rgb = new() {
-              Red = 139,
-              Green = 213,
-              Blue = 202
-            }
-          },
-          Bright = new() {
-            Name = "Bright Cyan",
-            Rgb = new() {
-              Red = 99,
-              Green = 203,
-              Blue = 192
-            }
-          }
-        },
-        White = new() {
-          Normal = new() {
-            Name = "White",
-            Rgb = new() {
-              Red = 165,
-              Green = 173,
-              Blue = 203
-            }
-          },
-          Bright = new() {
-            Name = "Bright White",
-            Rgb = new() {
-              Red = 184,
-              Green = 192,
-              Blue = 224
-            }
-          }
-        }
-      }
-    };
-
-    /// <summary>
-    /// The Mocha flavor.
-    /// </summary>
-    public Flavor Mocha { get; } = new() {
-      Colors = new() {
-        Rosewater = new() {
-          Name = "Rosewater",
-          Rgb = new() {
-            Red = 245,
-            Green = 224,
-            Blue = 220
-          }
-        },
-        Flamingo = new() {
-          Name = "Flamingo",
-          Rgb = new() {
-            Red = 242,
-            Green = 205,
-            Blue = 205
-          }
-        },
-        Pink = new() {
-          Name = "Pink",
-          Rgb = new() {
-            Red = 245,
-            Green = 194,
-            Blue = 231
-          }
-        },
-        Mauve = new() {
-          Name = "Mauve",
-          Rgb = new() {
-            Red = 203,
-            Green = 166,
-            Blue = 247
-          }
-        },
-        Red = new() {
-          Name = "Red",
-          Rgb = new() {
-            Red = 243,
-            Green = 139,
-            Blue = 168
-          }
-        },
-        Maroon = new() {
-          Name = "Maroon",
-          Rgb = new() {
-            Red = 235,
-            Green = 160,
-            Blue = 172
-          }
-        },
-        Peach = new() {
-          Name = "Peach",
-          Rgb = new() {
-            Red = 250,
-            Green = 179,
-            Blue = 135
-          }
-        },
-        Yellow = new() {
-          Name = "Yellow",
-          Rgb = new() {
-            Red = 249,
-            Green = 226,
-            Blue = 175
-          }
-        },
-        Green = new() {
-          Name = "Green",
-          Rgb = new() {
-            Red = 166,
-            Green = 227,
-            Blue = 161
-          }
-        },
-        Teal = new() {
-          Name = "Teal",
-          Rgb = new() {
-            Red = 148,
-            Green = 226,
-            Blue = 213
-          }
-        },
-        Sky = new() {
-          Name = "Sky",
-          Rgb = new() {
-            Red = 137,
-            Green = 220,
-            Blue = 235
-          }
-        },
-        Sapphire = new() {
-          Name = "Sapphire",
-          Rgb = new() {
-            Red = 116,
-            Green = 199,
-            Blue = 236
-          }
-        },
-        Blue = new() {
-          Name = "Blue",
-          Rgb = new() {
-            Red = 137,
-            Green = 180,
-            Blue = 250
-          }
-        },
-        Lavender = new() {
-          Name = "Lavender",
-          Rgb = new() {
-            Red = 180,
-            Green = 190,
-            Blue = 254
-          }
-        },
-        Text = new() {
-          Name = "Text",
-          Rgb = new() {
-            Red = 205,
-            Green = 214,
-            Blue = 244
-          }
-        },
-        Subtext1 = new() {
-          Name = "Subtext 1",
-          Rgb = new() {
-            Red = 186,
-            Green = 194,
-            Blue = 222
-          }
-        },
-        Subtext0 = new() {
-          Name = "Subtext 0",
-          Rgb = new() {
-            Red = 166,
-            Green = 173,
-            Blue = 200
-          }
-        },
-        Overlay2 = new() {
-          Name = "Overlay 2",
-          Rgb = new() {
-            Red = 147,
-            Green = 153,
-            Blue = 178
-          }
-        },
-        Overlay1 = new() {
-          Name = "Overlay 1",
-          Rgb = new() {
-            Red = 127,
-            Green = 132,
-            Blue = 156
-          }
-        },
-        Overlay0 = new() {
-          Name = "Overlay 0",
-          Rgb = new() {
-            Red = 108,
-            Green = 112,
-            Blue = 134
-          }
-        },
-        Surface2 = new() {
-          Name = "Surface 2",
-          Rgb = new() {
-            Red = 88,
-            Green = 91,
-            Blue = 112
-          }
-        },
-        Surface1 = new() {
-          Name = "Surface 1",
-          Rgb = new() {
-            Red = 69,
-            Green = 71,
-            Blue = 90
-          }
-        },
-        Surface0 = new() {
-          Name = "Surface 0",
-          Rgb = new() {
-            Red = 49,
-            Green = 50,
-            Blue = 68
-          }
-        },
-        Base = new() {
-          Name = "Base",
-          Rgb = new() {
-            Red = 30,
-            Green = 30,
-            Blue = 46
-          }
-        },
-        Mantle = new() {
-          Name = "Mantle",
-          Rgb = new() {
-            Red = 24,
-            Green = 24,
-            Blue = 37
-          }
-        },
-        Crust = new() {
-          Name = "Crust",
-          Rgb = new() {
-            Red = 17,
-            Green = 17,
-            Blue = 27
-          }
-        }
-      },
-      AnsiColors = new() {
-        Black = new() {
-          Normal = new() {
-            Name = "Black",
-            Rgb = new() {
-              Red = 69,
-              Green = 71,
-              Blue = 90
-            }
-          },
-          Bright = new() {
-            Name = "Bright Black",
-            Rgb = new() {
-              Red = 88,
-              Green = 91,
-              Blue = 112
-            }
-          }
-        },
-        Red = new() {
-          Normal = new() {
-            Name = "Red",
-            Rgb = new() {
-              Red = 243,
-              Green = 139,
-              Blue = 168
-            }
-          },
-          Bright = new() {
-            Name = "Bright Red",
-            Rgb = new() {
-              Red = 243,
-              Green = 119,
-              Blue = 153
-            }
-          }
-        },
-        Green = new() {
-          Normal = new() {
-            Name = "Green",
-            Rgb = new() {
-              Red = 166,
-              Green = 227,
-              Blue = 161
-            }
-          },
-          Bright = new() {
-            Name = "Bright Green",
-            Rgb = new() {
-              Red = 137,
-              Green = 216,
-              Blue = 139
-            }
-          }
-        },
-        Yellow = new() {
-          Normal = new() {
-            Name = "Yellow",
-            Rgb = new() {
-              Red = 249,
-              Green = 226,
-              Blue = 175
-            }
-          },
-          Bright = new() {
-            Name = "Bright Yellow",
-            Rgb = new() {
-              Red = 235,
-              Green = 211,
-              Blue = 145
-            }
-          }
-        },
-        Blue = new() {
-          Normal = new() {
-            Name = "Blue",
-            Rgb = new() {
-              Red = 137,
-              Green = 180,
-              Blue = 250
-            }
-          },
-          Bright = new() {
-            Name = "Bright Blue",
-            Rgb = new() {
-              Red = 116,
-              Green = 168,
-              Blue = 252
-            }
-          }
-        },
-        Magenta = new() {
-          Normal = new() {
-            Name = "Magenta",
-            Rgb = new() {
-              Red = 245,
-              Green = 194,
-              Blue = 231
-            }
-          },
-          Bright = new() {
-            Name = "Bright Magenta",
-            Rgb = new() {
-              Red = 242,
-              Green = 174,
-              Blue = 222
-            }
-          }
-        },
-        Cyan = new() {
-          Normal = new() {
-            Name = "Cyan",
-            Rgb = new() {
-              Red = 148,
-              Green = 226,
-              Blue = 213
-            }
-          },
-          Bright = new() {
-            Name = "Bright Cyan",
-            Rgb = new() {
-              Red = 107,
-              Green = 215,
-              Blue = 202
-            }
-          }
-        },
-        White = new() {
-          Normal = new() {
-            Name = "White",
-            Rgb = new() {
-              Red = 166,
-              Green = 173,
-              Blue = 200
-            }
-          },
-          Bright = new() {
-            Name = "Bright White",
-            Rgb = new() {
-              Red = 186,
-              Green = 194,
-              Blue = 222
-            }
-          }
-        }
-      }
-    };
-
-    /// <summary>
-    /// Allows indexing of the palette flavor using <paramref name="flavor"/>.
-    /// </summary>
-    /// <param name="flavor">The Catppuccin flavor.</param>
-    /// <returns>A <see cref="Flavor"/>.</returns>
-    /// <exception cref="IndexOutOfRangeException"></exception>
-    public Flavor this[FlavorEnum flavor] {
-      get {
-        return flavor switch {
-          FlavorEnum.Latte => Latte,
-          FlavorEnum.Frappe => Frappe,
-          FlavorEnum.Macchiato => Macchiato,
-          FlavorEnum.Mocha => Mocha,
-          _ => throw new IndexOutOfRangeException()
         };
-      }
-    }
 
-    /// <summary>
-    /// Initializes a <see cref="Palette"/>.
-    /// </summary>
-    private Palette() { }
-  }
+        /// <summary>
+        /// The Frappé flavor.
+        /// </summary>
+        public Flavor Frappe { get; } = new()
+        {
+            Colors = new()
+            {
+                Rosewater = new()
+                {
+                    Name = "Rosewater",
+                    Rgb = new()
+                    {
+                        Red = 242,
+                        Green = 213,
+                        Blue = 207
+                    }
+                },
+                Flamingo = new()
+                {
+                    Name = "Flamingo",
+                    Rgb = new()
+                    {
+                        Red = 238,
+                        Green = 190,
+                        Blue = 190
+                    }
+                },
+                Pink = new()
+                {
+                    Name = "Pink",
+                    Rgb = new()
+                    {
+                        Red = 244,
+                        Green = 184,
+                        Blue = 228
+                    }
+                },
+                Mauve = new()
+                {
+                    Name = "Mauve",
+                    Rgb = new()
+                    {
+                        Red = 202,
+                        Green = 158,
+                        Blue = 230
+                    }
+                },
+                Red = new()
+                {
+                    Name = "Red",
+                    Rgb = new()
+                    {
+                        Red = 231,
+                        Green = 130,
+                        Blue = 132
+                    }
+                },
+                Maroon = new()
+                {
+                    Name = "Maroon",
+                    Rgb = new()
+                    {
+                        Red = 234,
+                        Green = 153,
+                        Blue = 156
+                    }
+                },
+                Peach = new()
+                {
+                    Name = "Peach",
+                    Rgb = new()
+                    {
+                        Red = 239,
+                        Green = 159,
+                        Blue = 118
+                    }
+                },
+                Yellow = new()
+                {
+                    Name = "Yellow",
+                    Rgb = new()
+                    {
+                        Red = 229,
+                        Green = 200,
+                        Blue = 144
+                    }
+                },
+                Green = new()
+                {
+                    Name = "Green",
+                    Rgb = new()
+                    {
+                        Red = 166,
+                        Green = 209,
+                        Blue = 137
+                    }
+                },
+                Teal = new()
+                {
+                    Name = "Teal",
+                    Rgb = new()
+                    {
+                        Red = 129,
+                        Green = 200,
+                        Blue = 190
+                    }
+                },
+                Sky = new()
+                {
+                    Name = "Sky",
+                    Rgb = new()
+                    {
+                        Red = 153,
+                        Green = 209,
+                        Blue = 219
+                    }
+                },
+                Sapphire = new()
+                {
+                    Name = "Sapphire",
+                    Rgb = new()
+                    {
+                        Red = 133,
+                        Green = 193,
+                        Blue = 220
+                    }
+                },
+                Blue = new()
+                {
+                    Name = "Blue",
+                    Rgb = new()
+                    {
+                        Red = 140,
+                        Green = 170,
+                        Blue = 238
+                    }
+                },
+                Lavender = new()
+                {
+                    Name = "Lavender",
+                    Rgb = new()
+                    {
+                        Red = 186,
+                        Green = 187,
+                        Blue = 241
+                    }
+                },
+                Text = new()
+                {
+                    Name = "Text",
+                    Rgb = new()
+                    {
+                        Red = 198,
+                        Green = 208,
+                        Blue = 245
+                    }
+                },
+                Subtext1 = new()
+                {
+                    Name = "Subtext 1",
+                    Rgb = new()
+                    {
+                        Red = 181,
+                        Green = 191,
+                        Blue = 226
+                    }
+                },
+                Subtext0 = new()
+                {
+                    Name = "Subtext 0",
+                    Rgb = new()
+                    {
+                        Red = 165,
+                        Green = 173,
+                        Blue = 206
+                    }
+                },
+                Overlay2 = new()
+                {
+                    Name = "Overlay 2",
+                    Rgb = new()
+                    {
+                        Red = 148,
+                        Green = 156,
+                        Blue = 187
+                    }
+                },
+                Overlay1 = new()
+                {
+                    Name = "Overlay 1",
+                    Rgb = new()
+                    {
+                        Red = 131,
+                        Green = 139,
+                        Blue = 167
+                    }
+                },
+                Overlay0 = new()
+                {
+                    Name = "Overlay 0",
+                    Rgb = new()
+                    {
+                        Red = 115,
+                        Green = 121,
+                        Blue = 148
+                    }
+                },
+                Surface2 = new()
+                {
+                    Name = "Surface 2",
+                    Rgb = new()
+                    {
+                        Red = 98,
+                        Green = 104,
+                        Blue = 128
+                    }
+                },
+                Surface1 = new()
+                {
+                    Name = "Surface 1",
+                    Rgb = new()
+                    {
+                        Red = 81,
+                        Green = 87,
+                        Blue = 109
+                    }
+                },
+                Surface0 = new()
+                {
+                    Name = "Surface 0",
+                    Rgb = new()
+                    {
+                        Red = 65,
+                        Green = 69,
+                        Blue = 89
+                    }
+                },
+                Base = new()
+                {
+                    Name = "Base",
+                    Rgb = new()
+                    {
+                        Red = 48,
+                        Green = 52,
+                        Blue = 70
+                    }
+                },
+                Mantle = new()
+                {
+                    Name = "Mantle",
+                    Rgb = new()
+                    {
+                        Red = 41,
+                        Green = 44,
+                        Blue = 60
+                    }
+                },
+                Crust = new()
+                {
+                    Name = "Crust",
+                    Rgb = new()
+                    {
+                        Red = 35,
+                        Green = 38,
+                        Blue = 52
+                    }
+                }
+            },
+            AnsiColors = new()
+            {
+                Black = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Black",
+                        Rgb = new()
+                        {
+                            Red = 81,
+                            Green = 87,
+                            Blue = 109
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Black",
+                        Rgb = new()
+                        {
+                            Red = 98,
+                            Green = 104,
+                            Blue = 128
+                        }
+                    }
+                },
+                Red = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Red",
+                        Rgb = new()
+                        {
+                            Red = 231,
+                            Green = 130,
+                            Blue = 132
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Red",
+                        Rgb = new()
+                        {
+                            Red = 230,
+                            Green = 113,
+                            Blue = 114
+                        }
+                    }
+                },
+                Green = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Green",
+                        Rgb = new()
+                        {
+                            Red = 166,
+                            Green = 209,
+                            Blue = 137
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Green",
+                        Rgb = new()
+                        {
+                            Red = 142,
+                            Green = 199,
+                            Blue = 114
+                        }
+                    }
+                },
+                Yellow = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Yellow",
+                        Rgb = new()
+                        {
+                            Red = 229,
+                            Green = 200,
+                            Blue = 144
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Yellow",
+                        Rgb = new()
+                        {
+                            Red = 217,
+                            Green = 186,
+                            Blue = 115
+                        }
+                    }
+                },
+                Blue = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Blue",
+                        Rgb = new()
+                        {
+                            Red = 140,
+                            Green = 170,
+                            Blue = 238
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Blue",
+                        Rgb = new()
+                        {
+                            Red = 123,
+                            Green = 158,
+                            Blue = 240
+                        }
+                    }
+                },
+                Magenta = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Magenta",
+                        Rgb = new()
+                        {
+                            Red = 244,
+                            Green = 184,
+                            Blue = 228
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Magenta",
+                        Rgb = new()
+                        {
+                            Red = 242,
+                            Green = 164,
+                            Blue = 219
+                        }
+                    }
+                },
+                Cyan = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Cyan",
+                        Rgb = new()
+                        {
+                            Red = 129,
+                            Green = 200,
+                            Blue = 190
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Cyan",
+                        Rgb = new()
+                        {
+                            Red = 90,
+                            Green = 191,
+                            Blue = 181
+                        }
+                    }
+                },
+                White = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "White",
+                        Rgb = new()
+                        {
+                            Red = 165,
+                            Green = 173,
+                            Blue = 206
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright White",
+                        Rgb = new()
+                        {
+                            Red = 181,
+                            Green = 191,
+                            Blue = 226
+                        }
+                    }
+                }
+            }
+        };
+
+        /// <summary>
+        /// The Macchiato flavor.
+        /// </summary>
+        public Flavor Macchiato { get; } = new()
+        {
+            Colors = new()
+            {
+                Rosewater = new()
+                {
+                    Name = "Rosewater",
+                    Rgb = new()
+                    {
+                        Red = 244,
+                        Green = 219,
+                        Blue = 214
+                    }
+                },
+                Flamingo = new()
+                {
+                    Name = "Flamingo",
+                    Rgb = new()
+                    {
+                        Red = 240,
+                        Green = 198,
+                        Blue = 198
+                    }
+                },
+                Pink = new()
+                {
+                    Name = "Pink",
+                    Rgb = new()
+                    {
+                        Red = 245,
+                        Green = 189,
+                        Blue = 230
+                    }
+                },
+                Mauve = new()
+                {
+                    Name = "Mauve",
+                    Rgb = new()
+                    {
+                        Red = 198,
+                        Green = 160,
+                        Blue = 246
+                    }
+                },
+                Red = new()
+                {
+                    Name = "Red",
+                    Rgb = new()
+                    {
+                        Red = 237,
+                        Green = 135,
+                        Blue = 150
+                    }
+                },
+                Maroon = new()
+                {
+                    Name = "Maroon",
+                    Rgb = new()
+                    {
+                        Red = 238,
+                        Green = 153,
+                        Blue = 160
+                    }
+                },
+                Peach = new()
+                {
+                    Name = "Peach",
+                    Rgb = new()
+                    {
+                        Red = 245,
+                        Green = 169,
+                        Blue = 127
+                    }
+                },
+                Yellow = new()
+                {
+                    Name = "Yellow",
+                    Rgb = new()
+                    {
+                        Red = 238,
+                        Green = 212,
+                        Blue = 159
+                    }
+                },
+                Green = new()
+                {
+                    Name = "Green",
+                    Rgb = new()
+                    {
+                        Red = 166,
+                        Green = 218,
+                        Blue = 149
+                    }
+                },
+                Teal = new()
+                {
+                    Name = "Teal",
+                    Rgb = new()
+                    {
+                        Red = 139,
+                        Green = 213,
+                        Blue = 202
+                    }
+                },
+                Sky = new()
+                {
+                    Name = "Sky",
+                    Rgb = new()
+                    {
+                        Red = 145,
+                        Green = 215,
+                        Blue = 227
+                    }
+                },
+                Sapphire = new()
+                {
+                    Name = "Sapphire",
+                    Rgb = new()
+                    {
+                        Red = 125,
+                        Green = 196,
+                        Blue = 228
+                    }
+                },
+                Blue = new()
+                {
+                    Name = "Blue",
+                    Rgb = new()
+                    {
+                        Red = 138,
+                        Green = 173,
+                        Blue = 244
+                    }
+                },
+                Lavender = new()
+                {
+                    Name = "Lavender",
+                    Rgb = new()
+                    {
+                        Red = 183,
+                        Green = 189,
+                        Blue = 248
+                    }
+                },
+                Text = new()
+                {
+                    Name = "Text",
+                    Rgb = new()
+                    {
+                        Red = 202,
+                        Green = 211,
+                        Blue = 245
+                    }
+                },
+                Subtext1 = new()
+                {
+                    Name = "Subtext 1",
+                    Rgb = new()
+                    {
+                        Red = 184,
+                        Green = 192,
+                        Blue = 224
+                    }
+                },
+                Subtext0 = new()
+                {
+                    Name = "Subtext 0",
+                    Rgb = new()
+                    {
+                        Red = 165,
+                        Green = 173,
+                        Blue = 203
+                    }
+                },
+                Overlay2 = new()
+                {
+                    Name = "Overlay 2",
+                    Rgb = new()
+                    {
+                        Red = 147,
+                        Green = 154,
+                        Blue = 183
+                    }
+                },
+                Overlay1 = new()
+                {
+                    Name = "Overlay 1",
+                    Rgb = new()
+                    {
+                        Red = 128,
+                        Green = 135,
+                        Blue = 162
+                    }
+                },
+                Overlay0 = new()
+                {
+                    Name = "Overlay 0",
+                    Rgb = new()
+                    {
+                        Red = 110,
+                        Green = 115,
+                        Blue = 141
+                    }
+                },
+                Surface2 = new()
+                {
+                    Name = "Surface 2",
+                    Rgb = new()
+                    {
+                        Red = 91,
+                        Green = 96,
+                        Blue = 120
+                    }
+                },
+                Surface1 = new()
+                {
+                    Name = "Surface 1",
+                    Rgb = new()
+                    {
+                        Red = 73,
+                        Green = 77,
+                        Blue = 100
+                    }
+                },
+                Surface0 = new()
+                {
+                    Name = "Surface 0",
+                    Rgb = new()
+                    {
+                        Red = 54,
+                        Green = 58,
+                        Blue = 79
+                    }
+                },
+                Base = new()
+                {
+                    Name = "Base",
+                    Rgb = new()
+                    {
+                        Red = 36,
+                        Green = 39,
+                        Blue = 58
+                    }
+                },
+                Mantle = new()
+                {
+                    Name = "Mantle",
+                    Rgb = new()
+                    {
+                        Red = 30,
+                        Green = 32,
+                        Blue = 48
+                    }
+                },
+                Crust = new()
+                {
+                    Name = "Crust",
+                    Rgb = new()
+                    {
+                        Red = 24,
+                        Green = 25,
+                        Blue = 38
+                    }
+                }
+            },
+            AnsiColors = new()
+            {
+                Black = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Black",
+                        Rgb = new()
+                        {
+                            Red = 73,
+                            Green = 77,
+                            Blue = 100
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Black",
+                        Rgb = new()
+                        {
+                            Red = 91,
+                            Green = 96,
+                            Blue = 120
+                        }
+                    }
+                },
+                Red = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Red",
+                        Rgb = new()
+                        {
+                            Red = 237,
+                            Green = 135,
+                            Blue = 150
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Red",
+                        Rgb = new()
+                        {
+                            Red = 236,
+                            Green = 116,
+                            Blue = 134
+                        }
+                    }
+                },
+                Green = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Green",
+                        Rgb = new()
+                        {
+                            Red = 166,
+                            Green = 218,
+                            Blue = 149
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Green",
+                        Rgb = new()
+                        {
+                            Red = 140,
+                            Green = 207,
+                            Blue = 127
+                        }
+                    }
+                },
+                Yellow = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Yellow",
+                        Rgb = new()
+                        {
+                            Red = 238,
+                            Green = 212,
+                            Blue = 159
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Yellow",
+                        Rgb = new()
+                        {
+                            Red = 225,
+                            Green = 198,
+                            Blue = 130
+                        }
+                    }
+                },
+                Blue = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Blue",
+                        Rgb = new()
+                        {
+                            Red = 138,
+                            Green = 173,
+                            Blue = 244
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Blue",
+                        Rgb = new()
+                        {
+                            Red = 120,
+                            Green = 161,
+                            Blue = 246
+                        }
+                    }
+                },
+                Magenta = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Magenta",
+                        Rgb = new()
+                        {
+                            Red = 245,
+                            Green = 189,
+                            Blue = 230
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Magenta",
+                        Rgb = new()
+                        {
+                            Red = 242,
+                            Green = 169,
+                            Blue = 221
+                        }
+                    }
+                },
+                Cyan = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Cyan",
+                        Rgb = new()
+                        {
+                            Red = 139,
+                            Green = 213,
+                            Blue = 202
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Cyan",
+                        Rgb = new()
+                        {
+                            Red = 99,
+                            Green = 203,
+                            Blue = 192
+                        }
+                    }
+                },
+                White = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "White",
+                        Rgb = new()
+                        {
+                            Red = 165,
+                            Green = 173,
+                            Blue = 203
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright White",
+                        Rgb = new()
+                        {
+                            Red = 184,
+                            Green = 192,
+                            Blue = 224
+                        }
+                    }
+                }
+            }
+        };
+
+        /// <summary>
+        /// The Mocha flavor.
+        /// </summary>
+        public Flavor Mocha { get; } = new()
+        {
+            Colors = new()
+            {
+                Rosewater = new()
+                {
+                    Name = "Rosewater",
+                    Rgb = new()
+                    {
+                        Red = 245,
+                        Green = 224,
+                        Blue = 220
+                    }
+                },
+                Flamingo = new()
+                {
+                    Name = "Flamingo",
+                    Rgb = new()
+                    {
+                        Red = 242,
+                        Green = 205,
+                        Blue = 205
+                    }
+                },
+                Pink = new()
+                {
+                    Name = "Pink",
+                    Rgb = new()
+                    {
+                        Red = 245,
+                        Green = 194,
+                        Blue = 231
+                    }
+                },
+                Mauve = new()
+                {
+                    Name = "Mauve",
+                    Rgb = new()
+                    {
+                        Red = 203,
+                        Green = 166,
+                        Blue = 247
+                    }
+                },
+                Red = new()
+                {
+                    Name = "Red",
+                    Rgb = new()
+                    {
+                        Red = 243,
+                        Green = 139,
+                        Blue = 168
+                    }
+                },
+                Maroon = new()
+                {
+                    Name = "Maroon",
+                    Rgb = new()
+                    {
+                        Red = 235,
+                        Green = 160,
+                        Blue = 172
+                    }
+                },
+                Peach = new()
+                {
+                    Name = "Peach",
+                    Rgb = new()
+                    {
+                        Red = 250,
+                        Green = 179,
+                        Blue = 135
+                    }
+                },
+                Yellow = new()
+                {
+                    Name = "Yellow",
+                    Rgb = new()
+                    {
+                        Red = 249,
+                        Green = 226,
+                        Blue = 175
+                    }
+                },
+                Green = new()
+                {
+                    Name = "Green",
+                    Rgb = new()
+                    {
+                        Red = 166,
+                        Green = 227,
+                        Blue = 161
+                    }
+                },
+                Teal = new()
+                {
+                    Name = "Teal",
+                    Rgb = new()
+                    {
+                        Red = 148,
+                        Green = 226,
+                        Blue = 213
+                    }
+                },
+                Sky = new()
+                {
+                    Name = "Sky",
+                    Rgb = new()
+                    {
+                        Red = 137,
+                        Green = 220,
+                        Blue = 235
+                    }
+                },
+                Sapphire = new()
+                {
+                    Name = "Sapphire",
+                    Rgb = new()
+                    {
+                        Red = 116,
+                        Green = 199,
+                        Blue = 236
+                    }
+                },
+                Blue = new()
+                {
+                    Name = "Blue",
+                    Rgb = new()
+                    {
+                        Red = 137,
+                        Green = 180,
+                        Blue = 250
+                    }
+                },
+                Lavender = new()
+                {
+                    Name = "Lavender",
+                    Rgb = new()
+                    {
+                        Red = 180,
+                        Green = 190,
+                        Blue = 254
+                    }
+                },
+                Text = new()
+                {
+                    Name = "Text",
+                    Rgb = new()
+                    {
+                        Red = 205,
+                        Green = 214,
+                        Blue = 244
+                    }
+                },
+                Subtext1 = new()
+                {
+                    Name = "Subtext 1",
+                    Rgb = new()
+                    {
+                        Red = 186,
+                        Green = 194,
+                        Blue = 222
+                    }
+                },
+                Subtext0 = new()
+                {
+                    Name = "Subtext 0",
+                    Rgb = new()
+                    {
+                        Red = 166,
+                        Green = 173,
+                        Blue = 200
+                    }
+                },
+                Overlay2 = new()
+                {
+                    Name = "Overlay 2",
+                    Rgb = new()
+                    {
+                        Red = 147,
+                        Green = 153,
+                        Blue = 178
+                    }
+                },
+                Overlay1 = new()
+                {
+                    Name = "Overlay 1",
+                    Rgb = new()
+                    {
+                        Red = 127,
+                        Green = 132,
+                        Blue = 156
+                    }
+                },
+                Overlay0 = new()
+                {
+                    Name = "Overlay 0",
+                    Rgb = new()
+                    {
+                        Red = 108,
+                        Green = 112,
+                        Blue = 134
+                    }
+                },
+                Surface2 = new()
+                {
+                    Name = "Surface 2",
+                    Rgb = new()
+                    {
+                        Red = 88,
+                        Green = 91,
+                        Blue = 112
+                    }
+                },
+                Surface1 = new()
+                {
+                    Name = "Surface 1",
+                    Rgb = new()
+                    {
+                        Red = 69,
+                        Green = 71,
+                        Blue = 90
+                    }
+                },
+                Surface0 = new()
+                {
+                    Name = "Surface 0",
+                    Rgb = new()
+                    {
+                        Red = 49,
+                        Green = 50,
+                        Blue = 68
+                    }
+                },
+                Base = new()
+                {
+                    Name = "Base",
+                    Rgb = new()
+                    {
+                        Red = 30,
+                        Green = 30,
+                        Blue = 46
+                    }
+                },
+                Mantle = new()
+                {
+                    Name = "Mantle",
+                    Rgb = new()
+                    {
+                        Red = 24,
+                        Green = 24,
+                        Blue = 37
+                    }
+                },
+                Crust = new()
+                {
+                    Name = "Crust",
+                    Rgb = new()
+                    {
+                        Red = 17,
+                        Green = 17,
+                        Blue = 27
+                    }
+                }
+            },
+            AnsiColors = new()
+            {
+                Black = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Black",
+                        Rgb = new()
+                        {
+                            Red = 69,
+                            Green = 71,
+                            Blue = 90
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Black",
+                        Rgb = new()
+                        {
+                            Red = 88,
+                            Green = 91,
+                            Blue = 112
+                        }
+                    }
+                },
+                Red = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Red",
+                        Rgb = new()
+                        {
+                            Red = 243,
+                            Green = 139,
+                            Blue = 168
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Red",
+                        Rgb = new()
+                        {
+                            Red = 243,
+                            Green = 119,
+                            Blue = 153
+                        }
+                    }
+                },
+                Green = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Green",
+                        Rgb = new()
+                        {
+                            Red = 166,
+                            Green = 227,
+                            Blue = 161
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Green",
+                        Rgb = new()
+                        {
+                            Red = 137,
+                            Green = 216,
+                            Blue = 139
+                        }
+                    }
+                },
+                Yellow = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Yellow",
+                        Rgb = new()
+                        {
+                            Red = 249,
+                            Green = 226,
+                            Blue = 175
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Yellow",
+                        Rgb = new()
+                        {
+                            Red = 235,
+                            Green = 211,
+                            Blue = 145
+                        }
+                    }
+                },
+                Blue = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Blue",
+                        Rgb = new()
+                        {
+                            Red = 137,
+                            Green = 180,
+                            Blue = 250
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Blue",
+                        Rgb = new()
+                        {
+                            Red = 116,
+                            Green = 168,
+                            Blue = 252
+                        }
+                    }
+                },
+                Magenta = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Magenta",
+                        Rgb = new()
+                        {
+                            Red = 245,
+                            Green = 194,
+                            Blue = 231
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Magenta",
+                        Rgb = new()
+                        {
+                            Red = 242,
+                            Green = 174,
+                            Blue = 222
+                        }
+                    }
+                },
+                Cyan = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "Cyan",
+                        Rgb = new()
+                        {
+                            Red = 148,
+                            Green = 226,
+                            Blue = 213
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright Cyan",
+                        Rgb = new()
+                        {
+                            Red = 107,
+                            Green = 215,
+                            Blue = 202
+                        }
+                    }
+                },
+                White = new()
+                {
+                    Normal = new()
+                    {
+                        Name = "White",
+                        Rgb = new()
+                        {
+                            Red = 166,
+                            Green = 173,
+                            Blue = 200
+                        }
+                    },
+                    Bright = new()
+                    {
+                        Name = "Bright White",
+                        Rgb = new()
+                        {
+                            Red = 186,
+                            Green = 194,
+                            Blue = 222
+                        }
+                    }
+                }
+            }
+        };
+
+        /// <summary>
+        /// Allows indexing of the palette flavor using <paramref
+        /// name="flavor"/>.
+        /// </summary>
+        /// <param name="flavor">The Catppuccin flavor.</param>
+        /// <returns>A <see cref="Flavor"/>.</returns>
+        /// <exception cref="IndexOutOfRangeException"></exception>
+        public Flavor this[FlavorEnum flavor]
+        {
+            get
+            {
+                return flavor switch
+                {
+                    FlavorEnum.Latte => Latte,
+                    FlavorEnum.Frappe => Frappe,
+                    FlavorEnum.Macchiato => Macchiato,
+                    FlavorEnum.Mocha => Mocha,
+                    _ => throw new IndexOutOfRangeException()
+                };
+            }
+        }
+
+        /// <summary>
+        /// Initializes a <see cref="Palette"/>.
+        /// </summary>
+        private Palette()
+        {
+        }
+    }
 }

@@ -7,24 +7,26 @@
 /* </auto-generated>                                                         */
 /*****************************************************************************/
 
-namespace Spakov.Catppuccin {
-  /// <summary>
-  /// A Catppuccin flavor color rgb object in palette.json.
-  /// </summary>
-  public class Rgb {
+namespace Spakov.Catppuccin
+{
     /// <summary>
-    /// The red component.
+    /// A Catppuccin flavor color rgb object in palette.json.
     /// </summary>
-    public required int Red { get; set; }
+    public class Rgb
+    {
+        /// <summary>
+        /// The red component.
+        /// </summary>
+        public required int Red { get; set; }
 
-    /// <summary>
-    /// The green component.
-    /// </summary>
-    public required int Green { get; set; }
+        /// <summary>
+        /// The green component.
+        /// </summary>
+        public required int Green { get; set; }
 
-    /// <summary>
-    /// The blue component.
-    /// </summary>
-    public required int Blue { get; set; }
-  }
+        /// <summary>
+        /// The blue component.
+        /// </summary>
+        public required int Blue { get; set; }
+    }
 }

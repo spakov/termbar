@@ -7,19 +7,21 @@
 /* </auto-generated>                                                         */
 /*****************************************************************************/
 
-namespace Spakov.Catppuccin {
-  /// <summary>
-  /// A Catppuccin palette.json ANSI color pair.
-  /// </summary>
-  public class AnsiColorPair {
+namespace Spakov.Catppuccin
+{
     /// <summary>
-    /// The normal (non-bright) ANSI color.
+    /// A Catppuccin palette.json ANSI color pair.
     /// </summary>
-    public required Color Normal { get; set; }
+    public class AnsiColorPair
+    {
+        /// <summary>
+        /// The normal (non-bright) ANSI color.
+        /// </summary>
+        public required Color Normal { get; set; }
 
-    /// <summary>
-    /// The bright ANSI color.
-    /// </summary>
-    public required Color Bright { get; set; }
-  }
+        /// <summary>
+        /// The bright ANSI color.
+        /// </summary>
+        public required Color Bright { get; set; }
+    }
 }

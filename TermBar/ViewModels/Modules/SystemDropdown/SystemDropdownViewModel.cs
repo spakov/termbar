@@ -3,47 +3,54 @@ using Spakov.Catppuccin;
 using Spakov.TermBar.Views.Modules.SystemDropdown;
 using System.Collections.ObjectModel;
 
-namespace Spakov.TermBar.ViewModels.Modules.SystemDropdown {
-  internal class SystemDropdownViewModel {
-    private readonly Configuration.Json.TermBar config;
-    private readonly Configuration.Json.Modules.SystemDropdown moduleConfig;
-
-    private readonly ObservableCollection<SystemDropdownMenuFlyoutItemView> views;
-
+namespace Spakov.TermBar.ViewModels.Modules.SystemDropdown
+{
     /// <summary>
-    /// The dropdown icon.
+    /// The system dropdown viewmodel.
     /// </summary>
-    internal string? Icon => moduleConfig.Icon;
+    internal class SystemDropdownViewModel
+    {
+        private readonly Configuration.Json.TermBar _config;
+        private readonly Configuration.Json.Modules.SystemDropdown _moduleConfig;
 
-    /// <summary>
-    /// The dropdown icon color.
-    /// </summary>
-    internal SolidColorBrush? IconColor => Palette.Instance[config.Flavor].Colors[moduleConfig.AccentColor].SolidColorBrush;
+        private readonly ObservableCollection<SystemDropdownMenuFlyoutItemView> _views;
 
-    /// <summary>
-    /// The list of <see cref="SystemDropdownMenuFlyoutItemView"/>s to be
-    /// presented to the user.
-    /// </summary>
-    internal ObservableCollection<SystemDropdownMenuFlyoutItemView> Items => views;
+        /// <summary>
+        /// The dropdown icon.
+        /// </summary>
+        internal string? Icon => _moduleConfig.Icon;
 
-    /// <summary>
-    /// Initializes a <see cref="SystemDropdownViewModel"/>.
-    /// </summary>
-    /// <param name="config"><inheritdoc
-    /// cref="SystemDropdownView.SystemDropdownView"
-    /// path="/param[@name='config']"/></param>
-    /// <param name="moduleConfig"><inheritdoc
-    /// cref="SystemDropdownView.SystemDropdownView"
-    /// path="/param[@name='moduleConfig']"/></param>
-    internal SystemDropdownViewModel(Configuration.Json.TermBar config, Configuration.Json.Modules.SystemDropdown moduleConfig) {
-      this.config = config;
-      this.moduleConfig = moduleConfig;
+        /// <summary>
+        /// The dropdown icon color.
+        /// </summary>
+        internal SolidColorBrush? IconColor => Palette.Instance[_config.Flavor].Colors[_moduleConfig.AccentColor].SolidColorBrush;
 
-      views = [];
+        /// <summary>
+        /// The list of <see cref="SystemDropdownMenuFlyoutItemView"/>s to be
+        /// presented to the user.
+        /// </summary>
+        internal ObservableCollection<SystemDropdownMenuFlyoutItemView> Items => _views;
 
-      foreach (Configuration.Json.Modules.SystemDropdown.SystemDropdownFeatures feature in moduleConfig.Features) {
-        views.Add(new(config, moduleConfig, feature));
-      }
+        /// <summary>
+        /// Initializes a <see cref="SystemDropdownViewModel"/>.
+        /// </summary>
+        /// <param name="config"><inheritdoc
+        /// cref="SystemDropdownView.SystemDropdownView"
+        /// path="/param[@name='config']"/></param>
+        /// <param name="moduleConfig"><inheritdoc
+        /// cref="SystemDropdownView.SystemDropdownView"
+        /// path="/param[@name='moduleConfig']"/></param>
+        internal SystemDropdownViewModel(Configuration.Json.TermBar config, Configuration.Json.Modules.SystemDropdown moduleConfig)
+        {
+            _config = config;
+            _moduleConfig = moduleConfig;
+
+            _views = [];
+
+            foreach (Configuration.Json.Modules.SystemDropdown.SystemDropdownFeature feature in moduleConfig.Features)
+            {
+                _views.Add(new(feature));
+            }
+        }
     }
-  }
 }

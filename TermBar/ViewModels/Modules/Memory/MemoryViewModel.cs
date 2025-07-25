@@ -1,78 +1,90 @@
 ﻿using Microsoft.UI.Xaml;
+using Spakov.TermBar.Models;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Spakov.TermBar.Models;
 
-namespace Spakov.TermBar.ViewModels.Modules.Memory {
-  /// <summary>
-  /// The memory usage monitor viewmodel.
-  /// </summary>
-  internal partial class MemoryViewModel : INotifyPropertyChanged {
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    private readonly Configuration.Json.Modules.Memory config;
-
-    private readonly DispatcherTimer dispatcherTimer;
-
-    private string? _icon;
-    private string? _memory;
-
+namespace Spakov.TermBar.ViewModels.Modules.Memory
+{
     /// <summary>
-    /// The clock icon.
+    /// The memory usage monitor viewmodel.
     /// </summary>
-    public string? Icon {
-      get => _icon;
+    internal partial class MemoryViewModel : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-      set {
-        if (_icon != value) {
-          _icon = value;
-          OnPropertyChanged();
+        private readonly Configuration.Json.Modules.Memory _config;
+
+        private readonly DispatcherTimer _dispatcherTimer;
+
+        private string? _icon;
+        private string? _memory;
+
+        /// <summary>
+        /// The clock icon.
+        /// </summary>
+        public string? Icon
+        {
+            get => _icon;
+
+            set
+            {
+                if (_icon != value)
+                {
+                    _icon = value;
+                    OnPropertyChanged();
+                }
+            }
         }
-      }
-    }
 
-    /// <summary>
-    /// The memory usage.
-    /// </summary>
-    public string? Memory {
-      get => _memory;
+        /// <summary>
+        /// The memory usage.
+        /// </summary>
+        public string? Memory
+        {
+            get => _memory;
 
-      set {
-        if (_memory != value) {
-          _memory = value;
-          OnPropertyChanged();
+            set
+            {
+                if (_memory != value)
+                {
+                    _memory = value;
+                    OnPropertyChanged();
+                }
+            }
         }
-      }
+
+        /// <summary>
+        /// Initializes a <see cref="MemoryViewModel"/>.
+        /// </summary>
+        /// <param name="config">A <see
+        /// cref="Configuration.Json.Modules.Memory"/> configuration.</param>
+        public MemoryViewModel(Configuration.Json.Modules.Memory config)
+        {
+            _config = config;
+
+            Icon = config.Icon;
+
+            _dispatcherTimer = new()
+            {
+                Interval = TimeSpan.FromMilliseconds(config.UpdateInterval)
+            };
+
+            _dispatcherTimer.Tick += Tick;
+            _dispatcherTimer.Start();
+
+            Tick(this, new());
+        }
+
+        /// <summary>
+        /// Updates the memory usage.
+        /// </summary>
+        /// <param name="sender"><inheritdoc cref="EventHandler"
+        /// path="/param[@name='sender']"/></param>
+        /// <param name="e"><inheritdoc cref="EventHandler"
+        /// path="/param[@name='e']"/></param>
+        private void Tick(object? sender, object e) => Memory = string.Format(_config.Format, _config.Round ? Math.Round(Performance.MemoryPercent is not null ? (float)Performance.MemoryPercent : -1.0f, 0, MidpointRounding.AwayFromZero) : Performance.MemoryPercent);
+
+        private void OnPropertyChanged([CallerMemberName] string? callerMemberName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerMemberName));
     }
-
-    /// <summary>
-    /// Initializes a <see cref="MemoryViewModel"/>.
-    /// </summary>
-    public MemoryViewModel(Configuration.Json.Modules.Memory config) {
-      this.config = config;
-
-      Icon = config.Icon;
-
-      dispatcherTimer = new() {
-        Interval = TimeSpan.FromMilliseconds(config.UpdateInterval)
-      };
-
-      dispatcherTimer.Tick += Tick;
-      dispatcherTimer.Start();
-
-      Tick(this, new());
-    }
-
-    /// <summary>
-    /// Updates the memory usage.
-    /// </summary>
-    /// <param name="sender"><inheritdoc cref="EventHandler"
-    /// path="/param[@name='sender']"/></param>
-    /// <param name="e"><inheritdoc cref="EventHandler"
-    /// path="/param[@name='e']"/></param>
-    private void Tick(object? sender, object e) => Memory = string.Format(config.Format, config.Round ? Math.Round(Performance.MemoryPercent is not null ? (float) Performance.MemoryPercent : -1.0f, 0, MidpointRounding.AwayFromZero) : Performance.MemoryPercent);
-
-    private void OnPropertyChanged([CallerMemberName] string? callerMemberName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerMemberName));
-  }
 }
