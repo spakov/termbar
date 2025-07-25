@@ -23,7 +23,7 @@ namespace Spakov.TermBar.ViewModels.Modules.Launcher
         /// </summary>
         /// <param name="config">A <see cref="Configuration.Json.TermBar"/>
         /// configuration.</param>
-        /// <param name="config">A <see
+        /// <param name="moduleConfig">A <see
         /// cref="Configuration.Json.Modules.Launcher"/> configuration.</param>
         public LauncherViewModel(Configuration.Json.TermBar config, Configuration.Json.Modules.Launcher moduleConfig)
         {

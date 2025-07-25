@@ -3,11 +3,20 @@ using System.Text.Json.Serialization;
 
 namespace Spakov.CatppuccinGenerator.Json
 {
+    /// <summary>
+    /// A Catppuccin ANSI color pair.
+    /// </summary>
     internal class AnsiColorPair
     {
+        /// <summary>
+        /// The normal Catppuccin ANSI color.
+        /// </summary>
         [JsonPropertyName("normal")]
         public required Color Normal { get; set; }
 
+        /// <summary>
+        /// The bright Catppuccin ANSI color.
+        /// </summary>
         [JsonPropertyName("bright")]
         public required Color Bright { get; set; }
 

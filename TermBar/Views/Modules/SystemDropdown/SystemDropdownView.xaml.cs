@@ -11,7 +11,15 @@ namespace Spakov.TermBar.Views.Modules.SystemDropdown
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1812:Class is apparently never instantiated", Justification = "Instantiated with Activator.CreateInstance()")]
     internal sealed partial class SystemDropdownView : ModuleView
     {
+        /// <summary>
+        /// The name of the Explorer process.
+        /// </summary>
         private const string Explorer = "explorer";
+
+        /// <summary>
+        /// The argument to pass to <see cref="Explorer"/> to open the system
+        /// settings.
+        /// </summary>
         private const string MsSettings = "ms-settings:";
 
         private SystemDropdownViewModel? _viewModel;

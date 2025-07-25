@@ -3,14 +3,26 @@ using System.Text.Json.Serialization;
 
 namespace Spakov.CatppuccinGenerator.Json
 {
+    /// <summary>
+    /// A red-green-blue triplet.
+    /// </summary>
     internal class Rgb
     {
+        /// <summary>
+        /// The red value.
+        /// </summary>
         [JsonPropertyName("r")]
         public required int Red { get; set; }
 
+        /// <summary>
+        /// The green value.
+        /// </summary>
         [JsonPropertyName("g")]
         public required int Green { get; set; }
 
+        /// <summary>
+        /// The blue value.
+        /// </summary>
         [JsonPropertyName("b")]
         public required int Blue { get; set; }
 

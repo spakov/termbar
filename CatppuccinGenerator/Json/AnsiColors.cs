@@ -3,29 +3,56 @@ using System.Text.Json.Serialization;
 
 namespace Spakov.CatppuccinGenerator.Json
 {
+    /// <summary>
+    /// A set of Catppuccin ANSI colors.
+    /// </summary>
     internal class AnsiColors
     {
+        /// <summary>
+        /// The Catppuccin black ANSI color.
+        /// </summary>
         [JsonPropertyName("black")]
         public required AnsiColorPair Black { get; set; }
 
+        /// <summary>
+        /// The Catppuccin red ANSI color.
+        /// </summary>
         [JsonPropertyName("red")]
         public required AnsiColorPair Red { get; set; }
 
+        /// <summary>
+        /// The Catppuccin green ANSI color.
+        /// </summary>
         [JsonPropertyName("green")]
         public required AnsiColorPair Green { get; set; }
 
+        /// <summary>
+        /// The Catppuccin yellow ANSI color.
+        /// </summary>
         [JsonPropertyName("yellow")]
         public required AnsiColorPair Yellow { get; set; }
 
+        /// <summary>
+        /// The Catppuccin blue ANSI color.
+        /// </summary>
         [JsonPropertyName("blue")]
         public required AnsiColorPair Blue { get; set; }
 
+        /// <summary>
+        /// The Catppuccin magenta ANSI color.
+        /// </summary>
         [JsonPropertyName("magenta")]
         public required AnsiColorPair Magenta { get; set; }
 
+        /// <summary>
+        /// The Catppuccin cyan ANSI color.
+        /// </summary>
         [JsonPropertyName("cyan")]
         public required AnsiColorPair Cyan { get; set; }
 
+        /// <summary>
+        /// The Catppuccin white ANSI color.
+        /// </summary>
         [JsonPropertyName("white")]
         public required AnsiColorPair White { get; set; }
 

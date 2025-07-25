@@ -3,83 +3,164 @@ using System.Text.Json.Serialization;
 
 namespace Spakov.CatppuccinGenerator.Json
 {
+    /// <summary>
+    /// The Catppuccin flavor colors.
+    /// </summary>
     internal class Colors
     {
+        /// <summary>
+        /// The Catppuccin rosewater color.
+        /// </summary>
         [JsonPropertyName("rosewater")]
         public required Color Rosewater { get; set; }
 
+        /// <summary>
+        /// The Catppuccin flamingo color.
+        /// </summary>
         [JsonPropertyName("flamingo")]
         public required Color Flamingo { get; set; }
 
+        /// <summary>
+        /// The Catppuccin pink color.
+        /// </summary>
         [JsonPropertyName("pink")]
         public required Color Pink { get; set; }
 
+        /// <summary>
+        /// The Catppuccin mauve color.
+        /// </summary>
         [JsonPropertyName("mauve")]
         public required Color Mauve { get; set; }
 
+        /// <summary>
+        /// The Catppuccin red color.
+        /// </summary>
         [JsonPropertyName("red")]
         public required Color Red { get; set; }
 
+        /// <summary>
+        /// The Catppuccin maroon color.
+        /// </summary>
         [JsonPropertyName("maroon")]
         public required Color Maroon { get; set; }
 
+        /// <summary>
+        /// The Catppuccin peach color.
+        /// </summary>
         [JsonPropertyName("peach")]
         public required Color Peach { get; set; }
 
+        /// <summary>
+        /// The Catppuccin yellow color.
+        /// </summary>
         [JsonPropertyName("yellow")]
         public required Color Yellow { get; set; }
 
+        /// <summary>
+        /// The Catppuccin green color.
+        /// </summary>
         [JsonPropertyName("green")]
         public required Color Green { get; set; }
 
+        /// <summary>
+        /// The Catppuccin teal color.
+        /// </summary>
         [JsonPropertyName("teal")]
         public required Color Teal { get; set; }
 
+        /// <summary>
+        /// The Catppuccin sky color.
+        /// </summary>
         [JsonPropertyName("sky")]
         public required Color Sky { get; set; }
 
+        /// <summary>
+        /// The Catppuccin sapphire color.
+        /// </summary>
         [JsonPropertyName("sapphire")]
         public required Color Sapphire { get; set; }
 
+        /// <summary>
+        /// The Catppuccin blue color.
+        /// </summary>
         [JsonPropertyName("blue")]
         public required Color Blue { get; set; }
 
+        /// <summary>
+        /// The Catppuccin lavender color.
+        /// </summary>
         [JsonPropertyName("lavender")]
         public required Color Lavender { get; set; }
 
+        /// <summary>
+        /// The Catppuccin text color.
+        /// </summary>
         [JsonPropertyName("text")]
         public required Color Text { get; set; }
 
+        /// <summary>
+        /// The Catppuccin subtext color 1.
+        /// </summary>
         [JsonPropertyName("subtext1")]
         public required Color Subtext1 { get; set; }
 
+        /// <summary>
+        /// The Catppuccin subtext color 0.
+        /// </summary>
         [JsonPropertyName("subtext0")]
         public required Color Subtext0 { get; set; }
 
+        /// <summary>
+        /// The Catppuccin overlay color 2.
+        /// </summary>
         [JsonPropertyName("overlay2")]
         public required Color Overlay2 { get; set; }
 
+        /// <summary>
+        /// The Catppuccin overlay color 1.
+        /// </summary>
         [JsonPropertyName("overlay1")]
         public required Color Overlay1 { get; set; }
 
+        /// <summary>
+        /// The Catppuccin overlay color 0.
+        /// </summary>
         [JsonPropertyName("overlay0")]
         public required Color Overlay0 { get; set; }
 
+        /// <summary>
+        /// The Catppuccin surface color 2.
+        /// </summary>
         [JsonPropertyName("surface2")]
         public required Color Surface2 { get; set; }
 
+        /// <summary>
+        /// The Catppuccin surface color 1.
+        /// </summary>
         [JsonPropertyName("surface1")]
         public required Color Surface1 { get; set; }
 
+        /// <summary>
+        /// The Catppuccin surface color 0.
+        /// </summary>
         [JsonPropertyName("surface0")]
         public required Color Surface0 { get; set; }
 
+        /// <summary>
+        /// The Catppuccin base color.
+        /// </summary>
         [JsonPropertyName("base")]
         public required Color Base { get; set; }
 
+        /// <summary>
+        /// The Catppuccin mantle color.
+        /// </summary>
         [JsonPropertyName("mantle")]
         public required Color Mantle { get; set; }
 
+        /// <summary>
+        /// The Catppuccin crust color.
+        /// </summary>
         [JsonPropertyName("crust")]
         public required Color Crust { get; set; }
 

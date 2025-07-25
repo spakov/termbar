@@ -43,6 +43,8 @@ namespace Spakov.TermBar.ViewModels.Modules.Terminal
         /// <summary>
         /// Callback for handling the case in which the pseudoconsole dies.
         /// </summary>
+        /// <param name="e">The exception that was generated when the
+        /// pseudoconsole died.</param>
         public delegate void OnPseudoconsoleDied(Exception e);
 
         /// <summary>

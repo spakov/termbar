@@ -20,7 +20,14 @@ namespace Spakov.TermBar.Configuration
     /// </summary>
     internal static partial class ConfigHelper
     {
+        /// <summary>
+        /// The name of the configuration file.
+        /// </summary>
         private const string ConfigFile = "config.json";
+
+        /// <summary>
+        /// The JSON Schema metaschema to reference in the configuration file.
+        /// </summary>
         private const string Metaschema = "https://json-schema.org/draft/2020-12/schema";
 
         private static readonly JsonSerializerOptions s_jsonSerializerOptions = new(ConfigContext.Default.Options);

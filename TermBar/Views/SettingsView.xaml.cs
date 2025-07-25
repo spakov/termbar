@@ -23,8 +23,20 @@ namespace Spakov.TermBar.Views
     /// window.</remarks>
     internal sealed partial class SettingsView : ModuleView
     {
+        /// <summary>
+        /// The name of the TermBar process, used to restart it.
+        /// </summary>
         private const string TermBar = "TermBar";
+
+        /// <summary>
+        /// The name of the Explorer process.
+        /// </summary>
         private const string Explorer = "explorer";
+
+        /// <summary>
+        /// The arguments passed to <see cref="Explorer"/> to select a file in
+        /// a folder.
+        /// </summary>
         private const string ExplorerSelect = "/select,\"{0}\"";
 
         private readonly Configuration.Json.TermBar _config;

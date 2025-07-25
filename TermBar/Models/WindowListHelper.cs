@@ -18,8 +18,14 @@ namespace Spakov.TermBar.Models
     /// </summary>
     internal static class WindowListHelper
     {
+        /// <summary>
+        /// The window class of a WinUI 3 popup.
+        /// </summary>
         private const string PopupClass = "Microsoft.UI.Content.PopupWindowSiteBridge";
 
+        /// <summary>
+        /// Window classes to mark as uninteresting.
+        /// </summary>
         private static readonly List<string> s_ignoredClassNames =
         [
             PopupClass,
@@ -555,7 +561,7 @@ namespace Spakov.TermBar.Models
         /// its name to <see cref="s_windowNameLength"/>, its class name to
         /// <see cref="s_windowClassName"/>, the length of its class name to
         /// <see cref="s_windowClassNameLength"/>, and its owning process ID to
-        /// <see cref="s_windowProcessId"/></para>.
+        /// <see cref="s_windowProcessId"/>.</para>
         /// </remarks>
         /// <param name="hWnd">The window's <see cref="HWND"/>.</param>
         /// <param name="logger">An <see cref="ILogger"/>.</param>
@@ -712,6 +718,7 @@ namespace Spakov.TermBar.Models
         /// </summary>
         /// <remarks>If the teardown check passes, we schedule removal of the
         /// window.</remarks>
+        /// <param name="windows">The list of windows.</param>
         /// <param name="window">A <see cref="Window"/>.</param>
         /// <param name="logger">An <see cref="ILogger"/>.</param>
         private static async void ScheduleTeardownCheck(ObservableCollection<Window> windows, Window window, ILogger? logger = null)
@@ -744,6 +751,7 @@ namespace Spakov.TermBar.Models
         /// Schedules removal of <paramref name="window"/> from the window
         /// list.
         /// </summary>
+        /// <param name="windows">The list of windows.</param>
         /// <param name="window">A <see cref="Window"/>.</param>
         /// <param name="logger">An <see cref="ILogger"/>.</param>
         private static async void ScheduleRemoval(ObservableCollection<Window> windows, Window window, ILogger? logger = null)

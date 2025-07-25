@@ -18,6 +18,9 @@ namespace Spakov.TermBar.Views
     /// window.</remarks>
     internal sealed partial class ExceptionView : ModuleView
     {
+        /// <summary>
+        /// The name of the TermBar process, used to restart it.
+        /// </summary>
         private const string TermBar = "TermBar";
 
         private readonly Configuration.Json.TermBar _config;

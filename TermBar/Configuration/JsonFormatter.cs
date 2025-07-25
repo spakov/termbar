@@ -27,6 +27,8 @@ namespace Spakov.TermBar.Configuration
         /// </summary>
         /// <param name="richEditBox">A <see cref="RichEditBox"/>.</param>
         /// <param name="json">JSON text.</param>
+        /// <param name="jsonFormatSyntaxColors">A <see
+        /// cref="JsonFormatSyntaxColors"/>.</param>
         internal static void FormatJson(RichEditBox richEditBox, string json, JsonFormatSyntaxColors jsonFormatSyntaxColors)
         {
             RichEditTextDocument richEditTextDocument = richEditBox.Document;
@@ -51,6 +53,8 @@ namespace Spakov.TermBar.Configuration
         /// <param name="insertionPoint">The insertion point in <paramref
         /// name="richEditTextDocument"/>.</param>
         /// <param name="indent">The indent level.</param>
+        /// <param name="jsonFormatSyntaxColors">A <see
+        /// cref="JsonFormatSyntaxColors"/>.</param>
         private static void FormatElement(JsonElement jsonElement, RichEditTextDocument richEditTextDocument, ref ITextRange insertionPoint, int indent, JsonFormatSyntaxColors jsonFormatSyntaxColors)
         {
             Color defaultColor = jsonFormatSyntaxColors[JsonValueKind.Undefined];

@@ -3,17 +3,32 @@ using System.Text.Json.Serialization;
 
 namespace Spakov.CatppuccinGenerator.Json
 {
+    /// <summary>
+    /// The Catppuccin palette.
+    /// </summary>
     internal class Palette
     {
+        /// <summary>
+        /// The Catppuccin Latte flavor.
+        /// </summary>
         [JsonPropertyName("latte")]
         public required Flavor Latte { get; set; }
 
+        /// <summary>
+        /// The Catppuccin Frappé flavor.
+        /// </summary>
         [JsonPropertyName("frappe")]
         public required Flavor Frappe { get; set; }
 
+        /// <summary>
+        /// The Catppuccin Macchiato flavor.
+        /// </summary>
         [JsonPropertyName("macchiato")]
         public required Flavor Macchiato { get; set; }
 
+        /// <summary>
+        /// The Catppuccin Mocha flavor.
+        /// </summary>
         [JsonPropertyName("mocha")]
         public required Flavor Mocha { get; set; }
 

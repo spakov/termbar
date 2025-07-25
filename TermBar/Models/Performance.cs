@@ -17,8 +17,19 @@ namespace Spakov.TermBar.Models
 #pragma warning restore IDE0079 // Remove unnecessary suppression
     internal class Performance : IDisposable
     {
+        /// <summary>
+        /// The name of the <c>LibreHardwareMonitorLib</c> "CPU Total" sensor.
+        /// </summary>
         private const string CpuTotal = "CPU Total";
+
+        /// <summary>
+        /// The name of the <c>LibreHardwareMonitorLib</c> "CPU Core" sensor.
+        /// </summary>
         private const string GpuCore = "GPU Core";
+
+        /// <summary>
+        /// The name of the <c>LibreHardwareMonitorLib</c> "Memory" sensor.
+        /// </summary>
         private const string Memory = "Memory";
 
         private readonly UpdateVisitor _updateVisitor;

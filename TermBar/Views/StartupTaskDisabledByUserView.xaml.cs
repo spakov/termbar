@@ -13,7 +13,15 @@ namespace Spakov.TermBar.Views
     /// by user window.</remarks>
     internal sealed partial class StartupTaskDisabledByUserView : ModuleView
     {
+        /// <summary>
+        /// The name of the Explorer process.
+        /// </summary>
         private const string Explorer = "explorer";
+
+        /// <summary>
+        /// The argument to pass to <see cref="Explorer"/> to open the startup
+        /// apps settings.
+        /// </summary>
         private const string MsSettingsStartupApps = "ms-settings:startupapps";
 
         private readonly Configuration.Json.TermBar _config;

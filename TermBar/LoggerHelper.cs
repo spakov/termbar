@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Spakov.TermBar.ViewModels.Modules.WindowBar;
 using System;
 
 namespace Spakov.TermBar
@@ -10,8 +9,15 @@ namespace Spakov.TermBar
     internal static class LoggerHelper
     {
         /// <summary>
+        /// The application logging level to use.
+        /// </summary>
+        internal static readonly LogLevel s_logLevel = LogLevel.None;
+
+        /// <summary>
         /// Creates a logger for <typeparamref name="T"/>.
         /// </summary>
+        /// <remarks>Generates output in <see cref="AppContext.BaseDirectory"/>
+        /// in a file named <c>typeof(T).Name</c>.</remarks>
         /// <typeparam name="T">A class to associate with the
         /// logger.</typeparam>
         /// <returns>An <see cref="ILogger"/>, if this is a debug build, or
@@ -32,7 +38,7 @@ namespace Spakov.TermBar
                             new Karambolo.Extensions.Logging.File.LogFileOptions() { Path = $"{typeof(T).Name}.log" }
                         ];
                     });
-                    builder.SetMinimumLevel(App.logLevel);
+                    builder.SetMinimumLevel(s_logLevel);
                 }
             );
 

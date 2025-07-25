@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.UI.Dispatching;
+﻿using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Spakov.TermBar.Configuration;
 using Spakov.TermBar.Configuration.Json;
@@ -21,13 +20,11 @@ namespace Spakov.TermBar
     /// </summary>
     public partial class App : Application
     {
-        internal static readonly LogLevel logLevel = LogLevel.None;
+        private static ResourceLoader? s_resourceLoader;
 
-        private static ResourceLoader? resourceLoader;
-
-        private Exception? criticalFailure;
-        private ExceptionView? exceptionView;
-        private WindowManagement.Windows.DialogWindow? exceptionDialogWindow;
+        private Exception? _criticalFailure;
+        private ExceptionView? _exceptionView;
+        private WindowManagement.Windows.DialogWindow? _exceptionDialogWindow;
 
         /// <summary>
         /// The window manager.
@@ -47,7 +44,7 @@ namespace Spakov.TermBar
         /// <summary>
         /// App resources.
         /// </summary>
-        internal static ResourceLoader ResourceLoader => resourceLoader!;
+        internal static ResourceLoader ResourceLoader => s_resourceLoader!;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first
@@ -58,9 +55,9 @@ namespace Spakov.TermBar
         {
             TrimRoots.PreserveTrimmableClasses();
 
-            resourceLoader = ResourceLoader.GetForViewIndependentUse();
+            s_resourceLoader = ResourceLoader.GetForViewIndependentUse();
 
-            criticalFailure = null;
+            _criticalFailure = null;
             InitializeComponent();
             WindowManager = new();
 
@@ -72,7 +69,7 @@ namespace Spakov.TermBar
             }
             catch (JsonException e)
             {
-                criticalFailure = e;
+                _criticalFailure = e;
                 return;
             }
 
@@ -115,7 +112,7 @@ namespace Spakov.TermBar
         /// process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            if (criticalFailure is null)
+            if (_criticalFailure is null)
             {
                 WindowManager!.Display();
                 UnhandledException += App_UnhandledException;
@@ -124,7 +121,7 @@ namespace Spakov.TermBar
             }
             else
             {
-                UnhandledExceptionHandler(criticalFailure);
+                UnhandledExceptionHandler(_criticalFailure);
             }
         }
 
@@ -139,10 +136,10 @@ namespace Spakov.TermBar
         /// path="/param[@name='e']"/></param>
         private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
         {
-            criticalFailure = e.Exception;
+            _criticalFailure = e.Exception;
             e.Handled = true;
 
-            UnhandledExceptionHandler(criticalFailure);
+            UnhandledExceptionHandler(_criticalFailure);
         }
 
         /// <summary>
@@ -177,18 +174,18 @@ namespace Spakov.TermBar
                     Config.Displays[0].TermBar.Display = WindowManager.Displays[Config.Displays[0].Id];
                 }
 
-                exceptionView ??= new(Config.Displays[0].TermBar, e);
+                _exceptionView ??= new(Config.Displays[0].TermBar, e);
 
-                if (exceptionDialogWindow is null)
+                if (_exceptionDialogWindow is null)
                 {
-                    exceptionDialogWindow = new(
+                    _exceptionDialogWindow = new(
                         Config.Displays[0].TermBar,
-                        exceptionView
+                        _exceptionView
                     );
 
-                    exceptionView.Owner = exceptionDialogWindow;
-                    exceptionDialogWindow.Closing += ExceptionDialogWindow_Closing;
-                    exceptionDialogWindow.Display();
+                    _exceptionView.Owner = _exceptionDialogWindow;
+                    _exceptionDialogWindow.Closing += ExceptionDialogWindow_Closing;
+                    _exceptionDialogWindow.Display();
                 }
             }
             catch (Exception)
@@ -219,18 +216,18 @@ namespace Spakov.TermBar
         {
             bool isFatal = true;
 
-            if (exceptionView is not null)
+            if (_exceptionView is not null)
             {
-                isFatal = exceptionView.IsFatal;
+                isFatal = _exceptionView.IsFatal;
             }
 
-            if (exceptionDialogWindow is not null)
+            if (_exceptionDialogWindow is not null)
             {
-                exceptionDialogWindow.Closing -= ExceptionDialogWindow_Closing;
+                _exceptionDialogWindow.Closing -= ExceptionDialogWindow_Closing;
             }
 
-            exceptionDialogWindow = null;
-            exceptionView = null;
+            _exceptionDialogWindow = null;
+            _exceptionView = null;
 
             if (isFatal)
             {

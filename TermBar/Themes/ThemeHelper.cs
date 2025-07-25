@@ -8,7 +8,14 @@ namespace Spakov.TermBar.Themes
     /// </summary>
     internal static class ThemeHelper
     {
+        /// <summary>
+        /// The light-theme resource key.
+        /// </summary>
         private const string LightKey = "Light";
+
+        /// <summary>
+        /// The dark-theme resource key.
+        /// </summary>
         private const string DarkKey = "Dark";
 
         private static ResourceDictionary? s_lightResourceDictionary;

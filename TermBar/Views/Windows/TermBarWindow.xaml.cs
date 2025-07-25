@@ -16,8 +16,15 @@ namespace Spakov.TermBar.Views.Windows
     {
         private readonly ILogger? _logger;
 
+        /// <summary>
+        /// The name of the Task Manager process.
+        /// </summary>
         private const string TaskManager = "taskmgr";
 
+        /// <summary>
+        /// The namespace of the module views to prepend when instantiating
+        /// objects.
+        /// </summary>
         private const string ViewsModulesNamespace = "Spakov.TermBar.Views.Modules";
 
         private readonly Configuration.Json.TermBar _config;
