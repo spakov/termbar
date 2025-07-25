@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Media;
 using Spakov.Catppuccin;
 using Spakov.TermBar.ViewModels.Modules.Launcher;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Spakov.TermBar.Views.Modules.Launcher
@@ -82,16 +83,25 @@ namespace Spakov.TermBar.Views.Modules.Launcher
             Button button = (Button)sender;
             (string? command, string[]? commandArguments) = (ValueTuple<string?, string[]?>)button.Tag;
 
-            if (command is null) return;
+            if (command is null)
+            {
+                return;
+            }
 
             command = Environment.ExpandEnvironmentVariables(command);
             commandArguments ??= [];
+            List<string> expandedCommandArguments = [];
+
+            foreach (string commandArgument in commandArguments)
+            {
+                expandedCommandArguments.Add(Environment.ExpandEnvironmentVariables(commandArgument));
+            }
 
             ProcessStartInfo processStartInfo = new()
             {
                 FileName = command,
                 UseShellExecute = true,
-                Arguments = string.Join(' ', commandArguments)
+                Arguments = string.Join(' ', expandedCommandArguments)
             };
 
             Process.Start(processStartInfo);
