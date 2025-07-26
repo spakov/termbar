@@ -1,7 +1,6 @@
 [submodule "utf8proc"]
 	path = utf8proc
   url = https://github.com/JuliaStrings/utf8proc.git
-  ignore = dirty
 [submodule "catppuccin-palette"]
 	path = catppuccin-palette
 	url = https://github.com/catppuccin/palette.git
