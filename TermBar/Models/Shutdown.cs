@@ -83,6 +83,8 @@ namespace Spakov.TermBar.Models
         /// <see langword="false"/> if it failed.</returns>
         internal static bool Initiate(ShutdownType shutdownType)
         {
+            Shutdown shutdown = s_instance;
+
             return shutdownType switch
             {
                 ShutdownType.Logoff => (bool)PInvoke.ExitWindowsEx(EXIT_WINDOWS_FLAGS.EWX_LOGOFF, SHUTDOWN_REASON.SHTDN_REASON_MINOR_OTHER),

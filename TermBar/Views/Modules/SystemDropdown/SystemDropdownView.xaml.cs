@@ -92,6 +92,10 @@ namespace Spakov.TermBar.Views.Modules.SystemDropdown
                     {
                         App.Current.Exit();
                     }
+                    else
+                    {
+                        throw new System.ComponentModel.Win32Exception(System.Runtime.InteropServices.Marshal.GetLastWin32Error());
+                    }
 
                     break;
 
@@ -121,6 +125,10 @@ namespace Spakov.TermBar.Views.Modules.SystemDropdown
                     if (Shutdown.Initiate(Shutdown.ShutdownType.Reboot))
                     {
                         App.Current.Exit();
+                    }
+                    else
+                    {
+                        throw new System.ComponentModel.Win32Exception(System.Runtime.InteropServices.Marshal.GetLastWin32Error());
                     }
 
                     break;
