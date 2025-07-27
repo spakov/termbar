@@ -74,7 +74,7 @@ Invoke-WebRequest -Uri $licenseUrl -OutFile ${id}__${version}.txt
 
 # Add utf8proc
 $id = "utf8proc"
-$version = (git -C ..\..\w6t\utf8proc log -n 1 --pretty=format:"%H")
+$version = (git -C ..\..\Furminal\utf8proc log -n 1 --pretty=format:"%H")
 $projectUrl = "https://github.com/JuliaStrings/utf8proc/"
 $license = "MIT"
 $licenseUrl = "https://github.com/JuliaStrings/utf8proc/raw/refs/heads/master/LICENSE.md"

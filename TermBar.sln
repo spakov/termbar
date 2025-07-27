@@ -5,13 +5,13 @@ VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TermBar", "TermBar\TermBar.csproj", "{F47F0498-0FFC-4D6E-B999-A2FECD1EBE8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnsiProcessor", "..\w6t\AnsiProcessor\AnsiProcessor.csproj", "{122F4E92-794E-DAB6-2FBE-BFC8CC6227EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnsiProcessor", "..\Furminal\AnsiProcessor\AnsiProcessor.csproj", "{122F4E92-794E-DAB6-2FBE-BFC8CC6227EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConPTY", "..\w6t\ConPTY\ConPTY.csproj", "{76D48AE5-AF14-6B7D-6092-B59EA5CEF45B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConPTY", "..\Furminal\ConPTY\ConPTY.csproj", "{76D48AE5-AF14-6B7D-6092-B59EA5CEF45B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terminal", "..\w6t\Terminal\Terminal.csproj", "{3145FB16-06EF-33F0-3C44-019101FC61FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terminal", "..\Furminal\Terminal\Terminal.csproj", "{3145FB16-06EF-33F0-3C44-019101FC61FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WideCharacter", "..\w6t\WideCharacter\WideCharacter.csproj", "{F7679ADF-D76B-05EE-0138-DB89DEA342C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WideCharacter", "..\Furminal\WideCharacter\WideCharacter.csproj", "{F7679ADF-D76B-05EE-0138-DB89DEA342C1}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EndpointVolumeInterop", "EndpointVolumeInterop\EndpointVolumeInterop.vcxproj", "{2698A2E5-A9E3-4C89-A29A-74380F576FD3}"
 EndProject

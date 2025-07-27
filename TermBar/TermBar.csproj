@@ -211,16 +211,16 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\w6t\AnsiProcessor\AnsiProcessor.csproj" />
-    <ProjectReference Include="..\..\w6t\ConPTY\ConPTY.csproj" />
-    <ProjectReference Include="..\..\w6t\Terminal\Terminal.csproj" />
-    <ProjectReference Include="..\..\w6t\WideCharacter\WideCharacter.csproj" />
+    <ProjectReference Include="..\..\Furminal\AnsiProcessor\AnsiProcessor.csproj" />
+    <ProjectReference Include="..\..\Furminal\ConPTY\ConPTY.csproj" />
+    <ProjectReference Include="..\..\Furminal\Terminal\Terminal.csproj" />
+    <ProjectReference Include="..\..\Furminal\WideCharacter\WideCharacter.csproj" />
     <ProjectReference Include="..\Catppuccin\Catppuccin.csproj" />
     <ProjectReference Include="..\EndpointVolumeInterop\EndpointVolumeInterop.vcxproj" ReferenceOutputAssembly="false" />
   </ItemGroup>
   
   <ItemGroup>
-    <PRIResource Include="..\..\w6t\Terminal\Strings\**\*.resw" />
+    <PRIResource Include="..\..\Furminal\Terminal\Strings\**\*.resw" />
   </ItemGroup>
 
   <ItemGroup>
