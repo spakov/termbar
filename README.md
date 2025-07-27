@@ -136,7 +136,7 @@ The WindowDropdown module is far more compact than the WindowBar module, but als
 ![A screenshot of the TermBar WindowDropdown module, with the menu displayed.](screenshots/WindowDropdown-Menu.png)
 
 ## Installing
-1. Install the latest code-signing certificate from [certificates](certificates/) into **Current User** > **Trusted People**.
+1. Install the latest code-signing certificate from [certificates](certificates/) into **Local Machine** > **Trusted Root Certification Authorities**.
 2. Grab the latest [release](https://github.com/spakov/furminal/releases) for x64 or ARM64, depending on your platform.
 3. Double click the MSIX package and install it.
 
