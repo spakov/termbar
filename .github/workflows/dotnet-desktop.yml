@@ -58,7 +58,7 @@ jobs:
     # Restore NuGet packages
     - name: Restore NuGet packages
       working-directory: ./TermBar
-      run: msbuild $env:Solution_Name -t:restore /p:Platform=$env:Platform /p:Configuration=$env:Configuration
+      run: dotnet restore /p:Platform=$env:Platform /p:Configuration=$env:Configuration
       env:
         Platform: ${{ matrix.platform }}
         Configuration: ${{ matrix.configuration }}
