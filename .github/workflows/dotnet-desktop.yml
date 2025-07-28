@@ -50,12 +50,14 @@ jobs:
 
     # Get NuGetLicenseFramework
     - name: Get NuGetLicenseFramework
+      working-directory: ./TermBar
       run: |
         Invoke-WebRequest -Uri "https://github.com/sensslen/nuget-license/releases/download/v3.1.6/release.zip" -OutFile NuGetLicense.zip
         Expand-Archive -Path NuGetLicense.zip -DestinationPath NuGetLicense
     
     # Restore NuGet packages
     - name: Restore NuGet packages
+      working-directory: ./TermBar
       run: msbuild $env:Solution_Name -t:restore /p:Platform=$env:Platform /p:Configuration=$env:Configuration
       env:
         Platform: ${{ matrix.platform }}
@@ -63,6 +65,7 @@ jobs:
       
     # Build the application
     - name: Build application
+      working-directory: ./TermBar
       run: msbuild $env:Solution_Name /p:Platform=$env:Platform /p:Configuration=$env:Configuration
       env:
         Platform: ${{ matrix.platform }}
@@ -70,17 +73,19 @@ jobs:
 
     # Get license information
     - name: Get licenses
-      working-directory: ./LICENSES
+      working-directory: ./TermBar/LICENSES
       run: pwsh .\licensegen\Get-Licenses.ps1
 
     # Decode the base 64 encoded pfx and save the Signing_Certificate
     - name: Decode certificate
+      working-directory: ./TermBar
       run: |
         $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.TERMBAR_CERTIFICATE }}")
         [IO.File]::WriteAllBytes("GitHubActionsWorkflow.pfx", $pfx_cert_byte)
 
     # Create the app package
     - name: Create app package
+      working-directory: ./TermBar
       run: msbuild $env:Solution_Name /p:Platform=$env:Platform /p:Configuration=$env:Configuration /p:GenerateAppxPackageOnBuild=true /p:PackageCertificateKeyFile=..\GitHubActionsWorkflow.pfx
       env:
         Platform: ${{ matrix.platform }}
@@ -88,11 +93,13 @@ jobs:
 
     # Remove the pfx
     - name: Remove certificate
+      working-directory: ./TermBar
       run: Remove-Item -Force -Path GitHubActionsWorkflow.pfx
 
     # Locate the MSIX package
     - name: Locate MSIX package
       id: locate_msix_package
+      working-directory: ./TermBar
       run: |
         $msix = Get-ChildItem -Recurse -Path . -Filter "*.msix" |
                 Where-Object { $_.FullName -like "*AppPackages*" } |
