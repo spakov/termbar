@@ -23,16 +23,16 @@ jobs:
       Solution_Name: TermBar.sln
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        submodules: true
-
     - name: Check out Furminal
       uses: actions/checkout@v4
       with:
         repository: spakov/furminal
+        fetch-depth: 0
+        submodules: true
+
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
         fetch-depth: 0
         submodules: true
 
