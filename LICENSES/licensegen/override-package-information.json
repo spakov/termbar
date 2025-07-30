@@ -1,5 +1,12 @@
 [
   {
+    "Id": "Karambolo.Extensions.Logging.File",
+    "ProjectUrl": "https://github.com/adams85/filelogger",
+    "Version": "3.6.3",
+    "License": "MIT",
+    "LicenseUrl": "https://github.com/adams85/filelogger/raw/refs/heads/master/LICENSE"
+  },
+  {
     "Id": "HidSharp",
     "ProjectUrl": "http://www.zer7.com/software/hidsharp",
     "Version": "2.1.0",
