@@ -1,0 +1,131 @@
+name: TermBar CI/CD
+
+on:
+  push:
+    branches: [ "main", "release/v*" ]
+    tags: [ "v*" ]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        platform: [x64, ARM64]
+        configuration: [Release]
+        include:
+          - platform: x64
+            runs_on: windows-latest
+          - platform: ARM64
+            runs_on: windows-11-arm
+
+    runs-on: ${{ matrix.runs_on }}
+
+    env:
+      Solution_Name: TermBar.sln
+
+    steps:
+    - name: Check out Furminal
+      uses: actions/checkout@v4
+      with:
+        repository: spakov/furminal
+        path: Furminal
+        fetch-depth: 0
+        submodules: true
+
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        path: TermBar
+        fetch-depth: 0
+        submodules: true
+
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Set up MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Get NuGetLicenseFramework
+      working-directory: ./TermBar
+      run: |
+        Invoke-WebRequest -Uri "https://github.com/sensslen/nuget-license/releases/download/v3.1.6/release.zip" -OutFile NuGetLicense.zip
+        Expand-Archive -Path NuGetLicense.zip -DestinationPath NuGetLicense
+    
+    - name: Restore NuGet packages
+      working-directory: ./TermBar
+      run: dotnet restore /p:Platform=$env:Platform /p:Configuration=$env:Configuration
+      env:
+        Platform: ${{ matrix.platform }}
+        Configuration: ${{ matrix.configuration }}
+      
+    - name: Build application
+      working-directory: ./TermBar
+      run: msbuild $env:Solution_Name /p:Platform=$env:Platform /p:Configuration=$env:Configuration
+      env:
+        Platform: ${{ matrix.platform }}
+        Configuration: ${{ matrix.configuration }}
+
+    - name: Get licenses
+      working-directory: ./TermBar/LICENSES
+      run: pwsh .\licensegen\Get-Licenses.ps1
+
+    - name: Decode certificate
+      working-directory: ./TermBar
+      run: |
+        $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.TERMBAR_CERTIFICATE }}")
+        [IO.File]::WriteAllBytes("GitHubActionsWorkflow.pfx", $pfx_cert_byte)
+
+    - name: Create app package
+      working-directory: ./TermBar
+      run: msbuild $env:Solution_Name /p:Platform=$env:Platform /p:Configuration=$env:Configuration /p:GenerateAppxPackageOnBuild=true /p:PackageCertificateKeyFile=..\GitHubActionsWorkflow.pfx
+      env:
+        Platform: ${{ matrix.platform }}
+        Configuration: ${{ matrix.configuration }}
+
+    - name: Remove certificate
+      working-directory: ./TermBar
+      run: Remove-Item -Force -Path GitHubActionsWorkflow.pfx
+
+    - name: Locate MSIX package
+      id: locate_msix_package
+      working-directory: ./TermBar
+      run: |
+        $msix = Get-ChildItem -Recurse -Path . -Filter "*.msix" |
+                Where-Object { $_.FullName -like "*AppPackages*" } |
+                Select-Object -First 1 -ExpandProperty FullName
+        Write-Host "Located package: $msix"
+        "package=$msix" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+    - name: Upload MSIX packages
+      uses: actions/upload-artifact@v4
+      with:
+        name: msix-package-${{ matrix.platform }}-${{ matrix.configuration }}
+        path: ${{ steps.locate_msix_package.outputs.package }}
+        retention-days: 1
+
+  release:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    if: |
+      github.ref_type == 'tag' &&
+      startsWith(github.ref, 'refx/tags/v') &&
+      (github.base_ref == '' || startsWith(github.base_ref, 'release/v'))
+
+    steps:
+      - name: Download MSIX packages
+        uses: actions/download-artifact@v4
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: "TermBar ${{ github.ref_name }}"
+          files: "**/*.msix"
+          generate_release_notes: true
+          make_latest: "true"
