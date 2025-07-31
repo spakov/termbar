@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "TermBar (Package)": {
+      "commandName": "MsixPackage",
+      "nativeDebugging": true
+    },
+    "TermBar (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

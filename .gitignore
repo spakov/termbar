@@ -7,6 +7,5 @@
 **/out/
 EndpointVolumeInterop/ARM64
 EndpointVolumeInterop/x64
-TermBar/Properties/launchSettings.json
 docs/docgen/_site
 docs/docgen/api
