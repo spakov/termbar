@@ -1,6 +1,8 @@
 ﻿using LibreHardwareMonitor.Hardware;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace Spakov.TermBar.Models
 {
@@ -10,6 +12,11 @@ namespace Spakov.TermBar.Models
     /// <remarks>
     /// <para>Exposes sensors from <c>LibreHardwareMonitorLib</c> as properties
     /// that can be read.</para>
+    /// <para>For non-x86/x64, falls back to the Windows performance API, since
+    /// <c>LibreHardwareMonitorLib</c> appears to be incompatible with
+    /// ARM64. In this case, GPU performance monitoring is not
+    /// supported, since the <see cref="PerformanceCounter"/> API does not
+    /// support GPU metrics well.</para>
     /// <para>Intended to be interfaced with via polling.</para>
     /// </remarks>
 #pragma warning disable IDE0079 // Remove unnecessary suppression
@@ -17,6 +24,11 @@ namespace Spakov.TermBar.Models
 #pragma warning restore IDE0079 // Remove unnecessary suppression
     internal class Performance : IDisposable
     {
+        /// <summary>
+        /// The string to display in place of an invalid value.
+        /// </summary>
+        public const string ErrorIcon = "⚠️";
+
         /// <summary>
         /// The name of the <c>LibreHardwareMonitorLib</c> "CPU Total" sensor.
         /// </summary>
@@ -32,14 +44,17 @@ namespace Spakov.TermBar.Models
         /// </summary>
         private const string Memory = "Memory";
 
-        private readonly UpdateVisitor _updateVisitor;
-        private readonly Computer _computer;
+        private readonly UpdateVisitor? _updateVisitor;
+        private readonly Computer? _computer;
 
         private readonly ISensor? _cpuPercent;
         private readonly ISensor? _gpuPercent;
         private readonly ISensor? _memoryPercent;
 
-        private readonly Dictionary<Identifier, DateTime> _lastUpdates;
+        private readonly Dictionary<Identifier, DateTime>? _lastUpdates;
+
+        private readonly PerformanceCounter? _legacyCpuPercent;
+        private readonly PerformanceCounter? _legacyMemoryPercent;
 
         private static readonly Performance s_instance = new();
 
@@ -49,65 +64,103 @@ namespace Spakov.TermBar.Models
         public static Performance Instance => s_instance;
 
         /// <summary>
+        /// The running process's architecture.
+        /// </summary>
+        internal static Architecture Architecture => RuntimeInformation.ProcessArchitecture;
+
+        /// <summary>
         /// The CPU percent.
         /// </summary>
-        public static float? CpuPercent => Instance.GetSensorValue(Instance._cpuPercent);
+        public static float? CpuPercent
+        {
+            get
+            {
+                return Architecture is Architecture.X86 or Architecture.X64
+                    ? Instance.GetSensorValue(Instance._cpuPercent)
+                    : Instance._legacyCpuPercent!.NextValue();
+            }
+        }
 
         /// <summary>
         /// The GPU percent.
         /// </summary>
-        public static float? GpuPercent => Instance.GetSensorValue(Instance._gpuPercent);
+        public static float? GpuPercent
+        {
+            get
+            {
+                return Architecture is Architecture.X86 or Architecture.X64
+                    ? Instance.GetSensorValue(Instance._gpuPercent)
+                    : null;
+            }
+        }
 
         /// <summary>
         /// The memory percent.
         /// </summary>
-        public static float? MemoryPercent => Instance.GetSensorValue(Instance._memoryPercent);
+        public static float? MemoryPercent
+        {
+            get
+            {
+                return Architecture is Architecture.X86 or Architecture.X64
+                    ? Instance.GetSensorValue(Instance._memoryPercent)
+                    : Instance._legacyMemoryPercent!.NextValue();
+            }
+        }
 
         /// <summary>
         /// Initializes a <see cref="Performance"/>.
         /// </summary>
         private Performance()
         {
-            _updateVisitor = new();
-            _computer = new() { IsCpuEnabled = true, IsMemoryEnabled = true, IsGpuEnabled = true };
-            _computer.Open();
-            _computer.Accept(_updateVisitor);
-
-            foreach (IHardware hardware in _computer.Hardware)
+            if (Architecture is Architecture.X86 or Architecture.X64)
             {
-                if (hardware.HardwareType == HardwareType.Cpu)
-                {
-                    foreach (ISensor sensor in hardware.Sensors)
-                    {
-                        if (sensor.SensorType == SensorType.Load && sensor.Name == CpuTotal)
-                        {
-                            _cpuPercent = sensor;
-                        }
-                    }
-                }
-                else if (hardware.HardwareType == HardwareType.GpuNvidia)
-                {
-                    foreach (ISensor sensor in hardware.Sensors)
-                    {
-                        if (sensor.SensorType == SensorType.Load && sensor.Name == GpuCore)
-                        {
-                            _gpuPercent = sensor;
-                        }
-                    }
-                }
-                else if (hardware.HardwareType == HardwareType.Memory)
-                {
-                    foreach (ISensor sensor in hardware.Sensors)
-                    {
-                        if (sensor.SensorType == SensorType.Load && sensor.Name == Memory)
-                        {
-                            _memoryPercent = sensor;
-                        }
-                    }
-                }
-            }
+                _updateVisitor = new();
+                _computer = new() { IsCpuEnabled = true, IsMemoryEnabled = true, IsGpuEnabled = true };
+                _computer.Open();
+                _computer.Accept(_updateVisitor);
 
-            _lastUpdates = [];
+                foreach (IHardware hardware in _computer.Hardware)
+                {
+                    if (hardware.HardwareType == HardwareType.Cpu)
+                    {
+                        foreach (ISensor sensor in hardware.Sensors)
+                        {
+                            if (sensor.SensorType == SensorType.Load && sensor.Name == CpuTotal)
+                            {
+                                _cpuPercent = sensor;
+                            }
+                        }
+                    }
+                    else if (hardware.HardwareType == HardwareType.GpuNvidia)
+                    {
+                        foreach (ISensor sensor in hardware.Sensors)
+                        {
+                            if (sensor.SensorType == SensorType.Load && sensor.Name == GpuCore)
+                            {
+                                _gpuPercent = sensor;
+                            }
+                        }
+                    }
+                    else if (hardware.HardwareType == HardwareType.Memory)
+                    {
+                        foreach (ISensor sensor in hardware.Sensors)
+                        {
+                            if (sensor.SensorType == SensorType.Load && sensor.Name == Memory)
+                            {
+                                _memoryPercent = sensor;
+                            }
+                        }
+                    }
+                }
+
+                _lastUpdates = [];
+            }
+            else
+            {
+                // Fall back to Windows performance monitoring
+                _legacyCpuPercent = new("Processor", "% Processor Time", "_Total");
+                _legacyMemoryPercent = new("Memory", "% Committed Bytes In Use");
+            }
         }
 
         /// <summary>
@@ -120,7 +173,7 @@ namespace Spakov.TermBar.Models
             if (sensor is not null)
             {
                 UpdateSensorHardware(sensor);
-                _updateVisitor.VisitSensor(sensor);
+                _updateVisitor!.VisitSensor(sensor);
             }
 
             return sensor?.Value;
@@ -134,19 +187,19 @@ namespace Spakov.TermBar.Models
         /// <param name="sensor">An <see cref="ISensor"/>.</param>
         private void UpdateSensorHardware(ISensor sensor)
         {
-            if (!_lastUpdates.TryGetValue(sensor.Identifier, out DateTime lastUpdate))
+            if (!_lastUpdates!.TryGetValue(sensor.Identifier, out DateTime lastUpdate))
             {
                 _lastUpdates.Add(sensor.Identifier, DateTime.MinValue);
             }
 
             if (DateTime.Now.Subtract(lastUpdate).TotalMilliseconds > 100)
             {
-                _updateVisitor.VisitHardware(sensor.Hardware);
+                _updateVisitor!.VisitHardware(sensor.Hardware);
                 _lastUpdates[sensor.Identifier] = DateTime.Now;
             }
         }
 
-        public void Dispose() => _computer.Close();
+        public void Dispose() => _computer!.Close();
     }
 
     /// <summary>
@@ -154,6 +207,18 @@ namespace Spakov.TermBar.Models
     /// </summary>
     internal class UpdateVisitor : IVisitor
     {
+        /// <summary>
+        /// Initializes an <see cref="UpdateVisitor"/>.
+        /// </summary>
+        /// <exception cref="PlatformNotSupportedException"></exception>
+        public UpdateVisitor()
+        {
+            if (Performance.Architecture is not Architecture.X86 and not Architecture.X64)
+            {
+                throw new PlatformNotSupportedException("LibreHardwareMonitor only supports x86 and x64.");
+            }
+        }
+
         public void VisitComputer(IComputer computer) => computer.Traverse(this);
 
         public void VisitHardware(IHardware hardware)
@@ -166,10 +231,12 @@ namespace Spakov.TermBar.Models
             }
         }
 
-        public void VisitSensor(ISensor sensor) {
+        public void VisitSensor(ISensor sensor)
+        {
         }
 
-        public void VisitParameter(IParameter parameter) { 
+        public void VisitParameter(IParameter parameter)
+        {
         }
     }
 }
