@@ -149,11 +149,10 @@ jobs:
         pwsh .\docs\docgen\New-Docfx-Site.ps1
 
     - name: Upload documentation
-      working-directory: ./TermBar
       uses: actions/upload-pages-artifact@v3
       with:
         name: termbar-documentation
-        path: ./docs/docgen/_site
+        path: ./TermBar/docs/docgen/_site
         retention-days: 1
 
     - name: Publish documentation
