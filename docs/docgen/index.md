@@ -7,10 +7,10 @@ This is the API documentation for **TermBar**.
 - [TermBar](xref:Spakov.TermBar)
 
 ### From **Furminal**
-- [API Documentation Index](https://example.org/)
-  - [AnsiProcessor](https://example.org/)
-  - [ConPTY](https://example.org/)
-  - [EmojiGenerator](https://example.org/)
-  - [Furminal](https://example.org/)
-  - [Terminal](https://example.org/)
-  - [WideCharacter](https://example.org/)
+- [API Documentation Index](https://spakov.github.io/furminal/)
+  - [AnsiProcessor](https://spakov.github.io/furminal/api/Spakov.AnsiProcessor.html)
+  - [ConPTY](https://spakov.github.io/furminal/api/Spakov.ConPTY.html)
+  - [EmojiGenerator](https://spakov.github.io/furminal/api/Spakov.EmojiGenerator.html)
+  - [Furminal](https://spakov.github.io/furminal/api/Spakov.Furminal.html)
+  - [Terminal](https://spakov.github.io/furminal/api/Spakov.Terminal.html)
+  - [WideCharacter](https://spakov.github.io/furminal/api/Spakov.WideCharacter.html)
