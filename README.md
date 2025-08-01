@@ -148,7 +148,7 @@ There are several major components of TermBar:
     Windows default audio device volume level
   - **Terminal**, the terminal emulator control
 
-API documentation is available (link).
+[API documentation](https://spakov.github.io/termbar/) is available.
 
 ### TermBar
 TermBar is a WinUI 3 application, written in C#, targeting .NET 8.0 and Windows 10 10.0.19041.0 ("20H1") or newer, supporting the x64 and ARM64 architectures. It is intended to be built as an MSIX package. It uses the following NuGet packages:
