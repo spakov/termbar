@@ -116,9 +116,17 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
+    - name: Check out Furminal
+      uses: actions/checkout@v4
+      with:
+        repository: spakov/furminal
+        path: Furminal
+        fetch-depth: 0
+
     - name: Checkout
       uses: actions/checkout@v4
       with:
+        path: TermBar
         fetch-depth: 0
         submodules: true
 
@@ -136,10 +144,12 @@ jobs:
         Install-Module -AcceptLicense -Force powershell-yaml
 
     - name: Build documentation
+      working-directory: ./TermBar
       run: |
         pwsh .\docs\docgen\New-Docfx-Site.ps1
 
     - name: Upload documentation
+      working-directory: ./TermBar
       uses: actions/upload-pages-artifact@v3
       with:
         name: termbar-documentation
