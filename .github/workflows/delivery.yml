@@ -24,6 +24,9 @@ jobs:
       platform: ${{ matrix.platform }}
       configuration: ${{ matrix.configuration }}
 
+    secrets:
+      TERMBAR_CERTIFICATE: ${{ secrets.TERMBAR_CERTIFICATE }}
+
   release:
     permissions:
       contents: write

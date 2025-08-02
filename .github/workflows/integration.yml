@@ -22,3 +22,6 @@ jobs:
       runs-on: ${{ matrix.runs-on }}
       platform: ${{ matrix.platform }}
       configuration: ${{ matrix.configuration }}
+
+    secrets:
+      TERMBAR_CERTIFICATE: ${{ secrets.TERMBAR_CERTIFICATE }}

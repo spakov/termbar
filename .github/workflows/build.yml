@@ -13,6 +13,10 @@ on:
         required: true
         type: string
 
+    secrets:
+      TERMBAR_CERTIFICATE:
+        required: true
+
 jobs:
   build:
     runs-on: ${{ inputs.runs-on }}
