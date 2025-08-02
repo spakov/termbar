@@ -53,14 +53,14 @@ jobs:
       run: |
         Invoke-WebRequest -Uri "https://github.com/sensslen/nuget-license/releases/download/v3.1.6/release.zip" -OutFile NuGetLicense.zip
         Expand-Archive -Path NuGetLicense.zip -DestinationPath NuGetLicense
-    
+
     - name: Restore NuGet packages
       working-directory: ./TermBar
       run: dotnet restore /p:Platform=$env:Platform /p:Configuration=$env:Configuration
       env:
         Platform: ${{ inputs.platform }}
         Configuration: ${{ inputs.configuration }}
-      
+
     - name: Build application
       working-directory: ./TermBar
       run: msbuild $env:Solution_Name /p:Platform=$env:Platform /p:Configuration=$env:Configuration
@@ -102,6 +102,6 @@ jobs:
     - name: Upload MSIX packages
       uses: actions/upload-artifact@v4
       with:
-        name: msix-package-${{ inputs.platform }}-${{ inputs.configuration }}
+        name: termbar-msix-package-${{ inputs.platform }}-${{ inputs.configuration }}
         path: ${{ steps.locate_msix_package.outputs.package }}
         retention-days: 1
