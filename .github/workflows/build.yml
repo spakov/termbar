@@ -76,7 +76,7 @@ jobs:
 
     - name: Create app package
       working-directory: ./TermBar
-      run: msbuild $env:Solution_Name /p:Platform=$env:Platform /p:Configuration=$env:Configuration /p:GenerateAppxPackageOnBuild=true /p:PackageCertificateKeyFile=..\GitHubActionsWorkflow.pfx
+      run: msbuild $env:Solution_Name /p:Platform=$env:Platform /p:Configuration=$env:Configuration /p:GenerateAppxPackageOnBuild=true /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx
       env:
         Platform: ${{ inputs.platform }}
         Configuration: ${{ inputs.configuration }}
@@ -98,6 +98,6 @@ jobs:
     - name: Upload MSIX packages
       uses: actions/upload-artifact@v4
       with:
-        name: msix-package-${{ matrix.platform }}-${{ matrix.configuration }}
+        name: msix-package-${{ inputs.platform }}-${{ inputs.configuration }}
         path: ${{ steps.locate_msix_package.outputs.package }}
         retention-days: 1
