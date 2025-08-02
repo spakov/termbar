@@ -1,0 +1,80 @@
+name: TermBar Integration
+
+on:
+  pull_request:
+    branches: [ "main", "release/v*" ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        platform: [x64, ARM64]
+        configuration: [Release]
+        include:
+          - platform: x64
+            runs-on: windows-latest
+          - platform: ARM64
+            runs-on: windows-11-arm
+
+    uses: ./.github/workflow/build.yml
+
+    with:
+      runs-on: ${{ matrix.runs-on }}
+      platform: ${{ matrix.platform }}
+      configuration: ${{ matrix.configuration }}
+
+  doc:
+    permissions:
+      id-token: write
+      pages: write
+
+    runs-on: windows-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+    - name: Check out Furminal
+      uses: actions/checkout@v4
+      with:
+        repository: spakov/furminal
+        path: Furminal
+        fetch-depth: 0
+
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        path: TermBar
+        fetch-depth: 0
+        submodules: true
+
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Install docfx
+      run: |
+        dotnet tool update -g docfx
+
+    - name: Install powershell-yaml
+      run: |
+        Install-Module -AcceptLicense -Force powershell-yaml
+
+    - name: Build documentation
+      working-directory: ./TermBar
+      run: |
+        pwsh .\docs\docgen\New-Docfx-Site.ps1
+
+    - name: Upload documentation
+      uses: actions/upload-pages-artifact@v3
+      with:
+        name: termbar-documentation
+        path: ./TermBar/docs/docgen/_site
+        retention-days: 1
+
+    - name: Publish documentation
+      uses: actions/deploy-pages@v4
+      with:
+        artifact_name: termbar-documentation
