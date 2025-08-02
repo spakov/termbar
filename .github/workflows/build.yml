@@ -76,7 +76,7 @@ jobs:
 
     - name: Create app package
       working-directory: ./TermBar
-      run: msbuild $env:Solution_Name /p:Platform=$env:Platform /p:Configuration=$env:Configuration /p:GenerateAppxPackageOnBuild=true /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx
+      run: msbuild $env:Solution_Name /p:Platform=$env:Platform /p:Configuration=$env:Configuration /p:GenerateAppxPackageOnBuild=true /p:PackageCertificateKeyFile=..\GitHubActionsWorkflow.pfx
       env:
         Platform: ${{ inputs.platform }}
         Configuration: ${{ inputs.configuration }}
