@@ -1,5 +1,6 @@
 ﻿using Spakov.TermBar.Configuration.Json.SchemaAttributes;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Spakov.TermBar.Configuration.Json
 {
@@ -7,6 +8,9 @@ namespace Spakov.TermBar.Configuration.Json
     internal class Config
     {
         private const string StartDirectoryDefault = "%USERPROFILE%";
+
+        [JsonPropertyName("$schema")]
+        public string? Schema { get; set; }
 
         [Description("A list of displays.")]
         public required List<Display> Displays { get; set; }
