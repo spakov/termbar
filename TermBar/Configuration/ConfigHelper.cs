@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Schema;
@@ -20,6 +21,11 @@ namespace Spakov.TermBar.Configuration
     /// </summary>
     internal static partial class ConfigHelper
     {
+        /// <summary>
+        /// The path to the TermBar JSON schema.
+        /// </summary>
+        private const string Schema = "https://github.com/spakov/termbar/raw/refs/heads/release/v{0}/schema/TermBar-{0}-schema.json";
+
         /// <summary>
         /// The name of the configuration file.
         /// </summary>
@@ -62,8 +68,15 @@ namespace Spakov.TermBar.Configuration
 
             if (!File.Exists(ConfigPath))
             {
+                StringBuilder termBarVersion = new();
+                termBarVersion.Append(Assembly.GetExecutingAssembly().GetName().Version!.Major);
+                termBarVersion.Append('.');
+                termBarVersion.Append(Assembly.GetExecutingAssembly().GetName().Version!.Minor);
+
                 config = new()
                 {
+                    Schema = string.Format(Schema, termBarVersion),
+
                     Displays =
                     [
                         new()
